@@ -45,11 +45,25 @@ logger = logging.getLogger(__name__)
 
 # Optional LLM support
 try:
-    from ..llm import get_provider, LLMProvider, LLM_AVAILABLE
+    from ..llm import (
+        get_provider,
+        LLMProvider,
+        LLM_AVAILABLE,
+        PromptChainExecutor,
+        RhetoricalPromptLibrary,
+        RhetoricalOutputParser,
+        prompt_library,
+    )
+    CHAIN_AVAILABLE = True
 except ImportError:
     get_provider = None
     LLMProvider = None
     LLM_AVAILABLE = False
+    PromptChainExecutor = None
+    RhetoricalPromptLibrary = None
+    RhetoricalOutputParser = None
+    prompt_library = None
+    CHAIN_AVAILABLE = False
 
 # Optional NLP libraries
 try:
@@ -225,12 +239,13 @@ class EvaluationAnalysis(BaseAnalysisModule):
     """
 
     name = "evaluation"
-    description = "9-step rhetorical evaluation framework (Evaluation → Risk → Growth)"
+    description = "9-step rhetorical evaluation framework (Evaluation → Reinforcement → Risk → Growth)"
 
-    # Step definitions
+    # Step definitions with 4-phase flow
+    # Note: Logic Check moved to Reinforcement phase (after initial evaluation)
     STEPS = {
         1: ("critique", "Evaluation", "Strengths and weaknesses assessment"),
-        2: ("logic_check", "Evaluation", "Internal consistency and argument flow"),
+        2: ("logic_check", "Reinforcement", "Internal consistency and argument flow"),
         3: ("logos", "Evaluation", "Rational appeal - evidence and reasoning"),
         4: ("pathos", "Evaluation", "Emotional resonance and engagement"),
         5: ("ethos", "Evaluation", "Credibility and authority markers"),
@@ -240,12 +255,35 @@ class EvaluationAnalysis(BaseAnalysisModule):
         9: ("evolve", "Growth", "Synthesized improvement recommendations"),
     }
 
-    # Steps that benefit from LLM analysis
-    LLM_ENHANCED_STEPS = {1, 8, 9}  # Critique, Bloom, Evolve
+    # 4-phase execution order (Evaluation → Reinforcement → Risk → Growth)
+    STEP_ORDER = [
+        1,  # Critique - Evaluation
+        3,  # Logos - Evaluation
+        4,  # Pathos - Evaluation
+        5,  # Ethos - Evaluation
+        2,  # Logic Check - Reinforcement (validates findings from Evaluation)
+        6,  # Blind Spots - Risk
+        7,  # Shatter Points - Risk
+        8,  # Bloom - Growth
+        9,  # Evolve - Growth
+    ]
+
+    # All steps can now use LLM enhancement
+    LLM_ENHANCED_STEPS = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+    # Phase groupings
+    PHASE_STEPS = {
+        "Evaluation": [1, 3, 4, 5],
+        "Reinforcement": [2],
+        "Risk": [6, 7],
+        "Growth": [8, 9],
+    }
 
     def __init__(self):
         super().__init__()
         self._llm_provider: Optional[LLMProvider] = None
+        self._chain_executor: Optional["PromptChainExecutor"] = None
+        self._parser: Optional["RhetoricalOutputParser"] = None
         self._vader = None
         self._nlp = None
         self._compiled_patterns: Dict[str, Dict[str, List[re.Pattern]]] = {}
@@ -253,6 +291,10 @@ class EvaluationAnalysis(BaseAnalysisModule):
         # Initialize VADER if available
         if VADER_AVAILABLE:
             self._vader = SentimentIntensityAnalyzer()
+
+        # Initialize parser if available
+        if CHAIN_AVAILABLE:
+            self._parser = RhetoricalOutputParser()
 
         # Compile all regex patterns
         self._compile_patterns()
@@ -275,12 +317,125 @@ class EvaluationAnalysis(BaseAnalysisModule):
                 ]
 
     def _setup_llm(self, config: Dict[str, Any]):
-        """Initialize LLM provider from config."""
+        """Initialize LLM provider and chain executor from config."""
         llm_config = config.get("llm")
         if llm_config and get_provider:
             self._llm_provider = get_provider(llm_config)
             if self._llm_provider:
                 logger.info(f"LLM provider initialized: {self._llm_provider.name}")
+
+                # Initialize chain executor if available
+                chain_config = config.get("chain", {})
+                if CHAIN_AVAILABLE and chain_config.get("enabled", True):
+                    self._chain_executor = PromptChainExecutor(
+                        provider=self._llm_provider,
+                        prompts=prompt_library,
+                        parser=self._parser,
+                        max_retries=chain_config.get("max_retries", 2),
+                    )
+                    logger.info("Prompt chain executor initialized")
+
+    def _get_llm_step_analysis(
+        self,
+        step_name: str,
+        corpus: Corpus,
+        additional_context: Optional[Dict[str, Any]] = None,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Get LLM-enhanced analysis for a step using the chain executor.
+
+        Args:
+            step_name: Name of the evaluation step
+            corpus: The corpus being analyzed
+            additional_context: Extra context variables
+
+        Returns:
+            Parsed LLM output or None if LLM not available
+        """
+        if not self._chain_executor:
+            return None
+
+        # Prepare text content for analysis
+        sample_text = self._extract_sample_text(corpus, max_chars=3000)
+        self._chain_executor.set_text(sample_text)
+
+        try:
+            step_result = self._chain_executor.execute_step(
+                step_name,
+                additional_context=additional_context,
+            )
+
+            if step_result.success:
+                return step_result.parsed_output
+            else:
+                logger.warning(f"LLM step {step_name} failed: {step_result.error}")
+                return None
+
+        except Exception as e:
+            logger.error(f"Error in LLM step {step_name}: {e}")
+            return None
+
+    def _extract_sample_text(self, corpus: Corpus, max_chars: int = 3000) -> str:
+        """Extract sample text from corpus for LLM analysis."""
+        sample_parts = []
+        current_len = 0
+
+        for _, theme in self.iter_atoms(corpus, AtomLevel.THEME):
+            if current_len + len(theme.text) > max_chars:
+                remaining = max_chars - current_len
+                if remaining > 100:
+                    sample_parts.append(theme.text[:remaining] + "...")
+                break
+            sample_parts.append(theme.text)
+            current_len += len(theme.text) + 2
+
+        return "\n\n".join(sample_parts)
+
+    def _merge_llm_findings(
+        self,
+        heuristic_findings: List[Dict[str, Any]],
+        llm_output: Optional[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        """Merge LLM findings with heuristic findings."""
+        if not llm_output or not self._parser:
+            return heuristic_findings
+
+        llm_findings = self._parser.extract_findings(llm_output)
+
+        # Combine, avoiding duplicates based on description
+        seen_descriptions = {f.get("description", "")[:50] for f in heuristic_findings}
+        merged = heuristic_findings.copy()
+
+        for finding in llm_findings:
+            desc = finding.get("description", "")[:50]
+            if desc not in seen_descriptions:
+                finding["source"] = "llm"
+                merged.append(finding)
+                seen_descriptions.add(desc)
+
+        return merged
+
+    def _merge_llm_recommendations(
+        self,
+        heuristic_recs: List[str],
+        llm_output: Optional[Dict[str, Any]],
+    ) -> List[str]:
+        """Merge LLM recommendations with heuristic recommendations."""
+        if not llm_output or not self._parser:
+            return heuristic_recs
+
+        llm_recs = self._parser.extract_recommendations(llm_output)
+
+        # Combine, avoiding duplicates
+        seen = set(r.lower()[:30] for r in heuristic_recs)
+        merged = heuristic_recs.copy()
+
+        for rec in llm_recs:
+            if rec.lower()[:30] not in seen:
+                merged.append(rec)
+                seen.add(rec.lower()[:30])
+
+        return merged
 
     # =========================================================================
     # PATTERN MATCHING UTILITIES
@@ -676,10 +831,20 @@ ANALYSIS:"""
         if transition_counts.get("example", 0) < 2:
             recommendations.append("Include more examples to support abstract claims")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 2 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("logic_check", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                llm_insights = llm_output.get("_raw") or str(llm_output.get("coherence_assessment", ""))
+
         return StepResult(
             step_number=2,
             step_name="logic_check",
-            phase="Evaluation",
+            phase="Reinforcement",
             score=min(100, max(0, overall_score)),
             findings=findings,
             metrics={
@@ -690,6 +855,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -786,6 +952,16 @@ ANALYSIS:"""
         if evidence_density < 0.1:
             recommendations.append("Increase use of specific examples and evidence")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 3 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("logos", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                llm_insights = llm_output.get("_raw") or str(llm_output.get("logical_structure", ""))
+
         return StepResult(
             step_number=3,
             step_name="logos",
@@ -801,6 +977,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -907,6 +1084,16 @@ ANALYSIS:"""
         if sentiment_variation < 0.1:
             recommendations.append("Vary emotional tone to create a more engaging narrative arc")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 4 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("pathos", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                llm_insights = llm_output.get("_raw") or str(llm_output.get("emotional_tone", ""))
+
         return StepResult(
             step_number=4,
             step_name="pathos",
@@ -923,6 +1110,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -1007,6 +1195,16 @@ ANALYSIS:"""
         if authority_counts.get("trust_builders", 0) == 0:
             recommendations.append("Add trust-building language to connect with audience")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 5 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("ethos", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                llm_insights = llm_output.get("_raw") or str(llm_output.get("credibility_markers", ""))
+
         return StepResult(
             step_number=5,
             step_name="ethos",
@@ -1022,6 +1220,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -1126,6 +1325,21 @@ ANALYSIS:"""
             recommendations.append("Address potential counterarguments to strengthen the argument")
         recommendations.append("Consider perspectives from different stakeholders")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 6 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("blind_spots", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                # Extract meaningful insight summary
+                hidden = llm_output.get("hidden_assumptions", [])
+                if hidden:
+                    llm_insights = f"Found {len(hidden)} hidden assumptions. "
+                    if isinstance(hidden[0], dict):
+                        llm_insights += hidden[0].get("assumption", "")
+
         return StepResult(
             step_number=6,
             step_name="blind_spots",
@@ -1140,6 +1354,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -1231,6 +1446,22 @@ ANALYSIS:"""
         if weakness_counts.get("logical_fallacies", 0) > 0:
             recommendations.append("Review and correct potential logical fallacies")
 
+        # Get LLM insights if available
+        llm_output = None
+        llm_insights = None
+        if self._llm_provider and 7 in self.LLM_ENHANCED_STEPS:
+            llm_output = self._get_llm_step_analysis("shatter_points", corpus)
+            if llm_output:
+                findings = self._merge_llm_findings(findings, llm_output)
+                recommendations = self._merge_llm_recommendations(recommendations, llm_output)
+                # Extract vulnerability summary
+                vulns = llm_output.get("critical_vulnerabilities", [])
+                resilience = llm_output.get("overall_resilience", {})
+                if vulns:
+                    llm_insights = f"Identified {len(vulns)} critical vulnerabilities. "
+                if isinstance(resilience, dict):
+                    llm_insights = (llm_insights or "") + resilience.get("assessment", "")
+
         return StepResult(
             step_number=7,
             step_name="shatter_points",
@@ -1246,6 +1477,7 @@ ANALYSIS:"""
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
+            llm_insights=llm_insights,
         )
 
     # =========================================================================
@@ -1332,6 +1564,12 @@ ANALYSIS:"""
         # Get LLM insights if available
         llm_insights = None
         if self._llm_provider and 8 in self.LLM_ENHANCED_STEPS:
+            # Set theme data on chain executor if available
+            if self._chain_executor:
+                self._chain_executor.set_theme_data(
+                    connections=theme_connections,
+                    concepts=recurring_concepts,
+                )
             llm_insights = self._get_llm_bloom_insights(corpus, theme_connections, recurring_concepts)
 
         overall_score = self._aggregate_scores(level_breakdown)
@@ -1592,22 +1830,37 @@ IMPROVEMENT PLAN:"""
         config: Optional[Dict[str, Any]] = None,
     ) -> AnalysisOutput:
         """
-        Run 9-step evaluation analysis.
+        Run 9-step evaluation analysis with 4-phase flow.
+
+        Phases: Evaluation → Reinforcement → Risk → Growth
 
         Config options:
-            steps (list): Which steps to run (default: all [1-9])
+            steps (list): Which steps to run (default: all in STEP_ORDER)
             levels (list): Which levels to analyze (default: all)
             llm (dict): LLM provider configuration
+            chain (dict): Chain executor configuration
+                - enabled (bool): Enable chain execution (default: True)
+                - show_reasoning (bool): Include prompt/response pairs
+                - max_retries (int): Retry count for parsing failures
         """
         self._config = config or {}
 
-        # Setup LLM if configured
+        # Setup LLM and chain executor if configured
         self._setup_llm(self._config)
 
-        # Determine which steps to run
-        steps_to_run = self._config.get("steps", list(range(1, 10)))
+        # Initialize chain executor with corpus text if available
+        if self._chain_executor:
+            sample_text = self._extract_sample_text(corpus)
+            self._chain_executor.set_text(sample_text)
+
+        # Determine which steps to run (use 4-phase order)
+        steps_to_run = self._config.get("steps", self.STEP_ORDER.copy())
         if isinstance(steps_to_run, str):
             steps_to_run = [int(s.strip()) for s in steps_to_run.split(",")]
+
+        # Reorder steps according to 4-phase flow if all steps requested
+        if set(steps_to_run) == set(range(1, 10)):
+            steps_to_run = self.STEP_ORDER.copy()
 
         # Run each step
         results: Dict[str, StepResult] = {}
@@ -1628,7 +1881,7 @@ IMPROVEMENT PLAN:"""
                 continue
 
             step_name, phase, description = self.STEPS[step_num]
-            logger.info(f"Running step {step_num}: {step_name}")
+            logger.info(f"Running step {step_num}: {step_name} ({phase} phase)")
 
             if step_num == 9:
                 # Evolve needs previous results
@@ -1640,9 +1893,10 @@ IMPROVEMENT PLAN:"""
 
             results[step_name] = result
 
-        # Build phase summaries
+        # Build phase summaries (now includes 4 phases)
         phases = {
             "evaluation": {},
+            "reinforcement": {},
             "risk": {},
             "growth": {},
         }
@@ -1650,9 +1904,11 @@ IMPROVEMENT PLAN:"""
         for step_num, (step_name, phase, _) in self.STEPS.items():
             if step_name in results:
                 phase_key = phase.lower()
+                if phase_key not in phases:
+                    phases[phase_key] = {}
                 phases[phase_key][step_name] = results[step_name].to_dict()
 
-        # Calculate summary scores
+        # Calculate summary scores by phase
         phase_scores = {}
         for phase_name, phase_data in phases.items():
             if phase_data:
@@ -1667,9 +1923,20 @@ IMPROVEMENT PLAN:"""
         for result in results.values():
             all_recs.extend(result.recommendations)
 
-        # Build flow data for visualization
+        # Deduplicate recommendations
+        seen_recs = set()
+        unique_recs = []
+        for rec in all_recs:
+            rec_key = rec.lower()[:40]
+            if rec_key not in seen_recs:
+                seen_recs.add(rec_key)
+                unique_recs.append(rec)
+
+        # Build flow data for visualization (in 4-phase order)
         flow = []
-        for step_num in sorted([s for s in steps_to_run if s in self.STEPS]):
+        for step_num in steps_to_run:
+            if step_num not in self.STEPS:
+                continue
             step_name, phase, description = self.STEPS[step_num]
             if step_name in results:
                 flow.append({
@@ -1678,7 +1945,15 @@ IMPROVEMENT PLAN:"""
                     "phase": phase,
                     "description": description,
                     "score": results[step_name].score,
+                    "llm_enhanced": results[step_name].llm_insights is not None,
                 })
+
+        # Get chain history if available
+        chain_data = []
+        chain_usage = {}
+        if self._chain_executor:
+            chain_data = self._chain_executor.get_chain_for_visualization()
+            chain_usage = self._chain_executor.get_usage_summary()
 
         return self.make_output(
             data={
@@ -1686,13 +1961,17 @@ IMPROVEMENT PLAN:"""
                 "summary": {
                     "overall_score": overall_score,
                     "phase_scores": phase_scores,
-                    "top_recommendations": all_recs[:10],
+                    "top_recommendations": unique_recs[:10],
                 },
                 "flow": flow,
+                "prompt_chain": chain_data,
             },
             metadata={
                 "steps_run": steps_to_run,
+                "step_order": "4-phase",
                 "llm_enabled": self._llm_provider is not None,
+                "chain_enabled": self._chain_executor is not None,
+                "chain_usage": chain_usage,
                 "vader_available": VADER_AVAILABLE,
                 "spacy_available": SPACY_AVAILABLE,
             },

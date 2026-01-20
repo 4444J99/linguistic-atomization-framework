@@ -51,8 +51,16 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
 
     PHASE_COLORS = {
         "Evaluation": "#3498db",
+        "Reinforcement": "#9b59b6",
         "Risk": "#e74c3c",
         "Growth": "#2ecc71",
+    }
+
+    PHASE_ICONS = {
+        "Evaluation": "📊",
+        "Reinforcement": "🔗",
+        "Risk": "⚠️",
+        "Growth": "🌱",
     }
 
     def get_dashboard_css(self) -> str:
@@ -388,6 +396,218 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
             display: block;
         }
 
+        /* Prompt Chain Visualization */
+        .prompt-chain-container {
+            margin-top: 20px;
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+
+        .prompt-chain-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .prompt-chain-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chain-toggle {
+            padding: 8px 16px;
+            background: rgba(155, 89, 182, 0.3);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .chain-toggle:hover {
+            background: rgba(155, 89, 182, 0.5);
+        }
+
+        .chain-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chain-step {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .chain-step:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .chain-step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+        }
+
+        .chain-step-num {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(155, 89, 182, 0.4);
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .chain-step-name {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .chain-step-phase {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .chain-step-phase.evaluation { background: rgba(52, 152, 219, 0.3); }
+        .chain-step-phase.reinforcement { background: rgba(155, 89, 182, 0.3); }
+        .chain-step-phase.risk { background: rgba(231, 76, 60, 0.3); }
+        .chain-step-phase.growth { background: rgba(46, 204, 113, 0.3); }
+
+        .chain-step-confidence {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .chain-step-details {
+            padding: 0 16px 16px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .prompt-box, .output-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .prompt-box label, .output-box label {
+            display: block;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .prompt-box pre, .output-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-size: 0.85em;
+            line-height: 1.5;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .chain-arrow {
+            text-align: center;
+            font-size: 1.2em;
+            opacity: 0.5;
+            padding: 5px 0;
+        }
+
+        .no-chain-data {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.6;
+        }
+
+        /* 4-Phase Flow Visualization */
+        .four-phase-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .phase-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .phase-label {
+            min-width: 140px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-steps-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .phase-connector {
+            text-align: center;
+            font-size: 1.5em;
+            opacity: 0.5;
+            padding: 5px 0;
+        }
+
+        .feedback-loop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .feedback-loop-icon {
+            font-size: 1.5em;
+        }
+
+        .feedback-loop-text {
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* LLM Badge */
+        .llm-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: rgba(155, 89, 182, 0.3);
+            border-radius: 8px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .overall-score {
                 flex-direction: column;
@@ -403,6 +623,23 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
 
             .flow-arrow {
                 transform: rotate(90deg);
+            }
+
+            .four-phase-flow {
+                padding: 10px;
+            }
+
+            .phase-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .phase-label {
+                width: 100%;
+            }
+
+            .chain-step-header {
+                flex-wrap: wrap;
             }
         }
         """
@@ -490,6 +727,36 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
             a.click();
             URL.revokeObjectURL(url);
         }}
+
+        // Toggle all chain details
+        let chainExpanded = false;
+        function toggleChainDetails() {{
+            chainExpanded = !chainExpanded;
+            document.querySelectorAll('.chain-step-details').forEach(details => {{
+                details.style.display = chainExpanded ? 'block' : 'none';
+            }});
+        }}
+
+        // Toggle individual step details
+        function toggleStepDetails(stepId) {{
+            const details = document.getElementById(stepId);
+            if (details) {{
+                details.style.display = details.style.display === 'none' ? 'block' : 'none';
+            }}
+        }}
+
+        // Highlight current phase in flow
+        function highlightPhase(phase) {{
+            document.querySelectorAll('.phase-row').forEach(row => {{
+                row.style.opacity = row.dataset.phase === phase ? '1' : '0.5';
+            }});
+        }}
+
+        function resetPhaseHighlight() {{
+            document.querySelectorAll('.phase-row').forEach(row => {{
+                row.style.opacity = '1';
+            }});
+        }}
         """
 
     def _get_score_color(self, score: float) -> str:
@@ -535,6 +802,148 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
         html_parts.append('</div>')
         return "\n".join(html_parts)
 
+    def _render_four_phase_flow(self, flow: List[Dict[str, Any]]) -> str:
+        """Render the 4-phase flow diagram with feedback loop."""
+        if not flow:
+            return '<div class="no-data">No flow data available</div>'
+
+        # Organize steps by phase
+        phase_order = ["Evaluation", "Reinforcement", "Risk", "Growth"]
+        phases_data: Dict[str, List[Dict]] = {p: [] for p in phase_order}
+
+        for step in flow:
+            phase = step.get("phase", "Evaluation")
+            if phase in phases_data:
+                phases_data[phase].append(step)
+
+        html_parts = ['<div class="four-phase-flow">']
+
+        for i, phase_name in enumerate(phase_order):
+            phase_steps = phases_data.get(phase_name, [])
+            if not phase_steps and phase_name != "Reinforcement":
+                continue
+
+            phase_color = self.PHASE_COLORS.get(phase_name, "#95a5a6")
+            phase_icon = self.PHASE_ICONS.get(phase_name, "📌")
+
+            # Phase row
+            html_parts.append(f'''
+                <div class="phase-row">
+                    <div class="phase-label" style="background: rgba({self._hex_to_rgb(phase_color)}, 0.3);">
+                        <span>{phase_icon}</span>
+                        <span>{phase_name}</span>
+                    </div>
+                    <div class="phase-steps-row">
+            ''')
+
+            # Steps in this phase
+            for j, step in enumerate(phase_steps):
+                step_name = step.get("name", "")
+                step_score = step.get("score", 0)
+                llm_enhanced = step.get("llm_enhanced", False)
+                step_info = self.STEP_INFO.get(step_name, {"icon": "📌", "color": "#95a5a6"})
+                score_color = self._get_score_color(step_score)
+
+                llm_badge = '<span class="llm-badge">🤖 AI</span>' if llm_enhanced else ''
+
+                if j > 0:
+                    html_parts.append('<span class="flow-arrow">→</span>')
+
+                html_parts.append(f'''
+                    <div class="flow-step" style="background: rgba({self._hex_to_rgb(score_color)}, 0.3); border: 2px solid {score_color};">
+                        <div class="step-icon">{step_info["icon"]}</div>
+                        <div class="flow-step-number">{step_score:.0f}</div>
+                        <div class="flow-step-name">{step_name.replace("_", " ")}</div>
+                        {llm_badge}
+                    </div>
+                ''')
+
+            html_parts.append('</div></div>')
+
+            # Add connector between phases
+            if i < len(phase_order) - 1 and (phase_steps or phase_name == "Reinforcement"):
+                html_parts.append('<div class="phase-connector">↓</div>')
+
+        # Feedback loop indicator
+        html_parts.append('''
+            <div class="feedback-loop">
+                <span class="feedback-loop-icon">⟲</span>
+                <span class="feedback-loop-text">Iterate: Apply improvements and re-evaluate for continuous growth</span>
+            </div>
+        ''')
+
+        html_parts.append('</div>')
+        return "\n".join(html_parts)
+
+    def _render_prompt_chain_panel(self, chain_data: List[Dict[str, Any]]) -> str:
+        """Render the AI reasoning chain visualization panel."""
+        if not chain_data:
+            return '''
+                <div class="prompt-chain-container">
+                    <div class="no-chain-data">
+                        <p>🤖 AI Prompt Chain not available</p>
+                        <p style="font-size: 0.85em;">Enable LLM analysis in project.yaml to see AI reasoning</p>
+                    </div>
+                </div>
+            '''
+
+        html_parts = ['''
+            <div class="prompt-chain-container">
+                <div class="prompt-chain-header">
+                    <h3>🤖 AI Reasoning Chain</h3>
+                    <button class="chain-toggle" onclick="toggleChainDetails()">
+                        Show/Hide Details
+                    </button>
+                </div>
+                <div class="chain-steps" id="chain-steps-container">
+        ''']
+
+        for i, step in enumerate(chain_data):
+            step_name = step.get("step", f"Step {i+1}")
+            phase = step.get("phase", "").lower()
+            confidence = step.get("confidence", 0)
+            prompt_preview = step.get("prompt_preview", "")
+            output_preview = step.get("output_preview", "")
+            success = step.get("success", True)
+
+            confidence_display = f"{confidence:.0%}" if isinstance(confidence, (int, float)) else str(confidence)
+            status_icon = "✓" if success else "✗"
+            status_class = "" if success else "style='opacity: 0.6;'"
+
+            html_parts.append(f'''
+                <div class="chain-step" {status_class}>
+                    <div class="chain-step-header" onclick="toggleStepDetails('chain-step-{i}')">
+                        <span class="chain-step-num">{i + 1}</span>
+                        <span class="chain-step-name">{step_name}</span>
+                        <span class="chain-step-phase {phase}">{phase.title()}</span>
+                        <span class="chain-step-confidence">{status_icon} {confidence_display}</span>
+                    </div>
+                    <div class="chain-step-details" id="chain-step-{i}" style="display: none;">
+                        <div class="prompt-box">
+                            <label>📝 Prompt Sent:</label>
+                            <pre>{self._escape_html(prompt_preview)}</pre>
+                        </div>
+                        <div class="chain-arrow">↓ AI Processing</div>
+                        <div class="output-box">
+                            <label>💡 Output Received:</label>
+                            <pre>{self._escape_html(output_preview)}</pre>
+                        </div>
+                    </div>
+                </div>
+            ''')
+
+        html_parts.append('</div></div>')
+        return "\n".join(html_parts)
+
+    def _escape_html(self, text: str) -> str:
+        """Escape HTML special characters."""
+        return (text
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+            .replace("'", "&#39;"))
+
     def _hex_to_rgb(self, hex_color: str) -> str:
         """Convert hex color to RGB string."""
         hex_color = hex_color.lstrip('#')
@@ -560,8 +969,16 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
             metrics_items = []
             for key, value in list(metrics.items())[:6]:
                 display_key = key.replace("_", " ").title()
+                # Handle different value types
                 if isinstance(value, float):
                     display_value = f"{value:.1f}"
+                elif isinstance(value, dict):
+                    # For dict metrics, show count of items
+                    display_value = f"{len(value)} items"
+                elif isinstance(value, list):
+                    display_value = f"{len(value)} items"
+                elif isinstance(value, bool):
+                    display_value = "Yes" if value else "No"
                 else:
                     display_value = str(value)
                 metrics_items.append(f'''
@@ -691,13 +1108,21 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
         phases = analysis.data.get("phases", {})
         summary = analysis.data.get("summary", {})
         flow = analysis.data.get("flow", [])
+        prompt_chain = analysis.data.get("prompt_chain", [])
 
         overall_score = summary.get("overall_score", 0)
         phase_scores = summary.get("phase_scores", {})
         top_recommendations = summary.get("top_recommendations", [])
 
+        # Check if this is 4-phase analysis
+        is_four_phase = "reinforcement" in phases or any(s.get("phase") == "Reinforcement" for s in flow)
+
         title = self._config.get("title", "Rhetorical Evaluation Dashboard")
-        subtitle = self._config.get("subtitle", "9-Step Analysis: Evaluation → Risk → Growth")
+        subtitle = self._config.get(
+            "subtitle",
+            "9-Step Analysis: Evaluation → Reinforcement → Risk → Growth" if is_four_phase
+            else "9-Step Analysis: Evaluation → Risk → Growth"
+        )
 
         # Build overall score circles
         score_circles_html = f'''
@@ -716,12 +1141,19 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
                 </div>
             '''
 
-        # Build flow diagram
-        flow_html = self._render_flow_diagram(flow) if flow else ""
+        # Build flow diagram (use 4-phase if available)
+        if is_four_phase:
+            flow_html = self._render_four_phase_flow(flow) if flow else ""
+        else:
+            flow_html = self._render_flow_diagram(flow) if flow else ""
 
-        # Build phase sections
+        # Build prompt chain panel
+        chain_html = self._render_prompt_chain_panel(prompt_chain)
+
+        # Build phase sections (include reinforcement phase)
         phases_html = ""
-        for phase_name in ["evaluation", "risk", "growth"]:
+        phase_order = ["evaluation", "reinforcement", "risk", "growth"] if is_four_phase else ["evaluation", "risk", "growth"]
+        for phase_name in phase_order:
             phase_data = phases.get(phase_name, {})
             if phase_data:
                 phase_score = phase_scores.get(phase_name, 0)
@@ -735,10 +1167,13 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
         recommendations_html = self._render_recommendations_panel(top_recommendations)
 
         # Build content
+        llm_status = "🤖 AI-Enhanced" if prompt_chain else "📊 Heuristic"
+
         content = f'''
             <div class="glass dashboard-header">
                 <h1>📊 {title}</h1>
                 <p class="subtitle">{subtitle}</p>
+                <p style="opacity: 0.7; font-size: 0.9em;">{llm_status} Analysis</p>
                 <div class="overall-score">
                     {score_circles_html}
                 </div>
@@ -748,7 +1183,9 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
             </div>
 
             <div class="glass">
-                <h2 style="text-align: center; margin-bottom: 15px;">Analysis Flow</h2>
+                <h2 style="text-align: center; margin-bottom: 15px;">
+                    {"4-Phase" if is_four_phase else ""} Analysis Flow
+                </h2>
                 {flow_html}
             </div>
 
@@ -760,6 +1197,9 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
                     <button class="tab-btn" data-tab="recommendations" onclick="switchTab('recommendations')">
                         💡 Recommendations
                     </button>
+                    <button class="tab-btn" data-tab="ai-chain" onclick="switchTab('ai-chain')">
+                        🤖 AI Reasoning
+                    </button>
                 </div>
 
                 <div id="phases-tab" class="tab-content active">
@@ -769,11 +1209,15 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
                 <div id="recommendations-tab" class="tab-content">
                     {recommendations_html}
                 </div>
+
+                <div id="ai-chain-tab" class="tab-content">
+                    {chain_html}
+                </div>
             </div>
 
             <div class="glass" style="text-align: center; opacity: 0.7;">
                 <p>Generated by LingFrame Evaluation Module</p>
-                <p>Click on any step card to expand details</p>
+                <p>Click on any step card to expand details • View AI reasoning in the "AI Reasoning" tab</p>
             </div>
         '''
 
