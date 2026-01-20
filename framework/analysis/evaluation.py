@@ -213,8 +213,81 @@ TRANSITION_MARKERS = {
 # =============================================================================
 
 @dataclass
+class EvidenceInstance:
+    """A single piece of text evidence supporting a score component."""
+    text: str              # The matched text
+    category: str          # Evidence type (e.g., "statistics", "appeal")
+    pattern_group: str     # Pattern group that matched (e.g., "evidence", "emotional")
+    atom_id: str           # Atom where evidence was found
+    start: int             # Character position start
+    end: int               # Character position end
+    context: str = ""      # Surrounding text for context (optional)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "text": self.text,
+            "category": self.category,
+            "pattern_group": self.pattern_group,
+            "atom_id": self.atom_id,
+            "start": self.start,
+            "end": self.end,
+            "context": self.context,
+        }
+
+
+@dataclass
+class ScoreComponent:
+    """A component contributing to the final score."""
+    name: str              # Component name (e.g., "statistics_density")
+    raw_value: float       # Raw measured value
+    weight: float          # Weight in final calculation
+    contribution: float    # Weighted contribution to score
+    evidence_count: int    # Number of evidence instances supporting this
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "name": self.name,
+            "raw_value": self.raw_value,
+            "weight": self.weight,
+            "contribution": self.contribution,
+            "evidence_count": self.evidence_count,
+        }
+
+
+@dataclass
+class ScoreExplanation:
+    """
+    Full explanation of how a score was calculated.
+
+    This enables auditing and transparency - users can trace any score
+    back to specific text instances that influenced it.
+    """
+    final_score: float
+    components: List[ScoreComponent] = field(default_factory=list)
+    evidence: List[EvidenceInstance] = field(default_factory=list)
+    methodology: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "final_score": self.final_score,
+            "components": [c.to_dict() for c in self.components],
+            "evidence": [e.to_dict() for e in self.evidence],
+            "evidence_count": len(self.evidence),
+            "methodology": self.methodology,
+        }
+
+    def get_evidence_by_category(self, category: str) -> List[EvidenceInstance]:
+        """Filter evidence by category for targeted inspection."""
+        return [e for e in self.evidence if e.category == category]
+
+    def get_top_evidence(self, n: int = 5) -> List[EvidenceInstance]:
+        """Get top N evidence instances (by context length as proxy for significance)."""
+        return sorted(self.evidence, key=lambda e: len(e.text), reverse=True)[:n]
+
+
+@dataclass
 class StepResult:
-    """Result from a single evaluation step."""
+    """Result from a single evaluation step with full explainability."""
     step_number: int
     step_name: str
     phase: str
@@ -224,9 +297,10 @@ class StepResult:
     level_breakdown: Dict[str, Dict[str, Any]] = field(default_factory=dict)
     recommendations: List[str] = field(default_factory=list)
     llm_insights: Optional[str] = None
+    explanation: Optional[ScoreExplanation] = None  # Explainability data
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        result = {
             "step_number": self.step_number,
             "step_name": self.step_name,
             "phase": self.phase,
@@ -237,6 +311,37 @@ class StepResult:
             "recommendations": self.recommendations,
             "llm_insights": self.llm_insights,
         }
+        if self.explanation:
+            result["explanation"] = self.explanation.to_dict()
+        return result
+
+    def explain_score(self) -> str:
+        """Generate human-readable explanation of this step's score."""
+        if not self.explanation:
+            return f"Score: {self.score:.1f} (no detailed explanation available)"
+
+        lines = [
+            f"Score: {self.explanation.final_score:.1f}",
+            f"Based on {len(self.explanation.evidence)} evidence instances:",
+            "",
+        ]
+
+        # Group by category
+        by_category: Dict[str, List[EvidenceInstance]] = {}
+        for ev in self.explanation.evidence:
+            by_category.setdefault(ev.category, []).append(ev)
+
+        for category, instances in sorted(by_category.items()):
+            lines.append(f"  {category}: {len(instances)} instances")
+            for inst in instances[:3]:  # Show top 3
+                lines.append(f"    - \"{inst.text}\" (at {inst.atom_id})")
+            if len(instances) > 3:
+                lines.append(f"    ... and {len(instances) - 3} more")
+
+        if self.explanation.methodology:
+            lines.extend(["", f"Methodology: {self.explanation.methodology}"])
+
+        return "\n".join(lines)
 
 
 # =============================================================================
@@ -520,6 +625,123 @@ class EvaluationAnalysis(BaseAnalysisModule):
                     })
 
         return instances
+
+    def _find_evidence(
+        self,
+        text: str,
+        group: str,
+        atom_id: str,
+        category: Optional[str] = None,
+        context_chars: int = 30,
+    ) -> List[EvidenceInstance]:
+        """
+        Find evidence instances for explainability.
+
+        Args:
+            text: Text to search
+            group: Pattern group (e.g., "evidence", "emotional")
+            atom_id: ID of the atom being searched
+            category: Optional specific category within group
+            context_chars: Characters of context to include around match
+
+        Returns:
+            List of EvidenceInstance objects linking matches to text
+        """
+        if group not in self._compiled_patterns:
+            return []
+
+        evidence = []
+        categories = self._compiled_patterns[group]
+
+        if category:
+            categories = {category: categories.get(category, [])}
+
+        for cat_name, patterns in categories.items():
+            for pattern in patterns:
+                for match in pattern.finditer(text):
+                    # Extract surrounding context
+                    start_ctx = max(0, match.start() - context_chars)
+                    end_ctx = min(len(text), match.end() + context_chars)
+                    context = text[start_ctx:end_ctx]
+                    if start_ctx > 0:
+                        context = "..." + context
+                    if end_ctx < len(text):
+                        context = context + "..."
+
+                    evidence.append(EvidenceInstance(
+                        text=match.group(),
+                        category=cat_name,
+                        pattern_group=group,
+                        atom_id=atom_id,
+                        start=match.start(),
+                        end=match.end(),
+                        context=context,
+                    ))
+
+        return evidence
+
+    def _collect_corpus_evidence(
+        self,
+        corpus: Corpus,
+        group: str,
+        level: AtomLevel = AtomLevel.SENTENCE,
+        category: Optional[str] = None,
+    ) -> List[EvidenceInstance]:
+        """
+        Collect evidence across entire corpus at specified level.
+
+        Args:
+            corpus: Corpus to search
+            group: Pattern group
+            level: Atomization level to search at
+            category: Optional specific category
+
+        Returns:
+            All evidence instances found in corpus
+        """
+        all_evidence = []
+        for _, atom in self.iter_atoms(corpus, level):
+            evidence = self._find_evidence(
+                atom.text, group, atom.id, category
+            )
+            all_evidence.extend(evidence)
+        return all_evidence
+
+    def _build_score_explanation(
+        self,
+        final_score: float,
+        components: List[Tuple[str, float, float]],  # (name, raw_value, weight)
+        evidence: List[EvidenceInstance],
+        methodology: str,
+    ) -> ScoreExplanation:
+        """
+        Build a complete score explanation for transparency.
+
+        Args:
+            final_score: The calculated score
+            components: List of (name, raw_value, weight) tuples
+            evidence: Evidence instances supporting the score
+            methodology: Description of calculation method
+        """
+        score_components = []
+        for name, raw_value, weight in components:
+            contribution = raw_value * weight
+            # Count evidence matching this component
+            ev_count = len([e for e in evidence if e.category == name or name in e.category])
+            score_components.append(ScoreComponent(
+                name=name,
+                raw_value=raw_value,
+                weight=weight,
+                contribution=contribution,
+                evidence_count=ev_count,
+            ))
+
+        return ScoreExplanation(
+            final_score=final_score,
+            components=score_components,
+            evidence=evidence,
+            methodology=methodology,
+        )
 
     # =========================================================================
     # LEVEL AGGREGATION
@@ -890,18 +1112,29 @@ ANALYSIS:"""
     # =========================================================================
 
     def _step_logos(self, corpus: Corpus, domain: Optional[DomainProfile]) -> StepResult:
-        """Analyze rational appeal - evidence and reasoning."""
+        """
+        Analyze rational appeal - evidence and reasoning.
+
+        Collects all evidence instances for full explainability, allowing
+        users to trace the logos score back to specific text evidence.
+        """
         findings = []
         level_breakdown = {}
 
         evidence_counts = defaultdict(int)
         sentences_with_evidence = 0
         total_sentences = 0
-        evidence_instances = []
+
+        # Collect evidence with full explainability
+        all_evidence: List[EvidenceInstance] = []
 
         for _, sentence in self.iter_atoms(corpus, AtomLevel.SENTENCE):
             total_sentences += 1
             text = sentence.text
+
+            # Find evidence with full context for explainability
+            sentence_evidence = self._find_evidence(text, "evidence", sentence.id)
+            all_evidence.extend(sentence_evidence)
 
             evidence = self._count_pattern_matches(text, "evidence")
             evidence_total = sum(evidence.values())
@@ -911,31 +1144,37 @@ ANALYSIS:"""
                 for cat, count in evidence.items():
                     evidence_counts[cat] += count
 
-                # Track specific instances
-                for instance in self._find_pattern_instances(text, "evidence"):
-                    evidence_instances.append({
-                        "sentence_id": sentence.id,
-                        **instance,
-                    })
-
         # Calculate metrics
         evidence_density = sentences_with_evidence / total_sentences if total_sentences > 0 else 0
         evidence_variety = len([c for c in evidence_counts.values() if c > 0])
 
-        # Score
-        logos_score = 40.0
+        # Score calculation with tracked components
+        score_components = []
+        logos_score = 40.0  # Base score
 
+        # Density contribution
+        density_contribution = 0.0
         if evidence_density > 0.2:
-            logos_score += 25
+            density_contribution = 25.0
         elif evidence_density > 0.1:
-            logos_score += 15
+            density_contribution = 15.0
+        logos_score += density_contribution
+        score_components.append(("density", evidence_density * 100, 0.25, density_contribution))
 
-        if evidence_counts.get("statistics", 0) > 0:
-            logos_score += 10
-        if evidence_counts.get("citations", 0) > 0:
-            logos_score += 15
-        if evidence_counts.get("logical_connectors", 0) >= 3:
-            logos_score += 10
+        # Statistics contribution
+        stats_contribution = 10.0 if evidence_counts.get("statistics", 0) > 0 else 0.0
+        logos_score += stats_contribution
+        score_components.append(("statistics", evidence_counts.get("statistics", 0), 0.10, stats_contribution))
+
+        # Citations contribution
+        cite_contribution = 15.0 if evidence_counts.get("citations", 0) > 0 else 0.0
+        logos_score += cite_contribution
+        score_components.append(("citations", evidence_counts.get("citations", 0), 0.15, cite_contribution))
+
+        # Logical connectors contribution
+        conn_contribution = 10.0 if evidence_counts.get("logical_connectors", 0) >= 3 else 0.0
+        logos_score += conn_contribution
+        score_components.append(("logical_connectors", evidence_counts.get("logical_connectors", 0), 0.10, conn_contribution))
 
         level_breakdown["sentence"] = {
             "score": logos_score,
@@ -944,21 +1183,25 @@ ANALYSIS:"""
             "total_evidence_markers": sum(evidence_counts.values()),
         }
 
-        # Findings
+        # Findings with evidence links
         if evidence_counts.get("citations", 0) > 0:
+            citation_evidence = [e for e in all_evidence if e.category == "citations"]
             findings.append({
                 "type": "strength",
                 "category": "citations",
                 "description": f"Text includes {evidence_counts['citations']} citation references",
                 "score_impact": "+15",
+                "evidence_sample": [e.to_dict() for e in citation_evidence[:3]],
             })
 
         if evidence_counts.get("statistics", 0) > 0:
+            stats_evidence = [e for e in all_evidence if e.category == "statistics"]
             findings.append({
                 "type": "strength",
                 "category": "statistics",
                 "description": f"Uses {evidence_counts['statistics']} statistical references",
                 "score_impact": "+10",
+                "evidence_sample": [e.to_dict() for e in stats_evidence[:3]],
             })
 
         if evidence_density < 0.05:
@@ -970,6 +1213,19 @@ ANALYSIS:"""
             })
 
         overall_score = self._aggregate_scores(level_breakdown)
+
+        # Build score explanation for transparency
+        explanation = self._build_score_explanation(
+            final_score=min(100, max(0, overall_score)),
+            components=[(name, val, weight) for name, val, weight, _ in score_components],
+            evidence=all_evidence,
+            methodology=(
+                "Logos score based on evidence marker detection using regex patterns. "
+                f"Base score: 40. Density bonus (>{10}% sentences): +15-25. "
+                "Statistics: +10. Citations: +15. Logical connectors (>=3): +10. "
+                "Weighted by sentence-level analysis (35% weight)."
+            ),
+        )
 
         recommendations = []
         if evidence_counts.get("citations", 0) == 0:
@@ -1001,10 +1257,12 @@ ANALYSIS:"""
                 "statistics_count": evidence_counts.get("statistics", 0),
                 "citations_count": evidence_counts.get("citations", 0),
                 "logical_connectors_count": evidence_counts.get("logical_connectors", 0),
+                "total_evidence_instances": len(all_evidence),
             },
             level_breakdown=level_breakdown,
             recommendations=recommendations,
             llm_insights=llm_insights,
+            explanation=explanation,
         )
 
     # =========================================================================
