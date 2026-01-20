@@ -1,0 +1,21 @@
+{
+  "total_entities": 11,
+  "by_type": {
+    "PERSON": {
+      "total": 11,
+      "unique": 11,
+      "top_10": {
+        "Theme Level": 1,
+        "Paragraph Level": 1,
+        "Sentence Level": 1,
+        "Word Level": 1,
+        "Letter Level": 1,
+        "Interactive Elements": 1,
+        "Data Analysis Visualization": 1,
+        "Exhaustive Analysis": 1,
+        "Abstract Representations": 1,
+        "Frontend Components": 1
+      }
+    }
+  }
+}

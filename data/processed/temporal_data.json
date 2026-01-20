@@ -1,0 +1,319 @@
+{
+  "sentence_analysis": [
+    {
+      "sentence_id": "S00001",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "### Theme Level",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00002",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "- **ID**: TOMB-THEME-001\n- **Content**: Memorial and remembrance of unknown soldiers",
+      "tense": "ambiguous",
+      "temporal_markers": [
+        "now"
+      ],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00003",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "### Paragraph Level",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00004",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "- **ID**: TOMB-PARA-001\n- **Content**: Historical significance and establishment",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00005",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "### Sentence Level  ",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00006",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "- **ID**: TOMB-SENT-001\n- **Content**: Individual meaningful statements",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00007",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "### Word Level",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00008",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "- **ID**: TOMB-WORD-001\n- **Content**: Granular text elements",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00009",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "### Letter Level",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00010",
+      "theme_id": "T001",
+      "theme_title": "Document Atomization Structure",
+      "text": "- **ID**: TOMB-LETT-001  \n- **Content**: Character-by-character breakdown",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00011",
+      "theme_id": "T002",
+      "theme_title": "Visual Representation Features",
+      "text": "### Interactive Elements",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00012",
+      "theme_id": "T002",
+      "theme_title": "Visual Representation Features",
+      "text": "- Toggle-able atomization levels\n- Animated transitions between views\n- Modern glassmorphism design ...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00013",
+      "theme_id": "T002",
+      "theme_title": "Visual Representation Features",
+      "text": "### Data Analysis Visualization",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00014",
+      "theme_id": "T002",
+      "theme_title": "Visual Representation Features",
+      "text": "- Interactive text breakdown\n- Hierarchical content structure\n- Real-time content analysis",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00015",
+      "theme_id": "T003",
+      "theme_title": "TODO: Expansion Items",
+      "text": "### Exhaustive Analysis",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00016",
+      "theme_id": "T003",
+      "theme_title": "TODO: Expansion Items",
+      "text": "- [ ] Complete text atomization implementation\n- [ ] Interactive visualization components  \n- [ ] Gl...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00017",
+      "theme_id": "T003",
+      "theme_title": "TODO: Expansion Items",
+      "text": "### Abstract Representations",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00018",
+      "theme_id": "T003",
+      "theme_title": "TODO: Expansion Items",
+      "text": "- [ ] Semantic analysis integration\n- [ ] Content clustering algorithms\n- [ ] Interactive data explo...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00019",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "### Frontend Components",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00020",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "- React-based interactive elements\n- CSS animations and transitions\n- Responsive glassmorphism desig...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00021",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "### Backend Processing",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00022",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "- Text parsing and atomization\n- Data structure management\n- Analysis algorithm implementation\n- API...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00023",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "---",
+      "tense": "ambiguous",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    },
+    {
+      "sentence_id": "S00024",
+      "theme_id": "T004",
+      "theme_title": "Technical Implementation",
+      "text": "*This document represents the structured approach to content atomization and visual representation a...",
+      "tense": "present",
+      "temporal_markers": [],
+      "is_flashback": false,
+      "is_flashforward": false,
+      "narrative_type": "linear"
+    }
+  ],
+  "theme_tense_distribution": {
+    "T001": {
+      "ambiguous": 8,
+      "present": 2
+    },
+    "T002": {
+      "ambiguous": 1,
+      "present": 3
+    },
+    "T003": {
+      "present": 3,
+      "ambiguous": 1
+    },
+    "T004": {
+      "ambiguous": 3,
+      "present": 3
+    }
+  },
+  "overall_statistics": {
+    "total_sentences": 24,
+    "tense_counts": {
+      "ambiguous": 13,
+      "present": 11
+    },
+    "flashback_count": 0,
+    "flashforward_count": 0,
+    "linear_count": 24
+  },
+  "sankey_data": {
+    "nodes": [
+      {
+        "id": "T001",
+        "name": "Document Atomization Structure"
+      },
+      {
+        "id": "T002",
+        "name": "Visual Representation Features"
+      },
+      {
+        "id": "T003",
+        "name": "TODO: Expansion Items"
+      },
+      {
+        "id": "T004",
+        "name": "Technical Implementation"
+      }
+    ],
+    "links": []
+  }
+}

@@ -1,0 +1,62 @@
+# Base Domain Sentiment Lexicon
+# Generic sentiment adjustments that apply across all domains
+#
+# This provides a fallback when no domain-specific lexicon is loaded.
+
+name: base_sentiment_lexicon
+description: Generic sentiment terms for general text analysis
+
+terms:
+  # Strong positive
+  excellent: 3.0
+  amazing: 2.8
+  wonderful: 2.5
+  fantastic: 2.5
+  great: 2.0
+  good: 1.5
+  happy: 2.0
+  joy: 2.5
+  love: 2.5
+
+  # Moderate positive
+  nice: 1.2
+  pleasant: 1.0
+  fine: 0.5
+  okay: 0.2
+
+  # Strong negative
+  terrible: -3.0
+  horrible: -2.8
+  awful: -2.5
+  bad: -2.0
+  sad: -2.0
+  hate: -2.5
+  anger: -2.0
+  fear: -2.0
+
+  # Moderate negative
+  disappointing: -1.5
+  difficult: -0.8
+  hard: -0.3
+  problem: -1.0
+
+categories:
+  positive:
+    - excellent
+    - amazing
+    - wonderful
+    - fantastic
+    - great
+    - good
+    - happy
+    - joy
+    - love
+  negative:
+    - terrible
+    - horrible
+    - awful
+    - bad
+    - sad
+    - hate
+    - anger
+    - fear

@@ -1,0 +1,26 @@
+# Python Requirements for Tomb of the Unknowns Analysis
+# Install with: pip install -r requirements.txt
+
+# Core data science
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# NLP and Sentiment
+spacy>=3.7.0
+vaderSentiment>=3.3.2
+textblob>=0.17.1
+
+# Visualization (if generating static images)
+matplotlib>=3.7.0
+plotly>=5.17.0
+
+# PDF Processing
+pdfplumber>=0.10.0    # Layout-aware text extraction
+PyMuPDF>=1.23.0       # Font metadata for heading detection (import as fitz)
+
+# Utilities
+tqdm>=4.66.0
+
+# Note: For spaCy models, run after installation:
+# python -m spacy download en_core_web_trf  (best accuracy)
+# python -m spacy download en_core_web_sm   (faster, smaller)

@@ -1,0 +1,47 @@
+# Base Domain Entity Patterns
+# Generic entity patterns that apply across all domains
+#
+# These patterns provide basic NER when no domain-specific patterns are loaded.
+
+name: base_entity_patterns
+description: Generic entity patterns for general text analysis
+
+patterns:
+  # Person names (capitalized word sequences)
+  PERSON: '\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b'
+
+  # Organizations (common patterns)
+  ORGANIZATION: '\b(?:Inc\.|Corp\.|LLC|Ltd\.|Company|University|Institute|Foundation|Association)\b'
+
+  # Dates
+  DATE: '\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s*\d{4}\b'
+
+  # Times
+  TIME: '\b\d{1,2}:\d{2}(?::\d{2})?\s*(?:AM|PM|am|pm)?\b'
+
+  # Numbers with units
+  QUANTITY: '\b\d+(?:\.\d+)?\s*(?:miles?|kilometers?|km|meters?|m|feet|ft|pounds?|lbs?|kilograms?|kg|dollars?|\$|percent|%)\b'
+
+  # Email addresses
+  EMAIL: '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+  # URLs
+  URL: 'https?://[^\s<>"{}|\\^`\[\]]+'
+
+colors:
+  PERSON: '#1f77b4'      # Blue
+  ORGANIZATION: '#ff7f0e' # Orange
+  DATE: '#2ca02c'        # Green
+  TIME: '#d62728'        # Red
+  QUANTITY: '#9467bd'    # Purple
+  EMAIL: '#8c564b'       # Brown
+  URL: '#e377c2'         # Pink
+
+descriptions:
+  PERSON: "Person names"
+  ORGANIZATION: "Organizations and companies"
+  DATE: "Date expressions"
+  TIME: "Time expressions"
+  QUANTITY: "Numeric quantities with units"
+  EMAIL: "Email addresses"
+  URL: "Web URLs"

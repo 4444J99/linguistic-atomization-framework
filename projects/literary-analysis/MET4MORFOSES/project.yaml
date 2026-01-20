@@ -1,0 +1,73 @@
+project:
+  name: MET4MORFOSES
+  description: Linguistic analysis of MET4MORFOSES
+  version: 1.0.0
+
+corpus:
+  documents:
+  - id: MET001
+    source: "docs/2018-03-20 - met4 - cycle 1.pdf"
+    format: pdf
+    title: "MET4MORFOSES - Cycle 1"
+  - id: MET002
+    source: "docs/2018-03-20 - met4 - cycle 2.pdf"
+    format: pdf
+    title: "MET4MORFOSES - Cycle 2"
+  - id: MET003
+    source: "docs/2018-03-20 - met4 - cycle 3.pdf"
+    format: pdf
+    title: "MET4MORFOSES - Cycle 3"
+
+atomization:
+  schema: default
+
+domain:
+  profile: base
+
+analysis:
+  pipelines:
+  - module: semantic
+    config:
+      similarity_threshold: 0.3
+      max_features: 500
+      ngram_range:
+      - 1
+      - 2
+  - module: temporal
+    config:
+      include_sankey: true
+  - module: sentiment
+    config:
+      peak_count: 10
+  - module: entity
+    config:
+      use_spacy: true
+
+visualization:
+  adapters:
+  - type: force_graph
+    analysis: semantic
+    config:
+      title: Semantic Network Analysis
+      subtitle: Interactive visualization of theme relationships
+  - type: sankey
+    analysis: temporal
+    config:
+      title: Temporal Flow Analysis
+  - type: sentiment_chart
+    analysis: sentiment
+    config:
+      title: Sentiment Analysis
+  - type: entity_browser
+    analysis: entity
+    config:
+      title: Entity Browser
+
+output:
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  visualizations_dir: visualizations
+
+naming:
+  strategy: hybrid
