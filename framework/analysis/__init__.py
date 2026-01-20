@@ -21,7 +21,13 @@ from .semantic import SemanticAnalysis
 from .temporal import TemporalAnalysis
 from .sentiment import SentimentAnalysis
 from .entity import EntityAnalysis
-from .evaluation import EvaluationAnalysis
+from .evaluation import (
+    EvaluationAnalysis,
+    StepResult,
+    EvidenceInstance,
+    ScoreComponent,
+    ScoreExplanation,
+)
 
 __all__ = [
     "BaseAnalysisModule",
@@ -30,4 +36,9 @@ __all__ = [
     "SentimentAnalysis",
     "EntityAnalysis",
     "EvaluationAnalysis",
+    # Explainability classes
+    "StepResult",
+    "EvidenceInstance",
+    "ScoreComponent",
+    "ScoreExplanation",
 ]

@@ -9,6 +9,9 @@ import pytest
 from framework.analysis.evaluation import (
     EvaluationAnalysis,
     StepResult,
+    EvidenceInstance,
+    ScoreComponent,
+    ScoreExplanation,
     EVIDENCE_MARKERS,
     EMOTIONAL_MARKERS,
     AUTHORITY_MARKERS,
@@ -264,3 +267,179 @@ class TestEdgeCases:
 
         # Scores should be identical for same input
         assert result1.data["summary"]["overall_score"] == result2.data["summary"]["overall_score"]
+
+
+class TestExplainability:
+    """Tests for the explainability layer."""
+
+    def test_evidence_instance_creation(self):
+        """Test EvidenceInstance can be created with required fields."""
+        evidence = EvidenceInstance(
+            text="40%",
+            category="statistics",
+            pattern_group="evidence",
+            atom_id="P001.S001",
+            start=10,
+            end=13,
+            context="...increased by 40% over...",
+        )
+        assert evidence.text == "40%"
+        assert evidence.category == "statistics"
+        assert evidence.atom_id == "P001.S001"
+
+    def test_evidence_instance_to_dict(self):
+        """Test EvidenceInstance converts to dictionary correctly."""
+        evidence = EvidenceInstance(
+            text="according to",
+            category="citations",
+            pattern_group="evidence",
+            atom_id="P001.S002",
+            start=0,
+            end=12,
+            context="according to Smith (2023)...",
+        )
+        d = evidence.to_dict()
+
+        assert d["text"] == "according to"
+        assert d["category"] == "citations"
+        assert d["atom_id"] == "P001.S002"
+        assert d["context"] == "according to Smith (2023)..."
+
+    def test_score_component_creation(self):
+        """Test ScoreComponent can be created."""
+        component = ScoreComponent(
+            name="statistics",
+            raw_value=5,
+            weight=0.10,
+            contribution=10.0,
+            evidence_count=5,
+        )
+        assert component.name == "statistics"
+        assert component.raw_value == 5
+        assert component.contribution == 10.0
+
+    def test_score_explanation_creation(self):
+        """Test ScoreExplanation can be created and used."""
+        evidence = [
+            EvidenceInstance("40%", "statistics", "evidence", "S001", 0, 3, "40% increase"),
+            EvidenceInstance("therefore", "logical_connectors", "evidence", "S002", 0, 9, "therefore"),
+        ]
+        components = [
+            ScoreComponent("statistics", 1, 0.10, 10.0, 1),
+            ScoreComponent("logical_connectors", 1, 0.10, 10.0, 1),
+        ]
+
+        explanation = ScoreExplanation(
+            final_score=70.0,
+            components=components,
+            evidence=evidence,
+            methodology="Test methodology",
+        )
+
+        assert explanation.final_score == 70.0
+        assert len(explanation.components) == 2
+        assert len(explanation.evidence) == 2
+        assert explanation.methodology == "Test methodology"
+
+    def test_score_explanation_to_dict(self):
+        """Test ScoreExplanation converts to dictionary."""
+        explanation = ScoreExplanation(
+            final_score=75.0,
+            components=[
+                ScoreComponent("test", 5, 0.5, 25.0, 3),
+            ],
+            evidence=[
+                EvidenceInstance("example", "test", "group", "A001", 0, 7, "example text"),
+            ],
+            methodology="Test method",
+        )
+        d = explanation.to_dict()
+
+        assert d["final_score"] == 75.0
+        assert d["evidence_count"] == 1
+        assert len(d["components"]) == 1
+        assert len(d["evidence"]) == 1
+        assert d["methodology"] == "Test method"
+
+    def test_score_explanation_filter_by_category(self):
+        """Test filtering evidence by category."""
+        evidence = [
+            EvidenceInstance("40%", "statistics", "evidence", "S001", 0, 3, ""),
+            EvidenceInstance("50%", "statistics", "evidence", "S002", 0, 3, ""),
+            EvidenceInstance("however", "contrast", "transitions", "S003", 0, 7, ""),
+        ]
+        explanation = ScoreExplanation(final_score=70.0, evidence=evidence)
+
+        stats = explanation.get_evidence_by_category("statistics")
+        assert len(stats) == 2
+
+        contrast = explanation.get_evidence_by_category("contrast")
+        assert len(contrast) == 1
+
+    def test_logos_step_has_explanation(self, evaluation_module, argumentative_corpus):
+        """Test that logos step includes explanation with evidence."""
+        result = evaluation_module.analyze(argumentative_corpus, domain=None, config={})
+
+        logos_step = get_step_from_result(result, "logos")
+        assert logos_step is not None
+
+        # Check explanation is present
+        assert "explanation" in logos_step
+        explanation = logos_step["explanation"]
+
+        # Verify structure
+        assert "final_score" in explanation
+        assert "evidence" in explanation
+        assert "components" in explanation
+        assert "methodology" in explanation
+
+    def test_logos_evidence_traceable(self, evaluation_module, argumentative_corpus):
+        """Test that logos score can be traced to specific text evidence."""
+        result = evaluation_module.analyze(argumentative_corpus, domain=None, config={})
+
+        logos_step = get_step_from_result(result, "logos")
+        explanation = logos_step.get("explanation", {})
+        evidence = explanation.get("evidence", [])
+
+        # Explanation structure should exist regardless of evidence count
+        assert "final_score" in explanation
+        assert "methodology" in explanation
+        assert isinstance(evidence, list)
+
+        # If evidence exists, each item should be traceable
+        for ev in evidence:
+            assert "text" in ev
+            assert "atom_id" in ev
+            assert "category" in ev
+
+        # Components should track what was measured
+        components = explanation.get("components", [])
+        component_names = {c["name"] for c in components}
+        assert "statistics" in component_names or "citations" in component_names or "density" in component_names
+
+    def test_step_result_explain_score(self):
+        """Test StepResult.explain_score() produces readable output."""
+        evidence = [
+            EvidenceInstance("40%", "statistics", "evidence", "S001", 0, 3, "40% increase"),
+        ]
+        explanation = ScoreExplanation(
+            final_score=70.0,
+            components=[ScoreComponent("statistics", 1, 0.10, 10.0, 1)],
+            evidence=evidence,
+            methodology="Pattern matching",
+        )
+
+        step = StepResult(
+            step_number=3,
+            step_name="logos",
+            phase="Evaluation",
+            score=70.0,
+            explanation=explanation,
+        )
+
+        explanation_text = step.explain_score()
+
+        assert "70.0" in explanation_text
+        assert "statistics" in explanation_text
+        assert "40%" in explanation_text
+        assert "Pattern matching" in explanation_text
