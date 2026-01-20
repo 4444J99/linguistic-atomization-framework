@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Analysis: {{ document_title }}</title>
+    <style>
+        /*
+         * LingFrame Narrative Report Template
+         *
+         * This template is designed for non-technical writers.
+         * Customize the colors and styling below to match your brand.
+         *
+         * Available template variables:
+         *   {{ document_title }}     - The document being analyzed
+         *   {{ overall_score }}      - Overall score as percentage (0-100)
+         *   {{ executive_summary }}  - 3-4 sentence summary
+         *   {{ generated_at }}       - Timestamp of report generation
+         *   {{ sections }}           - Array of analysis sections
+         *   {{ recommendations }}    - Array of top recommendations
+         *   {{ quick_wins }}         - Quick improvement suggestions
+         *   {{ structural }}         - Structural improvement suggestions
+         */
+
+        :root {
+            /* Primary colors - customize these */
+            --color-primary: #2c3e50;
+            --color-secondary: #3498db;
+            --color-accent: #9b59b6;
+
+            /* Semantic colors */
+            --color-success: #27ae60;
+            --color-warning: #f39c12;
+            --color-danger: #e74c3c;
+
+            /* Neutrals */
+            --color-light: #ecf0f1;
+            --color-dark: #2c3e50;
+            --color-muted: #95a5a6;
+
+            /* Typography */
+            --font-main: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: var(--font-main);
+
+            /* Spacing */
+            --space-xs: 5px;
+            --space-sm: 10px;
+            --space-md: 20px;
+            --space-lg: 40px;
+            --space-xl: 60px;
+
+            /* Border radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-round: 50%;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.7;
+            color: var(--color-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: var(--space-md);
+        }
+
+        /* Layout */
+        .report-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .report-header {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--space-lg);
+            text-align: center;
+        }
+
+        .report-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .report-header .subtitle {
+            opacity: 0.85;
+            font-size: 1.15rem;
+        }
+
+        /* Score Hero */
+        .score-hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--color-light);
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: var(--radius-round);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 6px solid var(--color-secondary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .score-circle:hover {
+            transform: scale(1.05);
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: var(--space-xs);
+        }
+
+        .score-description {
+            text-align: left;
+        }
+
+        .score-description strong {
+            font-size: 1.1rem;
+            color: var(--color-primary);
+        }
+
+        .score-description .meta {
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            margin-top: var(--space-xs);
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            padding: var(--space-lg);
+            background: white;
+            border-bottom: 1px solid var(--color-light);
+        }
+
+        .executive-summary h2 {
+            color: var(--color-primary);
+            font-size: 1.4rem;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .executive-summary p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 70ch; /* Optimal reading width */
+        }
+
+        /* Main Content */
+        .report-main {
+            padding: var(--space-md) var(--space-lg) var(--space-lg);
+        }
+
+        /* Sections */
+        .report-section {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-md);
+            background: #fafafa;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .section-header h2 {
+            flex-grow: 1;
+            color: var(--color-primary);
+            font-size: 1.3rem;
+        }
+
+        .score-badge {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .section-summary {
+            color: var(--color-muted);
+            font-style: italic;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Findings */
+        .findings {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .finding {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--color-light);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .finding:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .finding-strength {
+            border-left-color: var(--color-success);
+        }
+
+        .finding-concern {
+            border-left-color: var(--color-warning);
+        }
+
+        .finding-opportunity {
+            border-left-color: var(--color-secondary);
+        }
+
+        .finding h4 {
+            color: var(--color-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .finding p {
+            color: #555;
+        }
+
+        .finding .action {
+            margin-top: var(--space-sm);
+            padding-top: var(--space-sm);
+            border-top: 1px dashed var(--color-light);
+            color: var(--color-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+            color: white;
+            padding: var(--space-lg);
+        }
+
+        .recommendations h2 {
+            font-size: 1.4rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .rec-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .rec-column h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            opacity: 0.9;
+        }
+
+        .rec-column ul {
+            list-style: none;
+        }
+
+        .rec-column li {
+            padding: var(--space-sm) 0;
+            padding-left: var(--space-md);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .rec-column li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+        }
+
+        .rec-column li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .report-footer {
+            text-align: center;
+            padding: var(--space-md);
+            color: var(--color-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--color-light);
+        }
+
+        .report-footer a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .report-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Expandable Details (for future interactive version) */
+        .expandable {
+            cursor: pointer;
+        }
+
+        .expandable-content {
+            display: none;
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--color-light);
+            margin-top: var(--space-md);
+        }
+
+        .expandable.expanded .expandable-content {
+            display: block;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .report-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .recommendations {
+                background: var(--color-primary) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: var(--space-sm);
+            }
+
+            .report-header,
+            .executive-summary,
+            .report-main,
+            .recommendations {
+                padding: var(--space-md);
+            }
+
+            .score-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .score-description {
+                text-align: center;
+            }
+
+            .rec-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .report-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <header class="report-header">
+            <h1>Writing Analysis</h1>
+            <p class="subtitle">{{ document_title }}</p>
+        </header>
+
+        <div class="score-hero">
+            <div class="score-circle">
+                <span class="score-number">{{ overall_score }}%</span>
+                <span class="score-label">Overall</span>
+            </div>
+            <div class="score-description">
+                <p><strong>Your writing has been analyzed.</strong></p>
+                <p class="meta">Generated {{ generated_at }}</p>
+            </div>
+        </div>
+
+        <section class="executive-summary">
+            <h2>📋 Executive Summary</h2>
+            <p>{{ executive_summary }}</p>
+        </section>
+
+        <main class="report-main">
+            <!-- Sections will be dynamically inserted here -->
+            <div id="sections-container">
+                <!-- Template for sections:
+                <section class="report-section">
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <h2>Section Title</h2>
+                        <span class="score-badge">75%</span>
+                    </div>
+                    <p class="section-summary">Section description...</p>
+                    <div class="findings">
+                        <div class="finding finding-strength">
+                            <h4>Finding Title</h4>
+                            <p>Finding explanation...</p>
+                        </div>
+                    </div>
+                </section>
+                -->
+            </div>
+        </main>
+
+        <section class="recommendations">
+            <h2>📌 What to Do Next</h2>
+            <div class="rec-columns">
+                <div class="rec-column">
+                    <h3>⚡ Quick Wins</h3>
+                    <ul id="quick-wins-list">
+                        <!-- Quick wins will be inserted here -->
+                    </ul>
+                </div>
+                <div class="rec-column">
+                    <h3>🏗️ Structural Improvements</h3>
+                    <ul id="structural-list">
+                        <!-- Structural improvements will be inserted here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="report-footer">
+            <p>Generated by <a href="#">LingFrame</a> • Rhetorical Analysis Framework</p>
+        </footer>
+    </div>
+
+    <script>
+        // This script enables interactive features when the report is served dynamically
+        // For static HTML generation, the content is pre-rendered
+
+        document.querySelectorAll('.expandable').forEach(el => {
+            el.addEventListener('click', () => {
+                el.classList.toggle('expanded');
+            });
+        });
+    </script>
+</body>
+</html>
