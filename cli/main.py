@@ -146,6 +146,7 @@ def setup_framework():
         TemporalAnalysis,
         SentimentAnalysis,
         EntityAnalysis,
+        EvaluationAnalysis,
     )
 
     # Import visualization adapters to trigger registration
@@ -154,6 +155,7 @@ def setup_framework():
         SankeyAdapter,
         SentimentChartAdapter,
         EntityBrowserAdapter,
+        EvaluationDashboardAdapter,
     )
 
     return registry
@@ -586,6 +588,56 @@ def cmd_migrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_init_notebooks(args: argparse.Namespace) -> int:
+    """Initialize Jupyter notebooks for a project."""
+    print(f"Initializing notebooks for project: {args.project}")
+    print("=" * 60)
+
+    project_dir = find_project_path(args.project)
+    if project_dir is None:
+        print(f"Error: Project not found: {args.project}")
+        return 1
+
+    # Import notebook templates
+    from framework.notebooks import TEMPLATES_DIR, AVAILABLE_TEMPLATES
+
+    # Create notebooks directory
+    notebooks_dir = project_dir / "notebooks"
+    notebooks_dir.mkdir(parents=True, exist_ok=True)
+
+    # Copy templates
+    copied = []
+    skipped = []
+
+    for template_name in AVAILABLE_TEMPLATES:
+        source = TEMPLATES_DIR / template_name
+        dest = notebooks_dir / template_name
+
+        if dest.exists() and not args.force:
+            skipped.append(template_name)
+            continue
+
+        if source.exists():
+            shutil.copy2(source, dest)
+            copied.append(template_name)
+            print(f"  Created: {dest}")
+
+    if skipped:
+        print(f"\nSkipped (already exist): {', '.join(skipped)}")
+        print("  Use --force to overwrite")
+
+    print(f"\n✅ Notebooks initialized: {notebooks_dir}")
+    print("\nAvailable notebooks:")
+    for name in AVAILABLE_TEMPLATES:
+        print(f"  - {name}")
+
+    print("\nTo use:")
+    print(f"  cd {notebooks_dir}")
+    print("  jupyter notebook")
+
+    return 0
+
+
 def create_parser() -> argparse.ArgumentParser:
     """Create argument parser."""
     parser = argparse.ArgumentParser(
@@ -676,6 +728,24 @@ def create_parser() -> argparse.ArgumentParser:
         help="Show what would be done without making changes"
     )
     migrate_parser.set_defaults(func=cmd_migrate)
+
+    # init-notebooks command
+    notebooks_parser = subparsers.add_parser(
+        "init-notebooks",
+        help="Initialize Jupyter notebooks for a project",
+        description="Copy notebook templates to a project's notebooks/ directory."
+    )
+    notebooks_parser.add_argument(
+        "--project", "-p",
+        required=True,
+        help="Project name"
+    )
+    notebooks_parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Overwrite existing notebooks"
+    )
+    notebooks_parser.set_defaults(func=cmd_init_notebooks)
 
     return parser
 

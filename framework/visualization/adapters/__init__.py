@@ -8,10 +8,12 @@ from .force_graph import ForceGraphAdapter
 from .sankey import SankeyAdapter
 from .sentiment_chart import SentimentChartAdapter
 from .entity_browser import EntityBrowserAdapter
+from .evaluation_dashboard import EvaluationDashboardAdapter
 
 __all__ = [
     "ForceGraphAdapter",
     "SankeyAdapter",
     "SentimentChartAdapter",
     "EntityBrowserAdapter",
+    "EvaluationDashboardAdapter",
 ]

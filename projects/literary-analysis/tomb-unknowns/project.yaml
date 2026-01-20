@@ -32,6 +32,9 @@ analysis:
   - module: entity
     config:
       use_spacy: false
+  - module: evaluation
+    config:
+      steps: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 visualization:
   adapters:
   - type: force_graph
@@ -51,6 +54,11 @@ visualization:
     analysis: entity
     config:
       title: Entity Browser
+  - type: evaluation_dashboard
+    analysis: evaluation
+    config:
+      title: Rhetorical Evaluation Dashboard
+      subtitle: 9-Step Analysis - Evaluation to Growth
 output:
   data_dir: data
   raw_dir: data/raw
