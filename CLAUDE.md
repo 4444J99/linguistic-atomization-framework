@@ -20,7 +20,24 @@ python3 -m venv new_venv
 source new_venv/bin/activate
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm  # or en_core_web_trf for better accuracy
+```
 
+### Quick Start (No Technical Knowledge Required)
+
+```bash
+# Simple CLI - analyze any document instantly
+./new_venv/bin/python lingframe.py analyze essay.pdf           # Opens HTML report in browser
+./new_venv/bin/python lingframe.py analyze essay.pdf -o out.html  # Save to specific location
+./new_venv/bin/python lingframe.py quick essay.pdf             # Quick console summary
+
+# Web Interface - upload and analyze in browser
+./new_venv/bin/python run_web.py
+# Then open http://localhost:8501
+```
+
+### Project-Based Analysis (Advanced)
+
+```bash
 # CLI Commands
 ./new_venv/bin/python lingframe.py list-projects
 ./new_venv/bin/python lingframe.py list-categories
@@ -56,19 +73,22 @@ linguistic-atomization-framework/
 │   │   └── registry.py # Component registry
 │   ├── analysis/       # Analysis modules
 │   ├── visualization/  # Visualization adapters
+│   ├── output/         # Output formatters (narrative reports)
 │   ├── domains/        # Domain profiles (military, base)
 │   └── schemas/        # Atomization schemas (default.yaml)
-├── projects/
-│   ├── .categories.yaml              # Category definitions
-│   └── literary-analysis/
-│       └── tomb-unknowns/            # Example project
-│           ├── project.yaml
-│           ├── docs/
-│           ├── data/raw/
-│           ├── data/processed/
-│           └── visualizations/
+├── app/                # Streamlit web interface
+│   ├── streamlit_app.py     # Main web entry point
+│   └── components/          # UI components
 ├── cli/                # CLI entry point
-└── lingframe.py        # Main CLI script
+│   ├── main.py         # Full CLI with all commands
+│   └── simple.py       # Simple one-command interface
+├── templates/          # HTML report templates
+├── projects/
+│   ├── .categories.yaml
+│   └── literary-analysis/
+│       └── tomb-unknowns/
+├── lingframe.py        # Main CLI script
+└── run_web.py          # Web app launcher
 ```
 
 ### Naming Strategies

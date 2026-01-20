@@ -21,6 +21,10 @@ PyMuPDF>=1.23.0       # Font metadata for heading detection (import as fitz)
 # Utilities
 tqdm>=4.66.0
 
+# Web Interface
+streamlit>=1.29.0
+watchdog>=3.0.0       # For Streamlit file watching
+
 # Note: For spaCy models, run after installation:
 # python -m spacy download en_core_web_trf  (best accuracy)
 # python -m spacy download en_core_web_sm   (faster, smaller)
