@@ -9,6 +9,7 @@ Built-in modules:
 - temporal: Tense detection, temporal markers, narrative flow
 - sentiment: VADER + TextBlob with custom lexicons
 - entity: Pattern-based and spaCy NER
+- evaluation: 9-step rhetorical evaluation (Evaluation → Risk → Growth)
 """
 
 from .base import BaseAnalysisModule
@@ -16,6 +17,7 @@ from .semantic import SemanticAnalysis
 from .temporal import TemporalAnalysis
 from .sentiment import SentimentAnalysis
 from .entity import EntityAnalysis
+from .evaluation import EvaluationAnalysis
 
 __all__ = [
     "BaseAnalysisModule",
@@ -23,4 +25,5 @@ __all__ = [
     "TemporalAnalysis",
     "SentimentAnalysis",
     "EntityAnalysis",
+    "EvaluationAnalysis",
 ]
