@@ -1,5 +1,13 @@
 """
-Core framework components: ontology, atomizer, pipeline, registry, and naming.
+Core framework components: ontology, atomizer, pipeline, registry, naming, and recursion.
+
+Components:
+- ontology: Core data structures (Atom, Corpus, etc.)
+- atomizer: Text atomization engine
+- registry: Component registration system
+- pipeline: Analysis orchestration
+- naming: Ontological naming strategies
+- recursion: Iterative analysis loop
 """
 
 from .ontology import (
@@ -28,6 +36,13 @@ from .naming import (
     ContentDescriptor,
     create_naming_system,
     slugify,
+)
+from .recursion import (
+    RecursionTracker,
+    IterationRecord,
+    ScoreComparison,
+    format_comparison_report,
+    format_progress_report,
 )
 
 __all__ = [
@@ -59,4 +74,10 @@ __all__ = [
     "ContentDescriptor",
     "create_naming_system",
     "slugify",
+    # Recursion
+    "RecursionTracker",
+    "IterationRecord",
+    "ScoreComparison",
+    "format_comparison_report",
+    "format_progress_report",
 ]

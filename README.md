@@ -1,118 +1,80 @@
 # LingFrame
 
-**Reveal the architecture of persuasion in your writing.**
+**A Computational Rhetoric Platform for Linguistic Analysis**
 
-> *You can revise forever and still not know if you're improving.*
+[![Status: Research](https://img.shields.io/badge/Status-Research-blue.svg)]()
+[![Analysis: Heuristic](https://img.shields.io/badge/Analysis-Heuristic-orange.svg)]()
 
-LingFrame gives you what no grammar checker or AI rewriter can: a map of your own argument showing where it's strong, where it breaks, and exactly what to fix.
-
----
-
-## The Problem
-
-Every writer knows this feeling: *something's off*, but you can't name it.
-
-You've revised a dozen times. The words are polished. But the argument still doesn't land—and you don't know why. You're flying blind.
-
-**Existing tools miss the architecture:**
-
-| Tool | What It Does | What It Misses |
-|------|--------------|----------------|
-| **Grammarly** | Fixes commas | How your argument persuades |
-| **Hemingway** | Simplifies prose | Emotional arc and logical structure |
-| **ChatGPT** | Rewrites your work | A map of *your own* writing |
-| **Human editors** | Give feedback | Consistency, availability, affordability |
-
-**What writers actually want:**
-- "Show me what's working and what's not"
-- "Where does my argument fall apart?"
-- "What am I not seeing?"
-- "How do I make this stronger?"
+LingFrame transforms text into hierarchical structures and applies multi-dimensional analysis pipelines to reveal rhetorical patterns, argumentative structure, and compositional dynamics.
 
 ---
 
-## The Approach
+## What LingFrame Does
 
-LingFrame applies **2,000 years of rhetorical wisdom** computationally.
+LingFrame performs **computational rhetorical analysis** through:
 
-Think of it as an **X-ray for your writing**:
+1. **Atomization**: Decomposes text into a hierarchical structure (theme → paragraph → sentence → word → letter)
+2. **Multi-dimensional Analysis**: Applies configurable analysis modules across the hierarchy
+3. **Pattern Detection**: Identifies linguistic markers, rhetorical strategies, and structural patterns
+4. **Visualization**: Generates interactive visualizations of analysis results
+5. **Report Generation**: Produces human-readable reports with findings and recommendations
 
-| What the X-Ray Shows | Rhetorical Term | What You Learn |
-|---------------------|-----------------|----------------|
-| **Bones** | Logos (Logic) | Is your evidence solid? |
-| **Blood flow** | Pathos (Emotion) | Does your tone carry? |
-| **Structural integrity** | Ethos (Credibility) | Do readers trust you? |
-| **Weak points** | Risk Analysis | Where could critics attack? |
+### Analysis Modules
 
-### The Analysis Journey
+| Module | Approach | Output |
+|--------|----------|--------|
+| **Heuristic Evaluation** | Pattern matching against rhetorical markers (evidence, emotion, authority) | 9-step assessment with per-level breakdown |
+| **Semantic Analysis** | TF-IDF similarity + entity co-occurrence | Theme network, concept clusters |
+| **Temporal Analysis** | Verb tense extraction + temporal marker detection | Timeline flow, narrative progression |
+| **Sentiment Analysis** | VADER + domain lexicons | Emotional arc, valence/arousal mapping |
+| **Entity Analysis** | spaCy NER + domain patterns | Named entities, co-occurrence matrix |
 
-```
-UNDERSTAND          REINFORCE           STRESS-TEST         GROW
-    │                   │                    │                │
-    ▼                   ▼                    ▼                ▼
-┌─────────┐       ┌──────────┐        ┌───────────┐     ┌─────────┐
-│ Logos   │       │  Logic   │        │  Blind    │     │  Bloom  │
-│ Pathos  │       │  Check   │        │  Spots    │     │  Evolve │
-│ Ethos   │       │          │        │  Shatter  │     │         │
-│ Critique│       │          │        │  Points   │     │         │
-└─────────┘       └──────────┘        └───────────┘     └─────────┘
-```
+### What LingFrame Is Not
 
-### Five Analysis Lenses
+LingFrame is a **heuristic analysis tool**, not:
+- A replacement for human rhetorical expertise
+- A writing correction or grammar tool
+- A generative AI that rewrites your text
+- An empirically validated assessment instrument
 
-| Lens | What It Reveals |
-|------|-----------------|
-| **Evaluation** | 9-step rhetorical score—logic, emotion, credibility |
-| **Semantic** | Theme connections—what concepts link together |
-| **Temporal** | Narrative flow—how your timeline unfolds |
-| **Sentiment** | Emotional arc—where tone rises and falls |
-| **Entity** | Key players—people, places, organizations |
+See [Scope & Limitations](docs/limitations.md) for detailed discussion.
 
 ---
 
-## The Outcome
+## Three User Pathways
 
-### The Transformation
-
-| Before LingFrame | After LingFrame |
-|------------------|-----------------|
-| "Something feels off" | "My evidence is thin in paragraphs 3-5" |
-| "Is this working?" | "Pathos score: 85. Logos: 50. Add citations." |
-| "What would critics say?" | "Three blind spots identified. Here's how to address them." |
-| "How do I improve?" | "Quick wins: transitions, evidence, counterarguments" |
-
-### What You Get
-
-```
-Overall Score: 71.5/100
-
-WHAT'S WORKING
-✓ Strong emotional engagement (Pathos: 85)
-✓ No logical fallacies (Shatter Points: 100)
-✓ Good thematic coherence (Bloom: 90)
-
-WHAT NEEDS ATTENTION
-⚠ Low evidence density (Logos: 50)
-⚠ Limited transitions (Logic Check: 54)
-⚠ No counterarguments addressed (Blind Spots: 55)
-
-QUICK WINS
-1. Add source citations to strengthen credibility
-2. Include transition words (therefore, however)
-3. Address potential counterarguments
-```
-
-### Three Ways to Use It
+### Scholar Pathway
+Full platform access for linguistic research, corpus analysis, and methodology development.
 
 ```bash
-# Command line — analyze any document instantly
+# Project-based corpus analysis
+lingframe run -p literary-analysis/corpus-name --visualize --verbose
+
+# Custom analysis pipelines
+lingframe atomize -p my-project && lingframe analyze -p my-project
+```
+
+### Writer Pathway
+Simplified interface for document feedback and revision guidance.
+
+```bash
+# Instant analysis with HTML report
 lingframe analyze essay.pdf
 
-# Web interface — upload and explore in browser
-python run_web.py
+# Quick console summary
+lingframe quick document.txt
+```
 
-# Desktop app — standalone application
-python -m desktop.app
+### Developer Pathway
+API access for embedding analysis in applications.
+
+```python
+from framework.core.pipeline import Pipeline
+from framework.core.atomizer import Atomizer
+
+atomizer = Atomizer(config)
+corpus = atomizer.atomize(text)
+results = Pipeline(config).run(corpus)
 ```
 
 ---
@@ -129,42 +91,39 @@ python3 -m venv new_venv
 source new_venv/bin/activate  # Windows: new_venv\Scripts\activate
 
 pip install -r requirements.txt
-python -m spacy download en_core_web_sm
+python -m spacy download en_core_web_sm  # or en_core_web_trf for higher accuracy
 ```
 
 ### Basic Usage
 
 ```bash
-# Instant analysis (opens HTML report)
+# Analyze a document (opens HTML report in browser)
 python lingframe.py analyze document.pdf
 
 # Quick console summary
 python lingframe.py quick document.pdf
 
-# Save report to file
-python lingframe.py analyze document.pdf -o report.html
+# Save report to specific location
+python lingframe.py analyze document.pdf -o analysis-report.html
+
+# Web interface
+python run_web.py  # Opens at http://localhost:8501
 ```
 
 ### Project-Based Analysis
 
-For larger corpora or custom configurations:
-
 ```bash
+# List available projects
 python lingframe.py list-projects
+
+# Run full pipeline with visualization
 python lingframe.py run -p literary-analysis/tomb-unknowns --visualize
+
+# Individual pipeline stages
+python lingframe.py atomize -p my-project
+python lingframe.py analyze -p my-project
+python lingframe.py visualize -p my-project
 ```
-
-See [CLAUDE.md](CLAUDE.md) for full command reference.
-
----
-
-## Sample Projects
-
-### tomb-unknowns
-Military memorial analysis demonstrating domain-specific lexicons, formal tone detection, and entity recognition for ranks and units.
-
-### MET4MORFOSES
-Literary metamorphosis study showing narrative structure analysis, character transformation tracking, and thematic mapping.
 
 ---
 
@@ -173,99 +132,229 @@ Literary metamorphosis study showing narrative structure analysis, character tra
 ```
 linguistic-atomization-framework/
 ├── framework/
-│   ├── core/           # Atomization engine, ontology, naming
-│   ├── analysis/       # 5 analysis modules
-│   ├── visualization/  # 5 visualization adapters
-│   ├── output/         # Narrative report generator
-│   └── domains/        # Domain lexicons (military, etc.)
+│   ├── core/           # Atomization engine, ontology, naming system
+│   ├── analysis/       # Analysis modules (evaluation, semantic, temporal, etc.)
+│   ├── visualization/  # Visualization adapters (D3.js, Plotly, Chart.js)
+│   ├── output/         # Report formatters (narrative, JSON)
+│   ├── generation/     # Revision suggestion generation
+│   ├── domains/        # Domain profiles (military, literary, technical)
+│   └── llm/            # Optional LLM integration
 │
 ├── app/                # Streamlit web interface
 ├── cli/                # Command-line interfaces
-├── desktop/            # Standalone desktop app
-├── projects/           # Analysis projects
+├── projects/           # Analysis projects with configurations
 ├── templates/          # HTML report templates
-└── lingframe.py        # Main entry point
+└── docs/               # Documentation
 ```
 
-### Key Concepts
+### Core Concepts
 
-**Naming Strategies** — Control how text atoms are identified:
-- `hybrid` (default): `T001:section-title.P001.S001` — readable + unique
-- `legacy`: `T001.P001.S001` — simple counters
-- `semantic`: `military-town.para-1.sent-1` — content-derived
+**Hierarchical Atomization**
+Text is decomposed into a tree structure: Theme → Paragraph → Sentence → Word → Letter. Each node is an "atom" with metadata, enabling analysis at multiple granularity levels.
 
-**Domain Profiles** — Customize analysis for specific fields:
-- `military/` — Ranks, equipment, ceremonial language
-- Custom domains via `lexicon.yaml` + `patterns.yaml`
+**Naming Strategies**
+Control how atoms are identified:
+- `hybrid` (recommended): `T001:section-title.P001.S001` — readable + unique
+- `hierarchical`: `T001.P001.S001` — parent-child paths
+- `semantic`: `military-town.para-1.sent-1` — content-derived slugs
+- `legacy`: Flat IDs for backward compatibility
+- `uuid`: Globally unique identifiers
 
-**Output Formats** — Choose your delivery:
-- `narrative` — Coach-like HTML report
-- `json` — Structured data for programs
-- `interactive` — Full dashboard with visualizations
+**Domain Profiles**
+Customize analysis for specific fields:
+```
+framework/domains/military/
+├── lexicon.yaml     # Sentiment terms (formal, ceremonial, etc.)
+└── patterns.yaml    # Entity patterns (ranks, units, equipment)
+```
+
+**Analysis Pipeline**
+```
+Source Text → Atomization → [Analysis Modules] → Visualization → Report
+                                    ↓
+                           Generation (suggestions)
+                                    ↓
+                              [Recursion loop]
+```
 
 ---
 
-## Technology
+## Analysis Methodology
 
-| Layer | Stack |
-|-------|-------|
-| **Analysis** | Python 3.11+, spaCy, VADER, scikit-learn |
-| **Visualization** | D3.js, Plotly.js, Chart.js |
-| **Web** | Streamlit |
-| **Desktop** | PyWebView |
-| **PDF** | pdfplumber, PyMuPDF |
+### Heuristic Evaluation Framework
+
+The evaluation module applies a **9-step heuristic framework** organized into four phases:
+
+| Phase | Steps | Focus |
+|-------|-------|-------|
+| **Evaluation** | Critique, Logos, Pathos, Ethos | Initial rhetorical assessment |
+| **Reinforcement** | Logic Check | Argument flow and transitions |
+| **Risk** | Blind Spots, Shatter Points | Vulnerabilities and assumptions |
+| **Growth** | Bloom, Evolve | Emergent insights and synthesis |
+
+**How Scoring Works**
+
+Each step produces a score (0-100) based on:
+1. Pattern matching against predefined linguistic markers
+2. Density calculations at each atomization level
+3. Weighted aggregation across levels (Letter: 5%, Word: 15%, Sentence: 35%, Paragraph: 30%, Theme: 15%)
+
+**Important**: These scores are **heuristic indicators**, not validated measurements. They highlight patterns for human interpretation, not definitive quality assessments.
+
+### Linguistic Markers
+
+The framework detects patterns in these categories:
+
+- **Evidence Markers**: Statistics, citations, logical connectors, quantifiers
+- **Emotional Markers**: Appeals, urgency language, inclusive pronouns, intensifiers
+- **Authority Markers**: Credentials, source citations, trust builders, appropriate hedging
+- **Weakness Markers**: Unsupported claims, vagueness, logical fallacies
+- **Transition Markers**: Addition, contrast, cause-effect, sequence connectors
+
+See [Theoretical Foundation](docs/theory.md) for underlying linguistic frameworks.
 
 ---
 
-## Contributing
+## Technology Stack
 
-LingFrame is designed for extension:
+| Layer | Technology |
+|-------|------------|
+| **Core** | Python 3.11+, spaCy, NLTK, VADER |
+| **Analysis** | scikit-learn (TF-IDF), regex pattern matching |
+| **Visualization** | D3.js (force graphs), Plotly.js (Sankey), Chart.js |
+| **Web Interface** | Streamlit |
+| **PDF Processing** | pdfplumber, PyMuPDF |
+| **LLM Integration** | Optional (Anthropic, OpenAI, local models) |
 
-**Add an Analysis Module:**
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [CLAUDE.md](CLAUDE.md) | Developer guide with commands and patterns |
+| [docs/theory.md](docs/theory.md) | Theoretical foundation and linguistic frameworks |
+| [docs/limitations.md](docs/limitations.md) | Scope, limitations, and honest assessment |
+| [docs/methodology.md](docs/methodology.md) | Analysis methodology in detail |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
+
+---
+
+## Extension Points
+
+### Add an Analysis Module
+
 ```python
-# framework/analysis/my_module.py
+# framework/analysis/my_analysis.py
+from framework.analysis.base import BaseAnalysisModule
+
 class MyAnalysis(BaseAnalysisModule):
     name = "my_analysis"
+
     def analyze(self, corpus, domain, config):
-        return AnalysisOutput(...)
+        # Your analysis logic
+        return self.make_output(
+            data=results,
+            summary={"key_finding": value}
+        )
 ```
 
-**Add a Visualization:**
+### Add a Visualization Adapter
+
 ```python
 # framework/visualization/adapters/my_viz.py
+from framework.visualization.base import BaseVisualizationAdapter
+
 class MyVizAdapter(BaseVisualizationAdapter):
     name = "my_viz"
+    analysis_types = ["my_analysis"]
+
     def generate(self, analysis_output, config):
-        return html_content
+        return self._render_template("my_viz.html", data=analysis_output)
 ```
 
-**Add a Domain Profile:**
+### Add a Domain Profile
+
+```yaml
+# framework/domains/legal/lexicon.yaml
+formal_terms:
+  whereas: 0.3
+  hereby: 0.2
+  stipulate: 0.1
+
+# framework/domains/legal/patterns.yaml
+entities:
+  case_citation:
+    pattern: '\d+\s+[A-Z][a-z]+\.?\s+\d+'
+    label: LEGAL_CITATION
 ```
-framework/domains/my_domain/
-├── lexicon.yaml     # Sentiment terms
-└── patterns.yaml    # Entity patterns
-```
+
+---
+
+## Sample Projects
+
+### literary-analysis/tomb-unknowns
+Military memorial analysis demonstrating:
+- Domain-specific lexicon for military terminology
+- Formal tone detection
+- Ceremonial language patterns
+- Entity recognition for ranks, units, locations
+
+### literary-analysis/MET4MORFOSES
+Literary metamorphosis study demonstrating:
+- Narrative structure analysis
+- Character transformation tracking
+- Thematic mapping
+- Temporal flow visualization
 
 ---
 
 ## Roadmap
 
-- [x] Hierarchical text atomization
-- [x] 9-step rhetorical evaluation
-- [x] 5 analysis modules + visualizations
+### Completed
+- [x] Hierarchical text atomization with 5 naming strategies
+- [x] 5 analysis modules (evaluation, semantic, temporal, sentiment, entity)
+- [x] 5 visualization adapters (dashboard, force graph, sankey, chart, browser)
 - [x] Narrative report generation
-- [x] Web interface + desktop app
+- [x] Web interface (Streamlit) and CLI
+- [x] Domain profile system
+- [x] Optional LLM integration
+
+### In Progress
+- [ ] Generation layer (revision suggestions)
+- [ ] Recursion capability (iterative analysis)
+- [ ] Test suite for analysis modules
+- [ ] Scholarly documentation (theory, methodology)
+
+### Planned
+- [ ] Validation study against expert annotations
+- [ ] Scholarly export formats (LaTeX, TEI-XML)
 - [ ] Cross-visualization linking
-- [ ] Comparative analysis (multiple documents)
-- [ ] LLM-enhanced insights
-- [ ] API endpoints
+- [ ] Comparative corpus analysis
+- [ ] Multi-language support
+
+---
+
+## Citation
+
+If you use LingFrame in academic work, please cite:
+
+```bibtex
+@software{lingframe,
+  title = {LingFrame: A Computational Rhetoric Platform},
+  author = {[Author]},
+  year = {2025},
+  url = {[repository-url]},
+  note = {Heuristic analysis framework for computational rhetoric}
+}
+```
 
 ---
 
 ## License
 
-Educational and research use.
+Educational and research use. See LICENSE for details.
 
 ---
 
-**LingFrame** — *See your writing clearly. Fix it precisely.*
+**LingFrame** — *Computational rhetoric for linguistic scholarship*
