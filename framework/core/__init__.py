@@ -1,5 +1,5 @@
 """
-Core framework components: ontology, atomizer, pipeline, registry, naming, and recursion.
+Core framework components: ontology, atomizer, pipeline, registry, naming, recursion, and reproducibility.
 
 Components:
 - ontology: Core data structures (Atom, Corpus, etc.)
@@ -8,6 +8,7 @@ Components:
 - pipeline: Analysis orchestration
 - naming: Ontological naming strategies
 - recursion: Iterative analysis loop
+- reproducibility: Analysis verification and replication
 """
 
 from .ontology import (
@@ -43,6 +44,16 @@ from .recursion import (
     ScoreComparison,
     format_comparison_report,
     format_progress_report,
+)
+from .reproducibility import (
+    ReproducibilityTracker,
+    ReproducibilityRecord,
+    AnalysisConfig,
+    InputFingerprint,
+    EnvironmentInfo,
+    create_reproducibility_record,
+    format_reproducibility_citation,
+    LINGFRAME_VERSION,
 )
 
 __all__ = [
@@ -80,4 +91,13 @@ __all__ = [
     "ScoreComparison",
     "format_comparison_report",
     "format_progress_report",
+    # Reproducibility
+    "ReproducibilityTracker",
+    "ReproducibilityRecord",
+    "AnalysisConfig",
+    "InputFingerprint",
+    "EnvironmentInfo",
+    "create_reproducibility_record",
+    "format_reproducibility_citation",
+    "LINGFRAME_VERSION",
 ]
