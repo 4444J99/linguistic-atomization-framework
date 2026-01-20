@@ -258,8 +258,33 @@ def cmd_atomize(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_analyze(args: argparse.Namespace) -> int:
-    """Run analysis modules for a project."""
+def cmd_analyze_router(args: argparse.Namespace) -> int:
+    """
+    Route analyze command to simple or advanced mode based on arguments.
+
+    Simple mode: lingframe analyze essay.pdf
+    Advanced mode: lingframe analyze --project my-project
+    """
+    # If a file is provided (positional argument), use simple mode
+    if args.file:
+        from .simple import cmd_analyze as simple_analyze
+        return simple_analyze(args)
+
+    # If --project is provided, use advanced mode
+    if args.project:
+        return cmd_analyze_project(args)
+
+    # Neither provided - show help
+    print("Error: Provide either a file to analyze or use --project for advanced mode.")
+    print()
+    print("Examples:")
+    print("  lingframe analyze essay.pdf        # Simple mode: analyze a file")
+    print("  lingframe analyze -p my-project    # Advanced mode: use project config")
+    return 1
+
+
+def cmd_analyze_project(args: argparse.Namespace) -> int:
+    """Run analysis modules for a project (advanced mode)."""
     print(f"Running analysis for project: {args.project}")
     print("=" * 60)
 
@@ -638,37 +663,135 @@ def cmd_init_notebooks(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_simple_analyze(args: argparse.Namespace) -> int:
+    """Simple analyze command - analyze a file directly without project setup."""
+    from .simple import cmd_analyze as simple_analyze
+    return simple_analyze(args)
+
+
+def cmd_quick_analyze(args: argparse.Namespace) -> int:
+    """Quick analyze command - console summary without full report."""
+    from .simple import cmd_quick
+    return cmd_quick(args)
+
+
 def create_parser() -> argparse.ArgumentParser:
     """Create argument parser."""
     parser = argparse.ArgumentParser(
         prog="lingframe",
         description="Linguistic Analysis Framework CLI",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Quick Start (no setup required):
+  lingframe analyze essay.pdf           Analyze document and open report
+  lingframe quick essay.pdf             Quick console summary
+
+Project-based Analysis (advanced):
+  lingframe run -p my-project           Run full pipeline
+  lingframe list-projects               Show available projects
+
+For more info: lingframe <command> --help
+        """,
     )
     parser.add_argument(
         "--version",
         action="version",
-        version="%(prog)s 0.1.0",
+        version="%(prog)s 0.2.0",
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
+    # ==========================================================================
+    # SIMPLE COMMANDS (for non-technical users)
+    # ==========================================================================
+
+    # analyze command (simple mode - file input)
+    analyze_parser = subparsers.add_parser(
+        "analyze",
+        help="Analyze a document (simple mode: file, advanced mode: --project)",
+        description="""
+Analyze a document's rhetorical structure and generate a report.
+
+SIMPLE MODE (file input):
+  lingframe analyze essay.pdf
+  lingframe analyze essay.pdf -o report.html
+
+ADVANCED MODE (project-based):
+  lingframe analyze --project my-project
+  lingframe analyze --project my-project --module semantic
+        """,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    analyze_parser.add_argument(
+        "file",
+        nargs="?",
+        help="Document to analyze (PDF, TXT, MD, DOCX) - simple mode"
+    )
+    analyze_parser.add_argument(
+        "--project", "-p",
+        help="Project name (advanced mode)"
+    )
+    analyze_parser.add_argument(
+        "--module", "-m",
+        help="Specific analysis module to run (advanced mode)"
+    )
+    analyze_parser.add_argument(
+        "-o", "--output",
+        help="Output file path (simple mode)"
+    )
+    analyze_parser.add_argument(
+        "-t", "--title",
+        help="Document title (simple mode)"
+    )
+    analyze_parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Export raw analysis data as JSON (simple mode)"
+    )
+    analyze_parser.add_argument(
+        "--no-open",
+        action="store_true",
+        help="Don't open report in browser (simple mode)"
+    )
+    analyze_parser.add_argument(
+        "-v", "--verbose",
+        action="store_true",
+        help="Show detailed progress"
+    )
+    analyze_parser.set_defaults(func=cmd_analyze_router)
+
+    # quick command (console-only summary)
+    quick_parser = subparsers.add_parser(
+        "quick",
+        help="Quick analysis - console summary only, no report file",
+        description="Get a quick console summary of your document's rhetorical "
+                    "strengths and weaknesses without generating a full report.",
+    )
+    quick_parser.add_argument(
+        "file",
+        help="Document to analyze"
+    )
+    quick_parser.add_argument(
+        "-t", "--title",
+        help="Document title"
+    )
+    quick_parser.set_defaults(func=cmd_quick_analyze)
+
+    # ==========================================================================
+    # PROJECT-BASED COMMANDS (for advanced users)
+    # ==========================================================================
+
     # run command
-    run_parser = subparsers.add_parser("run", help="Run complete pipeline")
+    run_parser = subparsers.add_parser("run", help="Run complete pipeline for a project")
     run_parser.add_argument("--project", "-p", required=True, help="Project name")
     run_parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
     run_parser.add_argument("--visualize", action="store_true", help="Generate visualizations")
     run_parser.set_defaults(func=cmd_run)
 
     # atomize command
-    atomize_parser = subparsers.add_parser("atomize", help="Atomize documents")
+    atomize_parser = subparsers.add_parser("atomize", help="Atomize documents for a project")
     atomize_parser.add_argument("--project", "-p", required=True, help="Project name")
     atomize_parser.set_defaults(func=cmd_atomize)
-
-    # analyze command
-    analyze_parser = subparsers.add_parser("analyze", help="Run analysis")
-    analyze_parser.add_argument("--project", "-p", required=True, help="Project name")
-    analyze_parser.add_argument("--module", "-m", help="Specific module to run")
-    analyze_parser.set_defaults(func=cmd_analyze)
 
     # visualize command
     viz_parser = subparsers.add_parser("visualize", help="Generate visualizations")
