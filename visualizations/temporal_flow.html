@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporal Flow - Tomb of the Unknowns</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 400px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab.active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .view {
+            display: none;
+        }
+        .view.active {
+            display: block;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            color: white;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass">
+            <h1>⏰ Temporal Flow Analysis</h1>
+            <p class="subtitle">Narrative time progression in "Tomb of the Unknowns"</p>
+        </div>
+
+        <div class="glass">
+            <div class="tabs">
+                <button class="tab active" onclick="showView('timeline')">Timeline View</button>
+                <button class="tab" onclick="showView('sankey')">Sankey Diagram</button>
+                <button class="tab" onclick="showView('heatmap')">Tense Heatmap</button>
+            </div>
+
+            <div id="timeline" class="view active">
+                <div class="chart-container" id="timeline-chart"></div>
+            </div>
+
+            <div id="sankey" class="view">
+                <div class="chart-container" id="sankey-chart"></div>
+            </div>
+
+            <div id="heatmap" class="view">
+                <div class="chart-container" id="heatmap-chart"></div>
+            </div>
+        </div>
+
+        <div class="glass">
+            <div class="stats" id="stats"></div>
+        </div>
+    </div>
+
+    <script>
+        let data;
+
+        async function loadData() {
+            const response = await fetch('../data/processed/temporal_data.json');
+            data = await response.json();
+            initVisualizations();
+            updateStats();
+        }
+
+        function initVisualizations() {
+            createTimeline();
+            createSankey();
+            createHeatmap();
+        }
+
+        function createTimeline() {
+            const sentences = data.sentence_analysis;
+            
+            const traces = [
+                {
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    x: sentences.map((_, i) => i),
+                    y: sentences.map(s => s.temporal_markers.length),
+                    name: 'Temporal Markers',
+                    line: { color: '#FF6B6B', width: 3 },
+                    marker: { size: 10 }
+                },
+                {
+                    type: 'scatter',
+                    mode: 'markers',
+                    x: sentences.map((_, i) => i),
+                    y: sentences.map(s => s.tense_distribution.past * 10),
+                    name: 'Past Tense',
+                    marker: { size: 12, color: '#4ECDC4', symbol: 'circle' }
+                },
+                {
+                    type: 'scatter',
+                    mode: 'markers',
+                    x: sentences.map((_, i) => i),
+                    y: sentences.map(s => s.tense_distribution.present * 10),
+                    name: 'Present Tense',
+                    marker: { size: 12, color: '#45B7D1', symbol: 'square' }
+                },
+                {
+                    type: 'scatter',
+                    mode: 'markers',
+                    x: sentences.map((_, i) => i),
+                    y: sentences.map(s => s.tense_distribution.future * 10),
+                    name: 'Future Tense',
+                    marker: { size: 12, color: '#FFA07A', symbol: 'diamond' }
+                }
+            ];
+
+            const layout = {
+                title: {
+                    text: 'Temporal Progression Through Narrative',
+                    font: { color: 'white', size: 20 }
+                },
+                xaxis: {
+                    title: 'Sentence Index',
+                    gridcolor: 'rgba(255, 255, 255, 0.1)',
+                    color: 'white'
+                },
+                yaxis: {
+                    title: 'Temporal Intensity',
+                    gridcolor: 'rgba(255, 255, 255, 0.1)',
+                    color: 'white'
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: { color: 'white' },
+                hovermode: 'closest'
+            };
+
+            Plotly.newPlot('timeline-chart', traces, layout, {responsive: true});
+        }
+
+        function createSankey() {
+            const tenses = ['past', 'present', 'future'];
+            const themes = [...new Set(data.sentence_analysis.map(s => s.theme_id))];
+            
+            const nodes = [
+                ...tenses.map(t => ({ label: t.toUpperCase() })),
+                ...themes.map(t => ({ label: t }))
+            ];
+
+            const links = [];
+            tenses.forEach((tense, tenseIdx) => {
+                themes.forEach((theme, themeIdx) => {
+                    const value = data.sentence_analysis
+                        .filter(s => s.theme_id === theme && s.dominant_tense === tense)
+                        .length;
+                    if (value > 0) {
+                        links.push({
+                            source: tenseIdx,
+                            target: tenses.length + themeIdx,
+                            value: value
+                        });
+                    }
+                });
+            });
+
+            const trace = {
+                type: 'sankey',
+                orientation: 'h',
+                node: {
+                    pad: 15,
+                    thickness: 20,
+                    line: { color: 'white', width: 2 },
+                    label: nodes.map(n => n.label),
+                    color: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#DDA0DD']
+                },
+                link: {
+                    source: links.map(l => l.source),
+                    target: links.map(l => l.target),
+                    value: links.map(l => l.value),
+                    color: 'rgba(255, 255, 255, 0.2)'
+                }
+            };
+
+            const layout = {
+                title: {
+                    text: 'Tense Distribution Across Themes',
+                    font: { color: 'white', size: 20 }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: { color: 'white', size: 14 }
+            };
+
+            Plotly.newPlot('sankey-chart', [trace], layout, {responsive: true});
+        }
+
+        function createHeatmap() {
+            const themes = [...new Set(data.sentence_analysis.map(s => s.theme_id))];
+            const tenses = ['past', 'present', 'future'];
+            
+            const z = tenses.map(tense => 
+                themes.map(theme => {
+                    const count = data.sentence_analysis
+                        .filter(s => s.theme_id === theme && s.dominant_tense === tense)
+                        .length;
+                    return count;
+                })
+            );
+
+            const trace = {
+                type: 'heatmap',
+                z: z,
+                x: themes,
+                y: tenses.map(t => t.toUpperCase()),
+                colorscale: [
+                    [0, '#1a1a2e'],
+                    [0.5, '#ff6b6b'],
+                    [1, '#ffd93d']
+                ],
+                text: z,
+                texttemplate: '%{text}',
+                textfont: { color: 'white', size: 16 },
+                hovertemplate: 'Theme: %{x}<br>Tense: %{y}<br>Count: %{z}<extra></extra>'
+            };
+
+            const layout = {
+                title: {
+                    text: 'Tense Frequency by Theme',
+                    font: { color: 'white', size: 20 }
+                },
+                xaxis: {
+                    title: 'Theme',
+                    color: 'white',
+                    tickangle: -45
+                },
+                yaxis: {
+                    title: 'Tense',
+                    color: 'white'
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: { color: 'white' }
+            };
+
+            Plotly.newPlot('heatmap-chart', [trace], layout, {responsive: true});
+        }
+
+        function updateStats() {
+            const totalSentences = data.sentence_analysis.length;
+            const avgMarkers = (data.sentence_analysis.reduce((sum, s) => 
+                sum + s.temporal_markers.length, 0) / totalSentences).toFixed(2);
+            
+            const tenseCount = data.sentence_analysis.reduce((acc, s) => {
+                acc[s.dominant_tense] = (acc[s.dominant_tense] || 0) + 1;
+                return acc;
+            }, {});
+
+            const dominant = Object.entries(tenseCount).sort((a, b) => b[1] - a[1])[0];
+
+            document.getElementById('stats').innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-value">${totalSentences}</div>
+                    <div class="stat-label">Sentences Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${avgMarkers}</div>
+                    <div class="stat-label">Avg Temporal Markers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${dominant[0].toUpperCase()}</div>
+                    <div class="stat-label">Dominant Tense (${dominant[1]} sentences)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${Object.keys(tenseCount).length}</div>
+                    <div class="stat-label">Tense Variations</div>
+                </div>
+            `;
+        }
+
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(viewName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

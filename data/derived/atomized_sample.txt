@@ -1,0 +1,64 @@
+ATOMIZED MANUSCRIPT: Tomb of the Unknowns
+Author: Christopher Notarnicola
+================================================================================
+
+
+[T001] THEME: Available in Standard Sizes
+--------------------------------------------------------------------------------
+
+  [P0000] PARAGRAPH:
+
+    [S00001] SENTENCE: You stand in line with the unphotographed....
+      [W000001] WORD: 'You'
+        LETTERS: [L00000001:Y] [L00000002:o] [L00000003:u]
+      [W000002] WORD: 'stand'
+      [W000003] WORD: 'in'
+      ... (7 total words)
+
+    [S00002] SENTENCE: They call you without your name....
+      [W000008] WORD: 'They'
+        LETTERS: [L00000037:T] [L00000038:h] [L00000039:e] [L00000040:y]
+      [W000009] WORD: 'call'
+      [W000010] WORD: 'you'
+      ... (6 total words)
+
+  ... (24 total sentences in paragraph)
+
+  ... (1 total paragraphs in theme)
+
+[T002] THEME: Instead of a Bayonet
+--------------------------------------------------------------------------------
+
+  [P0001] PARAGRAPH:
+
+    [S00025] SENTENCE: A pad around the end of a pugil stick'red where there would be a blade....
+      [W000386] WORD: 'A'
+        LETTERS: [L00001745:A]
+      [W000387] WORD: 'pad'
+      [W000388] WORD: 'around'
+      ... (15 total words)
+
+    [S00026] SENTENCE: Two recruits square for a bout, soft and quiet before they go hard and charging ...
+      [W000401] WORD: 'Two'
+        LETTERS: [L00001802:T] [L00001803:w] [L00001804:o]
+      [W000402] WORD: 'recruits'
+      [W000403] WORD: 'square'
+      ... (20 total words)
+
+  ... (23 total sentences in paragraph)
+
+  ... (1 total paragraphs in theme)
+
+
+... (49 total themes in manuscript)
+
+================================================================================
+ID FORMAT LEGEND:
+  Theme:     T### (3 digits, e.g., T001)
+  Paragraph: P#### (4 digits, e.g., P0000)
+  Sentence:  S##### (5 digits, e.g., S00001)
+  Word:      W###### (6 digits, e.g., W000001)
+  Letter:    L######## (8 digits, e.g., L00000001)
+
+Each ID is globally unique across the entire manuscript.
+Lower-level IDs maintain references to their parent IDs.

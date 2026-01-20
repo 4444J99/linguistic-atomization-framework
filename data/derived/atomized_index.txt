@@ -1,0 +1,199 @@
+INDEX: Tomb of the Unknowns
+================================================================================
+
+T001: Available in Standard Sizes
+  Paragraphs: 1 | Sentences: 24 | Words: 385
+  First paragraph: P0000
+
+T002: Instead of a Bayonet
+  Paragraphs: 1 | Sentences: 23 | Words: 354
+  First paragraph: P0001
+
+T003: On the Rifle Range
+  Paragraphs: 1 | Sentences: 20 | Words: 252
+  First paragraph: P0002
+
+T004: Enunciation Starts with E
+  Paragraphs: 3 | Sentences: 28 | Words: 1052
+  First paragraph: P0003
+
+T005: Calls of Duty
+  Paragraphs: 1 | Sentences: 5 | Words: 267
+  First paragraph: P0006
+
+T006: Stateside 1
+  Paragraphs: 4 | Sentences: 75 | Words: 1199
+  First paragraph: P0007
+
+T007: Non-deployable Unit
+  Paragraphs: 1 | Sentences: 23 | Words: 293
+  First paragraph: P0011
+
+T008: Stateside 2
+  Paragraphs: 5 | Sentences: 114 | Words: 1699
+  First paragraph: P0012
+
+T009: Iconography
+  Paragraphs: 1 | Sentences: 11 | Words: 312
+  First paragraph: P0017
+
+T010: To Deaden the Nerve
+  Paragraphs: 5 | Sentences: 80 | Words: 1644
+  First paragraph: P0018
+
+T011: Military Town
+  Paragraphs: 4 | Sentences: 60 | Words: 1204
+  First paragraph: P0023
+
+T012: Fair in Love
+  Paragraphs: 2 | Sentences: 59 | Words: 746
+  First paragraph: P0027
+
+T013: A Brief and Partial History of Attack and Defense
+  Paragraphs: 1 | Sentences: 12 | Words: 225
+  First paragraph: P0029
+
+T014: The Smallest Scale
+  Paragraphs: 9 | Sentences: 95 | Words: 1944
+  First paragraph: P0030
+
+T015: Sandstorm 1
+  Paragraphs: 1 | Sentences: 26 | Words: 252
+  First paragraph: P0039
+
+T016: The Cleaners
+  Paragraphs: 3 | Sentences: 91 | Words: 867
+  First paragraph: P0040
+
+T017: Dearest Marines
+  Paragraphs: 1 | Sentences: 7 | Words: 117
+  First paragraph: P0043
+
+T018: Demonstration in a Throughway
+  Paragraphs: 6 | Sentences: 63 | Words: 2114
+  First paragraph: P0044
+
+T019: Parallel Search Processing
+  Paragraphs: 1 | Sentences: 26 | Words: 218
+  First paragraph: P0050
+
+T020: Natural as a Sigh
+  Paragraphs: 2 | Sentences: 33 | Words: 603
+  First paragraph: P0051
+
+T021: Sandstorm 2
+  Paragraphs: 1 | Sentences: 16 | Words: 174
+  First paragraph: P0053
+
+T022: Objects in Space
+  Paragraphs: 5 | Sentences: 107 | Words: 1635
+  First paragraph: P0054
+
+T023: First Contact
+  Paragraphs: 2 | Sentences: 44 | Words: 692
+  First paragraph: P0059
+
+T024: Kind of Combat Action
+  Paragraphs: 9 | Sentences: 133 | Words: 2948
+  First paragraph: P0061
+
+T025: Sandstorm 3
+  Paragraphs: 1 | Sentences: 6 | Words: 145
+  First paragraph: P0070
+
+T026: Touching
+  Paragraphs: 2 | Sentences: 12 | Words: 371
+  First paragraph: P0071
+
+T027: Turnover
+  Paragraphs: 3 | Sentences: 50 | Words: 1022
+  First paragraph: P0073
+
+T028: Ram Skull
+  Paragraphs: 1 | Sentences: 9 | Words: 140
+  First paragraph: P0076
+
+T029: Clearing and Being Cleared
+  Paragraphs: 4 | Sentences: 57 | Words: 1373
+  First paragraph: P0077
+
+T030: Cardinal
+  Paragraphs: 1 | Sentences: 17 | Words: 380
+  First paragraph: P0081
+
+T031: Sandstorm 4
+  Paragraphs: 1 | Sentences: 11 | Words: 161
+  First paragraph: P0082
+
+T032: Steel Beneath Your Chin
+  Paragraphs: 1 | Sentences: 1 | Words: 278
+  First paragraph: P0083
+
+T033: Privates First Class
+  Paragraphs: 2 | Sentences: 38 | Words: 542
+  First paragraph: P0084
+
+T034: All Hallows
+  Paragraphs: 6 | Sentences: 115 | Words: 1688
+  First paragraph: P0086
+
+T035: In Ram Corpse
+  Paragraphs: 2 | Sentences: 36 | Words: 647
+  First paragraph: P0092
+
+T036: Sandstorm 5
+  Paragraphs: 1 | Sentences: 28 | Words: 270
+  First paragraph: P0094
+
+T037: Like Closing Distance
+  Paragraphs: 1 | Sentences: 26 | Words: 261
+  First paragraph: P0095
+
+T038: Kings of Thanksgiving
+  Paragraphs: 5 | Sentences: 122 | Words: 1592
+  First paragraph: P0096
+
+T039: Held Fast in Place
+  Paragraphs: 3 | Sentences: 35 | Words: 868
+  First paragraph: P0101
+
+T040: One Cries Abandon
+  Paragraphs: 1 | Sentences: 11 | Words: 121
+  First paragraph: P0104
+
+T041: Down from Sinjar
+  Paragraphs: 4 | Sentences: 73 | Words: 1379
+  First paragraph: P0105
+
+T042: Sandstorm 6
+  Paragraphs: 1 | Sentences: 3 | Words: 46
+  First paragraph: P0109
+
+T043: Rabia Railway
+  Paragraphs: 3 | Sentences: 57 | Words: 825
+  First paragraph: P0110
+
+T044: Vulnerability in a Sense
+  Paragraphs: 1 | Sentences: 10 | Words: 214
+  First paragraph: P0113
+
+T045: Laurel and Patina
+  Paragraphs: 4 | Sentences: 72 | Words: 1374
+  First paragraph: P0114
+
+T046: Finely Ground and Unfiltered
+  Paragraphs: 1 | Sentences: 23 | Words: 372
+  First paragraph: P0118
+
+T047: Kilroy Was There
+  Paragraphs: 4 | Sentences: 50 | Words: 1239
+  First paragraph: P0119
+
+T048: Red Cross Letters Never Burn
+  Paragraphs: 5 | Sentences: 110 | Words: 1920
+  First paragraph: P0123
+
+T049: Sandstorm 7
+  Paragraphs: 55 | Sentences: 829 | Words: 16546
+  First paragraph: P0128
+

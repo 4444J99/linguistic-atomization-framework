@@ -1,0 +1,3062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporal Flow Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value { font-size: 2em; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { font-size: 0.9em; opacity: 0.8; }
+        button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="glass">
+            <h1>⏰ Temporal Flow Analysis</h1>
+            <p class="subtitle">Narrative time progression and tense distribution</p>
+        </div>
+
+        <div class="glass">
+            <h2 style="margin-bottom: 15px;">📊 Narrative Flow (Theme → Chronology)</h2>
+            <div id="sankey" style="height: 400px;"></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="glass">
+                <h2 style="margin-bottom: 15px;">📈 Tense Distribution</h2>
+                <div id="tense-dist" style="height: 300px;"></div>
+            </div>
+            <div class="glass">
+                <h2 style="margin-bottom: 15px;">🔄 Narrative Shifts</h2>
+                <div id="narrative-shifts" style="height: 300px;"></div>
+            </div>
+        </div>
+
+        <div class="glass stats">
+            <div class="stat-box">
+                <div class="stat-value">533</div>
+                <div class="stat-label">Total Sentences</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Flashbacks</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Flashforwards</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">533</div>
+                <div class="stat-label">Linear Narrative</div>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+
+        const sankeyData = {
+  "nodes": [
+    {
+      "id": "T001:mvs-blog",
+      "name": "|| @MVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T002:27",
+      "name": "!27",
+      "group": "theme"
+    },
+    {
+      "id": "T003:unknown",
+      "name": "[",
+      "group": "theme"
+    },
+    {
+      "id": "T004:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T005:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T006:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T007:hrt-hed",
+      "name": "<hrt> ; <hed> ]",
+      "group": "theme"
+    },
+    {
+      "id": "T008:32",
+      "name": "!32",
+      "group": "theme"
+    },
+    {
+      "id": "T009:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T010:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T011:mvs-konsol",
+      "name": "|| @MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T012:mvs-konsol",
+      "name": "||@MVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T013:37",
+      "name": "!37",
+      "group": "theme"
+    },
+    {
+      "id": "T014:jov-arkiv",
+      "name": "|| @JOV || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T015:unknown",
+      "name": "? ] ]",
+      "group": "theme"
+    },
+    {
+      "id": "T016:39",
+      "name": "!39",
+      "group": "theme"
+    },
+    {
+      "id": "T017:hominum",
+      "name": "<hominum> ] ] ]",
+      "group": "theme"
+    },
+    {
+      "id": "T018:jov-konsol",
+      "name": "|| @JOV || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T019:hominum",
+      "name": "<hominum> ]",
+      "group": "theme"
+    },
+    {
+      "id": "T020:hominum",
+      "name": "<hominum> ]",
+      "group": "theme"
+    },
+    {
+      "id": "T021:wolv",
+      "name": "<wolv> ]",
+      "group": "theme"
+    },
+    {
+      "id": "T022:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T023:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T024:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T025:43",
+      "name": "!43",
+      "group": "theme"
+    },
+    {
+      "id": "T026:plvto",
+      "name": "@PLVTO",
+      "group": "theme"
+    },
+    {
+      "id": "T027:jov-konsol",
+      "name": "|| @JOV || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T028:45",
+      "name": "!45",
+      "group": "theme"
+    },
+    {
+      "id": "T029:unknown",
+      "name": "] ] ]",
+      "group": "theme"
+    },
+    {
+      "id": "T030:dukalon",
+      "name": "@DUKALON ]",
+      "group": "theme"
+    },
+    {
+      "id": "T031:46",
+      "name": "!46",
+      "group": "theme"
+    },
+    {
+      "id": "T032:dukalon",
+      "name": "@DUKALON",
+      "group": "theme"
+    },
+    {
+      "id": "T033:pura",
+      "name": "@PURA",
+      "group": "theme"
+    },
+    {
+      "id": "T034:dukalon",
+      "name": "@DUKALON",
+      "group": "theme"
+    },
+    {
+      "id": "T035:pura",
+      "name": "@PURA",
+      "group": "theme"
+    },
+    {
+      "id": "T036:dukalon",
+      "name": "@DUKALON",
+      "group": "theme"
+    },
+    {
+      "id": "T037:pura",
+      "name": "@PURA",
+      "group": "theme"
+    },
+    {
+      "id": "T038:dukalon",
+      "name": "@DUKALON",
+      "group": "theme"
+    },
+    {
+      "id": "T039:pura",
+      "name": "@PURA",
+      "group": "theme"
+    },
+    {
+      "id": "T040:dukalon",
+      "name": "@DUKALON",
+      "group": "theme"
+    },
+    {
+      "id": "T041:apolo-orakl",
+      "name": "|| @APOLO || ORAKL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T042:apolo-konsol",
+      "name": "|| @APOLO || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T043:51",
+      "name": "!51",
+      "group": "theme"
+    },
+    {
+      "id": "T001:mvs-blog",
+      "name": "|| @MVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T002:penevs",
+      "name": "@PENEVS",
+      "group": "theme"
+    },
+    {
+      "id": "T003:dafne",
+      "name": "@DAFNE",
+      "group": "theme"
+    },
+    {
+      "id": "T004:penevs",
+      "name": "@PENEVS",
+      "group": "theme"
+    },
+    {
+      "id": "T005:apolo",
+      "name": "@APOLO",
+      "group": "theme"
+    },
+    {
+      "id": "T006:dafne",
+      "name": "@DAFNE",
+      "group": "theme"
+    },
+    {
+      "id": "T007:apolo",
+      "name": "@APOLO",
+      "group": "theme"
+    },
+    {
+      "id": "T008:57",
+      "name": "\u000057",
+      "group": "theme"
+    },
+    {
+      "id": "T009:dafne-blog",
+      "name": "|| @DAFNE || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T010:penevs-konsol",
+      "name": "|| @PENEVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T011:fmal",
+      "name": "<fmal> ]",
+      "group": "theme"
+    },
+    {
+      "id": "T012:tre",
+      "name": "<tre> ] ]",
+      "group": "theme"
+    },
+    {
+      "id": "T013:apolo-blog",
+      "name": "|| @APOLO || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T014:inakus-konsol",
+      "name": "|| @INAKUS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T015:62",
+      "name": "\u000062",
+      "group": "theme"
+    },
+    {
+      "id": "T016:inakvs-arkiv",
+      "name": "|| @INAKVS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T017:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T018:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T019:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T020:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T021:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T022:argvs",
+      "name": "@ARGVS",
+      "group": "theme"
+    },
+    {
+      "id": "T023:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T024:io-arkiv",
+      "name": "|| @IO || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T025:mvrkvre-arkiv",
+      "name": "|| @MVRKVRE || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T026:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T027:argvs",
+      "name": "@ARGVS",
+      "group": "theme"
+    },
+    {
+      "id": "T028:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T029:link",
+      "name": ": <link>",
+      "group": "theme"
+    },
+    {
+      "id": "T030:sirinks-arkiv",
+      "name": "|| @SIRINKS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T031:jvno-blog",
+      "name": "|| @JVNO || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T032:74",
+      "name": "\u000074",
+      "group": "theme"
+    },
+    {
+      "id": "T033:efafvs-blog",
+      "name": "|| @EFAFVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T034:fetvn",
+      "name": "@FETVN",
+      "group": "theme"
+    },
+    {
+      "id": "T035:klimene",
+      "name": "@KLIMENE",
+      "group": "theme"
+    },
+    {
+      "id": "T036:fetvn-arkiv",
+      "name": "|| @FETVN || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T037:helios",
+      "name": "@HELIOS",
+      "group": "theme"
+    },
+    {
+      "id": "T038:fetvn",
+      "name": "@FETVN",
+      "group": "theme"
+    },
+    {
+      "id": "T039:helios",
+      "name": "@HELIOS",
+      "group": "theme"
+    },
+    {
+      "id": "T040:fetvn",
+      "name": "@FETVN",
+      "group": "theme"
+    },
+    {
+      "id": "T041:helios",
+      "name": "@HELIOS",
+      "group": "theme"
+    },
+    {
+      "id": "T042:fetvn",
+      "name": "@FETVN",
+      "group": "theme"
+    },
+    {
+      "id": "T043:helios",
+      "name": "@HELIOS",
+      "group": "theme"
+    },
+    {
+      "id": "T044:fetvn",
+      "name": "@FETVN",
+      "group": "theme"
+    },
+    {
+      "id": "T045:helios-konsol",
+      "name": "|| @HELIOS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T046:fetvn",
+      "name": "@FETVN [",
+      "group": "theme"
+    },
+    {
+      "id": "T047:fetvn",
+      "name": "@FETVN ]",
+      "group": "theme"
+    },
+    {
+      "id": "T048:81",
+      "name": "\u000081",
+      "group": "theme"
+    },
+    {
+      "id": "T049:fetvn",
+      "name": "@FETVN ]",
+      "group": "theme"
+    },
+    {
+      "id": "T050:helios",
+      "name": "@HELIOS ]",
+      "group": "theme"
+    },
+    {
+      "id": "T051:klimene-blog",
+      "name": "|| @KLIMENE || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T052:helios",
+      "name": "@HELIOS",
+      "group": "theme"
+    },
+    {
+      "id": "T053:mvrkure",
+      "name": "@MVRKURE",
+      "group": "theme"
+    },
+    {
+      "id": "T054:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T055:84",
+      "name": "\u000084",
+      "group": "theme"
+    },
+    {
+      "id": "T056:jov-arkiv",
+      "name": "|| @JOV || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T057:kalisto-arkiv",
+      "name": "|| @KALISTO || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T058:jvno-konsol",
+      "name": "|| @JVNO || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T059:kalisto",
+      "name": "@KALISTO [",
+      "group": "theme"
+    },
+    {
+      "id": "T060:kalisto",
+      "name": "@KALISTO ]",
+      "group": "theme"
+    },
+    {
+      "id": "T061:kalisto",
+      "name": "@KALISTO ]",
+      "group": "theme"
+    },
+    {
+      "id": "T062:88",
+      "name": "\u000088",
+      "group": "theme"
+    },
+    {
+      "id": "T063:arkas-blog",
+      "name": "|| @ARKAS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T064:neptvn",
+      "name": "@NEPTVN",
+      "group": "theme"
+    },
+    {
+      "id": "T065:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T066:neptvn",
+      "name": "@NEPTVN",
+      "group": "theme"
+    },
+    {
+      "id": "T067:mvs-blog",
+      "name": "|| @MVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T068:92",
+      "name": "\u000092",
+      "group": "theme"
+    },
+    {
+      "id": "T069:kro",
+      "name": "@KRO",
+      "group": "theme"
+    },
+    {
+      "id": "T070:ravin",
+      "name": "@RAVIN",
+      "group": "theme"
+    },
+    {
+      "id": "T071:kro",
+      "name": "@KRO",
+      "group": "theme"
+    },
+    {
+      "id": "T072:94",
+      "name": "\u000094",
+      "group": "theme"
+    },
+    {
+      "id": "T073:ravin",
+      "name": "@RAVIN",
+      "group": "theme"
+    },
+    {
+      "id": "T074:kro",
+      "name": "@KRO",
+      "group": "theme"
+    },
+    {
+      "id": "T075:ravin",
+      "name": "@RAVIN",
+      "group": "theme"
+    },
+    {
+      "id": "T076:apolo-arkiv",
+      "name": "|| @APOLO || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T077:jiron-blog",
+      "name": "|| @JIRON || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T078:okero-orakl",
+      "name": "|| @OKERO || ORAKL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T079:98",
+      "name": "\u000098",
+      "group": "theme"
+    },
+    {
+      "id": "T080:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T081:batvs",
+      "name": "@BATVS",
+      "group": "theme"
+    },
+    {
+      "id": "T082:mvrkvre-arkiv",
+      "name": "|| @MVRKVRE || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T083:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T084:awgloros",
+      "name": "@AWGLOROS",
+      "group": "theme"
+    },
+    {
+      "id": "T085:awgloros-arkiv",
+      "name": "|| @AWGLOROS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T086:103",
+      "name": "\u0000103",
+      "group": "theme"
+    },
+    {
+      "id": "T087:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T088:mvrkvre",
+      "name": "@MVRKVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T089:jov",
+      "name": "@JOV",
+      "group": "theme"
+    },
+    {
+      "id": "T090:vropa-arkiv",
+      "name": "|| @VROPA || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T001:kadmvs-arkiv",
+      "name": "|| @KADMVS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T002:apolo-orakl",
+      "name": "|| @APOLO || ORAKL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T003:kadmvs-konsol",
+      "name": "|| @KADMVS || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T004:111",
+      "name": "!111",
+      "group": "theme"
+    },
+    {
+      "id": "T005:akton-arkiv",
+      "name": "|| @AKTON || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T006:jvno-arkiv",
+      "name": "|| @JVNO || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T007:jov-konsol",
+      "name": "|| @JOV || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T008:115",
+      "name": "!115",
+      "group": "theme"
+    },
+    {
+      "id": "T009:tiresias-blog",
+      "name": "|| @TIRESIAS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T010:jvno-konsol",
+      "name": "|| @JVNO || KONSOL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T011:tiresias-orakl",
+      "name": "|| @TIRESIAS || ORAKL ||",
+      "group": "theme"
+    },
+    {
+      "id": "T012:eko-arkiv",
+      "name": "|| @EKO || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T013:narsisvs",
+      "name": "@NARSISVS",
+      "group": "theme"
+    },
+    {
+      "id": "T014:narsisvs",
+      "name": "@NARSISVS",
+      "group": "theme"
+    },
+    {
+      "id": "T015:eko",
+      "name": "@EKO",
+      "group": "theme"
+    },
+    {
+      "id": "T016:narsisvs",
+      "name": "@NARSISVS",
+      "group": "theme"
+    },
+    {
+      "id": "T017:eko",
+      "name": "@EKO",
+      "group": "theme"
+    },
+    {
+      "id": "T018:narsisvs",
+      "name": "@NARSISVS",
+      "group": "theme"
+    },
+    {
+      "id": "T019:eko",
+      "name": "@EKO",
+      "group": "theme"
+    },
+    {
+      "id": "T020:narsisvs-blog",
+      "name": "|| @NARSISVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T021:123",
+      "name": "!123",
+      "group": "theme"
+    },
+    {
+      "id": "T022:tiresias-blog",
+      "name": "|| @TIRESIAS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T023:pentevs-blog",
+      "name": "|| @PENTEVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T024:asotes",
+      "name": "@ASOTES",
+      "group": "theme"
+    },
+    {
+      "id": "T025:pentevs",
+      "name": "@PENTEVS",
+      "group": "theme"
+    },
+    {
+      "id": "T026:asotes",
+      "name": "@ASOTES",
+      "group": "theme"
+    },
+    {
+      "id": "T027:pentevs",
+      "name": "@PENTEVS",
+      "group": "theme"
+    },
+    {
+      "id": "T028:asotes",
+      "name": "@ASOTES",
+      "group": "theme"
+    },
+    {
+      "id": "T029:128",
+      "name": "!128",
+      "group": "theme"
+    },
+    {
+      "id": "T030:pentevs",
+      "name": "@PENTEVS",
+      "group": "theme"
+    },
+    {
+      "id": "T031:mvs-blog",
+      "name": "|| @MVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T032:130",
+      "name": "!130",
+      "group": "theme"
+    },
+    {
+      "id": "T033:bakvs-blog",
+      "name": "|| @BAKVS || BLOG ||",
+      "group": "theme"
+    },
+    {
+      "id": "T034:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T035:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T036:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T037:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T038:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T039:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T040:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T041:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T042:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T043:135",
+      "name": "!135",
+      "group": "theme"
+    },
+    {
+      "id": "T044:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T045:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T046:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T047:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T048:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T049:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T050:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T051:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T052:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T053:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T054:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T055:138",
+      "name": "!138",
+      "group": "theme"
+    },
+    {
+      "id": "T056:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T057:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T058:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T059:alsito",
+      "name": "@ALSITO",
+      "group": "theme"
+    },
+    {
+      "id": "T060:139",
+      "name": "!139",
+      "group": "theme"
+    },
+    {
+      "id": "T061:arsipe",
+      "name": "@ARSIPE",
+      "group": "theme"
+    },
+    {
+      "id": "T062:lukono",
+      "name": "@LUKONO",
+      "group": "theme"
+    },
+    {
+      "id": "T063:140",
+      "name": "!140",
+      "group": "theme"
+    },
+    {
+      "id": "T064:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T065:fvre",
+      "name": "@FVRE",
+      "group": "theme"
+    },
+    {
+      "id": "T066:atamas-arkiv",
+      "name": "|| @ATAMAS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "T067:jvno",
+      "name": "@JVNO",
+      "group": "theme"
+    },
+    {
+      "id": "T068:144",
+      "name": "!144",
+      "group": "theme"
+    },
+    {
+      "id": "T069:kadmvs-arkiv",
+      "name": "|| @KADMVS || ARKIV ||",
+      "group": "theme"
+    },
+    {
+      "id": "CHRONO:past",
+      "name": "Chronology \u2013 past",
+      "group": "chronology"
+    },
+    {
+      "id": "CHRONO:present",
+      "name": "Chronology \u2013 present",
+      "group": "chronology"
+    },
+    {
+      "id": "CHRONO:future",
+      "name": "Chronology \u2013 future",
+      "group": "chronology"
+    },
+    {
+      "id": "CHRONO:ambiguous",
+      "name": "Chronology \u2013 ambiguous",
+      "group": "chronology"
+    }
+  ],
+  "links": [
+    {
+      "source": 43,
+      "target": 202,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 43,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 1,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 2,
+      "target": 205,
+      "value": 6,
+      "type": "tense_flow"
+    },
+    {
+      "source": 3,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 4,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 5,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 6,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 7,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 8,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 9,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 10,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 11,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 12,
+      "target": 205,
+      "value": 6,
+      "type": "tense_flow"
+    },
+    {
+      "source": 13,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 13,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 14,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 15,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 16,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 17,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 18,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 19,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 20,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 21,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 21,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 21,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 22,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 23,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 23,
+      "target": 203,
+      "value": 6,
+      "type": "tense_flow"
+    },
+    {
+      "source": 23,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 24,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 24,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 25,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 25,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 25,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 26,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 27,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 28,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 29,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 30,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 31,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 32,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 33,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 33,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 34,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 35,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 35,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 36,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 37,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 38,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 39,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 39,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 40,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 40,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 41,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 42,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 44,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 44,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 45,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 45,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 46,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 47,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 47,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 48,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 49,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 49,
+      "target": 205,
+      "value": 5,
+      "type": "tense_flow"
+    },
+    {
+      "source": 50,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 51,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 51,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 52,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 53,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 54,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 55,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 55,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 55,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 56,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 57,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 58,
+      "target": 205,
+      "value": 5,
+      "type": "tense_flow"
+    },
+    {
+      "source": 59,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 59,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 60,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 60,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 61,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 61,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 62,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 62,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 63,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 64,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 65,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 66,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 66,
+      "target": 205,
+      "value": 5,
+      "type": "tense_flow"
+    },
+    {
+      "source": 67,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 67,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 67,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 68,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 68,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 69,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 70,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 71,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 72,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 72,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 73,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 73,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 73,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 74,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 75,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 75,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 76,
+      "target": 205,
+      "value": 5,
+      "type": "tense_flow"
+    },
+    {
+      "source": 77,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 78,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 79,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 79,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 80,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 81,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 82,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 83,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 84,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 85,
+      "target": 203,
+      "value": 5,
+      "type": "tense_flow"
+    },
+    {
+      "source": 85,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 86,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 87,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 88,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 89,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 90,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 91,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 92,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 93,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 93,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 93,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 94,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 94,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 95,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 95,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 96,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 97,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 98,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 98,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 98,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 99,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 99,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 100,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 101,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 102,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 103,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 104,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 105,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 105,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 106,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 107,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 108,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 109,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 110,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 111,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 111,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 112,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 113,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 113,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 113,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 114,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 115,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 116,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 116,
+      "target": 205,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 117,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 118,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 118,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 119,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 119,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 119,
+      "target": 205,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 120,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 120,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 120,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 121,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 122,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 122,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 123,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 123,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 124,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 124,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 124,
+      "target": 205,
+      "value": 7,
+      "type": "tense_flow"
+    },
+    {
+      "source": 125,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 126,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 126,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 127,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 127,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 128,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 129,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 130,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 131,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 132,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 132,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 132,
+      "target": 205,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 133,
+      "target": 202,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 133,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 133,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 134,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 134,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 134,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 135,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 136,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 137,
+      "target": 202,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 137,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 137,
+      "target": 205,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 138,
+      "target": 203,
+      "value": 7,
+      "type": "tense_flow"
+    },
+    {
+      "source": 138,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 139,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 140,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 141,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 141,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 142,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 143,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 144,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 144,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 145,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 146,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 147,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 148,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 149,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 150,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 151,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 152,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 152,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 152,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 153,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 154,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 154,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 155,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 155,
+      "target": 203,
+      "value": 6,
+      "type": "tense_flow"
+    },
+    {
+      "source": 155,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 156,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 156,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 157,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 157,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 158,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 158,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 159,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 160,
+      "target": 202,
+      "value": 6,
+      "type": "tense_flow"
+    },
+    {
+      "source": 160,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 161,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 162,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 163,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 163,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 163,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 164,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 165,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 165,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 165,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 166,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 167,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 168,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 169,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 170,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 171,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 171,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 171,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 172,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 173,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 174,
+      "target": 202,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 174,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 174,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 175,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 176,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 176,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 176,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 177,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 178,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 179,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 180,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 181,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 182,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 183,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 183,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 184,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 185,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 186,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 187,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 187,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 188,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 189,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 190,
+      "target": 205,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 191,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 192,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 192,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 193,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 194,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 194,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 195,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 196,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 196,
+      "target": 203,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 197,
+      "target": 202,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 197,
+      "target": 203,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 198,
+      "target": 202,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 198,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 198,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    },
+    {
+      "source": 199,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 199,
+      "target": 203,
+      "value": 4,
+      "type": "tense_flow"
+    },
+    {
+      "source": 199,
+      "target": 205,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 200,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 201,
+      "target": 202,
+      "value": 2,
+      "type": "tense_flow"
+    },
+    {
+      "source": 201,
+      "target": 203,
+      "value": 1,
+      "type": "tense_flow"
+    },
+    {
+      "source": 201,
+      "target": 205,
+      "value": 3,
+      "type": "tense_flow"
+    }
+  ]
+};
+        const stats = {
+  "total_sentences": 533,
+  "tense_counts": {
+    "ambiguous": 207,
+    "past": 124,
+    "present": 202
+  },
+  "flashback_count": 0,
+  "flashforward_count": 0,
+  "linear_count": 533
+};
+
+        // Sankey diagram
+        const sankeyNodes = sankeyData.nodes.map(n => n.name);
+        const sankeyLinks = {
+            source: sankeyData.links.map(l => l.source),
+            target: sankeyData.links.map(l => l.target),
+            value: sankeyData.links.map(l => l.value),
+            color: sankeyData.links.map(l => {
+                const targetNode = sankeyData.nodes[l.target];
+                if (targetNode && targetNode.id.includes('past')) return 'rgba(214, 39, 40, 0.5)';
+                if (targetNode && targetNode.id.includes('present')) return 'rgba(44, 160, 44, 0.5)';
+                if (targetNode && targetNode.id.includes('future')) return 'rgba(31, 119, 180, 0.5)';
+                return 'rgba(127, 127, 127, 0.5)';
+            })
+        };
+
+        const sankeyTrace = {
+            type: 'sankey',
+            orientation: 'h',
+            node: {
+                pad: 15,
+                thickness: 20,
+                line: { color: 'white', width: 0.5 },
+                label: sankeyNodes,
+                color: sankeyData.nodes.map(n =>
+                    n.group === 'theme' ? 'rgba(31, 119, 180, 0.8)' :
+                    n.id.includes('past') ? 'rgba(214, 39, 40, 0.8)' :
+                    n.id.includes('present') ? 'rgba(44, 160, 44, 0.8)' :
+                    n.id.includes('future') ? 'rgba(31, 119, 180, 0.8)' :
+                    'rgba(127, 127, 127, 0.8)'
+                )
+            },
+            link: sankeyLinks
+        };
+
+        const sankeyLayout = {
+            font: { size: 12, color: 'white' },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            margin: { l: 20, r: 20, t: 20, b: 20 }
+        };
+
+        Plotly.newPlot('sankey', [sankeyTrace], sankeyLayout, {responsive: true});
+
+        // Tense distribution bar chart
+        const tenseLabels = ['Past', 'Present', 'Future', 'Ambiguous'];
+        const tenseCounts = stats.tense_counts;
+        const tenseValues = [
+            tenseCounts.past || 0,
+            tenseCounts.present || 0,
+            tenseCounts.future || 0,
+            tenseCounts.ambiguous || 0
+        ];
+
+        const tenseTrace = {
+            x: tenseLabels,
+            y: tenseValues,
+            type: 'bar',
+            marker: {
+                color: ['rgba(214, 39, 40, 0.8)', 'rgba(44, 160, 44, 0.8)',
+                        'rgba(31, 119, 180, 0.8)', 'rgba(127, 127, 127, 0.8)']
+            }
+        };
+
+        const tenseLayout = {
+            font: { color: 'white' },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            xaxis: { gridcolor: 'rgba(255,255,255,0.1)' },
+            yaxis: { gridcolor: 'rgba(255,255,255,0.1)', title: 'Sentence Count' },
+            margin: { l: 50, r: 20, t: 20, b: 40 }
+        };
+
+        Plotly.newPlot('tense-dist', [tenseTrace], tenseLayout, {responsive: true});
+
+        // Narrative shifts pie chart
+        const shiftTrace = {
+            values: [stats.linear_count || 0, stats.flashback_count || 0, stats.flashforward_count || 0],
+            labels: ['Linear', 'Flashback', 'Flashforward'],
+            type: 'pie',
+            marker: {
+                colors: ['rgba(44, 160, 44, 0.8)', 'rgba(214, 39, 40, 0.8)', 'rgba(31, 119, 180, 0.8)']
+            },
+            textfont: { color: 'white' }
+        };
+
+        const shiftLayout = {
+            font: { color: 'white' },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            showlegend: true,
+            legend: { font: { color: 'white' } },
+            margin: { l: 20, r: 20, t: 20, b: 20 }
+        };
+
+        Plotly.newPlot('narrative-shifts', [shiftTrace], shiftLayout, {responsive: true});
+        
+    </script>
+</body>
+</html>

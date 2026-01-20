@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Browser - Tomb of the Unknowns</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 16px;
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        select {
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        option {
+            background: #2193b0;
+            color: white;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .stat-box.active {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .entity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .entity-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+        .entity-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        .entity-type-PERSON { border-color: #FF6B6B; }
+        .entity-type-RANK { border-color: #4ECDC4; }
+        .entity-type-LOCATION { border-color: #45B7D1; }
+        .entity-type-EQUIPMENT { border-color: #FFA07A; }
+        .entity-type-UNIT { border-color: #98D8C8; }
+        .entity-type-TEMPORAL { border-color: #F7DC6F; }
+        .entity-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .entity-count {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .entity-type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.75em;
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .no-results {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            font-size: 1.2em;
+        }
+        .top-entities {
+            color: white;
+        }
+        .top-entity-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .entity-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass">
+            <h1>🔍 Entity Browser</h1>
+            <p class="subtitle">Named entities extracted from "Tomb of the Unknowns"</p>
+        </div>
+
+        <div class="glass">
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="🔍 Search entities..." oninput="filterEntities()">
+                <select id="typeFilter" onchange="filterEntities()">
+                    <option value="">All Types</option>
+                    <option value="PERSON">Person</option>
+                    <option value="RANK">Rank</option>
+                    <option value="LOCATION">Location</option>
+                    <option value="EQUIPMENT">Equipment</option>
+                    <option value="UNIT">Unit</option>
+                    <option value="TEMPORAL">Temporal</option>
+                </select>
+            </div>
+
+            <div class="stats" id="type-stats"></div>
+        </div>
+
+        <div class="glass">
+            <div class="entity-grid" id="entity-grid"></div>
+            <div id="no-results" class="no-results" style="display: none;">
+                No entities found matching your search.
+            </div>
+        </div>
+
+        <div class="glass">
+            <h2 style="color: white; margin-bottom: 15px;">📊 Top 10 Most Frequent Entities</h2>
+            <div id="top-entities" class="top-entities"></div>
+        </div>
+    </div>
+
+    <script>
+        let data, allEntities = [];
+
+        async function loadData() {
+            const [statsResponse, enhancedResponse] = await Promise.all([
+                fetch('../data/processed/entity_statistics.json'),
+                fetch('../data/processed/enhanced_atomized.json')
+            ]);
+            
+            const stats = await statsResponse.json();
+            data = { stats, enhanced: await enhancedResponse.json() };
+            
+            processEntities();
+            displayStats();
+            displayTopEntities();
+            filterEntities();
+        }
+
+        function processEntities() {
+            const entityMap = new Map();
+            
+            data.enhanced.themes.forEach(theme => {
+                theme.paragraphs.forEach(para => {
+                    para.sentences.forEach(sent => {
+                        if (sent.entities) {
+                            Object.entries(sent.entities).forEach(([type, values]) => {
+                                values.forEach(value => {
+                                    const key = `${type}:${value}`;
+                                    if (!entityMap.has(key)) {
+                                        entityMap.set(key, {
+                                            type: type,
+                                            value: value,
+                                            count: 0,
+                                            contexts: []
+                                        });
+                                    }
+                                    const entity = entityMap.get(key);
+                                    entity.count++;
+                                    entity.contexts.push({
+                                        sentence: sent.text,
+                                        theme: theme.id
+                                    });
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+            
+            allEntities = Array.from(entityMap.values())
+                .sort((a, b) => b.count - a.count);
+        }
+
+        function displayStats() {
+            const typeCount = {};
+            allEntities.forEach(e => {
+                typeCount[e.type] = (typeCount[e.type] || 0) + 1;
+            });
+
+            const statsDiv = document.getElementById('type-stats');
+            statsDiv.innerHTML = Object.entries(typeCount)
+                .sort((a, b) => b[1] - a[1])
+                .map(([type, count]) => `
+                    <div class="stat-box" onclick="filterByType('${type}')">
+                        <div class="stat-value">${count}</div>
+                        <div class="stat-label">${type}</div>
+                    </div>
+                `).join('');
+        }
+
+        function displayTopEntities() {
+            const topDiv = document.getElementById('top-entities');
+            const maxCount = allEntities[0]?.count || 1;
+            
+            topDiv.innerHTML = allEntities.slice(0, 10).map(entity => `
+                <div class="top-entity-item">
+                    <div>
+                        <strong>${entity.value}</strong> (${entity.type})
+                        <div class="entity-bar" style="width: ${(entity.count / maxCount) * 100}%"></div>
+                    </div>
+                    <div style="font-size: 1.5em; font-weight: bold;">${entity.count}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterEntities() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+
+            const filtered = allEntities.filter(entity => {
+                const matchesSearch = !search || 
+                    entity.value.toLowerCase().includes(search) ||
+                    entity.type.toLowerCase().includes(search);
+                const matchesType = !typeFilter || entity.type === typeFilter;
+                return matchesSearch && matchesType;
+            });
+
+            const grid = document.getElementById('entity-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                grid.innerHTML = filtered.map(entity => `
+                    <div class="entity-card entity-type-${entity.type}">
+                        <div class="entity-name">${entity.value}</div>
+                        <div class="entity-count">Appears ${entity.count} time${entity.count > 1 ? 's' : ''}</div>
+                        <div class="entity-type-badge">${entity.type}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function filterByType(type) {
+            document.getElementById('typeFilter').value = type;
+            filterEntities();
+            
+            // Highlight active stat box
+            document.querySelectorAll('.stat-box').forEach(box => {
+                box.classList.remove('active');
+                if (box.textContent.includes(type)) {
+                    box.classList.add('active');
+                }
+            });
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+# Project Categories Configuration
+# =================================
+#
+# Defines semantic categories for organizing analysis projects.
+# Projects can be placed under these categories for better organization:
+#
+#   projects/
+#   ├── literary-analysis/
+#   │   ├── tomb-unknowns/
+#   │   └── war-poetry-collection/
+#   ├── historical-documents/
+#   │   └── civil-war-letters/
+#   └── technical-writing/
+#       └── api-documentation/
+#
+# Each category maps to relevant domain profiles for auto-configuration.
+
+categories:
+  literary-analysis:
+    description: "Fiction and literary text analysis"
+    domains:
+      - fiction
+      - poetry
+      - drama
+      - memoir
+      - narrative
+    suggested_profiles:
+      - military    # For war literature, military memoirs
+      - base        # General literary analysis
+    color: "#4A90D9"  # UI color hint (blue)
+
+  historical-documents:
+    description: "Historical text and primary source analysis"
+    domains:
+      - military
+      - political
+      - social
+      - correspondence
+      - archival
+    suggested_profiles:
+      - military
+      - historical
+    color: "#8B4513"  # UI color hint (brown)
+
+  technical-writing:
+    description: "Technical documentation and specification analysis"
+    domains:
+      - software
+      - scientific
+      - legal
+      - medical
+      - engineering
+    suggested_profiles:
+      - technical
+      - scientific
+    color: "#2E7D32"  # UI color hint (green)
+
+  academic-papers:
+    description: "Scholarly articles and research papers"
+    domains:
+      - research
+      - peer-reviewed
+      - thesis
+      - dissertation
+    suggested_profiles:
+      - academic
+      - scientific
+    color: "#7B1FA2"  # UI color hint (purple)
+
+  journalism:
+    description: "News articles, reports, and investigative journalism"
+    domains:
+      - news
+      - editorial
+      - investigative
+      - feature
+    suggested_profiles:
+      - journalism
+      - base
+    color: "#F57C00"  # UI color hint (orange)
+
+  personal-writing:
+    description: "Personal narratives, diaries, and correspondence"
+    domains:
+      - diary
+      - letters
+      - autobiography
+      - blog
+    suggested_profiles:
+      - personal
+      - base
+    color: "#C2185B"  # UI color hint (pink)
+
+# Default category for uncategorized projects
+default_category: literary-analysis
+
+# Category aliases for convenience
+aliases:
+  lit: literary-analysis
+  hist: historical-documents
+  tech: technical-writing
+  acad: academic-papers
+  news: journalism
+  personal: personal-writing
+
+# Auto-detection rules
+# Maps keywords in project description to suggested categories
+auto_detect:
+  military-analysis:
+    keywords:
+      - military
+      - war
+      - combat
+      - soldier
+      - veteran
+      - deployment
+    category: literary-analysis
+    profile: military
+
+  poetry-analysis:
+    keywords:
+      - poem
+      - poetry
+      - verse
+      - stanza
+    category: literary-analysis
+    profile: base
+
+  legal-analysis:
+    keywords:
+      - contract
+      - legal
+      - law
+      - court
+      - statute
+    category: technical-writing
+    profile: legal

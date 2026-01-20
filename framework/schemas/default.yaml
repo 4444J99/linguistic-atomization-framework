@@ -1,0 +1,102 @@
+# Default Atomization Schema
+# Standard 5-level hierarchy for text atomization
+#
+# Hierarchy: THEME → PARAGRAPH → SENTENCE → WORD → LETTER
+#
+# This schema matches the original tomb-of-the-unknowns format
+# with support for both legacy and ontological naming systems.
+
+name: default
+description: Standard 5-level text atomization hierarchy
+
+levels:
+  - theme       # Top-level sections (## headers in markdown)
+  - paragraph   # Text blocks separated by blank lines
+  - sentence    # Split on sentence-ending punctuation
+  - word        # Whitespace-separated tokens
+  - letter      # Individual characters
+
+splitters:
+  theme: '^## (.+)$'              # Markdown level-2 headers
+  paragraph: '\n\n+'              # Double newlines
+  sentence: '(?<=[.!?])\s+'       # Sentence boundaries (after .!? + space)
+  word: '\S+'                     # Non-whitespace sequences (for findall)
+  letter: null                    # Character-by-character iteration
+
+# Legacy ID formats (flat counters)
+# Used when naming_strategy is "legacy" (default for backward compatibility)
+id_formats:
+  theme: 'T{:03d}'                # T001, T002, ...
+  paragraph: 'P{:04d}'            # P0001, P0002, ...
+  sentence: 'S{:05d}'             # S00001, S00002, ...
+  word: 'W{:06d}'                 # W000001, W000002, ...
+  letter: 'L{:08d}'               # L00000001, L00000002, ...
+
+# =============================================================================
+# ONTOLOGICAL NAMING CONFIGURATION
+# =============================================================================
+#
+# The naming system supports multiple strategies for generating atom IDs:
+#
+#   legacy:       Original flat format (T001, P0001, S00001) - default
+#   hierarchical: Parent-child paths (T001.P001.S001)
+#   semantic:     Content-derived slugs (military-town.para-1)
+#   uuid:         Globally unique identifiers (T_abc12345)
+#   hybrid:       Counter + semantic (T001:military-town.P001.S001)
+#
+# To enable ontological naming, set naming_strategy to one of the above.
+
+naming:
+  # Naming strategy: legacy | hierarchical | semantic | uuid | hybrid
+  strategy: legacy
+
+  # Format strings for hybrid/hierarchical strategies
+  # Placeholders: {counter}, {slug}, {parent}, {level_prefix}
+  formats:
+    theme: '{level_prefix}{counter:03d}:{slug}'
+    paragraph: '{parent}.P{counter:03d}'
+    sentence: '{parent}.S{counter:03d}'
+    word: '{parent}.W{counter:03d}'
+    letter: null  # Set to null to skip letter-level IDs
+
+  # Level prefixes for ID generation
+  level_prefixes:
+    theme: 'T'
+    paragraph: 'P'
+    sentence: 'S'
+    word: 'W'
+    letter: 'L'
+
+  # Maximum length for semantic slugs
+  max_slug_length: 30
+
+  # Whether to include letter-level atoms in ontological naming
+  include_letters: true
+
+# =============================================================================
+# OUTPUT FILE NAMING
+# =============================================================================
+#
+# Configure how analysis output files are named.
+# Pattern: {project}_{module}_{descriptor}_{version}_{timestamp}.{ext}
+
+output_naming:
+  # Filename pattern
+  pattern: '{project}_{module}_{descriptor}_{version}_{timestamp}.{ext}'
+
+  # Timestamp format (strftime)
+  timestamp_format: '%Y%m%d'
+
+  # Default version string
+  default_version: 'v1'
+
+  # Include timestamp in filenames
+  include_timestamp: true
+
+  # Content descriptors for each analysis module
+  # These provide semantic meaning to output filenames
+  descriptors:
+    semantic: 'theme-network'
+    temporal: 'tense-flow'
+    sentiment: 'emotion-arc'
+    entity: 'military-refs'

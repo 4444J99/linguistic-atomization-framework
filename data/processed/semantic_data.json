@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "id": "T001",
+      "label": "Document Atomization Structure",
+      "type": "theme",
+      "word_count": 0,
+      "size": 20,
+      "color": "#1f77b4"
+    },
+    {
+      "id": "T002",
+      "label": "Visual Representation Features",
+      "type": "theme",
+      "word_count": 0,
+      "size": 20,
+      "color": "#1f77b4"
+    },
+    {
+      "id": "T003",
+      "label": "TODO: Expansion Items",
+      "type": "theme",
+      "word_count": 0,
+      "size": 20,
+      "color": "#1f77b4"
+    },
+    {
+      "id": "T004",
+      "label": "Technical Implementation",
+      "type": "theme",
+      "word_count": 0,
+      "size": 20,
+      "color": "#1f77b4"
+    }
+  ],
+  "edges": [],
+  "metadata": {
+    "total_nodes": 4,
+    "total_edges": 0,
+    "similarity_threshold": 0.3,
+    "created": "2025-11-20"
+  }
+}

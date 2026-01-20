@@ -1,0 +1,64 @@
+project:
+  name: tomb-unknowns
+  description: Multi-agent linguistic analysis of 'Tomb of the Unknowns' manuscript
+  author: Christopher Notarnicola
+  version: 1.0.0
+corpus:
+  documents:
+  - id: TOMB001
+    source: docs/tomb-of-the-unknowns.pdf
+    format: pdf
+    title: Tomb of the Unknowns
+    author: Christopher Notarnicola
+atomization:
+  schema: default
+domain:
+  profile: military
+analysis:
+  pipelines:
+  - module: semantic
+    config:
+      similarity_threshold: 0.3
+      max_features: 500
+      ngram_range:
+      - 1
+      - 2
+  - module: temporal
+    config:
+      include_sankey: true
+  - module: sentiment
+    config:
+      peak_count: 10
+  - module: entity
+    config:
+      use_spacy: false
+visualization:
+  adapters:
+  - type: force_graph
+    analysis: semantic
+    config:
+      title: Semantic Network Analysis
+      subtitle: Interactive visualization of theme relationships
+  - type: sankey
+    analysis: temporal
+    config:
+      title: Temporal Flow Analysis
+  - type: sentiment_chart
+    analysis: sentiment
+    config:
+      title: Sentiment Analysis
+  - type: entity_browser
+    analysis: entity
+    config:
+      title: Entity Browser
+output:
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  visualizations_dir: visualizations
+naming:
+  strategy: hybrid
+metadata:
+  migrated_from: tomb-of-the-unknowns
+  migrated_at: '2026-01-20T08:54:40.350876'
+  naming_strategy: hybrid

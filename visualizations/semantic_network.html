@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Network - Tomb of the Unknowns</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        #network {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            cursor: grab;
+        }
+        #network:active { cursor: grabbing; }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="text"], select {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+        .legend-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            max-width: 300px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            color: white;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass">
+            <h1>🌐 Semantic Network Analysis</h1>
+            <p class="subtitle">Interactive visualization of theme relationships in "Tomb of the Unknowns"</p>
+        </div>
+
+        <div class="glass">
+            <div class="controls">
+                <div class="control-group">
+                    <input type="text" id="search" placeholder="🔍 Search themes...">
+                    <button onclick="resetView()">Reset View</button>
+                </div>
+                <div class="control-group">
+                    <select id="filterThreshold">
+                        <option value="0">Show All Links</option>
+                        <option value="0.3">Similarity > 0.3</option>
+                        <option value="0.5" selected>Similarity > 0.5</option>
+                        <option value="0.7">Similarity > 0.7</option>
+                    </select>
+                </div>
+            </div>
+            <svg id="network" width="100%" height="600"></svg>
+        </div>
+
+        <div class="glass">
+            <div class="stats" id="stats"></div>
+        </div>
+
+        <div class="glass">
+            <div class="legend" id="legend"></div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        let data, simulation, svg, g, nodes, links;
+
+        async function loadData() {
+            const response = await fetch('../data/processed/semantic_data.json');
+            data = await response.json();
+            initVisualization();
+        }
+
+        function initVisualization() {
+            const width = document.getElementById('network').clientWidth;
+            const height = 600;
+
+            svg = d3.select('#network')
+                .attr('width', width)
+                .attr('height', height);
+
+            g = svg.append('g');
+
+            // Add zoom behavior
+            const zoom = d3.zoom()
+                .scaleExtent([0.5, 5])
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+
+            svg.call(zoom);
+
+            updateVisualization();
+            updateStats();
+            updateLegend();
+        }
+
+        function updateVisualization() {
+            const threshold = parseFloat(document.getElementById('filterThreshold').value);
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+
+            // Filter links by threshold
+            const filteredLinks = data.theme_similarities.filter(d => d.similarity >= threshold);
+
+            // Get nodes that are in filtered links or match search
+            const nodeIds = new Set();
+            filteredLinks.forEach(link => {
+                nodeIds.add(link.source);
+                nodeIds.add(link.target);
+            });
+
+            let filteredNodes = data.themes.filter(theme => 
+                nodeIds.has(theme.id) || 
+                (searchTerm && theme.name.toLowerCase().includes(searchTerm))
+            );
+
+            // Clear previous
+            g.selectAll('*').remove();
+
+            // Color scale
+            const colorScale = d3.scaleOrdinal()
+                .domain(filteredNodes.map(d => d.id))
+                .range(['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F']);
+
+            // Create simulation
+            simulation = d3.forceSimulation(filteredNodes)
+                .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(150))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(svg.attr('width') / 2, svg.attr('height') / 2))
+                .force('collision', d3.forceCollide().radius(50));
+
+            // Draw links
+            const link = g.append('g')
+                .selectAll('line')
+                .data(filteredLinks)
+                .enter().append('line')
+                .attr('stroke', 'rgba(255, 255, 255, 0.3)')
+                .attr('stroke-width', d => d.similarity * 5)
+                .attr('stroke-opacity', 0.6);
+
+            // Draw nodes
+            const node = g.append('g')
+                .selectAll('g')
+                .data(filteredNodes)
+                .enter().append('g')
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+
+            node.append('circle')
+                .attr('r', d => 30 + d.word_count / 10)
+                .attr('fill', d => colorScale(d.id))
+                .attr('stroke', 'white')
+                .attr('stroke-width', 3)
+                .attr('opacity', 0.9);
+
+            node.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', 5)
+                .attr('fill', 'white')
+                .attr('font-weight', 'bold')
+                .attr('font-size', '12px')
+                .text(d => d.name);
+
+            // Tooltips
+            node.on('mouseover', function(event, d) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.innerHTML = `
+                    <strong>${d.name}</strong><br>
+                    Words: ${d.word_count}<br>
+                    Sentences: ${d.sentence_count}<br>
+                    ${d.keywords.slice(0, 5).join(', ')}
+                `;
+                tooltip.style.opacity = 1;
+                tooltip.style.left = event.pageX + 10 + 'px';
+                tooltip.style.top = event.pageY + 10 + 'px';
+
+                d3.select(this).select('circle')
+                    .transition().duration(200)
+                    .attr('r', d => 40 + d.word_count / 10);
+            })
+            .on('mouseout', function() {
+                document.getElementById('tooltip').style.opacity = 0;
+                d3.select(this).select('circle')
+                    .transition().duration(200)
+                    .attr('r', d => 30 + d.word_count / 10);
+            });
+
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+
+                node.attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+        }
+
+        function updateStats() {
+            const stats = document.getElementById('stats');
+            stats.innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-value">${data.themes.length}</div>
+                    <div class="stat-label">Themes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${data.theme_similarities.length}</div>
+                    <div class="stat-label">Connections</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${data.themes.reduce((sum, t) => sum + t.word_count, 0)}</div>
+                    <div class="stat-label">Total Words</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${Math.max(...data.theme_similarities.map(s => s.similarity)).toFixed(2)}</div>
+                    <div class="stat-label">Max Similarity</div>
+                </div>
+            `;
+        }
+
+        function updateLegend() {
+            const legend = document.getElementById('legend');
+            const colorScale = d3.scaleOrdinal()
+                .domain(data.themes.map(d => d.id))
+                .range(['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F']);
+
+            legend.innerHTML = data.themes.map(theme => `
+                <div class="legend-item">
+                    <div class="legend-circle" style="background: ${colorScale(theme.id)}"></div>
+                    <span>${theme.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function resetView() {
+            document.getElementById('search').value = '';
+            document.getElementById('filterThreshold').value = '0.5';
+            updateVisualization();
+        }
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        document.getElementById('filterThreshold').addEventListener('change', updateVisualization);
+        document.getElementById('search').addEventListener('input', updateVisualization);
+
+        loadData();
+    </script>
+</body>
+</html>

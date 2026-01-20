@@ -1,0 +1,125 @@
+# Military Domain Sentiment Lexicon
+# Extracted from copilot_sentiment_analysis.py
+#
+# Used with VADER sentiment analyzer to provide domain-specific scoring
+# for military-related text analysis.
+
+name: military_sentiment_lexicon
+description: Custom sentiment scores for military terminology used in memoir/narrative analysis
+
+# Term-to-score mapping
+# Negative scores: -5.0 to -0.1
+# Positive scores: 0.1 to 5.0
+# Scale follows VADER conventions
+
+terms:
+  # =========================================================================
+  # NEGATIVE TERMS (Combat/Trauma/Violence)
+  # =========================================================================
+
+  # High-intensity negative (violence, death)
+  death: -3.2
+  killed: -3.0
+  explosion: -3.0
+  ied: -3.0          # Improvised Explosive Device
+  blood: -2.8
+  casualty: -2.8
+  gunfire: -2.5
+  wounded: -2.5
+  trauma: -2.4
+  attack: -2.3
+  pain: -2.2
+  firefight: -2.1
+  fear: -2.0
+  infection: -2.0
+  war: -1.8
+  combat: -1.5
+  enemy: -1.5
+
+  # Medium-intensity negative (stress, danger)
+  ambush: -2.5
+  mortar: -2.3
+  shrapnel: -2.2
+  medevac: -1.8
+  triage: -1.5
+  hostile: -1.5
+  threat: -1.3
+
+  # Low-intensity negative (operational stress)
+  deployment: -0.5
+  patrol: -0.4
+  convoy: -0.3
+  rifle: -0.2
+
+  # =========================================================================
+  # POSITIVE TERMS (Camaraderie/Achievement/Safety)
+  # =========================================================================
+
+  # High-intensity positive (values, achievement)
+  semper fidelis: 2.5  # Always Faithful (USMC motto)
+  victory: 2.5
+  love: 2.5
+  laughter: 2.3
+  reunite: 2.2
+  celebration: 2.0
+  survived: 2.0
+  safe: 2.0
+  home: 1.8
+  smile: 1.8
+  friend: 1.5
+  marine: 1.2          # Pride in service
+
+  # Medium-intensity positive (duty, service)
+  honor: 2.0
+  courage: 1.8
+  brotherhood: 1.6
+  comrade: 1.4
+
+  # Low-intensity positive (duty, structure)
+  service: 0.8
+  duty: 0.5
+  uniform: 0.3
+  mission: 0.2
+
+  # =========================================================================
+  # NEUTRAL/CONTEXT-DEPENDENT
+  # =========================================================================
+  orders: 0.0
+
+# Category metadata for visualization/filtering
+categories:
+  combat:
+    - death
+    - killed
+    - explosion
+    - gunfire
+    - wounded
+    - firefight
+    - ambush
+    - mortar
+    - shrapnel
+  medical:
+    - trauma
+    - pain
+    - infection
+    - casualty
+    - medevac
+    - triage
+  operations:
+    - deployment
+    - patrol
+    - convoy
+    - mission
+    - orders
+  values:
+    - semper fidelis
+    - honor
+    - courage
+    - duty
+    - service
+  relationships:
+    - friend
+    - brotherhood
+    - comrade
+    - love
+    - home

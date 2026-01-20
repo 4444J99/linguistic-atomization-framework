@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomb of the Unknowns - Analysis Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .framework-badge {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .framework-badge span {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.3);
+            border: 1px solid rgba(78, 205, 196, 0.6);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .card-description {
+            opacity: 0.8;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .card-tech {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            opacity: 0.8;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        .feature-icon {
+            font-size: 1.5em;
+        }
+        .launch-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: rgba(78, 205, 196, 0.3);
+            border: 2px solid rgba(78, 205, 196, 0.6);
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .launch-btn:hover {
+            background: rgba(78, 205, 196, 0.5);
+            transform: translateY(-2px);
+        }
+        .info-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .info-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        .info-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .info-list li:before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #4ECDC4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass">
+            <h1>Tomb of the Unknowns</h1>
+            <p class="subtitle">Multi-Agent Linguistic Analysis Dashboard</p>
+            <div class="framework-badge">
+                <span>Powered by LingFrame</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Themes Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Sentences Processed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">225</div>
+                    <div class="stat-label">Words Atomized</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Analysis Modules</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card" onclick="window.open('semantic_force_graph.html', '_blank')">
+                <div class="card-icon">🌐</div>
+                <div class="card-title">Semantic Network</div>
+                <div class="card-description">
+                    Explore theme relationships and entity connections through an interactive force-directed graph
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">🔍</span>
+                        <span>Search &amp; Filter</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🎨</span>
+                        <span>Interactive Nodes</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Entity Relations</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔄</span>
+                        <span>Zoom &amp; Pan</span>
+                    </div>
+                </div>
+                <div class="card-tech">Powered by D3.js v7 | Module: semantic</div>
+                <button class="launch-btn">Launch Visualization</button>
+            </div>
+
+            <div class="card" onclick="window.open('temporal_sankey.html', '_blank')">
+                <div class="card-icon">⏰</div>
+                <div class="card-title">Temporal Flow</div>
+                <div class="card-description">
+                    Analyze narrative time progression with Sankey diagram and tense distribution views
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">🌊</span>
+                        <span>Sankey Flow</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📈</span>
+                        <span>Tense Distribution</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔄</span>
+                        <span>Narrative Shifts</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>Temporal Markers</span>
+                    </div>
+                </div>
+                <div class="card-tech">Powered by Plotly.js | Module: temporal</div>
+                <button class="launch-btn">Launch Visualization</button>
+            </div>
+
+            <div class="card" onclick="window.open('sentiment_sentiment_chart.html', '_blank')">
+                <div class="card-icon">💭</div>
+                <div class="card-title">Sentiment Analysis</div>
+                <div class="card-description">
+                    Discover emotional landscape with military lexicon-enhanced sentiment scoring
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">📉</span>
+                        <span>Emotional Arc</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <span>Theme Comparison</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⭐</span>
+                        <span>Top Sentences</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔢</span>
+                        <span>Distribution Charts</span>
+                    </div>
+                </div>
+                <div class="card-tech">Powered by Chart.js | Module: sentiment</div>
+                <button class="launch-btn">Launch Visualization</button>
+            </div>
+
+            <div class="card" onclick="window.open('entity_entity_browser.html', '_blank')">
+                <div class="card-icon">🔍</div>
+                <div class="card-title">Entity Browser</div>
+                <div class="card-description">
+                    Browse and search named entities extracted with pattern-based recognition
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">📍</span>
+                        <span>Locations</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🎖️</span>
+                        <span>Military Terms</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">👤</span>
+                        <span>Person Entities</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔧</span>
+                        <span>Equipment</span>
+                    </div>
+                </div>
+                <div class="card-tech">Vanilla JS | Module: entity</div>
+                <button class="launch-btn">Launch Browser</button>
+            </div>
+        </div>
+
+        <div class="glass">
+            <div class="info-section">
+                <div class="info-title">Framework Architecture</div>
+                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <ul class="info-list">
+                            <li>Hierarchical text atomization (theme → paragraph → sentence → word → letter)</li>
+                            <li>Pluggable analysis module system</li>
+                            <li>Domain-specific lexicons and patterns</li>
+                            <li>YAML-based project configuration</li>
+                            <li>CLI interface for pipeline execution</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="info-list">
+                            <li>TF-IDF semantic similarity analysis</li>
+                            <li>Temporal tense distribution tracking</li>
+                            <li>VADER + TextBlob sentiment scoring</li>
+                            <li>Pattern-based entity recognition</li>
+                            <li>Adaptive visualization adapters</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-title">Analysis Modules</div>
+                <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <div class="stat-box">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🌐</div>
+                        <div style="font-weight: bold;">Semantic</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">TF-IDF + Co-occurrence</div>
+                    </div>
+                    <div class="stat-box">
+                        <div style="font-size: 2em; margin-bottom: 5px;">⏰</div>
+                        <div style="font-weight: bold;">Temporal</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">Tense Detection</div>
+                    </div>
+                    <div class="stat-box">
+                        <div style="font-size: 2em; margin-bottom: 5px;">💭</div>
+                        <div style="font-weight: bold;">Sentiment</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">VADER + Lexicon</div>
+                    </div>
+                    <div class="stat-box">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🔍</div>
+                        <div style="font-weight: bold;">Entity</div>
+                        <div style="font-size: 0.9em; opacity: 0.8;">Pattern NER</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-title">Technology Stack</div>
+                <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <div class="stat-box">
+                        <div>D3.js v7</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Force Graphs</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Plotly.js</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Sankey + Charts</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Chart.js</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Statistical Viz</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Python 3</div>
+                        <div style="font-size: 0.8em; opacity: 0.7;">Analysis Engine</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass" style="text-align: center; padding: 20px;">
+            <p style="opacity: 0.8;">
+                Generated: <span id="date"></span> |
+                Project: tomb-of-the-unknowns |
+                Domain: military
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html>

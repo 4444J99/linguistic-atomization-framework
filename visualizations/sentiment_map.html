@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Map - Tomb of the Unknowns</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 400px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            color: white;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .sentence-list {
+            color: white;
+        }
+        .sentence-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+        }
+        .positive { border-color: #4ECDC4; }
+        .negative { border-color: #FF6B6B; }
+        .sentence-score {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .sentence-text {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab.active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .view {
+            display: none;
+        }
+        .view.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glass">
+            <h1>💭 Sentiment Analysis</h1>
+            <p class="subtitle">Emotional landscape of "Tomb of the Unknowns"</p>
+        </div>
+
+        <div class="glass">
+            <div class="tabs">
+                <button class="tab active" onclick="showView('overview')">Overview</button>
+                <button class="tab" onclick="showView('extremes')">Top Sentences</button>
+            </div>
+
+            <div id="overview" class="view active">
+                <div class="grid">
+                    <div class="chart-container">
+                        <canvas id="emotionalArc"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="themeComparison"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sentimentDistribution"></canvas>
+                </div>
+            </div>
+
+            <div id="extremes" class="view">
+                <div class="grid">
+                    <div>
+                        <h2 style="color: white; margin-bottom: 15px;">🌟 Most Positive Sentences</h2>
+                        <div id="positive-sentences" class="sentence-list"></div>
+                    </div>
+                    <div>
+                        <h2 style="color: white; margin-bottom: 15px;">⚠️ Most Negative Sentences</h2>
+                        <div id="negative-sentences" class="sentence-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass">
+            <div class="stats" id="stats"></div>
+        </div>
+    </div>
+
+    <script>
+        let data;
+
+        async function loadData() {
+            const response = await fetch('../data/processed/sentiment_data.json');
+            data = await response.json();
+            initVisualizations();
+            updateStats();
+            displayTopSentences();
+        }
+
+        function initVisualizations() {
+            createEmotionalArc();
+            createThemeComparison();
+            createSentimentDistribution();
+        }
+
+        function createEmotionalArc() {
+            const sentences = data.sentence_sentiments;
+            const ctx = document.getElementById('emotionalArc').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sentences.map((_, i) => i + 1),
+                    datasets: [{
+                        label: 'Emotional Arc',
+                        data: sentences.map(s => s.compound_score),
+                        borderColor: '#FF6B6B',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: sentences.map(s => 
+                            s.compound_score > 0 ? '#4ECDC4' : '#FF6B6B'
+                        )
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Emotional Arc Through Narrative',
+                            color: 'white',
+                            font: { size: 16, weight: 'bold' }
+                        },
+                        legend: {
+                            labels: { color: 'white' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const s = sentences[context.dataIndex];
+                                    return `Text: ${s.text.substring(0, 50)}...`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Sentence Index',
+                                color: 'white'
+                            },
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Sentiment Score',
+                                color: 'white'
+                            },
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            min: -1,
+                            max: 1
+                        }
+                    }
+                }
+            });
+        }
+
+        function createThemeComparison() {
+            const themeAvgs = data.theme_aggregates;
+            const ctx = document.getElementById('themeComparison').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: themeAvgs.map(t => t.theme_id),
+                    datasets: [{
+                        label: 'Average Sentiment',
+                        data: themeAvgs.map(t => t.average_compound),
+                        backgroundColor: themeAvgs.map(t => 
+                            t.average_compound > 0 ? 
+                            'rgba(78, 205, 196, 0.8)' : 
+                            'rgba(255, 107, 107, 0.8)'
+                        ),
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Sentiment by Theme',
+                            color: 'white',
+                            font: { size: 16, weight: 'bold' }
+                        },
+                        legend: {
+                            labels: { color: 'white' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Average Score',
+                                color: 'white'
+                            },
+                            ticks: { color: 'white' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            min: -1,
+                            max: 1
+                        }
+                    }
+                }
+            });
+        }
+
+        function createSentimentDistribution() {
+            const sentences = data.sentence_sentiments;
+            const ctx = document.getElementById('sentimentDistribution').getContext('2d');
+
+            const positive = sentences.filter(s => s.compound_score > 0.05).length;
+            const neutral = sentences.filter(s => Math.abs(s.compound_score) <= 0.05).length;
+            const negative = sentences.filter(s => s.compound_score < -0.05).length;
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Positive', 'Neutral', 'Negative'],
+                    datasets: [{
+                        data: [positive, neutral, negative],
+                        backgroundColor: [
+                            'rgba(78, 205, 196, 0.8)',
+                            'rgba(255, 255, 255, 0.5)',
+                            'rgba(255, 107, 107, 0.8)'
+                        ],
+                        borderColor: 'white',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Overall Sentiment Distribution',
+                            color: 'white',
+                            font: { size: 16, weight: 'bold' }
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: 'white',
+                                font: { size: 14 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function displayTopSentences() {
+            const sentences = data.sentence_sentiments;
+            const sorted = [...sentences].sort((a, b) => b.compound_score - a.compound_score);
+
+            const posDiv = document.getElementById('positive-sentences');
+            posDiv.innerHTML = sorted.slice(0, 5).map(s => `
+                <div class="sentence-item positive">
+                    <div class="sentence-score">Score: ${s.compound_score.toFixed(3)}</div>
+                    <div class="sentence-text">${s.text}</div>
+                </div>
+            `).join('');
+
+            const negDiv = document.getElementById('negative-sentences');
+            negDiv.innerHTML = sorted.slice(-5).reverse().map(s => `
+                <div class="sentence-item negative">
+                    <div class="sentence-score">Score: ${s.compound_score.toFixed(3)}</div>
+                    <div class="sentence-text">${s.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            const sentences = data.sentence_sentiments;
+            const avgScore = (sentences.reduce((sum, s) => sum + s.compound_score, 0) / sentences.length).toFixed(3);
+            
+            const positive = sentences.filter(s => s.compound_score > 0.05).length;
+            const negative = sentences.filter(s => s.compound_score < -0.05).length;
+            
+            const maxScore = Math.max(...sentences.map(s => s.compound_score)).toFixed(3);
+            const minScore = Math.min(...sentences.map(s => s.compound_score)).toFixed(3);
+
+            document.getElementById('stats').innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-value">${avgScore}</div>
+                    <div class="stat-label">Average Sentiment</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${positive}</div>
+                    <div class="stat-label">Positive Sentences</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${negative}</div>
+                    <div class="stat-label">Negative Sentences</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${maxScore}</div>
+                    <div class="stat-label">Highest Score</div>
+                </div>
+            `;
+        }
+
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(viewName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

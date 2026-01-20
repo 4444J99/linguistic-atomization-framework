@@ -1,0 +1,50 @@
+# Military Domain Entity Patterns
+# Extracted from gemini_semantic_network.py and simple_entity_recognition.py
+#
+# Regex patterns for named entity recognition in military memoirs and narratives.
+
+name: military_entity_patterns
+description: Pattern-based entity extraction for military terminology, ranks, locations, and equipment
+
+# Pattern definitions
+# Each pattern uses Python regex syntax with IGNORECASE flag
+patterns:
+  MILITARY_TERM: "\\b(Marine|Marines|Corpsman|Staff Sergeant|Gunnery Sergeant|Lieutenant|Captain|Sergeant|Private|Colonel|General|platoon|convoy|deployment|patrol|battalion|regiment|squad|company|infantry|medic|corporal)\\b"
+  RANK: "\\b(Staff Sergeant|Gunnery Sergeant|Lieutenant|Captain|Corpsman|Sergeant|Private|Colonel|General|Corporal|Major|Commander|Admiral)\\b"
+  LOCATION: "\\b(Iraq|Al Asad|Sal Sinjar|Manhattan|New York|Arlington|Vietnam|Afghanistan|Kuwait|Fallujah|Baghdad|Ramadi|Helmand|Kandahar|Kabul|Washington|Pentagon|Tomb|Cemetery)\\b"
+  REGION: "\\b(Middle East|Persian Gulf|Southeast Asia|Pacific|Europe|Africa)\\b"
+  EQUIPMENT: "\\b(M40|M16|M4|rifle|weapon|mask|Thunderbird|humvee|MRAP|Bradley|Abrams|helicopter|Blackhawk|Chinook|Apache|mortar|grenade|ammunition|ammo|kevlar|flak|body armor)\\b"
+  VEHICLE: "\\b(Thunderbird|humvee|MRAP|Bradley|Abrams|Blackhawk|Chinook|Apache|truck|jeep|convoy vehicle)\\b"
+  UNIT: "\\b(Marine Corps|USMC|Army|Navy|Air Force|Coast Guard|platoon|squad|battalion|regiment|company|division|brigade|Special Forces|Rangers|SEALs)\\b"
+  TEMPORAL: "\\b(morning|evening|night|day|hour|minute|dawn|dusk|midnight|noon|deployment|tour|rotation)\\b"
+  DATE_REF: "\\b(January|February|March|April|May|June|July|August|September|October|November|December|\\d{4})\\b"
+  CEREMONY: "\\b(Tomb of the Unknowns|Tomb|Arlington|ceremony|guard|sentinel|watch|post|relief|inspection|changing of the guard|Taps|Reveille|Colors|flag)\\b"
+  MEDICAL: "\\b(wound|injury|trauma|PTSD|TBI|concussion|shrapnel|medevac|triage|surgery|hospital|VA|veteran)\\b"
+
+# Entity type colors for visualization
+colors:
+  MILITARY_TERM: "#d62728"
+  RANK: "#d62728"
+  LOCATION: "#2ca02c"
+  REGION: "#2ca02c"
+  EQUIPMENT: "#9467bd"
+  VEHICLE: "#9467bd"
+  UNIT: "#ff7f0e"
+  TEMPORAL: "#17becf"
+  DATE_REF: "#17becf"
+  CEREMONY: "#bcbd22"
+  MEDICAL: "#e377c2"
+
+# Entity type descriptions
+descriptions:
+  MILITARY_TERM: "General military terminology including ranks and roles"
+  RANK: "Military ranks and grades"
+  LOCATION: "Geographic locations, bases, and places"
+  REGION: "Large geographic regions"
+  EQUIPMENT: "Military equipment, weapons, and gear"
+  VEHICLE: "Military and civilian vehicles"
+  UNIT: "Military units and organizations"
+  TEMPORAL: "Time-related markers"
+  DATE_REF: "Date and year references"
+  CEREMONY: "Ceremonial and traditional terms"
+  MEDICAL: "Medical and health-related terms"
