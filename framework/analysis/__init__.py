@@ -9,7 +9,11 @@ Built-in modules:
 - temporal: Tense detection, temporal markers, narrative flow
 - sentiment: VADER + TextBlob with custom lexicons
 - entity: Pattern-based and spaCy NER
-- evaluation: 9-step rhetorical evaluation (Evaluation → Risk → Growth)
+- evaluation: Heuristic rhetorical analysis (9-step pattern-based framework)
+
+NOTE: The evaluation module uses pattern matching against predefined markers.
+Scores are heuristic indicators, not validated quality measurements.
+See docs/limitations.md for methodology and limitations.
 """
 
 from .base import BaseAnalysisModule

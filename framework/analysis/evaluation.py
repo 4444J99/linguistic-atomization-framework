@@ -1,25 +1,43 @@
 """
-Evaluation Analysis Module - 9-Step Rhetorical Evaluation Framework.
+Heuristic Rhetorical Analysis Module - 9-Step Pattern-Based Evaluation.
 
-Implements the "From Evaluation to Growth" framework:
+IMPORTANT: This module performs HEURISTIC analysis using pattern matching
+against predefined linguistic markers. Scores are INDICATORS for human
+interpretation, NOT validated measurements of rhetorical quality.
+
+Implements a 9-step framework organized into four phases:
 
 Phase 1: EVALUATION
-    1. Critique - Strengths and weaknesses assessment
-    2. Logic Check - Internal consistency and argument flow
-    3. Logos Review - Rational appeal analysis (evidence, facts)
-    4. Pathos Review - Emotional resonance analysis
-    5. Ethos Review - Credibility and authority markers
+    1. Critique - Pattern-based strengths/weaknesses detection
+    3. Logos - Evidence marker density (statistics, citations, logic words)
+    4. Pathos - Emotional marker density (appeals, urgency, intensifiers)
+    5. Ethos - Authority marker density (credentials, sources, hedging)
 
-Phase 2: RISK
-    6. Blind Spots - Overlooked areas and assumptions
-    7. Shatter Points - Vulnerabilities and weak arguments
+Phase 2: REINFORCEMENT
+    2. Logic Check - Transition marker analysis for argument flow
 
-Phase 3: GROWTH
-    8. Bloom - Emergent insights and expansion opportunities
-    9. Evolve - Synthesized improvement recommendations
+Phase 3: RISK
+    6. Blind Spots - Assumption and vagueness marker detection
+    7. Shatter Points - Weakness marker detection (fallacies, unsupported claims)
 
-Each step operates across all atomization levels (letter → theme) with
-aggregation from micro to macro.
+Phase 4: GROWTH
+    8. Bloom - Theme connection and emergent pattern analysis
+    9. Evolve - Aggregated recommendations based on detected patterns
+
+METHODOLOGY:
+- Pattern matching using predefined regex patterns
+- Density calculations at each atomization level
+- Weighted aggregation (Letter 5%, Word 15%, Sentence 35%, Paragraph 30%, Theme 15%)
+- Optional LLM enhancement for qualitative insights
+
+LIMITATIONS:
+- No semantic understanding (pattern matching only)
+- No validation against expert human judgment
+- Fixed patterns may produce false positives/negatives
+- Western rhetorical tradition bias
+- English-only analysis
+
+See docs/limitations.md for full discussion.
 """
 
 from __future__ import annotations
@@ -228,31 +246,40 @@ class StepResult:
 @registry.register_analysis("evaluation")
 class EvaluationAnalysis(BaseAnalysisModule):
     """
-    9-Step Rhetorical Evaluation Analysis Module.
+    Heuristic Rhetorical Analysis Module (9-Step Pattern-Based Framework).
 
-    Analyzes text across three phases:
-    1. Evaluation (Critique, Logic, Logos, Pathos, Ethos)
-    2. Risk (Blind Spots, Shatter Points)
-    3. Growth (Bloom, Evolve)
+    Detects linguistic patterns associated with rhetorical strategies using
+    predefined regex patterns and keyword lists. Produces scores that indicate
+    pattern density, NOT validated quality assessments.
 
-    Each step operates at multiple atomization levels with aggregation.
+    Four-phase analysis:
+    1. Evaluation (Critique, Logos, Pathos, Ethos) - Marker detection
+    2. Reinforcement (Logic Check) - Transition analysis
+    3. Risk (Blind Spots, Shatter Points) - Weakness detection
+    4. Growth (Bloom, Evolve) - Pattern synthesis
+
+    Each step operates at multiple atomization levels with weighted aggregation.
+
+    NOTE: Scores are heuristic indicators for human interpretation.
+    See docs/limitations.md for methodology and limitations.
     """
 
     name = "evaluation"
-    description = "9-step rhetorical evaluation framework (Evaluation → Reinforcement → Risk → Growth)"
+    description = "Heuristic rhetorical analysis via pattern matching (9-step framework)"
 
     # Step definitions with 4-phase flow
     # Note: Logic Check moved to Reinforcement phase (after initial evaluation)
+    # Descriptions reflect actual pattern-matching methodology
     STEPS = {
-        1: ("critique", "Evaluation", "Strengths and weaknesses assessment"),
-        2: ("logic_check", "Reinforcement", "Internal consistency and argument flow"),
-        3: ("logos", "Evaluation", "Rational appeal - evidence and reasoning"),
-        4: ("pathos", "Evaluation", "Emotional resonance and engagement"),
-        5: ("ethos", "Evaluation", "Credibility and authority markers"),
-        6: ("blind_spots", "Risk", "Overlooked areas and assumptions"),
-        7: ("shatter_points", "Risk", "Vulnerabilities and weak arguments"),
-        8: ("bloom", "Growth", "Emergent insights and connections"),
-        9: ("evolve", "Growth", "Synthesized improvement recommendations"),
+        1: ("critique", "Evaluation", "Heuristic assessment of marker patterns (strengths/weaknesses)"),
+        2: ("logic_check", "Reinforcement", "Transition marker density analysis for flow indication"),
+        3: ("logos", "Evaluation", "Evidence marker detection (statistics, citations, logic words)"),
+        4: ("pathos", "Evaluation", "Emotional marker detection (appeals, urgency, intensifiers)"),
+        5: ("ethos", "Evaluation", "Authority marker detection (credentials, sources, hedging)"),
+        6: ("blind_spots", "Risk", "Assumption and vagueness marker detection"),
+        7: ("shatter_points", "Risk", "Weakness marker detection (fallacies, unsupported claims)"),
+        8: ("bloom", "Growth", "Theme connection analysis and pattern emergence"),
+        9: ("evolve", "Growth", "Aggregated recommendations from detected patterns"),
     }
 
     # 4-phase execution order (Evaluation → Reinforcement → Risk → Growth)
