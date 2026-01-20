@@ -11,6 +11,9 @@ new_venv/
 # Data
 *.log
 
+# Large atomized JSON files (can be regenerated)
+*_atomized.json
+
 # OS
 .DS_Store
 Thumbs.db
