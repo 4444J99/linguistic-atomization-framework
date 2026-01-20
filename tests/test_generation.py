@@ -424,3 +424,182 @@ class TestIntegration:
             },
             "summary": eval_result.data.get("summary", {}),
         }
+
+
+class TestRevisionComparison:
+    """Tests for revision comparison functionality."""
+
+    def test_text_change_creation(self):
+        """Test TextChange can be created."""
+        from framework.generation.revision import TextChange, ChangeType
+
+        change = TextChange(
+            change_type=ChangeType.MODIFICATION,
+            original="obviously",
+            revised="the evidence suggests",
+            location="P001.S003",
+            reason="Weak language",
+        )
+        assert change.change_type == ChangeType.MODIFICATION
+        assert change.original == "obviously"
+
+    def test_text_change_to_dict(self):
+        """Test TextChange converts to dictionary."""
+        from framework.generation.revision import TextChange, ChangeType
+
+        change = TextChange(
+            change_type=ChangeType.ADDITION,
+            original="",
+            revised="According to Smith (2023),",
+            reason="Add citation",
+        )
+        d = change.to_dict()
+
+        assert d["type"] == "addition"
+        assert d["revised"] == "According to Smith (2023),"
+
+    def test_revision_comparison_creation(self):
+        """Test RevisionComparison can be created."""
+        from framework.generation.revision import RevisionComparison, TextChange, ChangeType
+
+        comparison = RevisionComparison(
+            original_text="This is obviously true.",
+            revised_text="The evidence suggests this is true.",
+            changes=[
+                TextChange(
+                    change_type=ChangeType.MODIFICATION,
+                    original="obviously",
+                    revised="The evidence suggests",
+                ),
+            ],
+        )
+        assert comparison.change_count == 1
+        assert len(comparison.modifications) == 1
+
+    def test_revision_comparison_metrics(self):
+        """Test RevisionComparison metrics."""
+        from framework.generation.revision import RevisionComparison, TextChange, ChangeType
+
+        comparison = RevisionComparison(
+            original_text="Original text here.",
+            revised_text="Revised text here with additions.",
+            changes=[
+                TextChange(ChangeType.MODIFICATION, "Original", "Revised"),
+                TextChange(ChangeType.ADDITION, "", "with additions"),
+                TextChange(ChangeType.UNCHANGED, "text", "text"),
+            ],
+        )
+
+        assert comparison.change_count == 2  # Excludes UNCHANGED
+        assert len(comparison.additions) == 1
+        assert len(comparison.modifications) == 1
+
+    def test_revision_comparator_create(self):
+        """Test RevisionComparator creates comparison from suggestions."""
+        from framework.generation.revision import RevisionComparator
+
+        comparator = RevisionComparator()
+        suggestions = [
+            {
+                "original_text": "obviously",
+                "suggested_text": "clearly",
+                "issue": "Weak language",
+                "priority": "high",
+            },
+        ]
+
+        comparison = comparator.create_comparison(
+            "This is obviously true.",
+            suggestions,
+        )
+
+        assert comparison.original_text == "This is obviously true."
+        assert "clearly" in comparison.revised_text
+        assert comparison.change_count == 1
+
+    def test_revision_comparator_format_side_by_side(self):
+        """Test side-by-side formatting."""
+        from framework.generation.revision import RevisionComparator, RevisionComparison
+
+        comparator = RevisionComparator()
+        comparison = RevisionComparison(
+            original_text="Line one.\nLine two.",
+            revised_text="Line one modified.\nLine two.",
+            changes=[],
+        )
+
+        output = comparator.format_side_by_side(comparison, width=30)
+
+        assert "ORIGINAL" in output
+        assert "REVISED" in output
+        assert "Line one" in output
+
+    def test_revision_comparator_format_html(self):
+        """Test HTML formatting."""
+        from framework.generation.revision import RevisionComparator, RevisionComparison, TextChange, ChangeType
+
+        comparator = RevisionComparator()
+        comparison = RevisionComparison(
+            original_text="Original text.",
+            revised_text="Revised text.",
+            changes=[
+                TextChange(ChangeType.MODIFICATION, "Original", "Revised", reason="Test"),
+            ],
+        )
+
+        html = comparator.format_html(comparison)
+
+        assert "<!DOCTYPE html>" in html
+        assert "Original text" in html
+        assert "Revised text" in html
+        assert "class='added'" in html or "class='removed'" in html
+
+    def test_create_revision_view_function(self):
+        """Test create_revision_view convenience function."""
+        from framework.generation.revision import create_revision_view
+
+        suggestions = [
+            {
+                "original_text": "bad",
+                "suggested_text": "good",
+                "issue": "Improve word choice",
+            },
+        ]
+
+        # Text format
+        text_view = create_revision_view("This is bad.", suggestions, format="text")
+        assert "ORIGINAL" in text_view
+
+        # HTML format
+        html_view = create_revision_view("This is bad.", suggestions, format="html")
+        assert "<html>" in html_view
+
+    def test_improvement_metrics(self):
+        """Test ImprovementMetrics calculations."""
+        from framework.generation.revision import ImprovementMetrics
+
+        metrics = ImprovementMetrics(
+            original_score=50.0,
+            revised_score=75.0,
+            score_delta=25.0,
+            changes_applied=5,
+            improvement_areas=["logos", "ethos"],
+        )
+
+        assert metrics.is_improved is True
+        assert metrics.percent_improvement == 50.0
+        assert len(metrics.improvement_areas) == 2
+
+    def test_improvement_metrics_no_improvement(self):
+        """Test ImprovementMetrics with no improvement."""
+        from framework.generation.revision import ImprovementMetrics
+
+        metrics = ImprovementMetrics(
+            original_score=70.0,
+            revised_score=65.0,
+            score_delta=-5.0,
+            changes_applied=2,
+        )
+
+        assert metrics.is_improved is False
+        assert metrics.percent_improvement < 0
