@@ -1,0 +1,135 @@
+# Rhetoric Gym Exercises
+# Practice rhetorical techniques with LingFrame feedback
+
+exercises:
+  # Ethos - Establishing Credibility
+  - id: ethos-authority-beginner
+    name: "Establishing Authority"
+    category: ethos
+    difficulty: beginner
+    prompt: |
+      Write a paragraph (100-150 words) that establishes your expertise
+      on a topic of your choice. Imagine you're writing the opening of
+      a persuasive essay and need readers to trust your perspective.
+    tips:
+      - Reference relevant credentials, experience, or research
+      - Cite authoritative sources or statistics
+      - Use confident but measured language
+      - Avoid overstatement or absolute claims
+    example: |
+      As a marine biologist with fifteen years of field research experience,
+      I have witnessed the alarming decline in coral reef ecosystems firsthand.
+      According to NOAA, we have lost approximately 50% of the world's coral
+      reefs since 1950. My research team's findings confirm that rising ocean
+      temperatures are the primary driver of this devastation.
+    word_limit: [100, 150]
+    evaluation_focus: ["ethos"]
+
+  - id: ethos-acknowledgment-intermediate
+    name: "Acknowledging Limitations"
+    category: ethos
+    difficulty: intermediate
+    prompt: |
+      Write a paragraph (100-150 words) where you acknowledge the limitations
+      or weaknesses in your own argument, while still maintaining your overall
+      position. This demonstrates intellectual honesty and builds trust.
+    tips:
+      - Identify a genuine weakness or counterargument
+      - Address it directly without dismissing it
+      - Explain why your position holds despite this limitation
+      - Use hedging language appropriately
+    example: |
+      While my proposal for universal basic income shows promise, I acknowledge
+      that funding such a program presents significant challenges. Critics
+      rightly point out that the estimated $3 trillion annual cost would require
+      substantial tax increases. However, this concern overlooks the potential
+      savings from reduced administrative costs of existing welfare programs.
+    word_limit: [100, 150]
+    evaluation_focus: ["ethos", "logos"]
+
+  # Pathos - Emotional Appeal
+  - id: pathos-narrative-beginner
+    name: "Personal Story"
+    category: pathos
+    difficulty: beginner
+    prompt: |
+      Write a paragraph (100-150 words) that uses a personal story or vivid
+      example to create an emotional connection with readers. The story should
+      support a larger point you want to make.
+    tips:
+      - Use specific, concrete details
+      - Appeal to universal emotions (hope, fear, compassion)
+      - Show, don't just tell
+      - Connect the story to your broader argument
+    example: |
+      I still remember the day my grandmother showed me her hands-weathered and
+      scarred from decades of factory work. "These hands," she said, "built the
+      life you have now." She worked twelve-hour shifts for thirty years, never
+      missing a day, all so her children could go to college.
+    word_limit: [100, 150]
+    evaluation_focus: ["pathos"]
+
+  - id: pathos-urgency-intermediate
+    name: "Creating Urgency"
+    category: pathos
+    difficulty: intermediate
+    prompt: |
+      Write a paragraph (100-150 words) that creates a sense of urgency about
+      an issue. Make readers feel that action is needed now, not later.
+      Avoid being alarmist while still conveying importance.
+    tips:
+      - Use time-related language ("now," "before it's too late")
+      - Present consequences of inaction
+      - Include specific, credible stakes
+      - Balance urgency with credibility
+    example: |
+      Every day we delay action on cybersecurity, we leave our critical
+      infrastructure vulnerable to attacks that could shut down hospitals,
+      disable power grids, and compromise financial systems. Last month alone,
+      ransomware attacks cost American businesses over $20 billion.
+    word_limit: [100, 150]
+    evaluation_focus: ["pathos", "logos"]
+
+  # Logos - Logical Appeal
+  - id: logos-evidence-beginner
+    name: "Supporting with Evidence"
+    category: logos
+    difficulty: beginner
+    prompt: |
+      Write a paragraph (100-150 words) that makes a claim and supports it
+      with concrete evidence. Use statistics, research findings, or specific
+      examples to build a logical argument.
+    tips:
+      - State your claim clearly upfront
+      - Provide specific, credible evidence
+      - Explain how the evidence supports your claim
+      - Use transition words to show logical connections
+    example: |
+      Investing in early childhood education yields significant long-term
+      economic benefits. The Perry Preschool Study found that every dollar
+      invested in quality preschool programs returned $7 to $12 to society
+      through reduced crime, lower welfare costs, and higher tax revenues.
+    word_limit: [100, 150]
+    evaluation_focus: ["logos"]
+
+  - id: logos-counterargument-intermediate
+    name: "Addressing Counterarguments"
+    category: logos
+    difficulty: intermediate
+    prompt: |
+      Write a paragraph (100-150 words) that presents a counterargument to
+      your position and then refutes it with logical reasoning. This shows
+      you've considered multiple perspectives.
+    tips:
+      - Present the counterargument fairly (don't strawman)
+      - Acknowledge any valid points it makes
+      - Provide specific reasons why it falls short
+      - Use logical connectors (however, nevertheless, despite this)
+    example: |
+      Critics of remote work argue that it reduces collaboration and harms
+      company culture. This concern has merit-spontaneous hallway conversations
+      do foster certain types of innovation. However, research from Stanford
+      shows that remote workers are 13% more productive than their office
+      counterparts, and companies report no significant decrease in output.
+    word_limit: [100, 150]
+    evaluation_focus: ["logos", "ethos"]
