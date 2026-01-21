@@ -26,3 +26,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.code-workspace
+
+# Serena local config
+.serena/
