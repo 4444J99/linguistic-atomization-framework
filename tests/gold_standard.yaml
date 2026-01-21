@@ -1,0 +1,161 @@
+# Gold Standard Validation Data
+# Annotated text samples with expected analysis outputs
+
+# Format:
+# Each entry has:
+#   - text: Input text
+#   - expected: Expected analysis outputs by module
+#   - notes: Human annotation notes
+
+validation_samples:
+
+  # Sentiment Module Validation
+  - id: "sentiment-001"
+    text: |
+      I am absolutely thrilled about this breakthrough. The results exceeded
+      all expectations and represent a major triumph for the research team.
+    expected:
+      sentiment:
+        polarity: positive
+        intensity: high
+        emotional_markers: ["absolutely", "thrilled", "triumph", "exceeded"]
+    notes: "Strong positive sentiment with multiple intensifiers"
+
+  - id: "sentiment-002"
+    text: |
+      The situation is unfortunately quite dire. We face severe challenges
+      that threaten to undermine years of progress. The outlook is bleak.
+    expected:
+      sentiment:
+        polarity: negative
+        intensity: high
+        emotional_markers: ["unfortunately", "dire", "severe", "threaten", "bleak"]
+    notes: "Strong negative sentiment with urgency markers"
+
+  - id: "sentiment-003"
+    text: |
+      The data shows moderate improvement in three categories while declining
+      slightly in two others. Overall, results were mixed but within expected ranges.
+    expected:
+      sentiment:
+        polarity: neutral
+        intensity: low
+        emotional_markers: []
+    notes: "Neutral/analytical tone, factual language"
+
+  # Entity Module Validation
+  - id: "entity-001"
+    text: |
+      Dr. Sarah Chen, a professor at Harvard University, published findings
+      in the Journal of Applied Physics. Her colleague, Dr. James Wilson,
+      from MIT, confirmed the results independently.
+    expected:
+      entity:
+        persons: ["Dr. Sarah Chen", "Dr. James Wilson"]
+        organizations: ["Harvard University", "MIT", "Journal of Applied Physics"]
+        locations: []
+    notes: "Academic context with credentials and institutions"
+
+  - id: "entity-002"
+    text: |
+      The Battle of Gettysburg took place in Pennsylvania in 1863. General
+      Robert E. Lee led Confederate forces against the Union Army commanded
+      by General George Meade.
+    expected:
+      entity:
+        persons: ["Robert E. Lee", "George Meade"]
+        organizations: ["Confederate forces", "Union Army"]
+        locations: ["Gettysburg", "Pennsylvania"]
+        dates: ["1863"]
+    notes: "Military/historical context"
+
+  # Temporal Module Validation
+  - id: "temporal-001"
+    text: |
+      The soldiers marched through the valley. They had received orders
+      the previous day. Tomorrow, they will engage the enemy. By next week,
+      the campaign will have concluded.
+    expected:
+      temporal:
+        tenses:
+          - past_simple: ["marched"]
+          - past_perfect: ["had received"]
+          - future_simple: ["will engage"]
+          - future_perfect: ["will have concluded"]
+    notes: "Multiple tense transitions"
+
+  - id: "temporal-002"
+    text: |
+      The research is ongoing. Scientists are collecting data daily. They
+      have been working on this project for three years. Progress continues
+      to accelerate.
+    expected:
+      temporal:
+        tenses:
+          - present_continuous: ["is ongoing", "are collecting", "continues"]
+          - present_perfect_continuous: ["have been working"]
+    notes: "Present-focused with continuity"
+
+  # Semantic Module Validation
+  - id: "semantic-001"
+    text: |
+      Climate change threatens biodiversity across multiple ecosystems.
+      Rising temperatures and shifting precipitation patterns force species
+      to migrate or adapt. Conservation efforts must address these challenges
+      through habitat protection and emission reduction strategies.
+    expected:
+      semantic:
+        key_themes: ["climate change", "biodiversity", "conservation"]
+        related_concepts: ["ecosystems", "temperatures", "species", "habitat"]
+    notes: "Environmental topic with interconnected concepts"
+
+  - id: "semantic-002"
+    text: |
+      The economic recovery depends on monetary policy and fiscal stimulus.
+      Central banks must balance inflation concerns against growth targets.
+      Investment in infrastructure creates jobs while boosting productivity.
+    expected:
+      semantic:
+        key_themes: ["economic recovery", "monetary policy", "investment"]
+        related_concepts: ["inflation", "growth", "jobs", "productivity"]
+    notes: "Economic topic with policy focus"
+
+  # Rhetorical Appeal Validation (for Rhetoric Gym feedback)
+  - id: "ethos-001"
+    text: |
+      As a board-certified cardiologist with 20 years of clinical experience,
+      I have personally treated over 10,000 patients. According to my research
+      published in the New England Journal of Medicine, this treatment protocol
+      shows promise for reducing cardiovascular risk.
+    expected:
+      ethos:
+        authority_markers: ["board-certified", "20 years", "clinical experience", "10,000 patients"]
+        source_citations: ["New England Journal of Medicine"]
+        credibility_score: high
+    notes: "Strong ethos through credentials and sources"
+
+  - id: "pathos-001"
+    text: |
+      Imagine watching your child struggle for breath, knowing that help
+      is just one donation away. Every day, families face this heartbreaking
+      reality. Together, we can give them hope where there was only despair.
+    expected:
+      pathos:
+        emotional_appeals: ["struggle", "heartbreaking", "hope", "despair"]
+        audience_connection: ["your child", "families", "together", "we"]
+        emotional_score: high
+    notes: "Strong pathos through vivid imagery and shared experience"
+
+  - id: "logos-001"
+    text: |
+      Studies show that participants who exercised 30 minutes daily reduced
+      their risk of heart disease by 40%. Furthermore, meta-analyses of 50
+      trials confirm these findings with p < 0.001. Therefore, regular exercise
+      represents a cost-effective intervention strategy.
+    expected:
+      logos:
+        evidence_markers: ["studies show", "meta-analyses", "trials", "p < 0.001"]
+        logical_connectors: ["furthermore", "therefore"]
+        statistical_claims: ["40%", "30 minutes", "50 trials"]
+        logic_score: high
+    notes: "Strong logos through evidence and logical structure"
