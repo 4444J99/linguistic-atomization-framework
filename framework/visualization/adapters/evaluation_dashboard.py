@@ -1,11 +1,14 @@
 """
-Evaluation Dashboard Adapter - Interactive 9-step evaluation visualization.
+Evaluation Dashboard Adapter - Interactive 9-step heuristic analysis visualization.
 
 Generates an interactive dashboard showing:
-- Phase progression (Evaluation → Risk → Growth)
+- Phase progression (Evaluation → Reinforcement → Risk → Growth)
 - Step-by-step results with expandable details
-- Overall scores and recommendations
+- Heuristic scores (pattern density indicators, not validated measurements)
 - Visual flow diagram
+
+NOTE: Visualizes results from heuristic pattern matching.
+See docs/limitations.md for methodology details.
 """
 
 from __future__ import annotations
@@ -22,18 +25,20 @@ from ..base import BaseVisualizationAdapter
 @registry.register_adapter("evaluation_dashboard")
 class EvaluationDashboardAdapter(BaseVisualizationAdapter):
     """
-    Interactive dashboard adapter for 9-step evaluation analysis.
+    Interactive dashboard adapter for 9-step heuristic analysis.
 
     Features:
-    - Phase-based organization (Evaluation, Risk, Growth)
-    - Score gauges and progress indicators
-    - Expandable step details
+    - Phase-based organization (Evaluation, Reinforcement, Risk, Growth)
+    - Score gauges and progress indicators (heuristic scores, not validated)
+    - Expandable step details with pattern findings
     - Recommendations panel
     - Flow diagram visualization
+
+    NOTE: Scores are pattern density indicators for human interpretation.
     """
 
     name = "evaluation_dashboard"
-    description = "Interactive dashboard for 9-step rhetorical evaluation"
+    description = "Interactive dashboard for 9-step heuristic rhetorical analysis"
     supported_analysis = ["evaluation"]
 
     # Step metadata

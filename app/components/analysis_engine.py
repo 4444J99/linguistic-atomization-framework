@@ -126,6 +126,22 @@ def run_analysis(
         except Exception:
             pass  # Sentiment analysis is optional
 
+        # Run temporal analysis (for narrative timeline)
+        try:
+            temporal_module = registry.create_analysis("temporal")
+            temporal_output = temporal_module.analyze(corpus, domain, {})
+            results["temporal"] = temporal_output.to_dict()
+        except Exception:
+            pass  # Temporal analysis is optional
+
+        # Run entity analysis (for people, places, things)
+        try:
+            entity_module = registry.create_analysis("entity")
+            entity_output = entity_module.analyze(corpus, domain, {})
+            results["entity"] = entity_output.to_dict()
+        except Exception:
+            pass  # Entity analysis is optional
+
         # Generate narrative report data
         from framework.output import NarrativeReportGenerator
 
