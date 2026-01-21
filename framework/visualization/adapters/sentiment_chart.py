@@ -273,6 +273,7 @@ class SentimentChartAdapter(BaseVisualizationAdapter):
             scripts=scripts,
             styles=styles,
             head_extras=head_extras,
+        viz_type="sentiment",
         )
 
         output_path.parent.mkdir(parents=True, exist_ok=True)

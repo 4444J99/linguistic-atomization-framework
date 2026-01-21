@@ -227,6 +227,7 @@ class EntityBrowserAdapter(BaseVisualizationAdapter):
             content=content,
             scripts=scripts,
             styles=styles,
+        viz_type="entity",
         )
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
