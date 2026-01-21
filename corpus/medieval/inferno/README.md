@@ -2,10 +2,11 @@
 
 The first part of Dante's Divine Comedy, describing the poet's journey through Hell.
 
-## File
+## Files
 
 | File | Description | Lines |
 |------|-------------|-------|
+| `italian_original.txt` | Original Italian text | 6,613 |
 | `english_longfellow.txt` | Henry W. Longfellow translation | 19,983 |
 
 ## Details
@@ -15,7 +16,9 @@ The first part of Dante's Divine Comedy, describing the poet's journey through H
 - **Composed**: c. 1308–1320
 - **Translator**: Henry Wadsworth Longfellow
 - **Translation date**: 1867
-- **Source**: [Project Gutenberg #1001](https://www.gutenberg.org/ebooks/1001)
+- **Sources**:
+  - Italian: [Project Gutenberg #997](https://www.gutenberg.org/ebooks/997)
+  - English: [Project Gutenberg #1001](https://www.gutenberg.org/ebooks/1001)
 
 ## License
 

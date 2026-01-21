@@ -2,10 +2,11 @@
 
 Virgil's epic poem of Aeneas's journey from Troy to Italy, founding the Roman lineage.
 
-## File
+## Files
 
 | File | Description | Lines |
 |------|-------------|-------|
+| `latin_original.txt` | Original Latin text | 10,396 |
 | `english_dryden.txt` | John Dryden verse translation | 14,447 |
 
 ## Details
@@ -15,7 +16,9 @@ Virgil's epic poem of Aeneas's journey from Troy to Italy, founding the Roman li
 - **Composed**: 29–19 BCE
 - **Translator**: John Dryden
 - **Translation date**: 1697
-- **Source**: [Project Gutenberg #228](https://www.gutenberg.org/ebooks/228)
+- **Sources**:
+  - Latin: [Project Gutenberg #227](https://www.gutenberg.org/ebooks/227)
+  - English: [Project Gutenberg #228](https://www.gutenberg.org/ebooks/228)
 
 ## License
 
