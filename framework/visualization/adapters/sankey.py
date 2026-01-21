@@ -203,6 +203,7 @@ class SankeyAdapter(BaseVisualizationAdapter):
             content=content,
             scripts=scripts,
             head_extras=head_extras,
+        viz_type="temporal",
         )
 
         output_path.parent.mkdir(parents=True, exist_ok=True)

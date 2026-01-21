@@ -269,6 +269,7 @@ class ForceGraphAdapter(BaseVisualizationAdapter):
             scripts=scripts,
             styles=styles,
             head_extras=head_extras,
+            viz_type="semantic",
         )
 
         # Write output

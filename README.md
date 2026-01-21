@@ -319,19 +319,24 @@ Literary metamorphosis study demonstrating:
 - [x] Web interface (Streamlit) and CLI
 - [x] Domain profile system
 - [x] Optional LLM integration
-
-### In Progress
-- [ ] Generation layer (revision suggestions)
-- [ ] Recursion capability (iterative analysis)
-- [ ] Test suite for analysis modules
-- [ ] Scholarly documentation (theory, methodology)
+- [x] Generation layer (revision suggestions)
+- [x] Recursion capability (iterative analysis)
+- [x] Test suite (142 tests covering all modules)
+- [x] Scholarly documentation (theory.md, methodology.md, architecture.md)
+- [x] Validation framework with gold standard annotations
+- [x] Scholarly export formats (LaTeX, TEI-XML, CONLL)
+- [x] Explainability layer for score transparency
+- [x] Reproducibility tracking with checksums
+- [x] Revision comparison (before/after analysis)
+- [x] GitHub Actions CI/CD workflow
+- [x] Corpus Observatory (browse, preview, compare texts)
+- [x] Rhetoric Gym (practice exercises with feedback)
 
 ### Planned
-- [ ] Validation study against expert annotations
-- [ ] Scholarly export formats (LaTeX, TEI-XML)
-- [ ] Cross-visualization linking
-- [ ] Comparative corpus analysis
-- [ ] Multi-language support
+- [ ] Cross-visualization linking (click-through between views)
+- [ ] Multi-language support (currently English-only)
+- [ ] Async pipeline for parallel module execution
+- [ ] Plugin system for external module discovery
 
 ---
 

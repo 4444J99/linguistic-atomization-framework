@@ -1234,6 +1234,7 @@ class EvaluationDashboardAdapter(BaseVisualizationAdapter):
             content=content,
             scripts=scripts,
             styles=styles,
+        viz_type="evaluation",
         )
 
         # Write output

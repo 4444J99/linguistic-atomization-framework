@@ -10,6 +10,9 @@ Built-in adapters:
 - sentiment_chart: Chart.js charts for sentiment analysis
 - entity_browser: Interactive entity search/filter table
 - evaluation_dashboard: Interactive 9-step evaluation dashboard
+
+Cross-linking:
+- cross_linking: URL-based navigation between visualizations
 """
 
 from .base import BaseVisualizationAdapter, TemplateEngine
@@ -18,6 +21,7 @@ from .adapters.sankey import SankeyAdapter
 from .adapters.sentiment_chart import SentimentChartAdapter
 from .adapters.entity_browser import EntityBrowserAdapter
 from .adapters.evaluation_dashboard import EvaluationDashboardAdapter
+from .cross_linking import CrossVizLinker, inject_cross_linking
 
 __all__ = [
     "BaseVisualizationAdapter",
@@ -27,4 +31,6 @@ __all__ = [
     "SentimentChartAdapter",
     "EntityBrowserAdapter",
     "EvaluationDashboardAdapter",
+    "CrossVizLinker",
+    "inject_cross_linking",
 ]

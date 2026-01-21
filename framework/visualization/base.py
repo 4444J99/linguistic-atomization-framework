@@ -15,6 +15,12 @@ from typing import Any, Dict, List, Optional
 from ..core.ontology import AnalysisOutput, VisualizationAdapter
 
 
+# Lazy import to avoid circular dependency
+def _get_cross_linking():
+    from .cross_linking import CrossVizLinker
+    return CrossVizLinker
+
+
 class TemplateEngine:
     """
     Simple template engine for generating HTML visualizations.
