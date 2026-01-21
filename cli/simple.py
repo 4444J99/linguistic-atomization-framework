@@ -237,9 +237,9 @@ def run_analysis(
 
     results = {}
 
-    # Run evaluation analysis (primary)
+    # Run evaluation analysis (primary heuristic analysis)
     if verbose:
-        print("  Running rhetorical evaluation...")
+        print("  Running heuristic rhetorical analysis...")
 
     eval_module = registry.create_analysis("evaluation")
     eval_output = eval_module.analyze(corpus, domain, {})

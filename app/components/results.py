@@ -159,75 +159,66 @@ def render_details_tab(report, results: Dict[str, Any]):
 
 
 def render_explore_tab(report, results: Dict[str, Any]):
-    """Render the explore tab with interactive elements."""
+    """Render the explore tab with interactive visualizations."""
+    import streamlit.components.v1 as components
+
+    from .visualization_bridge import (
+        get_available_visualizations,
+        render_visualization,
+        VISUALIZATION_INFO,
+    )
+
     st.markdown("### 🔍 Explore Your Analysis")
+    st.markdown("_Click each section to expand and interact with the visualization._")
 
-    # Phase scores visualization
-    st.markdown("#### Phase Scores")
+    # Get available visualizations based on what analyses ran
+    available_viz = get_available_visualizations(results)
 
-    eval_data = results.get("evaluation", {})
-    phase_scores = eval_data.get("summary", {}).get("phase_scores", {})
+    if not available_viz:
+        st.info("No interactive visualizations available. Run more analysis modules to see rich visualizations.")
 
-    if phase_scores:
-        # Create a simple bar chart
-        import pandas as pd
+    # Render each visualization in an expander
+    # Define the order we want to show them (prioritize most useful)
+    viz_order = ["force_graph", "sentiment_chart", "sankey", "entity_browser", "evaluation_dashboard"]
 
-        chart_data = []
-        for phase, score in phase_scores.items():
-            chart_data.append({
-                "Phase": friendly(phase),
-                "Score": score,
-            })
+    for adapter_type in viz_order:
+        info = VISUALIZATION_INFO.get(adapter_type)
+        if not info:
+            continue
 
-        df = pd.DataFrame(chart_data)
-        st.bar_chart(df, x="Phase", y="Score", color="#3498db")
+        # Check if this visualization is available
+        is_available = any(v["adapter_type"] == adapter_type for v in available_viz)
 
-    # Sentiment analysis if available
-    sentiment_data = results.get("sentiment", {})
-    if sentiment_data:
-        st.markdown("#### 💓 Emotional Tone")
+        expander_label = f"{info['icon']} **{info['name']}**"
 
-        overall = sentiment_data.get("overall", {})
-        if overall:
-            compound = overall.get("compound", 0)
-            positive = overall.get("positive", 0)
-            negative = overall.get("negative", 0)
-            neutral = overall.get("neutral", 0)
+        # For available visualizations, show them in expanders
+        if is_available:
+            with st.expander(expander_label, expanded=False):
+                st.markdown(f"_{info['description']}_")
 
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Positive", f"{positive:.0%}")
-            with col2:
-                st.metric("Neutral", f"{neutral:.0%}")
-            with col3:
-                st.metric("Negative", f"{negative:.0%}")
+                # Add a loading spinner while generating visualization
+                with st.spinner(f"Loading {info['name']}..."):
+                    html_content, success = render_visualization(
+                        adapter_type=adapter_type,
+                        results=results,
+                        height=600,
+                    )
 
-            # Tone interpretation
-            if compound > 0.3:
-                st.success("Your writing has an optimistic, positive tone.")
-            elif compound > 0:
-                st.info("Your writing has a cautiously positive tone.")
-            elif compound > -0.3:
-                st.info("Your writing maintains a measured, neutral tone.")
-            else:
-                st.warning("Your writing has a serious or critical tone.")
+                if success:
+                    # Render the interactive visualization
+                    components.html(html_content, height=620, scrolling=True)
+                else:
+                    st.error(f"Could not generate {info['name']} visualization.")
+                    st.code(html_content, language="html")
+        else:
+            # Show disabled expander for unavailable visualizations
+            with st.expander(f"🔒 {info['name']} (not available)", expanded=False):
+                st.markdown(f"_{info['description']}_")
+                st.info(f"Run {info['analysis_type']} analysis to enable this visualization.")
 
-    # Semantic analysis if available
-    semantic_data = results.get("semantic", {})
-    if semantic_data:
-        st.markdown("#### 🔗 Theme Connections")
-
-        themes = semantic_data.get("themes", [])
-        if themes:
-            st.markdown("**Your central themes:**")
-            for theme in themes[:5]:
-                name = theme.get("name", theme.get("id", "Unknown"))
-                weight = theme.get("weight", 0)
-                st.markdown(f"- **{name}** (importance: {weight:.2f})")
-
-    # Raw data export
+    # Export section
     st.markdown("---")
-    st.markdown("#### 📥 Export Options")
+    st.markdown("### 📥 Export Options")
 
     col1, col2 = st.columns(2)
 
