@@ -16,6 +16,12 @@ classical:
       year: 1928
       file: english_thompson_1928.txt
       source: Project Gutenberg
+    - language: en
+      translator: Morris Jastrow
+      year: 1920
+      file: english_jastrow_1920.txt
+      source: Project Gutenberg 11000
+      lines: 5073
     status: available
   iliad:
     title: The Iliad
@@ -628,6 +634,12 @@ chinese_classical:
       file: english_goddard_1919.txt
       source: sacred-texts.com
       lines: 301
+    - language: en
+      translator: C. Spurgeon Medhurst
+      year: 1905
+      file: english_medhurst_1905.txt
+      source: sacred-texts.com
+      lines: 978
     status: available
   art_of_war:
     title: The Art of War
@@ -658,6 +670,12 @@ chinese_classical:
     script: chinese
     directory: chinese-classical/journey-to-the-west
     status: planned
+    versions:
+    - language: zh
+      version: original
+      file: chinese_original.txt
+      source: Project Gutenberg 23962
+      lines: 26793
 sanskrit:
   rigveda:
     title: Rigveda
@@ -828,6 +846,16 @@ arabic_persian:
     script: arabic
     directory: arabic-persian/conference-of-birds
     status: planned
+  conference_of_birds:
+    title: Conference of the Birds (Mantiq ut-Tair)
+    author: Farid ud-Din Attar
+    versions:
+    - language: en
+      translator: Edward FitzGerald
+      year: 1889
+      file: english_fitzgerald_1889.txt
+      source: sacred-texts.com
+      lines: 1412
 japanese:
   tale_of_genji:
     title: The Tale of Genji
