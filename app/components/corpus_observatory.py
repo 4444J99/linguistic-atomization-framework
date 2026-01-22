@@ -49,9 +49,6 @@ def get_language_name(code: str) -> str:
     """Get human-readable language name from code."""
     return LANGUAGE_NAMES.get(code.lower(), code.upper())
 
-, Dict, List, Any
-
-
 def load_corpus_index() -> list[dict]:
     """Load corpus texts by scanning the nested corpus directory structure.
     
