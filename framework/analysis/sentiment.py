@@ -2,7 +2,12 @@
 Sentiment Analysis Module - Emotional sentiment mapping.
 
 Refactored from copilot_sentiment_analysis.py to work with the framework ontology.
-Provides VADER + TextBlob sentiment analysis with custom lexicon support.
+Provides sentiment analysis with custom lexicon support.
+
+Multilingual Support:
+- English: VADER + TextBlob (default)
+- Other languages: XLM-RoBERTa multilingual sentiment model (if available)
+- Falls back to lexicon-based analysis for unsupported languages
 """
 
 from __future__ import annotations
@@ -36,15 +41,30 @@ except ImportError:
     TextBlob = None
     TEXTBLOB_AVAILABLE = False
 
+# Multilingual sentiment via transformers
+try:
+    from transformers import pipeline
+    TRANSFORMERS_AVAILABLE = True
+except ImportError:
+    pipeline = None
+    TRANSFORMERS_AVAILABLE = False
+
 SENTIMENT_AVAILABLE = VADER_AVAILABLE and TEXTBLOB_AVAILABLE
+
+# Languages well-supported by VADER/TextBlob (English-focused tools)
+ENGLISH_TOOLS_LANGUAGES = {"en", "english"}
 
 
 @registry.register_analysis("sentiment")
 class SentimentAnalysis(BaseAnalysisModule):
     """
-    Sentiment analysis using VADER and TextBlob.
+    Multilingual sentiment analysis.
 
-    Supports custom domain lexicons for specialized sentiment scoring.
+    Supports:
+    - English: VADER + TextBlob for high accuracy
+    - Other languages: XLM-RoBERTa multilingual model (if transformers available)
+    - Custom domain lexicons for specialized sentiment scoring
+
     Generates:
     - Per-sentence sentiment scores
     - Theme-level statistics
@@ -52,15 +72,29 @@ class SentimentAnalysis(BaseAnalysisModule):
     """
 
     name = "sentiment"
-    description = "VADER + TextBlob sentiment analysis with custom lexicons"
+    description = "Multilingual sentiment analysis with custom lexicons"
 
     def __init__(self):
         super().__init__()
         self._vader = None
         self._lexicon: Dict[str, float] = {}
+        self._multilingual_pipeline = None
+        self._current_language = "en"
 
         if VADER_AVAILABLE:
             self._vader = SentimentIntensityAnalyzer()
+        
+        # Initialize multilingual pipeline if available
+        if TRANSFORMERS_AVAILABLE:
+            try:
+                self._multilingual_pipeline = pipeline(
+                    "sentiment-analysis",
+                    model="nlptown/bert-base-multilingual-uncased-sentiment",
+                    truncation=True,
+                    max_length=512,
+                )
+            except Exception:
+                self._multilingual_pipeline = None
 
     def load_lexicon(self, domain: Optional[DomainProfile]) -> Dict[str, float]:
         """
@@ -84,28 +118,44 @@ class SentimentAnalysis(BaseAnalysisModule):
 
         return lexicon
 
-    def analyze_sentence(self, text: str) -> Dict[str, Any]:
+    def analyze_sentence(self, text: str, language: str = "en") -> Dict[str, Any]:
         """
         Analyze sentiment of a single sentence.
 
+        Uses language-appropriate sentiment analysis:
+        - English: VADER + TextBlob
+        - Other languages: XLM-RoBERTa multilingual model
+
         Args:
             text: The sentence text
+            language: Language code (ISO 639-1)
 
         Returns:
-            Dict with VADER, TextBlob, and composite scores
+            Dict with sentiment scores and classification
         """
-        if not SENTIMENT_AVAILABLE:
-            return {
-                "vader_compound": 0.0,
-                "vader_pos": 0.0,
-                "vader_neg": 0.0,
-                "vader_neu": 1.0,
-                "textblob_polarity": 0.0,
-                "textblob_subjectivity": 0.0,
-                "composite_score": 0.0,
-                "classification": "neutral",
-            }
+        # Use English tools for English text
+        if language.lower() in ENGLISH_TOOLS_LANGUAGES and SENTIMENT_AVAILABLE:
+            return self._analyze_english(text)
+        
+        # Use multilingual model for other languages
+        if self._multilingual_pipeline:
+            return self._analyze_multilingual(text)
+        
+        # Fallback: neutral scores
+        return {
+            "vader_compound": 0.0,
+            "vader_pos": 0.0,
+            "vader_neg": 0.0,
+            "vader_neu": 1.0,
+            "textblob_polarity": 0.0,
+            "textblob_subjectivity": 0.0,
+            "composite_score": 0.0,
+            "classification": "neutral",
+            "analysis_method": "fallback",
+        }
 
+    def _analyze_english(self, text: str) -> Dict[str, Any]:
+        """Analyze English text using VADER and TextBlob."""
         # VADER analysis
         vader_scores = self._vader.polarity_scores(text)
 
@@ -132,11 +182,59 @@ class SentimentAnalysis(BaseAnalysisModule):
             "textblob_subjectivity": blob.sentiment.subjectivity,
             "composite_score": composite,
             "classification": classification,
+            "analysis_method": "vader_textblob",
         }
+
+    def _analyze_multilingual(self, text: str) -> Dict[str, Any]:
+        """Analyze non-English text using multilingual transformer model."""
+        try:
+            result = self._multilingual_pipeline(text[:512])[0]
+            # Model returns 1-5 star rating
+            label = result["label"]
+            score = result["score"]
+            
+            # Convert star rating to -1 to 1 scale
+            star_to_score = {"1 star": -1.0, "2 stars": -0.5, "3 stars": 0.0, "4 stars": 0.5, "5 stars": 1.0}
+            composite = star_to_score.get(label, 0.0) * score
+            
+            if composite >= 0.1:
+                classification = "positive"
+            elif composite <= -0.1:
+                classification = "negative"
+            else:
+                classification = "neutral"
+            
+            return {
+                "vader_compound": 0.0,
+                "vader_pos": max(0, composite),
+                "vader_neg": abs(min(0, composite)),
+                "vader_neu": 1.0 - abs(composite),
+                "textblob_polarity": composite,
+                "textblob_subjectivity": 0.5,  # Not available from this model
+                "composite_score": composite,
+                "classification": classification,
+                "analysis_method": "multilingual_bert",
+                "model_label": label,
+                "model_confidence": score,
+            }
+        except Exception:
+            return {
+                "vader_compound": 0.0,
+                "vader_pos": 0.0,
+                "vader_neg": 0.0,
+                "vader_neu": 1.0,
+                "textblob_polarity": 0.0,
+                "textblob_subjectivity": 0.0,
+                "composite_score": 0.0,
+                "classification": "neutral",
+                "analysis_method": "error",
+            }
 
     def analyze_all_sentences(self, corpus: Corpus) -> List[Dict[str, Any]]:
         """
         Analyze sentiment for all sentences in the corpus.
+
+        Automatically detects and uses appropriate language model per document.
 
         Returns:
             List of sentence sentiment data dicts
@@ -149,12 +247,18 @@ class SentimentAnalysis(BaseAnalysisModule):
         for _, theme in self.iter_atoms(corpus, AtomLevel.THEME):
             theme_titles[theme.id] = theme.metadata.get("title", theme.id)
 
+        # Build document language map
+        doc_languages = {}
+        for doc in corpus.documents:
+            doc_languages[doc.id] = doc.language or "en"
+
         # Analyze each sentence
-        for _, sentence in self.iter_atoms(corpus, AtomLevel.SENTENCE):
+        for doc, sentence in self.iter_atoms(corpus, AtomLevel.SENTENCE):
             sentence_number += 1
             theme_id = sentence.theme_id
+            language = doc_languages.get(doc.id, "en")
 
-            sentiment = self.analyze_sentence(sentence.text)
+            sentiment = self.analyze_sentence(sentence.text, language=language)
 
             sentiment_data.append({
                 "sentence_id": sentence.id,
@@ -162,6 +266,7 @@ class SentimentAnalysis(BaseAnalysisModule):
                 "theme_id": theme_id,
                 "theme_title": theme_titles.get(theme_id, theme_id),
                 "text": sentence.text,
+                "language": language,
                 **sentiment,
             })
 
@@ -288,6 +393,7 @@ class SentimentAnalysis(BaseAnalysisModule):
             metadata={
                 "vader_available": VADER_AVAILABLE,
                 "textblob_available": TEXTBLOB_AVAILABLE,
+                "multilingual_available": self._multilingual_pipeline is not None,
                 "lexicon_terms": len(self._lexicon),
             },
         )

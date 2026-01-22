@@ -3,6 +3,11 @@ Entity Recognition Module - Named entity extraction.
 
 Refactored from simple_entity_recognition.py to work with the framework ontology.
 Provides pattern-based and optional spaCy NER for entity extraction.
+
+Multilingual Support:
+- Loads language-appropriate spaCy model based on document language
+- Falls back to pattern matching for unsupported languages
+- Supports: en, zh, ja, de, fr, es, ru, el and more
 """
 
 from __future__ import annotations
@@ -33,16 +38,18 @@ except ImportError:
 @registry.register_analysis("entity")
 class EntityAnalysis(BaseAnalysisModule):
     """
-    Entity recognition using pattern matching and optional spaCy NER.
+    Multilingual entity recognition using pattern matching and spaCy NER.
 
     Extracts named entities from text and provides:
     - Enhanced atomized data with entity annotations
     - Entity statistics by type
     - Entity frequency and distribution data
+
+    Supports multiple languages via spaCy models.
     """
 
     name = "entity"
-    description = "Pattern-based and spaCy named entity recognition"
+    description = "Multilingual pattern-based and spaCy named entity recognition"
 
     # Default patterns when no domain is provided
     DEFAULT_PATTERNS = {
@@ -54,17 +61,65 @@ class EntityAnalysis(BaseAnalysisModule):
         "TEMPORAL": r"\b(morning|evening|night|day|hour|minute|dawn|dusk|midnight|noon)\b",
     }
 
+    # Language to spaCy model mapping
+    SPACY_MODELS = {
+        "en": "en_core_web_sm",
+        "english": "en_core_web_sm",
+        "zh": "zh_core_web_sm",
+        "chinese": "zh_core_web_sm",
+        "ja": "ja_core_news_sm",
+        "japanese": "ja_core_news_sm",
+        "de": "de_core_news_sm",
+        "german": "de_core_news_sm",
+        "fr": "fr_core_news_sm",
+        "french": "fr_core_news_sm",
+        "es": "es_core_news_sm",
+        "spanish": "es_core_news_sm",
+        "ru": "ru_core_news_sm",
+        "russian": "ru_core_news_sm",
+        "el": "el_core_news_sm",
+        "greek": "el_core_news_sm",
+        "it": "it_core_news_sm",
+        "italian": "it_core_news_sm",
+        "pt": "pt_core_news_sm",
+        "portuguese": "pt_core_news_sm",
+        "nl": "nl_core_news_sm",
+        "dutch": "nl_core_news_sm",
+    }
+
     def __init__(self):
         super().__init__()
         self._patterns: Dict[str, re.Pattern] = {}
-        self._nlp = None
+        self._nlp_cache: Dict[str, Any] = {}
         self._use_spacy = False
+        self._current_language = "en"
 
-        if SPACY_AVAILABLE:
-            try:
-                self._nlp = spacy.load("en_core_web_sm")
-            except OSError:
-                self._nlp = None
+    def _get_nlp(self, language: str = "en"):
+        """Get or load spaCy model for the specified language."""
+        if not SPACY_AVAILABLE:
+            return None
+        
+        lang_lower = language.lower()
+        
+        # Check cache
+        if lang_lower in self._nlp_cache:
+            return self._nlp_cache[lang_lower]
+        
+        # Get model name
+        model_name = self.SPACY_MODELS.get(lang_lower)
+        if not model_name:
+            # Try default English model as fallback
+            model_name = "en_core_web_sm"
+        
+        # Try to load
+        try:
+            nlp = spacy.load(model_name)
+            self._nlp_cache[lang_lower] = nlp
+            return nlp
+        except OSError:
+            # Model not installed
+            self._nlp_cache[lang_lower] = None
+            return None
 
     def load_patterns(self, domain: Optional[DomainProfile]) -> Dict[str, re.Pattern]:
         """
@@ -114,51 +169,56 @@ class EntityAnalysis(BaseAnalysisModule):
 
         return dict(entities)
 
-    def extract_entities_spacy(self, text: str) -> Dict[str, List[str]]:
+    def extract_entities_spacy(self, text: str, language: str = "en") -> Dict[str, List[str]]:
         """
         Extract entities using spaCy NER.
 
         Args:
             text: Text to analyze
+            language: Language code for model selection
 
         Returns:
             Dict mapping entity type to list of found entities
         """
-        if not self._nlp:
+        nlp = self._get_nlp(language)
+        if not nlp:
             return {}
 
         entities: Dict[str, List[str]] = defaultdict(list)
-        doc = self._nlp(text)
+        doc = nlp(text)
 
         for ent in doc.ents:
             entities[ent.label_].append(ent.text)
 
         return dict(entities)
 
-    def extract_entities(self, text: str) -> Dict[str, List[str]]:
+    def extract_entities(self, text: str, language: str = "en") -> Dict[str, List[str]]:
         """
         Extract entities using configured method.
 
         Args:
             text: Text to analyze
+            language: Language code for model selection
 
         Returns:
             Dict mapping entity type to list of found entities
         """
-        if self._use_spacy and self._nlp:
-            # Combine spaCy and pattern matching
-            spacy_entities = self.extract_entities_spacy(text)
-            pattern_entities = self.extract_entities_pattern(text)
+        if self._use_spacy:
+            nlp = self._get_nlp(language)
+            if nlp:
+                # Combine spaCy and pattern matching
+                spacy_entities = self.extract_entities_spacy(text, language)
+                pattern_entities = self.extract_entities_pattern(text)
 
-            # Merge results (pattern entities take precedence for domain-specific types)
-            merged = {**spacy_entities}
-            for entity_type, values in pattern_entities.items():
-                if entity_type in merged:
-                    merged[entity_type] = list(set(merged[entity_type] + values))
-                else:
-                    merged[entity_type] = values
+                # Merge results (pattern entities take precedence for domain-specific types)
+                merged = {**spacy_entities}
+                for entity_type, values in pattern_entities.items():
+                    if entity_type in merged:
+                        merged[entity_type] = list(set(merged[entity_type] + values))
+                    else:
+                        merged[entity_type] = values
 
-            return merged
+                return merged
 
         return self.extract_entities_pattern(text)
 
@@ -170,17 +230,23 @@ class EntityAnalysis(BaseAnalysisModule):
         Annotate all sentences with entities.
 
         Returns enhanced data structure compatible with original format.
+        Uses language-appropriate NER models per document.
         """
         enhanced_themes = []
         entity_stats: Dict[str, Counter] = defaultdict(Counter)
+        languages_used = set()
 
         for doc in corpus.documents:
+            doc_language = doc.language or "en"
+            languages_used.add(doc_language)
+            
             for theme in doc.root_atoms:
                 enhanced_theme = {
                     "id": theme.id,
                     "title": theme.metadata.get("title", theme.id),
                     "text": theme.text,
                     "paragraphs": [],
+                    "language": doc_language,
                 }
 
                 for para in theme.children:
@@ -191,7 +257,7 @@ class EntityAnalysis(BaseAnalysisModule):
                     }
 
                     for sent in para.children:
-                        entities = self.extract_entities(sent.text)
+                        entities = self.extract_entities(sent.text, language=doc_language)
 
                         enhanced_sent = {
                             "id": sent.id,
@@ -213,6 +279,7 @@ class EntityAnalysis(BaseAnalysisModule):
         return {
             "themes": enhanced_themes,
             "entity_stats": {k: dict(v) for k, v in entity_stats.items()},
+            "languages_analyzed": list(languages_used),
         }
 
     def calculate_statistics(
@@ -269,10 +336,12 @@ class EntityAnalysis(BaseAnalysisModule):
             data={
                 "enhanced_atomized": {"themes": annotated["themes"]},
                 "entity_statistics": stats,
+                "languages_analyzed": annotated.get("languages_analyzed", ["en"]),
             },
             metadata={
                 "spacy_available": SPACY_AVAILABLE,
-                "spacy_used": self._use_spacy and self._nlp is not None,
+                "spacy_used": self._use_spacy,
                 "pattern_count": len(self._patterns),
+                "available_models": list(self.SPACY_MODELS.keys()),
             },
         )

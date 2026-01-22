@@ -5,6 +5,11 @@ This module defines the fundamental data structures used throughout the framewor
 - Atomization hierarchy (Corpus → Document → Atom levels)
 - Domain resources (lexicons, entity patterns)
 - Analysis and visualization interfaces (ABCs)
+
+Multilingual Support:
+- Documents can specify language (ISO 639-1) and script
+- Translation tracking between original and translated documents
+- Original titles preserved for non-Latin scripts
 """
 
 from __future__ import annotations
@@ -269,6 +274,7 @@ class Document:
     A single source document within a corpus.
 
     A document has metadata and a root atom (typically THEME level).
+    Supports multiple languages and writing scripts for multilingual corpora.
     """
     id: str
     source_path: Path
@@ -277,10 +283,17 @@ class Document:
     author: Optional[str] = None
     root_atoms: List[Atom] = field(default_factory=list)
     metadata: Dict[str, Any] = field(default_factory=dict)
+    
+    # Multilingual support
+    language: Optional[str] = None         # ISO 639-1 code (e.g., "en", "zh", "ar")
+    script: Optional[str] = None           # Writing script (e.g., "latin", "chinese", "arabic")
+    original_title: Optional[str] = None   # Title in original script (for non-Latin)
+    translation_of: Optional[str] = None   # Document ID this is a translation of
+    translator: Optional[str] = None       # Translator name for translations
 
     def to_dict(self) -> Dict[str, Any]:
         """Serialize document for JSON export."""
-        return {
+        result = {
             "id": self.id,
             "source_path": str(self.source_path),
             "format": self.format,
@@ -289,6 +302,18 @@ class Document:
             "themes": [atom.to_dict() for atom in self.root_atoms],
             "metadata": self.metadata,
         }
+        # Add multilingual fields if present
+        if self.language:
+            result["language"] = self.language
+        if self.script:
+            result["script"] = self.script
+        if self.original_title:
+            result["original_title"] = self.original_title
+        if self.translation_of:
+            result["translation_of"] = self.translation_of
+        if self.translator:
+            result["translator"] = self.translator
+        return result
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> Document:
@@ -300,6 +325,11 @@ class Document:
             title=data.get("title"),
             author=data.get("author"),
             metadata=data.get("metadata", {}),
+            language=data.get("language"),
+            script=data.get("script"),
+            original_title=data.get("original_title"),
+            translation_of=data.get("translation_of"),
+            translator=data.get("translator"),
         )
         # Load root atoms from "themes" key (backward compat) or "root_atoms"
         themes_data = data.get("themes", data.get("root_atoms", []))

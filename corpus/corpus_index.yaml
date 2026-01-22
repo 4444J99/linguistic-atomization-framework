@@ -1,0 +1,907 @@
+version: 2.0.0
+description: Global Canonical Corpus - Literary texts from all traditions
+license: Public Domain / Creative Commons
+classical:
+  gilgamesh:
+    title: Epic of Gilgamesh
+    original_title: 𒄑𒂆𒈦
+    author: Anonymous
+    period: c. 2100-1200 BCE
+    original_language: akk
+    script: cuneiform
+    directory: classical/gilgamesh
+    versions:
+    - language: en
+      translator: R. Campbell Thompson
+      year: 1928
+      file: english_thompson_1928.txt
+      source: Project Gutenberg
+    status: available
+  iliad:
+    title: The Iliad
+    original_title: Ἰλιάς
+    author: Homer
+    period: c. 8th century BCE
+    original_language: grc
+    script: greek
+    directory: classical/iliad
+    versions:
+    - language: grc
+      version: original
+      file: greek_original.txt
+      source: Sacred Texts Archive
+      lines: 16571
+    - language: en
+      translator: Samuel Butler
+      year: 1898
+      file: english_butler_1898.txt
+      source: Project Gutenberg 2199
+    - language: en
+      translator: Alexander Pope
+      year: 1715
+      file: english_pope_1715.txt
+      source: Project Gutenberg 6130
+    - language: en
+      translator: Andrew Lang, Walter Leaf, Ernest Myers
+      year: 1883
+      file: english_lang_1883.txt
+      source: Project Gutenberg 3059
+    - language: en
+      translator: William Cowper
+      year: 1791
+      file: english_cowper_1791.txt
+      source: Project Gutenberg 16452
+      lines: 22999
+    status: available
+    translation_count: 4
+  odyssey:
+    title: The Odyssey
+    original_title: Ὀδύσσεια
+    author: Homer
+    period: c. 8th century BCE
+    original_language: grc
+    script: greek
+    directory: classical/odyssey
+    versions:
+    - language: grc
+      version: original
+      file: greek_original.txt
+      source: Sacred Texts Archive
+      lines: 12808
+    - language: en
+      translator: Samuel Butler
+      year: 1900
+      file: english_butler_1900.txt
+      source: Project Gutenberg
+    - language: en
+      translator: Alexander Pope
+      year: 1726
+      file: english_pope_1726.txt
+      source: Project Gutenberg 1727
+    - language: en
+      translator: S.H. Butcher and Andrew Lang
+      year: 1879
+      file: english_lang_1879.txt
+      source: Project Gutenberg 1728
+    - language: en
+      translator: William Cowper
+      year: 1791
+      file: english_cowper_1791.txt
+      source: Project Gutenberg 24269
+      lines: 16892
+    status: available
+    translation_count: 4
+  aeneid:
+    title: The Aeneid
+    original_title: Aeneis
+    author: Virgil
+    period: 29-19 BCE
+    original_language: la
+    script: latin
+    directory: classical/aeneid
+    versions:
+    - language: la
+      version: original
+      file: latin_original.txt
+    - language: en
+      translator: John Dryden
+      year: 1697
+      file: english_dryden_1697.txt
+    - language: en
+      translator: John Conington
+      year: 1866
+      file: english_conington_1866.txt
+      source: Project Gutenberg 227
+    status: available
+    translation_count: 2
+  metamorphoses:
+    title: Metamorphoses
+    author: Ovid
+    period: 8 CE
+    original_language: la
+    script: latin
+    directory: classical/metamorphoses
+    versions:
+    - language: la
+      version: original
+      file: latin_original.txt
+      source: Project Gutenberg 26073
+    - language: en
+      translator: Brookes More
+      year: 1922
+      file: english_brookes_1922.txt
+      source: Project Gutenberg 21765
+    status: available
+hebrew:
+  tanakh:
+    title: Hebrew Bible (Tanakh)
+    original_title: תנך
+    author: Various
+    period: c. 1200-165 BCE
+    original_language: he
+    script: hebrew
+    directory: hebrew/tanakh
+    versions:
+    - language: he
+      version: Westminster Leningrad Codex (WLC 4.20)
+      file: hebrew_masoretic.txt
+      source: OpenScriptures Hebrew Bible (morphhb)
+      lines: 23337
+      verses: 23213
+      books: 39
+    - language: en
+      translator: King James translators
+      year: 1611
+      file: english_kjv_1611.txt
+      source: Project Gutenberg 10
+    - language: en
+      translator: American Standard Version committee
+      year: 1901
+      file: english_asv_1901.txt
+      source: Project Gutenberg 4010
+    - language: en
+      translator: John Nelson Darby
+      year: 1890
+      file: english_darby_1890.txt
+      source: Project Gutenberg 478
+    - language: en
+      translator: Robert Young
+      year: 1898
+      file: english_ylt_1898.txt
+    status: available
+    translation_count: 4
+medieval:
+  beowulf:
+    title: Beowulf
+    author: Anonymous
+    period: c. 700-1000 CE
+    original_language: ang
+    script: latin
+    directory: medieval/beowulf
+    versions:
+    - language: ang
+      version: original
+      file: old_english_original.txt
+    - language: en
+      translator: Francis Gummere
+      year: 1910
+      file: english_gummere_1910.txt
+    - language: en
+      translator: John Lesslie Hall
+      year: 1892
+      file: english_hall_1892.txt
+      source: Project Gutenberg 16328
+    - language: en
+      translator: William Morris and A.J. Wyatt
+      year: 1895
+      file: english_morris_1895.txt
+      source: Project Gutenberg 20431
+      lines: 4170
+    status: available
+    translation_count: 3
+  divine_comedy:
+    title: Divine Comedy
+    original_title: Divina Commedia
+    author: Dante Alighieri
+    period: 1308-1320
+    original_language: it
+    script: latin
+    directory: medieval/divine-comedy
+    versions:
+    - language: it
+      version: original
+      file: italian_original.txt
+      source: Project Gutenberg 1012
+    - language: en
+      translator: Charles Eliot Norton
+      year: 1891
+      file: english_norton_1891.txt
+      source: Project Gutenberg 1995-1997
+      lines: 17518
+    parts:
+      inferno:
+        translations:
+        - translator: Henry Wadsworth Longfellow
+          year: 1867
+          file: english_longfellow_inferno.txt
+        - translator: Henry Francis Cary
+          year: 1814
+          file: english_cary_inferno.txt
+      purgatorio:
+        translations:
+        - translator: Henry Wadsworth Longfellow
+          year: 1867
+          file: english_longfellow_purgatorio.txt
+        - translator: Henry Francis Cary
+          year: 1814
+          file: english_cary_purgatorio.txt
+      paradiso:
+        translations:
+        - translator: Henry Wadsworth Longfellow
+          year: 1867
+          file: english_longfellow_paradiso.txt
+        - translator: Henry Francis Cary
+          year: 1814
+          file: english_cary_paradiso.txt
+    status: available
+    translation_count: 3
+  canterbury_tales:
+    title: The Canterbury Tales
+    author: Geoffrey Chaucer
+    period: 1387-1400
+    original_language: enm
+    script: latin
+    directory: medieval/canterbury-tales
+    versions:
+    - language: enm
+      version: original
+      file: middle_english.txt
+      source: Project Gutenberg 2383
+    status: available
+  song_of_roland:
+    title: The Song of Roland
+    original_title: La Chanson de Roland
+    author: Anonymous
+    period: c. 1040-1115
+    original_language: fro
+    script: latin
+    directory: medieval/song-of-roland
+    versions:
+    - language: fro
+      version: Oxford Manuscript
+      file: old_french_original.txt
+      source: Bibliotheca Augustana (Mortier 1940)
+      manuscript: Bodleian MS Digby 23
+      lines: 4004
+    - language: en
+      translator: John O Hagan
+      year: 1880
+      file: english_ohagan_1880.txt
+      source: Project Gutenberg 391
+    status: available
+    translation_count: 1
+renaissance:
+  don_quixote:
+    title: Don Quixote
+    original_title: El ingenioso hidalgo don Quijote de la Mancha
+    author: Miguel de Cervantes
+    period: 1605, 1615
+    original_language: es
+    script: latin
+    directory: renaissance/don-quixote
+    versions:
+    - language: es
+      version: original
+      file: spanish_original.txt
+      source: Project Gutenberg 2000
+    - language: en
+      translator: John Ormsby
+      year: 1885
+      file: english_ormsby_1885.txt
+      source: Project Gutenberg 996
+    status: available
+  the_prince:
+    title: The Prince
+    original_title: Il Principe
+    author: Niccolo Machiavelli
+    period: '1532'
+    original_language: it
+    script: latin
+    directory: renaissance/the-prince
+    versions:
+    - language: en
+      translator: W.K. Marriott
+      year: 1908
+      file: english_marriott_1908.txt
+      source: Project Gutenberg 1232
+    status: available
+  hamlet:
+    title: Hamlet
+    author: William Shakespeare
+    period: 1600-1601
+    original_language: en
+    script: latin
+    directory: renaissance/hamlet
+    versions:
+    - language: en
+      version: First Folio
+      file: english_original.txt
+      source: Project Gutenberg 1524
+    status: available
+  paradise_lost:
+    title: Paradise Lost
+    author: John Milton
+    period: '1667'
+    original_language: en
+    script: latin
+    directory: renaissance/paradise-lost
+    versions:
+    - language: en
+      version: 1674 edition
+      file: english_original.txt
+      source: Project Gutenberg 26
+    status: available
+enlightenment:
+  candide:
+    title: Candide
+    author: Voltaire
+    period: '1759'
+    original_language: fr
+    script: latin
+    directory: enlightenment/candide
+    versions:
+    - language: fr
+      version: original
+      file: french_original.txt
+      source: Project Gutenberg 4650
+    - language: en
+      translator: William F. Fleming
+      year: 1918
+      file: english_fleming_1918.txt
+      source: Project Gutenberg 19942
+    status: available
+  gullivers_travels:
+    title: Gullivers Travels
+    author: Jonathan Swift
+    period: '1726'
+    original_language: en
+    script: latin
+    directory: enlightenment/gullivers-travels
+    versions:
+    - language: en
+      version: original
+      file: english_original.txt
+      source: Project Gutenberg 829
+    status: available
+  faust:
+    title: Faust
+    author: Johann Wolfgang von Goethe
+    period: 1808, 1832
+    original_language: de
+    script: latin
+    directory: enlightenment/faust
+    versions:
+    - language: de
+      version: original
+      file: german_original.txt
+      source: Project Gutenberg 21000
+    - language: en
+      translator: Bayard Taylor
+      year: 1870
+      file: english_taylor_1870.txt
+      source: Project Gutenberg 14591
+    status: available
+  pride_and_prejudice:
+    title: Pride and Prejudice
+    author: Jane Austen
+    period: '1813'
+    original_language: en
+    script: latin
+    directory: enlightenment/pride-and-prejudice
+    versions:
+    - language: en
+      version: original
+      file: english_original.txt
+      source: Project Gutenberg 1342
+    status: available
+romantic:
+  frankenstein:
+    title: Frankenstein
+    author: Mary Shelley
+    period: '1818'
+    original_language: en
+    script: latin
+    directory: romantic/frankenstein
+    versions:
+    - language: en
+      version: 1831 revised edition
+      file: english_original_1831.txt
+      source: Project Gutenberg 84
+    status: available
+  les_miserables:
+    title: Les Miserables
+    author: Victor Hugo
+    period: '1862'
+    original_language: fr
+    script: latin
+    directory: romantic/les-miserables
+    versions:
+    - language: fr
+      version: original
+      file: french_original.txt
+      source: Project Gutenberg 17489
+    - language: en
+      translator: Isabel Hapgood
+      year: 1887
+      file: english_hapgood_1887.txt
+      source: Project Gutenberg 135
+    status: available
+  eugene_onegin:
+    title: Eugene Onegin
+    original_title: Евгений Онегин
+    author: Alexander Pushkin
+    period: 1825-1832
+    original_language: ru
+    script: cyrillic
+    directory: romantic/eugene-onegin
+    versions:
+    - language: ru
+      version: original
+      file: russian_original.txt
+      source: az.lib.ru
+      lines: 8833
+    - language: en
+      translator: Henry Spalding
+      year: 1881
+      file: english_spalding_1881.txt
+      source: Project Gutenberg 23997
+    status: available
+  moby_dick:
+    title: Moby-Dick
+    author: Herman Melville
+    period: '1851'
+    original_language: en
+    script: latin
+    directory: romantic/moby-dick
+    versions:
+    - language: en
+      version: original
+      file: english_original.txt
+      source: Project Gutenberg 2701
+    status: available
+modern:
+  crime_and_punishment:
+    title: Crime and Punishment
+    original_title: Преступление и наказание
+    author: Fyodor Dostoevsky
+    period: '1866'
+    original_language: ru
+    script: cyrillic
+    directory: modern/crime-and-punishment
+    versions:
+    - language: ru
+      version: original
+      file: russian_original.txt
+      source: az.lib.ru
+      lines: 4099
+    - language: en
+      translator: Constance Garnett
+      year: 1914
+      file: english_garnett_1914.txt
+      source: Project Gutenberg 2554
+    status: available
+  dubliners:
+    title: Dubliners
+    author: James Joyce
+    period: '1914'
+    original_language: en
+    script: latin
+    directory: modern/dubliners
+    versions:
+    - language: en
+      version: original
+      file: english_original.txt
+      source: Project Gutenberg 2814
+    status: available
+  the_trial:
+    title: The Trial
+    original_title: Der Prozess
+    author: Franz Kafka
+    period: '1925'
+    original_language: de
+    script: latin
+    directory: modern/the-trial
+    versions:
+    - language: de
+      version: original
+      file: german_original.txt
+    - language: en
+      translator: Willa and Edwin Muir
+      year: 1937
+      file: english_muir_1937.txt
+      source: Project Gutenberg 7849
+    status: available
+  we:
+    title: We
+    original_title: Мы
+    author: Yevgeny Zamyatin
+    period: '1924'
+    original_language: ru
+    script: cyrillic
+    directory: modern/we
+    versions:
+    - language: ru
+      version: original
+      file: russian_original.txt
+      source: az.lib.ru
+      lines: 3747
+    - language: en
+      translator: Gregory Zilboorg
+      year: 1924
+      file: english_zilboorg_1924.txt
+      source: Project Gutenberg 61963
+    status: available
+  les_fleurs_du_mal:
+    title: Les Fleurs du Mal
+    original_title: Les Fleurs du Mal
+    author: Charles Baudelaire
+    period: '1857'
+    original_language: fr
+    script: latin
+    directory: modern/les-fleurs-du-mal
+    versions:
+    - language: fr
+      version: original
+      file: french_original.txt
+      source: Project Gutenberg 6099
+      lines: 4949
+    status: available
+  madame_bovary:
+    title: Madame Bovary
+    original_title: Madame Bovary
+    author: Gustave Flaubert
+    period: '1857'
+    original_language: fr
+    script: latin
+    directory: modern/madame-bovary
+    versions:
+    - language: fr
+      version: original
+      file: french_original.txt
+      source: Project Gutenberg 14155
+      lines: 14504
+    status: available
+early_modern:
+  tempest:
+    title: The Tempest
+    author: William Shakespeare
+    period: 1610-1611
+    original_language: en
+    script: latin
+    directory: early-modern/tempest
+    versions:
+    - language: en
+      version: First Folio
+      file: original.txt
+    status: available
+chinese_classical:
+  analects:
+    title: The Analects
+    original_title: 論語
+    author: Confucius (compiled by disciples)
+    period: c. 475-221 BCE
+    original_language: zh
+    script: chinese
+    directory: chinese-classical/analects
+    versions:
+    - language: zh
+      version: original
+      file: chinese_original.txt
+      source: ctext.org API
+      lines: 518
+    - language: en
+      translator: James Legge
+      year: 1861
+      file: english_legge_1861.txt
+    status: available
+  tao_te_ching:
+    title: Tao Te Ching
+    original_title: 道德經
+    author: Laozi
+    period: c. 4th century BCE
+    original_language: zh
+    script: chinese
+    directory: chinese-classical/tao-te-ching
+    versions:
+    - language: zh
+      version: original
+      file: chinese_original.txt
+      source: ctext.org API
+      lines: 245
+    - language: en
+      translator: James Legge
+      year: 1891
+      file: english_legge_1891.txt
+    - language: en
+      translator: Dwight Goddard and Henri Borel
+      year: 1919
+      file: english_goddard_1919.txt
+      source: sacred-texts.com
+      lines: 301
+    status: available
+  art_of_war:
+    title: The Art of War
+    original_title: 孫子兵法
+    author: Sun Tzu
+    period: c. 5th century BCE
+    original_language: zh
+    script: chinese
+    directory: chinese-classical/art-of-war
+    versions:
+    - language: zh
+      version: original
+      file: chinese_original.txt
+      source: Chinese Wikisource
+      lines: 132
+    - language: en
+      translator: Lionel Giles
+      year: 1910
+      file: english_giles_1910.txt
+      source: Project Gutenberg 17405
+    status: available
+  journey_to_the_west:
+    title: Journey to the West
+    original_title: 西遊記
+    author: Wu Chengen
+    period: c. 1592
+    original_language: zh
+    script: chinese
+    directory: chinese-classical/journey-to-the-west
+    status: planned
+sanskrit:
+  rigveda:
+    title: Rigveda
+    original_title: ऋग्वेद
+    author: Various rishis
+    period: c. 1500-1200 BCE
+    original_language: sa
+    script: devanagari
+    directory: sanskrit/rigveda
+    versions:
+    - language: sa
+      version: original
+      file: sanskrit_original.txt
+      source: GRETIL
+      lines: 31651
+    - language: en
+      translator: Ralph T.H. Griffith
+      year: 1896
+      file: english_griffith_sample.txt
+      note: Sample - full text on sacred-texts.com
+    status: partial
+  mahabharata:
+    title: Mahabharata
+    original_title: महाभारत
+    author: Vyasa
+    period: c. 400 BCE - 400 CE
+    original_language: sa
+    script: devanagari
+    directory: sanskrit/mahabharata
+    versions:
+    - language: en
+      translator: Kisari Mohan Ganguli
+      year: 1896
+      file: english_ganguli_sample.txt
+      note: Sample - full 18-book translation on sacred-texts.com
+    status: partial
+  ramayana:
+    title: Ramayana
+    original_title: रामायण
+    author: Valmiki
+    period: c. 7th-4th century BCE
+    original_language: sa
+    script: devanagari
+    directory: sanskrit/ramayana
+    versions:
+    - language: en
+      translator: Ralph T.H. Griffith
+      year: 1874
+      file: english_griffith_1874.txt
+      source: Project Gutenberg 24869
+    status: available
+  bhagavad_gita:
+    title: Bhagavad Gita
+    original_title: भगवद्गीता
+    author: Vyasa (within Mahabharata)
+    period: c. 5th-2nd century BCE
+    original_language: sa
+    script: devanagari
+    directory: sanskrit/bhagavad-gita
+    versions:
+    - language: sa
+      version: original
+      file: sanskrit_original.txt
+      source: GRETIL
+      lines: 5448
+    - language: en
+      translator: Edwin Arnold
+      year: 1885
+      file: english_arnold_1885.txt
+      title: The Song Celestial
+      source: Project Gutenberg 2388
+    - language: en
+      translator: Annie Besant
+      year: 1895
+      file: english_besant_1895.txt
+      source: Digital Library of India via archive.org
+      lines: 5839
+    - language: en
+      translator: Kashinath Trimbak Telang
+      year: 1882
+      file: english_telang_1882.txt
+      source: Sacred Books of the East Vol. 8
+      lines: 3306
+    status: available
+    translation_count: 3
+arabic_persian:
+  quran:
+    title: The Quran
+    original_title: القرآن
+    author: Divine revelation (Islamic belief)
+    period: 610-632 CE
+    original_language: ar
+    script: arabic
+    directory: arabic-persian/quran
+    versions:
+    - language: en
+      translator: J.M. Rodwell
+      year: 1861
+      file: english_rodwell_1861.txt
+      source: Project Gutenberg 3434
+    - language: en
+      translator: Marmaduke Pickthall
+      year: 1930
+      file: english_pickthall_1930.txt
+      source: tanzil.net
+      lines: 6356
+    - language: en
+      translator: Abdullah Yusuf Ali
+      year: 1934
+      file: english_yusufali_1934.txt
+      source: tanzil.net
+      lines: 6356
+    - language: en
+      translator: George Sale
+      year: 1734
+      file: english_sale_1734.txt
+      source: Project Gutenberg 7440
+      lines: 40733
+    status: available
+    translation_count: 4
+  arabian_nights:
+    title: One Thousand and One Nights
+    original_title: ألف ليلة وليلة
+    author: Anonymous (compiled)
+    period: c. 8th-18th century
+    original_language: ar
+    script: arabic
+    directory: arabic-persian/arabian-nights
+    versions:
+    - language: en
+      translator: Richard Burton
+      year: 1885
+      volumes: 16
+      source: Project Gutenberg 34206-34221
+    - language: en
+      translator: Edward Lane
+      year: 1838
+      file: english_lane_1838.txt
+      source: Project Gutenberg 51931
+    status: available
+    translation_count: 2
+  rubaiyat:
+    title: Rubaiyat of Omar Khayyam
+    original_title: رباعیات عمر خیام
+    author: Omar Khayyam
+    period: c. 11th-12th century
+    original_language: fa
+    script: arabic
+    directory: arabic-persian/rubaiyat
+    versions:
+    - language: fa
+      version: original
+      file: persian_original.txt
+      source: Ganjoor API
+      lines: 1070
+    - language: en
+      translator: Edward FitzGerald
+      year: 1859
+      file: english_fitzgerald_1859.txt
+      source: Project Gutenberg 246
+    status: available
+  conference_of_the_birds:
+    title: The Conference of the Birds
+    original_title: منطق الطیر
+    author: Farid ud-Din Attar
+    period: c. 1177
+    original_language: fa
+    script: arabic
+    directory: arabic-persian/conference-of-birds
+    status: planned
+japanese:
+  tale_of_genji:
+    title: The Tale of Genji
+    original_title: 源氏物語
+    author: Murasaki Shikibu
+    period: c. 1000-1012 CE
+    original_language: ja
+    script: japanese
+    directory: japanese/tale-of-genji
+    status: available
+    versions:
+    - language: ja
+      version: original
+      file: japanese_original.txt
+      source: Aozora Bunko (cards 5016-5069)
+      lines: 14199
+      chapters: 53
+  heike_monogatari:
+    title: The Tale of the Heike
+    original_title: 平家物語
+    author: Anonymous
+    period: c. 1309-1330
+    original_language: ja
+    script: japanese
+    directory: japanese/heike-monogatari
+    status: available
+    versions:
+    - language: ja
+      version: original
+      file: japanese_original.txt
+      source: UVA Japanese Text Initiative (Hobunkan 1933 edition)
+      lines: 1926
+      chapters: 13
+  kojiki:
+    title: Kojiki
+    original_title: 古事記
+    author: O no Yasumaro
+    period: 712 CE
+    original_language: ja
+    script: japanese
+    directory: japanese/kojiki
+    status: available
+    versions:
+    - language: ja
+      version: annotated
+      file: japanese_original.txt
+      source: Aozora Bunko (card 51731)
+      annotation: 校註 古事記 (Takeda Yukichi)
+      lines: 3060
+    - language: en
+      translator: Basil Hall Chamberlain
+      year: 1919
+      file: english_chamberlain_1919.txt
+      source: sacred-texts.com
+      lines: 4864
+  oku_no_hosomichi:
+    title: The Narrow Road to the Deep North
+    original_title: 奥の細道
+    author: Matsuo Basho
+    period: '1689'
+    original_language: ja
+    script: japanese
+    directory: japanese/oku-no-hosomichi
+    status: available
+    versions:
+    - language: ja
+      version: original
+      file: japanese_original.txt
+      source: Aozora Bunko (card 61619)
+      lines: 1080
+statistics:
+  total_texts: 41
+  available_texts: 37
+  planned_texts: 2
+  partial_texts: 2
+  total_files: 100
+  total_translations: 60

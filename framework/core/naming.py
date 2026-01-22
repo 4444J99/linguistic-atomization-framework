@@ -9,6 +9,11 @@ Provides multiple naming strategies for atom IDs:
 - legacy: Original flat counter format (T001, P0001, S00001)
 
 Also handles output file naming with semantic descriptors.
+
+Unicode Support:
+- Uses unidecode for transliterating non-Latin scripts to ASCII slugs
+- Examples: "道德經" -> "dao-de-jing", "Война и мир" -> "voina-i-mir"
+- Preserves original text in atom metadata while creating ASCII-safe IDs
 """
 
 from __future__ import annotations
@@ -20,6 +25,41 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional
+
+# Optional unidecode for better transliteration
+try:
+    from unidecode import unidecode as _unidecode
+    UNIDECODE_AVAILABLE = True
+except ImportError:
+    _unidecode = None
+    UNIDECODE_AVAILABLE = False
+
+
+def transliterate_to_ascii(text: str) -> str:
+    """
+    Transliterate text to ASCII representation.
+
+    Uses unidecode for proper transliteration of non-Latin scripts.
+    Falls back to NFKD normalization + ASCII encoding if unidecode unavailable.
+
+    Args:
+        text: Unicode text to transliterate
+
+    Returns:
+        ASCII representation of the text
+    """
+    if not text:
+        return ""
+
+    if UNIDECODE_AVAILABLE:
+        # Use unidecode for proper transliteration
+        # e.g., "道德經" -> "Dao De Jing", "Война" -> "Voina"
+        return _unidecode(text)
+    else:
+        # Fallback: NFKD normalization + ASCII encoding
+        # This drops characters that can't be decomposed
+        normalized = unicodedata.normalize("NFKD", text)
+        return normalized.encode("ascii", "ignore").decode("ascii")
 
 
 class NamingStrategy(Enum):
@@ -119,23 +159,29 @@ class OntologicalNaming:
         self._counters = {level: 1 for level in levels}
 
     @staticmethod
-    def slug_from_text(text: str, max_len: int = 30) -> str:
+    def slug_from_text(text: str, max_len: int = 30, preserve_original: bool = False) -> str:
         """
         Create URL-safe semantic slug from text.
+
+        Handles all Unicode scripts including CJK, Arabic, Cyrillic, etc.
+        Uses unidecode for proper transliteration when available.
 
         Args:
             text: Source text to slugify
             max_len: Maximum slug length
+            preserve_original: If True, returns tuple of (slug, original_text)
 
         Returns:
-            Lowercase hyphenated slug (e.g., "military-town")
+            Lowercase hyphenated slug (e.g., "military-town", "dao-de-jing")
         """
         if not text:
             return "unknown"
 
-        # Normalize unicode characters
-        text = unicodedata.normalize("NFKD", text)
-        text = text.encode("ascii", "ignore").decode("ascii")
+        # Store original for metadata if needed
+        original = text
+
+        # Transliterate to ASCII using unidecode or fallback
+        text = transliterate_to_ascii(text)
 
         # Convert to lowercase
         text = text.lower()

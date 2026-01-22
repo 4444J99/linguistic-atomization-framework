@@ -1,0 +1,64 @@
+─────┬──────────────────────────────────────────────────────────────────────────
+     │ STDIN
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ # Chinese Atomization Schema
+   2 │ # Configures atomization for Chinese (Mandarin) texts
+   3 │ 
+   4 │ name: chinese
+   5 │ language: zh
+   6 │ script: chinese
+   7 │ direction: ltr
+   8 │ 
+   9 │ # Tokenization strategy
+  10 │ tokenization:
+  11 │   # Options: "nlp" (jieba word segmentation), "character" (single characters)
+  12 │   strategy: nlp
+  13 │   
+  14 │   # jieba-specific options
+  15 │   jieba:
+  16 │     cut_all: false          # Use accurate mode, not full mode
+  17 │     use_paddle: false       # Enable paddle mode for better accuracy (requires paddlepaddle)
+  18 │     custom_dict: null       # Path to custom dictionary file
+  19 │ 
+  20 │ # Hierarchy levels
+  21 │ levels:
+  22 │   - theme      # 章/节 (chapters/sections)
+  23 │   - paragraph  # 段落 (paragraphs)
+  24 │   - sentence   # 句子 (sentences - split on 。！？)
+  25 │   - word       # 词 (words - via jieba or characters)
+  26 │   - letter     # 字 (individual characters - always available for CJK)
+  27 │ 
+  28 │ # Splitting patterns
+  29 │ splitters:
+  30 │   theme: "^[#]{1,2}\\s+(.+)$"           # Markdown headers
+  31 │   paragraph: "[\\n]{2,}"                 # Double newlines
+  32 │   sentence: "(?<=[。！？；])[\\s]*"      # Chinese sentence-ending punctuation
+  33 │   word: null                             # Use tokenizer, not regex
+  34 │   letter: null                           # Character iteration
+  35 │ 
+  36 │ # Naming configuration
+  37 │ naming:
+  38 │   strategy: hybrid
+  39 │   formats:
+  40 │     theme: "{level_prefix}{counter:03d}:{slug}"
+  41 │     paragraph: "{parent}.P{counter:03d}"
+  42 │     sentence: "{parent}.S{counter:03d}"
+  43 │     word: "{parent}.W{counter:03d}"
+  44 │     letter: null  # Skip letters by default
+  45 │   max_slug_length: 30
+  46 │ 
+  47 │ # Analysis hints
+  48 │ analysis:
+  49 │   # spaCy model for NER and POS
+  50 │   spacy_model: zh_core_web_sm
+  51 │   
+  52 │   # Sentiment analysis approach
+  53 │   sentiment:
+  54 │     method: multilingual  # Uses transformer-based multilingual model
+  55 │     
+  56 │   # Entity types common in Chinese classical texts
+  57 │   entity_patterns:
+  58 │     DYNASTY: "\\b(周|秦|汉|唐|宋|元|明|清)\\b"
+  59 │     TITLE: "\\b(王|侯|公|卿|大夫|士)\\b"
+  60 │     PLACE: null  # Use spaCy NER
+─────┴──────────────────────────────────────────────────────────────────────────

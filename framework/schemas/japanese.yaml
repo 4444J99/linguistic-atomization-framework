@@ -1,0 +1,63 @@
+─────┬──────────────────────────────────────────────────────────────────────────
+     │ STDIN
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ # Japanese Atomization Schema
+   2 │ # Configures atomization for Japanese texts
+   3 │ 
+   4 │ name: japanese
+   5 │ language: ja
+   6 │ script: japanese  # Mixture of hiragana, katakana, kanji
+   7 │ direction: ltr    # Modern Japanese is typically LTR (though vertical text exists)
+   8 │ 
+   9 │ # Tokenization strategy
+  10 │ tokenization:
+  11 │   # Options: "nlp" (MeCab/fugashi word segmentation), "character" (single characters)
+  12 │   strategy: nlp
+  13 │   
+  14 │   # MeCab/fugashi-specific options
+  15 │   mecab:
+  16 │     dictionary: unidic-lite  # Options: unidic-lite, ipadic, neologd
+  17 │     
+  18 │   # Alternative: sudachipy
+  19 │   sudachi:
+  20 │     split_mode: C  # A (short), B (medium), C (long unit)
+  21 │ 
+  22 │ # Hierarchy levels
+  23 │ levels:
+  24 │   - theme      # 章 (chapters)
+  25 │   - paragraph  # 段落 (paragraphs)
+  26 │   - sentence   # 文 (sentences - split on 。！？)
+  27 │   - word       # 語 (words - via MeCab)
+  28 │   - letter     # 字 (individual characters)
+  29 │ 
+  30 │ # Splitting patterns
+  31 │ splitters:
+  32 │   theme: "^[#]{1,2}\\s+(.+)$"           # Markdown headers
+  33 │   paragraph: "[\\n]{2,}"                 # Double newlines
+  34 │   sentence: "(?<=[。！？])[\\s]*"        # Japanese sentence-ending punctuation
+  35 │   word: null                             # Use tokenizer
+  36 │   letter: null                           # Character iteration
+  37 │ 
+  38 │ # Naming configuration
+  39 │ naming:
+  40 │   strategy: hybrid
+  41 │   formats:
+  42 │     theme: "{level_prefix}{counter:03d}:{slug}"
+  43 │     paragraph: "{parent}.P{counter:03d}"
+  44 │     sentence: "{parent}.S{counter:03d}"
+  45 │     word: "{parent}.W{counter:03d}"
+  46 │     letter: null
+  47 │   max_slug_length: 30
+  48 │ 
+  49 │ # Analysis hints
+  50 │ analysis:
+  51 │   spacy_model: ja_core_news_sm
+  52 │   
+  53 │   sentiment:
+  54 │     method: multilingual
+  55 │     
+  56 │   # Entity types for Japanese texts
+  57 │   entity_patterns:
+  58 │     ERA: "\\b(明治|大正|昭和|平成|令和)\\b"
+  59 │     TITLE: "\\b(天皇|将軍|大名|侍)\\b"
+─────┴──────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,62 @@
+─────┬──────────────────────────────────────────────────────────────────────────
+     │ STDIN
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ # Arabic Atomization Schema
+   2 │ # Configures atomization for Arabic texts
+   3 │ 
+   4 │ name: arabic
+   5 │ language: ar
+   6 │ script: arabic
+   7 │ direction: rtl  # Right-to-left
+   8 │ 
+   9 │ # Tokenization strategy
+  10 │ tokenization:
+  11 │   # Options: "whitespace" (basic), "camel" (CAMeL Tools morphological analysis)
+  12 │   strategy: whitespace  # camel requires additional setup
+  13 │   
+  14 │   # CAMeL Tools options (if available)
+  15 │   camel:
+  16 │     morphological_analysis: false
+  17 │     diacritics: preserve  # Options: preserve, remove, normalize
+  18 │ 
+  19 │ # Hierarchy levels  
+  20 │ levels:
+  21 │   - theme      # فصل (chapters)
+  22 │   - paragraph  # فقرة (paragraphs)
+  23 │   - sentence   # جملة (sentences)
+  24 │   - word       # كلمة (words)
+  25 │   - letter     # حرف (letters/characters)
+  26 │ 
+  27 │ # Splitting patterns
+  28 │ splitters:
+  29 │   theme: "^[#]{1,2}\\s+(.+)$"
+  30 │   paragraph: "[\\n]{2,}"
+  31 │   sentence: "(?<=[.؟!])[\\s]+"          # Arabic and standard punctuation
+  32 │   word: null                             # Use tokenizer
+  33 │   letter: null
+  34 │ 
+  35 │ # Naming configuration
+  36 │ naming:
+  37 │   strategy: hybrid
+  38 │   formats:
+  39 │     theme: "{level_prefix}{counter:03d}:{slug}"
+  40 │     paragraph: "{parent}.P{counter:03d}"
+  41 │     sentence: "{parent}.S{counter:03d}"
+  42 │     word: "{parent}.W{counter:03d}"
+  43 │     letter: null
+  44 │   max_slug_length: 30
+  45 │ 
+  46 │ # Analysis hints
+  47 │ analysis:
+  48 │   # No standard spaCy model; use pattern matching
+  49 │   spacy_model: null
+  50 │   
+  51 │   sentiment:
+  52 │     method: multilingual
+  53 │     
+  54 │   # Entity patterns for Arabic/Islamic texts
+  55 │   entity_patterns:
+  56 │     PROPHET: "\\b(محمد|إبراهيم|موسى|عيسى)\\b"
+  57 │     ALLAH_NAME: "\\b(الله|الرحمن|الرحيم)\\b"
+  58 │     PLACE: "\\b(مكة|المدينة|القدس|بغداد|دمشق)\\b"
+─────┴──────────────────────────────────────────────────────────────────────────

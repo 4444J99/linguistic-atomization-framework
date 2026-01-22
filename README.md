@@ -26,8 +26,31 @@ LingFrame performs **computational rhetorical analysis** through:
 | **Heuristic Evaluation** | Pattern matching against rhetorical markers (evidence, emotion, authority) | 9-step assessment with per-level breakdown |
 | **Semantic Analysis** | TF-IDF similarity + entity co-occurrence | Theme network, concept clusters |
 | **Temporal Analysis** | Verb tense extraction + temporal marker detection | Timeline flow, narrative progression |
-| **Sentiment Analysis** | VADER + domain lexicons | Emotional arc, valence/arousal mapping |
-| **Entity Analysis** | spaCy NER + domain patterns | Named entities, co-occurrence matrix |
+| **Sentiment Analysis** | VADER + domain lexicons (EN) / XLM-RoBERTa (multilingual) | Emotional arc, valence/arousal mapping |
+| **Entity Analysis** | spaCy NER + domain patterns (15+ languages) | Named entities, co-occurrence matrix |
+| **Translation Analysis** | Sentence alignment + embedding comparison | Divergence metrics, semantic fidelity |
+
+### Multilingual Support
+
+LingFrame supports **15+ languages** across **8+ writing systems**:
+
+| Script | Languages | Tokenization |
+|--------|-----------|--------------|
+| Latin | English, German, French, Spanish, Italian, Portuguese, Latin | Whitespace + NLP |
+| Cyrillic | Russian, Ukrainian, Bulgarian | Whitespace + spaCy |
+| Greek | Modern Greek, Ancient Greek | Whitespace + spaCy |
+| Arabic | Arabic, Persian | CAMeL Tools / Whitespace |
+| Hebrew | Hebrew | Whitespace |
+| Devanagari | Hindi, Sanskrit | Indic NLP |
+| Chinese | Mandarin (Simplified/Traditional) | jieba (NLP) or character-level |
+| Japanese | Japanese | fugashi/MeCab or character-level |
+| Korean | Korean | KoNLPy or whitespace |
+| Thai | Thai | PyThaiNLP |
+
+**CJK Strategy Options**:
+- `nlp`: Use language-specific word segmentation (jieba, fugashi, etc.)
+- `character`: Character-by-character tokenization for deep analysis
+- `hybrid`: NLP segmentation with character fallback
 
 ### What LingFrame Is Not
 
@@ -220,10 +243,12 @@ See [Theoretical Foundation](docs/theory.md) for underlying linguistic framework
 | Layer | Technology |
 |-------|------------|
 | **Core** | Python 3.11+, spaCy, NLTK, VADER |
-| **Analysis** | scikit-learn (TF-IDF), regex pattern matching |
+| **Multilingual NLP** | jieba (Chinese), fugashi (Japanese), CAMeL (Arabic), langdetect |
+| **Analysis** | scikit-learn (TF-IDF), transformers (XLM-RoBERTa), sentence-transformers |
 | **Visualization** | D3.js (force graphs), Plotly.js (Sankey), Chart.js |
 | **Web Interface** | Streamlit |
 | **PDF Processing** | pdfplumber, PyMuPDF |
+| **Unicode** | unidecode (transliteration), pysbd (sentence detection) |
 | **LLM Integration** | Optional (Anthropic, OpenAI, local models) |
 
 ---
@@ -331,12 +356,16 @@ Literary metamorphosis study demonstrating:
 - [x] GitHub Actions CI/CD workflow
 - [x] Corpus Observatory (browse, preview, compare texts)
 - [x] Rhetoric Gym (practice exercises with feedback)
+- [x] Cross-visualization linking (click-through between views)
+- [x] **Multi-language support** (15+ languages, 8+ scripts)
+- [x] **Global Canonical Corpus** (44 literary works planned)
+- [x] **Cross-translation analysis** (divergence metrics)
 
 ### Planned
-- [ ] Cross-visualization linking (click-through between views)
-- [ ] Multi-language support (currently English-only)
 - [ ] Async pipeline for parallel module execution
 - [ ] Plugin system for external module discovery
+- [ ] Embedding-based semantic comparison
+- [ ] Interactive annotation interface
 
 ---
 

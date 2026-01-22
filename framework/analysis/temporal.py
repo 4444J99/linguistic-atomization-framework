@@ -3,6 +3,11 @@ Temporal Analysis Module - Tense detection and narrative flow.
 
 Refactored from jules_temporal_analysis.py to work with the framework ontology.
 Provides tense detection, temporal marker extraction, and narrative shift analysis.
+
+Multilingual Support:
+- Uses language-appropriate spaCy models for morphological analysis
+- Language-specific temporal markers and indicators
+- Supports: en, zh, ja, de, fr, es, ru, and more
 """
 
 from __future__ import annotations
@@ -31,66 +36,132 @@ except ImportError:
 @registry.register_analysis("temporal")
 class TemporalAnalysis(BaseAnalysisModule):
     """
-    Temporal flow analysis for narrative text.
+    Multilingual temporal flow analysis for narrative text.
 
     Analyzes:
-    - Verb tense distribution
+    - Verb tense distribution (language-aware)
     - Temporal markers (adverbs, phrases)
     - Flashback/flashforward detection
     - Narrative flow (Sankey diagram data)
     """
 
     name = "temporal"
-    description = "Tense detection, temporal markers, and narrative flow analysis"
+    description = "Multilingual tense detection, temporal markers, and narrative flow analysis"
 
-    # Temporal marker patterns
-    TEMPORAL_ADVERBS = [
-        "then", "now", "later", "before", "after", "once", "when",
-        "while", "during", "until", "since", "ago", "soon", "already",
-        "eventually", "finally", "previously", "formerly", "currently",
-    ]
+    # Language to spaCy model mapping
+    SPACY_MODELS = {
+        "en": "en_core_web_sm", "english": "en_core_web_sm",
+        "zh": "zh_core_web_sm", "chinese": "zh_core_web_sm",
+        "ja": "ja_core_news_sm", "japanese": "ja_core_news_sm",
+        "de": "de_core_news_sm", "german": "de_core_news_sm",
+        "fr": "fr_core_news_sm", "french": "fr_core_news_sm",
+        "es": "es_core_news_sm", "spanish": "es_core_news_sm",
+        "ru": "ru_core_news_sm", "russian": "ru_core_news_sm",
+        "el": "el_core_news_sm", "greek": "el_core_news_sm",
+        "it": "it_core_news_sm", "italian": "it_core_news_sm",
+        "pt": "pt_core_news_sm", "portuguese": "pt_core_news_sm",
+    }
 
-    PAST_INDICATORS = ["was", "were", "had", "did", "went", "saw", "told", "asked"]
-    PRESENT_INDICATORS = ["is", "are", "am", "do", "does", "see", "tell", "ask"]
-    FUTURE_INDICATORS = ["will", "shall", "going to", "would", "could", "might"]
-
-    FLASHBACK_SIGNALS = [
-        "remember", "recalled", "looking back", "once upon", "used to",
-        "in the past", "back then", "years ago", "deployment",
-    ]
-
-    FLASHFORWARD_SIGNALS = [
-        "will be asked", "years later", "in the future", "someday",
-        "when I return", "back home", "after the war",
-    ]
+    # Language-specific temporal markers
+    TEMPORAL_MARKERS = {
+        "en": {
+            "adverbs": ["then", "now", "later", "before", "after", "once", "when",
+                       "while", "during", "until", "since", "ago", "soon", "already",
+                       "eventually", "finally", "previously", "formerly", "currently"],
+            "past_indicators": ["was", "were", "had", "did", "went", "saw", "told", "asked"],
+            "present_indicators": ["is", "are", "am", "do", "does", "see", "tell", "ask"],
+            "future_indicators": ["will", "shall", "going to", "would", "could", "might"],
+            "flashback_signals": ["remember", "recalled", "looking back", "once upon", "used to",
+                                  "in the past", "back then", "years ago"],
+            "flashforward_signals": ["will be asked", "years later", "in the future", "someday"],
+        },
+        "zh": {
+            "adverbs": ["然后", "现在", "后来", "以前", "之后", "曾经", "当", "在", "直到", "自从", "不久"],
+            "past_indicators": ["了", "过", "曾经"],
+            "present_indicators": ["在", "正在", "着"],
+            "future_indicators": ["将", "会", "要", "将要"],
+            "flashback_signals": ["回忆", "记得", "想起", "从前", "过去"],
+            "flashforward_signals": ["将来", "未来", "以后"],
+        },
+        "ja": {
+            "adverbs": ["それから", "今", "後で", "前に", "後に", "かつて", "時", "間", "まで", "から", "すぐに"],
+            "past_indicators": ["た", "だ", "ました", "でした"],
+            "present_indicators": ["る", "います", "です"],
+            "future_indicators": ["だろう", "でしょう", "つもり"],
+            "flashback_signals": ["思い出す", "覚えている", "昔", "以前"],
+            "flashforward_signals": ["将来", "未来", "いつか"],
+        },
+        "de": {
+            "adverbs": ["dann", "jetzt", "später", "vorher", "nachher", "einmal", "als",
+                       "während", "bis", "seit", "bald", "schon", "endlich", "früher"],
+            "past_indicators": ["war", "hatte", "ging", "sah", "wurde"],
+            "present_indicators": ["ist", "sind", "hat", "geht", "sieht"],
+            "future_indicators": ["wird", "werden", "soll", "wollen"],
+            "flashback_signals": ["erinnern", "damals", "früher", "einst"],
+            "flashforward_signals": ["später", "Zukunft", "eines Tages"],
+        },
+        "fr": {
+            "adverbs": ["alors", "maintenant", "plus tard", "avant", "après", "jadis", "quand",
+                       "pendant", "jusqu'à", "depuis", "bientôt", "déjà", "enfin", "autrefois"],
+            "past_indicators": ["était", "avait", "fut", "alla", "vit"],
+            "present_indicators": ["est", "sont", "a", "va", "voit"],
+            "future_indicators": ["sera", "aura", "ira", "verra"],
+            "flashback_signals": ["souvenir", "rappeler", "autrefois", "jadis"],
+            "flashforward_signals": ["avenir", "futur", "un jour"],
+        },
+    }
 
     def __init__(self):
         super().__init__()
-        self._nlp = None
+        self._nlp_cache: Dict[str, Any] = {}
         self._tense_distribution: Dict[str, Counter] = defaultdict(Counter)
+        self._current_language = "en"
 
-        if SPACY_AVAILABLE:
-            try:
-                self._nlp = spacy.load("en_core_web_sm")
-            except OSError:
-                self._nlp = None
+    def _get_nlp(self, language: str = "en"):
+        """Get or load spaCy model for the specified language."""
+        if not SPACY_AVAILABLE:
+            return None
+        
+        lang_lower = language.lower()
+        
+        if lang_lower in self._nlp_cache:
+            return self._nlp_cache[lang_lower]
+        
+        model_name = self.SPACY_MODELS.get(lang_lower)
+        if not model_name:
+            model_name = "en_core_web_sm"
+        
+        try:
+            nlp = spacy.load(model_name)
+            self._nlp_cache[lang_lower] = nlp
+            return nlp
+        except OSError:
+            self._nlp_cache[lang_lower] = None
+            return None
 
-    def detect_tense(self, sentence: str) -> str:
+    def _get_markers(self, language: str = "en") -> Dict[str, List[str]]:
+        """Get temporal markers for the specified language."""
+        lang_lower = language.lower()[:2]  # Use first 2 chars for matching
+        return self.TEMPORAL_MARKERS.get(lang_lower, self.TEMPORAL_MARKERS["en"])
+
+    def detect_tense(self, sentence: str, language: str = "en") -> str:
         """
         Detect primary tense of a sentence.
 
         Uses spaCy morphological analysis when available,
-        falls back to keyword matching.
+        falls back to language-specific keyword matching.
 
         Args:
             sentence: The sentence to analyze
+            language: Language code for model selection
 
         Returns:
             One of: 'past', 'present', 'future', 'ambiguous'
         """
         # spaCy-based detection
-        if self._nlp:
-            doc = self._nlp(sentence)
+        nlp = self._get_nlp(language)
+        if nlp:
+            doc = nlp(sentence)
             counts = {"past": 0, "present": 0, "future": 0}
 
             for token in doc:
@@ -108,11 +179,13 @@ class TemporalAnalysis(BaseAnalysisModule):
             if max(counts.values()) > 0:
                 return max(counts, key=counts.get)
 
-        # Fallback: keyword scan
+        # Fallback: language-specific keyword scan
+        markers = self._get_markers(language)
         sentence_lower = sentence.lower()
-        past_count = sum(1 for word in self.PAST_INDICATORS if word in sentence_lower)
-        present_count = sum(1 for word in self.PRESENT_INDICATORS if word in sentence_lower)
-        future_count = sum(1 for word in self.FUTURE_INDICATORS if word in sentence_lower)
+        
+        past_count = sum(1 for word in markers.get("past_indicators", []) if word in sentence_lower)
+        present_count = sum(1 for word in markers.get("present_indicators", []) if word in sentence_lower)
+        future_count = sum(1 for word in markers.get("future_indicators", []) if word in sentence_lower)
 
         counts = {
             "past": past_count,
@@ -125,23 +198,30 @@ class TemporalAnalysis(BaseAnalysisModule):
 
         return max(counts, key=counts.get)
 
-    def extract_temporal_markers(self, text: str) -> List[str]:
+    def extract_temporal_markers(self, text: str, language: str = "en") -> List[str]:
         """Extract temporal adverbs and phrases from text."""
-        markers = []
+        markers_found = []
         text_lower = text.lower()
+        
+        lang_markers = self._get_markers(language)
+        adverbs = lang_markers.get("adverbs", [])
 
-        for adverb in self.TEMPORAL_ADVERBS:
+        for adverb in adverbs:
             if adverb in text_lower:
-                markers.append(adverb)
+                markers_found.append(adverb)
 
-        return markers
+        return markers_found
 
-    def detect_narrative_shifts(self, sentence: str) -> Dict[str, bool]:
+    def detect_narrative_shifts(self, sentence: str, language: str = "en") -> Dict[str, bool]:
         """Identify flashbacks and flashforwards in a sentence."""
         sentence_lower = sentence.lower()
+        
+        lang_markers = self._get_markers(language)
+        flashback_signals = lang_markers.get("flashback_signals", [])
+        flashforward_signals = lang_markers.get("flashforward_signals", [])
 
-        has_flashback = any(signal in sentence_lower for signal in self.FLASHBACK_SIGNALS)
-        has_flashforward = any(signal in sentence_lower for signal in self.FLASHFORWARD_SIGNALS)
+        has_flashback = any(signal in sentence_lower for signal in flashback_signals)
+        has_flashforward = any(signal in sentence_lower for signal in flashforward_signals)
 
         return {
             "is_flashback": has_flashback,
@@ -152,6 +232,8 @@ class TemporalAnalysis(BaseAnalysisModule):
     def analyze_sentences(self, corpus: Corpus) -> List[Dict[str, Any]]:
         """
         Analyze temporal structure of all sentences.
+
+        Uses language-appropriate models and markers per document.
 
         Returns:
             List of sentence analysis dicts
@@ -164,20 +246,26 @@ class TemporalAnalysis(BaseAnalysisModule):
         for _, theme in self.iter_atoms(corpus, AtomLevel.THEME):
             theme_titles[theme.id] = theme.metadata.get("title", theme.id)
 
+        # Build document language map
+        doc_languages = {}
+        for doc in corpus.documents:
+            doc_languages[doc.id] = doc.language or "en"
+
         # Analyze each sentence
-        for _, sentence in self.iter_atoms(corpus, AtomLevel.SENTENCE):
+        for doc, sentence in self.iter_atoms(corpus, AtomLevel.SENTENCE):
             text = sentence.text
             theme_id = sentence.theme_id
+            language = doc_languages.get(doc.id, "en")
 
-            # Detect tense
-            tense = self.detect_tense(text)
+            # Detect tense (language-aware)
+            tense = self.detect_tense(text, language=language)
             self._tense_distribution[theme_id][tense] += 1
 
-            # Extract markers
-            markers = self.extract_temporal_markers(text)
+            # Extract markers (language-aware)
+            markers = self.extract_temporal_markers(text, language=language)
 
-            # Detect shifts
-            shifts = self.detect_narrative_shifts(text)
+            # Detect shifts (language-aware)
+            shifts = self.detect_narrative_shifts(text, language=language)
 
             temporal_data.append({
                 "sentence_id": sentence.id,
@@ -193,6 +281,7 @@ class TemporalAnalysis(BaseAnalysisModule):
                     else "flashforward" if shifts["is_flashforward"]
                     else "linear"
                 ),
+                "language": language,
             })
 
         return temporal_data
@@ -287,6 +376,6 @@ class TemporalAnalysis(BaseAnalysisModule):
             data=data,
             metadata={
                 "spacy_available": SPACY_AVAILABLE,
-                "spacy_model": "en_core_web_sm" if self._nlp else None,
+                "supported_languages": list(self.SPACY_MODELS.keys()),
             },
         )

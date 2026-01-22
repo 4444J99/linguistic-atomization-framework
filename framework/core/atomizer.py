@@ -4,6 +4,11 @@ Atomizer - Generic text atomization engine.
 Transforms source documents into hierarchical Atom structures based on
 an AtomizationSchema. Supports multiple document formats and customizable
 splitting patterns.
+
+Multilingual Support:
+- Automatic language and script detection
+- Language-specific tokenization (CJK, Arabic, Thai, etc.)
+- Configurable CJK strategy (NLP segmentation vs character-level)
 """
 
 from __future__ import annotations
@@ -21,6 +26,8 @@ from .ontology import (
     Corpus,
     Document,
 )
+from .tokenizers import TokenizerFactory, TokenizerConfig, get_tokenizer, tokenize_sentences
+from .language import detect_language, detect_script, detect_all
 from ..loaders import PDFLoader
 
 
@@ -35,16 +42,24 @@ class Atomizer:
     (T001:semantic-slug.P001.S001) based on schema configuration.
     """
 
-    def __init__(self, schema: Optional[AtomizationSchema] = None):
+    def __init__(
+        self,
+        schema: Optional[AtomizationSchema] = None,
+        tokenizer_config: Optional[TokenizerConfig] = None,
+    ):
         """
-        Initialize atomizer with optional schema.
+        Initialize atomizer with optional schema and tokenizer config.
 
         Args:
             schema: AtomizationSchema defining levels and splitters.
                    Defaults to the standard 5-level hierarchy.
+            tokenizer_config: Configuration for multi-language tokenization.
+                   Controls CJK strategy, punctuation handling, etc.
         """
         self.schema = schema or AtomizationSchema.default()
         self._counters: Dict[AtomLevel, int] = {}
+        self._tokenizer_factory = TokenizerFactory(tokenizer_config)
+        self._current_language: str = "en"
         self._reset_counters()
 
     def _reset_counters(self):
@@ -89,6 +104,7 @@ class Atomizer:
         level: AtomLevel,
         parent_id: Optional[str] = None,
         back_refs: Optional[Dict[str, str]] = None,
+        language: Optional[str] = None,
     ) -> List[Atom]:
         """
         Recursively atomize text at the given level and deeper.
@@ -98,10 +114,13 @@ class Atomizer:
             level: Current hierarchy level
             parent_id: ID of parent atom (for back-reference)
             back_refs: Dict of back-references (theme_id, paragraph_id, etc.)
+            language: Language code for tokenization (auto-detected if None)
 
         Returns:
             List of Atom objects at this level
         """
+        # Use provided language or current context
+        lang = language or self._current_language
         if back_refs is None:
             back_refs = {}
 
@@ -145,7 +164,7 @@ class Atomizer:
                     next_level = self.schema.levels[next_level_idx]
                     child_refs = {**back_refs, "theme_id": atom_id}
                     atom.children = self.atomize_text(
-                        content, next_level, atom_id, child_refs
+                        content, next_level, atom_id, child_refs, lang
                     )
 
                 atoms.append(atom)
@@ -178,14 +197,15 @@ class Atomizer:
                     next_level = self.schema.levels[next_level_idx]
                     child_refs = {**back_refs, "paragraph_id": atom_id}
                     atom.children = self.atomize_text(
-                        part, next_level, atom_id, child_refs
+                        part, next_level, atom_id, child_refs, lang
                     )
 
                 atoms.append(atom)
 
         elif level == AtomLevel.SENTENCE:
-            # Split on sentence boundaries
-            parts = re.split(splitter, text)
+            # Use language-aware sentence tokenizer when available
+            sent_tokenizer = self._tokenizer_factory.get_sentence_tokenizer(lang)
+            parts = sent_tokenizer.tokenize(text)
             for part in parts:
                 part = part.strip()
                 if not part:
@@ -211,15 +231,15 @@ class Atomizer:
                     next_level = self.schema.levels[next_level_idx]
                     child_refs = {**back_refs, "sentence_id": atom_id}
                     atom.children = self.atomize_text(
-                        part, next_level, atom_id, child_refs
+                        part, next_level, atom_id, child_refs, lang
                     )
 
                 atoms.append(atom)
 
         elif level == AtomLevel.WORD:
-            # Find all word tokens
-            word_pattern = splitter or r'\S+'
-            matches = re.findall(word_pattern, text)
+            # Use language-aware tokenizer for word splitting
+            tokenizer = self._tokenizer_factory.get_tokenizer(lang)
+            matches = tokenizer.tokenize(text)
             for word_text in matches:
                 # Generate ID with parent context
                 atom_id = self._next_id(
@@ -241,7 +261,7 @@ class Atomizer:
                     next_level = self.schema.levels[next_level_idx]
                     child_refs = {**back_refs, "word_id": atom_id}
                     atom.children = self.atomize_text(
-                        word_text, next_level, atom_id, child_refs
+                        word_text, next_level, atom_id, child_refs, lang
                     )
 
                 atoms.append(atom)
@@ -276,6 +296,7 @@ class Atomizer:
         document_id: Optional[str] = None,
         title: Optional[str] = None,
         author: Optional[str] = None,
+        language: Optional[str] = None,
     ) -> Document:
         """
         Atomize a single document file.
@@ -285,9 +306,10 @@ class Atomizer:
             document_id: Optional document ID (auto-generated if not provided)
             title: Optional title override
             author: Optional author metadata
+            language: Language code (auto-detected if None)
 
         Returns:
-            Document with atomized content
+            Document with atomized content including language metadata
         """
         self._reset_counters()
 
@@ -311,18 +333,31 @@ class Atomizer:
             with open(source_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-        # Create document
+        # Detect language and script if not provided
+        if language:
+            self._current_language = language
+            lang_info = detect_all(content)
+            script = lang_info.script.value
+        else:
+            lang_info = detect_all(content)
+            self._current_language = lang_info.language
+            language = lang_info.language
+            script = lang_info.script.value
+
+        # Create document with language metadata
         doc = Document(
             id=document_id or f"DOC{hash(str(source_path)) % 10000:04d}",
             source_path=source_path,
             format=doc_format,
             title=title,
             author=author,
+            language=language,
+            script=script,
         )
 
-        # Start atomization from first level
+        # Start atomization from first level with language context
         first_level = self.schema.levels[0]
-        doc.root_atoms = self.atomize_text(content, first_level)
+        doc.root_atoms = self.atomize_text(content, first_level, language=language)
 
         return doc
 

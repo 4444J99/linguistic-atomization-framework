@@ -1,97 +1,171 @@
 """
 Corpus Observatory - Browse and compare texts in the literary corpus.
+
+Supports multilingual corpus with:
+- Western tradition (Latin, Greek, Cyrillic scripts)
+- Eastern tradition (Chinese, Japanese, Arabic, Devanagari scripts)
+- Original language texts and multiple translations
+- Language/script detection and display
 """
 
 import streamlit as st
 from pathlib import Path
 import re
-from typing import Optional
+import yaml
+from typing import Optional, Dict, List, Any
+
+# Script to emoji/flag mapping for visual display
+SCRIPT_DISPLAY = {
+    "latin": "🔤",
+    "greek": "🏛️",
+    "cyrillic": "🇷🇺",
+    "arabic": "🕌",
+    "hebrew": "✡️",
+    "devanagari": "🕉️",
+    "chinese": "🇨🇳",
+    "japanese": "🇯🇵",
+    "korean": "🇰🇷",
+    "thai": "🇹🇭",
+    "unknown": "📝",
+}
+
+LANGUAGE_NAMES = {
+    "en": "English", "de": "German", "fr": "French", "es": "Spanish",
+    "it": "Italian", "pt": "Portuguese", "ru": "Russian", "el": "Greek",
+    "la": "Latin", "grc": "Ancient Greek", "ang": "Old English", "enm": "Middle English",
+    "zh": "Chinese", "ja": "Japanese", "ko": "Korean",
+    "ar": "Arabic", "fa": "Persian", "he": "Hebrew",
+    "hi": "Hindi", "sa": "Sanskrit", "bn": "Bengali", "ta": "Tamil",
+    "th": "Thai", "fro": "Old French", "akk": "Akkadian",
+}
+
+
+def get_script_emoji(script: str) -> str:
+    """Get emoji for script type."""
+    return SCRIPT_DISPLAY.get(script.lower(), "📝")
+
+
+def get_language_name(code: str) -> str:
+    """Get human-readable language name from code."""
+    return LANGUAGE_NAMES.get(code.lower(), code.upper())
+
+, Dict, List, Any
 
 
 def load_corpus_index() -> list[dict]:
     """Load corpus texts by scanning the nested corpus directory structure.
     
-    Structure: corpus/{period}/{text}/
+    Structure: corpus/{tradition}/{period}/{text}/
+    Also reads corpus_index.yaml for metadata about planned texts.
     """
     corpus_dir = Path(__file__).resolve().parent.parent.parent / "corpus"
     texts = []
-
+    
     if not corpus_dir.exists():
         return texts
+    
+    # Try to load corpus_index.yaml for additional metadata
+    index_metadata = {}
+    index_path = corpus_dir / "corpus_index.yaml"
+    if index_path.exists():
+        try:
+            with open(index_path, 'r', encoding='utf-8') as f:
+                index_data = yaml.safe_load(f)
+                # Flatten the nested structure for lookup
+                for tradition in ['western', 'eastern']:
+                    if tradition in index_data:
+                        for period, period_texts in index_data[tradition].items():
+                            if isinstance(period_texts, dict):
+                                for text_id, text_meta in period_texts.items():
+                                    if isinstance(text_meta, dict):
+                                        key = f"{tradition}/{period}/{text_id}"
+                                        index_metadata[text_id] = text_meta
+        except Exception:
+            pass
 
-    # Scan period directories (classical, medieval, early-modern, modern)
-    for period_dir in corpus_dir.iterdir():
-        if not period_dir.is_dir() or period_dir.name.startswith('.'):
-            continue
-        
-        period_name = period_dir.name.replace("-", " ").title()
-        
-        # Scan text directories within each period
-        for text_dir in period_dir.iterdir():
-            if not text_dir.is_dir() or text_dir.name.startswith('.'):
+    # Scan both western and eastern traditions, and legacy flat structure
+    tradition_dirs = [corpus_dir]
+    for tradition in ['western', 'eastern']:
+        tradition_path = corpus_dir / tradition
+        if tradition_path.exists():
+            tradition_dirs.append(tradition_path)
+    
+    for base_dir in tradition_dirs:
+        # Scan period directories
+        for period_dir in base_dir.iterdir():
+            if not period_dir.is_dir() or period_dir.name.startswith('.'):
                 continue
-
-            readme_path = text_dir / "README.md"
-            metadata = {
-                "id": f"{period_dir.name}/{text_dir.name}",
-                "title": text_dir.name.replace("-", " ").title(),
-                "path": str(text_dir),
-                "period": period_name,
-                "language": "English",
-                "author": "Unknown",
-                "description": "",
-                "files": [],
-            }
-
-            # Parse README for metadata
-            if readme_path.exists():
-                content = readme_path.read_text(encoding="utf-8", errors="ignore")
-                
-                # Extract title from first heading
-                title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-                if title_match:
-                    metadata["title"] = title_match.group(1).strip()
-                
-                # Extract author
-                author_match = re.search(r'\*\*Author[:\*]*\*?\*?\s*(.+)', content, re.IGNORECASE)
-                if author_match:
-                    metadata["author"] = author_match.group(1).strip().rstrip('*')
-                
-                # Extract period from README (may be more specific)
-                period_match = re.search(r'\*\*Period[:\*]*\*?\*?\s*(.+)', content, re.IGNORECASE)
-                if period_match:
-                    metadata["period"] = period_match.group(1).strip().rstrip('*')
-                
-                # Extract language(s)
-                lang_match = re.search(r'\*\*Language[s]?[:\*]*\*?\*?\s*(.+)', content, re.IGNORECASE)
-                if lang_match:
-                    metadata["language"] = lang_match.group(1).strip().rstrip('*')
-                
-                # Extract description (first paragraph after title)
-                desc_match = re.search(r'^#.+\n\n(.+?)(?:\n\n|\n---|\n\*\*)', content, re.MULTILINE | re.DOTALL)
-                if desc_match:
-                    metadata["description"] = desc_match.group(1).strip()[:200]
-
-            # Find all text files
-            text_files = list(text_dir.glob("*.txt"))
-            if text_files:
-                metadata["files"] = [
-                    {
-                        "name": f.stem.replace("_", " ").title(),
-                        "path": str(f),
-                        "lines": sum(1 for _ in open(f, encoding="utf-8", errors="ignore"))
-                    }
-                    for f in sorted(text_files)
-                ]
-                # Set primary text file
-                english_files = [f for f in text_files if "english" in f.name.lower()]
-                metadata["text_file"] = str(english_files[0] if english_files else text_files[0])
+            if period_dir.name in ['western', 'eastern']:
+                continue  # Skip tradition directories when scanning from corpus_dir
             
-            # Only add if there are actual text files
-            if metadata["files"]:
-                texts.append(metadata)
+            period_name = period_dir.name.replace("-", " ").title()
+            tradition = base_dir.name if base_dir != corpus_dir else "legacy"
+            
+            # Scan text directories within each period
+            for text_dir in period_dir.iterdir():
+                if not text_dir.is_dir() or text_dir.name.startswith('.'):
+                    continue
 
-    return sorted(texts, key=lambda x: (x["period"], x["title"]))
+                readme_path = text_dir / "README.md"
+                text_key = text_dir.name.replace("-", "_")
+                index_meta = index_metadata.get(text_key, {})
+                
+                metadata = {
+                    "id": f"{period_dir.name}/{text_dir.name}",
+                    "title": index_meta.get("title", text_dir.name.replace("-", " ").title()),
+                    "original_title": index_meta.get("original_title"),
+                    "path": str(text_dir),
+                    "period": period_name,
+                    "tradition": tradition.title() if tradition != "legacy" else None,
+                    "language": index_meta.get("original_language", "en"),
+                    "script": index_meta.get("script", "latin"),
+                    "author": index_meta.get("author", "Unknown"),
+                    "description": "",
+                    "files": [],
+                    "translations": index_meta.get("translations", []),
+                }
+
+                # Parse README for metadata
+                if readme_path.exists():
+                    file_content = readme_path.read_text(encoding="utf-8", errors="ignore")
+                    
+                    # Extract title from first heading
+                    title_match = re.search(r'^#\s+(.+)$', file_content, re.MULTILINE)
+                    if title_match and not index_meta.get("title"):
+                        metadata["title"] = title_match.group(1).strip()
+                    
+                    # Extract author
+                    author_match = re.search(r'\*\*Author[:\*]*\*?\*?\s*(.+)', file_content, re.IGNORECASE)
+                    if author_match and metadata["author"] == "Unknown":
+                        metadata["author"] = author_match.group(1).strip().rstrip('*')
+                    
+                    # Extract description
+                    desc_match = re.search(r'^#.+\n\n(.+?)(?:\n\n|\n---|\n\*\*)', file_content, re.MULTILINE | re.DOTALL)
+                    if desc_match:
+                        metadata["description"] = desc_match.group(1).strip()[:200]
+
+                # Find all text files
+                text_files = list(text_dir.glob("*.txt"))
+                if text_files:
+                    metadata["files"] = [
+                        {
+                            "name": f.stem.replace("_", " ").title(),
+                            "path": str(f),
+                            "lines": sum(1 for _ in open(f, encoding="utf-8", errors="ignore")),
+                            "is_original": "original" in f.name.lower() or metadata["language"] in f.name.lower(),
+                        }
+                        for f in sorted(text_files)
+                    ]
+                    # Set primary text file (prefer English translation, then original)
+                    english_files = [f for f in text_files if "english" in f.name.lower()]
+                    original_files = [f for f in text_files if "original" in f.name.lower()]
+                    metadata["text_file"] = str(english_files[0] if english_files else (original_files[0] if original_files else text_files[0]))
+                
+                # Only add if there are actual text files
+                if metadata["files"]:
+                    texts.append(metadata)
+
+    return sorted(texts, key=lambda x: (x.get("tradition") or "", x["period"], x["title"]))
 
 
 def render_corpus_browser(texts: list[dict]) -> Optional[str]:
@@ -134,9 +208,17 @@ def render_corpus_browser(texts: list[dict]) -> Optional[str]:
     for i, text in enumerate(filtered):
         with cols[i % 2]:
             with st.container(border=True):
-                st.markdown(f"### {text['title']}")
+                # Show script emoji and original title if available
+                script_emoji = get_script_emoji(text.get('script', 'latin'))
+                display_title = text['title']
+                if text.get('original_title'):
+                    display_title = f"{text['title']} ({text['original_title']})"
+                
+                st.markdown(f"### {script_emoji} {display_title}")
                 st.markdown(f"**{text['author']}**")
-                st.caption(f"{text['period']}")
+                lang_name = get_language_name(text.get('language', 'en'))
+                tradition = f" • {text['tradition']}" if text.get('tradition') else ""
+                st.caption(f"{text['period']}{tradition} • {lang_name}")
                 
                 if text.get("description"):
                     st.markdown(f"*{text['description'][:100]}...*" if len(text.get('description', '')) > 100 else f"*{text['description']}*")
