@@ -4,8 +4,26 @@
 
 [![Status: Research](https://img.shields.io/badge/Status-Research-blue.svg)]()
 [![Analysis: Heuristic](https://img.shields.io/badge/Analysis-Heuristic-orange.svg)]()
+[![Corpus: 46 Texts](https://img.shields.io/badge/Corpus-46%20Texts-green.svg)]()
+[![Languages: 15+](https://img.shields.io/badge/Languages-15%2B-purple.svg)]()
 
-LingFrame transforms text into hierarchical structures and applies multi-dimensional analysis pipelines to reveal rhetorical patterns, argumentative structure, and compositional dynamics.
+---
+
+## The Problem
+
+Rhetorical analysis remains locked in subjective interpretation. Writers lack objective feedback on argumentation quality. Scholars manually trace patterns across texts. Translation studies rely on intuition rather than measurement. No unified platform bridges computational linguistics with classical rhetoric.
+
+## The Approach
+
+LingFrame atomizes text into a hierarchical structure (theme → paragraph → sentence → word → letter) and applies configurable analysis pipelines at each level. Pattern detection identifies rhetorical markers. Multi-dimensional scoring quantifies argumentation strength. Cross-text comparison reveals structural patterns across works and translations.
+
+## The Outcome
+
+A computational rhetoric workbench with:
+- **46 canonical texts** across 12 literary traditions (1.4M+ lines)
+- **15+ language support** with script-aware tokenization
+- **6 analysis modules** generating interactive visualizations
+- **3 user pathways**: Scholar (corpus research), Writer (document feedback), Developer (API integration)
 
 ---
 
@@ -338,12 +356,12 @@ Literary metamorphosis study demonstrating:
 
 ### Completed
 - [x] Hierarchical text atomization with 5 naming strategies
-- [x] 5 analysis modules (evaluation, semantic, temporal, sentiment, entity)
+- [x] 6 analysis modules (evaluation, semantic, temporal, sentiment, entity, translation)
 - [x] 5 visualization adapters (dashboard, force graph, sankey, chart, browser)
-- [x] Narrative report generation
-- [x] Web interface (Streamlit) and CLI
-- [x] Domain profile system
-- [x] Optional LLM integration
+- [x] Narrative report generation with HTML templates
+- [x] Web interface (Streamlit) and dual CLI (simple + advanced)
+- [x] Domain profile system (military, literary, technical)
+- [x] Optional LLM integration (Anthropic, OpenAI, local)
 - [x] Generation layer (revision suggestions)
 - [x] Recursion capability (iterative analysis)
 - [x] Test suite (142 tests covering all modules)
@@ -354,18 +372,21 @@ Literary metamorphosis study demonstrating:
 - [x] Reproducibility tracking with checksums
 - [x] Revision comparison (before/after analysis)
 - [x] GitHub Actions CI/CD workflow
-- [x] Corpus Observatory (browse, preview, compare texts)
+- [x] Corpus Observatory (browse, preview, compare 46 texts)
 - [x] Rhetoric Gym (practice exercises with feedback)
 - [x] Cross-visualization linking (click-through between views)
-- [x] **Multi-language support** (15+ languages, 8+ scripts)
-- [x] **Global Canonical Corpus** (44 literary works planned)
-- [x] **Cross-translation analysis** (divergence metrics)
+- [x] **Multi-language support** (15+ languages, 8+ writing systems)
+- [x] **Global Canonical Corpus** (46 texts, 115 files, 1.4M+ lines)
+- [x] **Cross-translation analysis** (divergence metrics, alignment)
+- [x] **Original language texts** (Greek, Hebrew, Russian, Chinese, Sanskrit, Persian, Japanese, Arabic)
+- [x] **Multiple PD translations per text** (2-5 translations for major works)
 
 ### Planned
 - [ ] Async pipeline for parallel module execution
 - [ ] Plugin system for external module discovery
 - [ ] Embedding-based semantic comparison
 - [ ] Interactive annotation interface
+- [ ] Real-time collaborative analysis
 
 ---
 
