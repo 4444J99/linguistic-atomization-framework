@@ -1,11 +1,13 @@
+[![ORGAN-I: Theory](https://img.shields.io/badge/ORGAN--I-Theory-1a237e?style=flat-square)](https://github.com/organvm-i-theoria)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776ab?style=flat-square&logo=python&logoColor=white)]()
+[![Tests](https://img.shields.io/badge/tests-142-brightgreen?style=flat-square)]()
+[![Corpus: 46 Texts](https://img.shields.io/badge/corpus-46%20texts-green?style=flat-square)]()
+[![Languages: 15+](https://img.shields.io/badge/languages-15%2B-purple?style=flat-square)]()
+
 # LingFrame
 
 **A Computational Rhetoric Platform for Linguistic Analysis**
 
-[![Status: Research](https://img.shields.io/badge/Status-Research-blue.svg)]()
-[![Analysis: Heuristic](https://img.shields.io/badge/Analysis-Heuristic-orange.svg)]()
-[![Corpus: 46 Texts](https://img.shields.io/badge/Corpus-46%20Texts-green.svg)]()
-[![Languages: 15+](https://img.shields.io/badge/Languages-15%2B-purple.svg)]()
 
 ---
 
@@ -409,6 +411,25 @@ If you use LingFrame in academic work, please cite:
 ## License
 
 Educational and research use. See LICENSE for details.
+
+---
+
+## Part of the Eight-Organ System
+
+LingFrame is a flagship repository within **ORGAN-I: Theoria** — the epistemological and theoretical foundation of the [organvm](https://github.com/meta-organvm) creative-institutional system.
+
+| Organ | Domain | Organization |
+|-------|--------|-------------|
+| **I — Theoria** | Theory, epistemology, recursion | [`organvm-i-theoria`](https://github.com/organvm-i-theoria) |
+| II — Poiesis | Art, generative & experiential | [`organvm-ii-poiesis`](https://github.com/organvm-ii-poiesis) |
+| III — Ergon | Commerce, SaaS & products | [`organvm-iii-ergon`](https://github.com/organvm-iii-ergon) |
+| IV — Taxis | Orchestration & governance | [`organvm-iv-taxis`](https://github.com/organvm-iv-taxis) |
+| V — Logos | Public process & essays | [`organvm-v-logos`](https://github.com/organvm-v-logos) |
+| VI — Koinonia | Community & salons | [`organvm-vi-koinonia`](https://github.com/organvm-vi-koinonia) |
+| VII — Kerygma | Marketing & distribution | [`organvm-vii-kerygma`](https://github.com/organvm-vii-kerygma) |
+| VIII — Meta | Umbrella organization | [`meta-organvm`](https://github.com/meta-organvm) |
+
+LingFrame sits at the intersection of computational linguistics and classical rhetoric — a theoretical instrument that demonstrates ORGAN-I's commitment to rigorous, systematic inquiry. Its hierarchical atomization model and heuristic evaluation framework embody the epistemic recursion that defines the Theoria organ.
 
 ---
 
