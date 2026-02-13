@@ -1,0 +1,40 @@
+# seed.yaml — Automation Contract for organvm-i-theoria/linguistic-atomization-framework
+# Schema: seed/v1.0
+# Generated: 2026-02-12 (AUTONOMY Sprint)
+# Category: standard
+
+schema_version: "1.0"
+organ: I
+organ_name: Theory
+repo: linguistic-atomization-framework
+org: organvm-i-theoria
+
+metadata:
+  implementation_status: PRODUCTION
+  tier: standard
+  promotion_status: LOCAL
+  last_validated: "2026-02-11"
+  generated: "2026-02-12"
+  sprint: "AUTONOMY"
+
+agents:
+  - name: ci
+    trigger: on_push
+    workflow: .github/workflows/ci-python.yml
+    description: "Continuous integration pipeline"
+
+produces:
+  - type: dependency
+    description: Consumed by organvm-i-theoria/nexus--babel-alexandria-
+    consumers: [organvm-i-theoria/nexus--babel-alexandria-]
+  - type: dependency
+    description: Consumed by organvm-i-theoria/my-knowledge-base
+    consumers: [organvm-i-theoria/my-knowledge-base]
+
+subscriptions:
+  - event: governance.updated
+    source: ORGAN-IV
+    action: Check compliance with updated governance rules
+  - event: health-audit.completed
+    source: ORGAN-IV
+    action: Review audit findings for this repo
