@@ -1,0 +1,77 @@
+name: "AI Agent Chain: Context Bundle & Handoff"
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 0 * * SUN"
+  workflow_dispatch:
+
+env:
+  THREAD_ID: "UFNS-2025-10-26-AJ01"
+  BUNDLE_DIR: "exports/agent_chain"
+  CONTRACT: "meta/agent_chain.yaml"
+
+jobs:
+  build_bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read contract
+        run: |
+          python - <<'PY'
+          import yaml, json, os, glob, pathlib
+          c=yaml.safe_load(open(os.environ["CONTRACT"]))
+          inc=sum((glob.glob(p, recursive=True) for p in c["agent_chain"]["bundle"]["include"]), [])
+          red=sum((glob.glob(p, recursive=True) for p in c["agent_chain"]["bundle"]["redact"]), [])
+          inc=[p for p in inc if p not in set(red)]
+          os.makedirs(os.environ["BUNDLE_DIR"], exist_ok=True)
+          open(f'{os.environ["BUNDLE_DIR"]}/manifest.json','w').write(json.dumps({
+            "thread_id": c["agent_chain"]["id"],
+            "project": c["agent_chain"]["project"],
+            "mode_options": c["agent_chain"]["modes"],
+            "files": inc
+          }, indent=2))
+          PY
+      - name: Copy files into bundle
+        run: |
+          jq -r '.files[]' "$BUNDLE_DIR/manifest.json" | tar -czf "$BUNDLE_DIR/context_bundle.tgz" -T -
+      - name: Create handoff.jsonl
+        run: |
+          mkdir -p "$BUNDLE_DIR"
+          echo '{"thread_id":"'${THREAD_ID}'","title":"RLOS","version":"v1.1_locked","lang":"multi","summary":"Rhetorical–Linguistic OS governance + docs","tasks":["governance_check","doc_export","version_tag"],"todos":["ARG_LAYER","VISUAL-RHET"],"invariants":["semantic_integrity","mode_separation"],"links":[".copilot/config/manifest_full_lineage.yaml"]}' > "$BUNDLE_DIR/handoff.jsonl"
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "agent_chain_bundle"
+          path: exports/agent_chain/
+
+  dispatch_to_peers:
+    runs-on: ubuntu-latest
+    needs: build_bundle
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: agent_chain_bundle
+          path: agent_chain_out
+      - name: Send to ChatGPT (if configured)
+        if: ${{ env.CHATGPT_WEBHOOK && env.CHATGPT_TOKEN }}
+        env:
+          URL: ${{ secrets.CHATGPT_WEBHOOK }}
+          TOKEN: ${{ secrets.CHATGPT_TOKEN }}
+        run: |
+          curl -sS -H "Authorization: Bearer $TOKEN"             -F "bundle=@agent_chain_out/context_bundle.tgz"             -F "handoff=@agent_chain_out/handoff.jsonl"             "$URL" || true
+      - name: Send to Gemini (if configured)
+        if: ${{ env.GEMINI_WEBHOOK && env.GEMINI_TOKEN }}
+        env:
+          URL: ${{ secrets.GEMINI_WEBHOOK }}
+          TOKEN: ${{ secrets.GEMINI_TOKEN }}
+        run: |
+          curl -sS -H "Authorization: Bearer $TOKEN"             -F "bundle=@agent_chain_out/context_bundle.tgz"             -F "handoff=@agent_chain_out/handoff.jsonl"             "$URL" || true
+      - name: Send to Grok (if configured)
+        if: ${{ env.GROK_WEBHOOK && env.GROK_TOKEN }}
+        env:
+          URL: ${{ secrets.GROK_WEBHOOK }}
+          TOKEN: ${{ secrets.GROK_TOKEN }}
+        run: |
+          curl -sS -H "Authorization: Bearer $TOKEN"             -F "bundle=@agent_chain_out/context_bundle.tgz"             -F "handoff=@agent_chain_out/handoff.jsonl"             "$URL" || true

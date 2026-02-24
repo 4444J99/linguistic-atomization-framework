@@ -1,0 +1,21 @@
+{
+  "paragraph_id": "P1",
+  "tokens": [
+    "you",
+    "stand",
+    "in",
+    "line",
+    "with",
+    "the",
+    "unphotographed"
+  ],
+  "pos": [
+    "PRON",
+    "VERB",
+    "PREP",
+    "NOUN",
+    "PREP",
+    "DET",
+    "ADJ"
+  ]
+}

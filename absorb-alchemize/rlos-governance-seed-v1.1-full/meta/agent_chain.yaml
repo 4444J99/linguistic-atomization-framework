@@ -1,0 +1,34 @@
+agent_chain:
+  id: UFNS-2025-10-26-AJ01-CHAIN
+  project: RE:GE_OS_RHETORICAL_LINGUISTICS
+  modes: [RAW, PUBLIC]
+  bundle:
+    include:
+      - .copilot/config/manifest_full_lineage.yaml
+      - docs/**/*.md
+      - docs/system_governance/**/*.md
+      - src/**/*
+    redact:
+      - "**/*.secrets"
+      - "**/*.key"
+      - "**/*_pii.*"
+  handoff_contract:
+    format: "jsonl"
+    fields: [thread_id, title, version, lang, summary, tasks, todos, invariants, links]
+  peers:
+    - name: chatgpt
+      endpoint_env: CHATGPT_WEBHOOK
+      auth_env: CHATGPT_TOKEN
+    - name: gemini
+      endpoint_env: GEMINI_WEBHOOK
+      auth_env: GEMINI_TOKEN
+    - name: grok
+      endpoint_env: GROK_WEBHOOK
+      auth_env: GROK_TOKEN
+  privacy:
+    pii: "strip"
+    logs: "hash_ids"
+    audit_ledger: "on"
+  schedule:
+    weekly: "SUN 00:30"
+    on_push_main: true

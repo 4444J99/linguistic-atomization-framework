@@ -1,0 +1,29 @@
+{
+  "paragraph_id": "P3",
+  "tokens": [
+    "on",
+    "the",
+    "turret\u2019s",
+    "forward",
+    "glass",
+    "some",
+    "marine",
+    "draws",
+    "a",
+    "smiley",
+    "face"
+  ],
+  "pos": [
+    "PREP",
+    "DET",
+    "NOUN",
+    "ADJ",
+    "NOUN",
+    "DET",
+    "NOUN",
+    "VERB",
+    "DET",
+    "ADJ",
+    "NOUN"
+  ]
+}

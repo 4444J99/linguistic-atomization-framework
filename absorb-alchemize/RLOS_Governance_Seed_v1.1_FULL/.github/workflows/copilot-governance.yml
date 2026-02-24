@@ -1,0 +1,90 @@
+name: "Copilot Governance & Documentation Sync"
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * SUN"
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: "UFNS-2025-10-26-AJ01"
+  PROJECT_NAME: "RE:GE_OS_RHETORICAL_LINGUISTICS"
+  MODE: "RAW|PUBLIC"
+  OUT_DIR: "docs/system_governance"
+  PYTHONUNBUFFERED: 1
+
+jobs:
+  governance_check:
+    name: "Governance Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+      - name: 🔧 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 📦 Install dependencies
+        run: |
+          pip install pyyaml markdownify markdown-link-check pypandoc blake3
+      - name: 🧾 Validate YAML governance manifest
+        run: |
+          python - <<'PYCODE'
+          import yaml, pathlib
+          mf = pathlib.Path('.copilot/config/manifest_full_lineage.yaml')
+          data = yaml.safe_load(mf.read_text())
+          print(f"✅ Manifest loaded: {data['project']['title']}")
+          assert 'functions' in data, "Missing function definitions"
+          print("✅ Structure verified")
+          PYCODE
+      - name: 🔗 Check markdown links
+        run: |
+          find docs -type f -name "*.md" -exec markdown-link-check {} \;
+      - name: 🧮 Verify checksum
+        run: |
+          python - <<'PYCODE'
+          import hashlib, pathlib
+          data = pathlib.Path('.copilot/config/manifest_full_lineage.yaml').read_bytes()
+          print("SHA256:", hashlib.sha256(data).hexdigest())
+          PYCODE
+
+  doc_export:
+    name: "Export Documentation"
+    runs-on: ubuntu-latest
+    needs: governance_check
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🔧 Install pandoc
+        run: sudo apt-get install -y pandoc texlive-xetex
+      - name: 📄 Convert Markdown → PDF
+        run: |
+          mkdir -p exports
+          for file in $(find docs -type f -name "*.md"); do
+            out="exports/$(basename "${file%.md}.pdf")"
+            echo "Converting $file → $out"
+            pandoc "$file" -o "$out" --standalone
+          done
+      - name: ⬆️ Upload exports
+        uses: actions/upload-artifact@v4
+        with:
+          name: "RLOS_Documentation_PDFs"
+          path: exports/
+
+  version_tag:
+    name: "Semantic Version Tagging"
+    runs-on: ubuntu-latest
+    needs: doc_export
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🏷️ Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: "patch"
+          release_branches: "main"
+          tag_prefix: "RLOS-"
+          custom_tag: "UFNS-2025-10-26-AJ01"
+      - name: 🧾 Log tag
+        run: git describe --tags --abbrev=0

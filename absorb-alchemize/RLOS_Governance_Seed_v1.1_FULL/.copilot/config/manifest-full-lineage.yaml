@@ -1,0 +1,115 @@
+# ============================================================
+#  RE:GE_OS_RHETORICAL_LINGUISTICS — Governance Manifest (Full Lineage)
+#  Thread(Current): UFNS-2025-10-26-AJ01  |  Version: v1.1_locked
+#  Author: AJP / ChatGPT-5  |  Mode: [RAW, PUBLIC]
+# ============================================================
+
+project:
+  id: UFNS-2025-10-26-AJ01
+  title: "Formal Language Theory, Compiler Design, and Symbolic Sentence Engine"
+  root: "RE:GE_OS_RHETORICAL_LINGUISTICS"
+  repo_dir: "$HOME/GitHub/RLOS"
+  out_dir: "$HOME/GitHub/RLOS/docs/system_governance"
+  maintainer: "Anthony James Padavano"
+  ai_collaborator: "ChatGPT-5"
+  modes: ["RAW","PUBLIC"]
+
+origin_prompt:
+  thread_root_id: "UFNS-2025-01-01-AJ00"
+  created: "2025-01-01T00:00:00-0500"
+  title: "RE:GE_OS Genesis — Language as Operating System"
+  summary: >
+    Establishes the foundational axiom that language systems function as modular,
+    self-evolving computational architectures (M3T4M0RF0S).
+  hash: "blake3:GENESIS_HASH_HERE"
+
+continuity:
+  lineage:
+    - UFNS-2025-01-01-AJ00
+    - UFNS-2025-03-10-AJ02
+    - UFNS-2025-06-15-AJ04
+    - UFNS-2025-10-26-AJ01
+  current: "UFNS-2025-10-26-AJ01"
+  next_placeholder: "UFNS-2026-01-01-AJ05"
+
+taxonomy_root:
+  concept: "micro_macro_cascade"
+  description: "Recursive scaling from atomic symbol → rhetoric → discourse → socioculture."
+  related_threads:
+    - "Naming_Protocol_Laws.md"
+    - "MetaMorphOS_Taxonomy.md"
+
+theory_block:
+  source: "RE:GE_OS_Manifesto.md"
+  excerpt_ref: "§2.1–2.7 — Semiotic Computation"
+  verified_hash: "blake3:MANIFESTO_HASH"
+
+agent_lineage:
+  - { name: "ChatGPT",  model: "GPT-5",     role: "Architect",            since: "2025-01-01" }
+  - { name: "Gemini",   model: "1.5-Pro",   role: "Semantic Verifier",     since: "2025-10-24" }
+  - { name: "Grok",     model: "X.AI-core", role: "Semiotic Critic",       since: "2025-10-25" }
+  - { name: "Copilot",  model: "GitHub",    role: "Automation Executor",   since: "2025-10-26" }
+
+documents:
+  - { name: "### Introduction to Context-Sensitive Syntax Rules.md", scope: "CSG, Chomsky Type-1, rule design" }
+  - { name: "Compiler-Design-Principles-and-Components.md",         scope: "phases, IR, opt, codegen" }
+  - { name: "SYMBOLIC SENTENCE ENGINE_v1.md",                        scope: "symbolic ops, rhetorical synthesis" }
+  - { name: "UFNS-2025-10-26-AJ01_system_governance.md",             scope: "meta, invariants, audit" }
+
+folders:
+  docs: [syntax_engine, compiler_core, symbolic_sentence_engine, system_governance, references]
+  src:  [syntax_engine, compiler_core, symbolic_sentence_engine, utils]
+  tests: [test_syntax_engine.py, test_compiler_core.py, test_symbolic_sentence_engine.py]
+
+functions:
+  syntax_engine:
+    - parse_context_sensitive: { file: "parser.py",      description: "Parse strings under CSG rules" }
+    - validate_derivation:     { file: "validator.py",   description: "Non-contracting derivation checks" }
+  compiler_core:
+    - tokenize:    { file: "lexer.py",       description: "Lexical scanning" }
+    - build_ast:   { file: "ast_builder.py", description: "AST construction" }
+    - optimize_ir: { file: "optimizer.py",   description: "IR loop/data-flow optimizations" }
+  symbolic_sentence_engine:
+    - generate_sentence:        { file: "symbolic_core.py",  description: "Multimodal rhetorical output" }
+    - apply_ethos_pathos_logos: { file: "rhetorical_ops.py", description: "Rhetorical weighting vectors" }
+  utils:
+    - log_event: { file: "logger.py", description: "Reproducible event logging" }
+
+automation:
+  copilot:
+    trigger: "push_to_main"
+    tasks:
+      - validate_markdown_links
+      - auto_tag_thread_id: "UFNS-2025-10-26-AJ01"
+      - sync_metadata_to_readme
+      - run_tests: "all"
+      - export_docs_to_pdf
+  schedule:
+    cron: "0 0 * * SUN"
+    description: "Weekly doc sync & verification"
+  mode_switch:
+    RAW:    { filters: "none", log_level: "debug" }
+    PUBLIC: { filters: ["safety","truthfulness","cultural_sensitivity"], log_level: "info" }
+
+invariants:
+  - "Unified symbol table across modules"
+  - "Deterministic results under fixed seeds"
+  - "UFNS tag + timestamp per file"
+  - "RAW and PUBLIC stored in separate branches"
+  - "Semantic versioning via commit hooks"
+
+bloom_and_evolve:
+  phase_A: "Schema hardening, NLI/fact gates, confidence plumbing"
+  phase_B: "Tone/quantity prosody, ARG_LAYER, VISUAL-RHET expansion"
+  phase_C: "Cross-lingual transfer, multimodal synthesis, online learning"
+
+meta:
+  encoding: "UTF-8"
+  license: "CC-BY-SA-4.0"
+  created: "2025-10-26T00:00:00-0400"
+  updated: "2025-10-28T00:00:00-0400"
+  checksum: "BLAKE3-auto@v1.1_locked"
+  verified_by: "chatgpt-5-pipeline"
+# ============================================================
+#  END OF FILE
+# ============================================================

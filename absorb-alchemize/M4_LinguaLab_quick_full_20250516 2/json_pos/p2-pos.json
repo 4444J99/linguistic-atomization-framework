@@ -1,0 +1,27 @@
+{
+  "paragraph_id": "P2",
+  "tokens": [
+    "a",
+    "burst",
+    "of",
+    "cloth",
+    "over",
+    "shoulder",
+    "washes",
+    "across",
+    "the",
+    "stalls"
+  ],
+  "pos": [
+    "DET",
+    "NOUN",
+    "PREP",
+    "NOUN",
+    "PREP",
+    "NOUN",
+    "VERB",
+    "PREP",
+    "DET",
+    "NOUN"
+  ]
+}
