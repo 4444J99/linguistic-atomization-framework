@@ -317,6 +317,7 @@ Let's create a **gauge chart** adapter to visualize readability scores.
 
 Create `framework/visualization/adapters/readability_gauge.py`:
 
+{% raw %}
 ```python
 """
 Readability Gauge Adapter - Visual gauge charts for readability metrics.
@@ -535,6 +536,7 @@ class ReadabilityGaugeAdapter(BaseVisualizationAdapter):
         }
         """
 ```
+{% endraw %}
 
 ### Step 2: Register the Adapter
 
