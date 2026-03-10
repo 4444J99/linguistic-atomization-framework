@@ -1,0 +1,8 @@
+schema_version: '1.0'
+repo: linguistic-atomization-framework
+organ: I
+display_name: "LingFrame \u2014 computational rhetoric platform: hierarchical text\
+  \ atomization, 6 analysis modules, 46-text multilingual corpus, interactive visualizations"
+delivery:
+- platform: web_app
+  status: not_started
