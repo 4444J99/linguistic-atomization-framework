@@ -1,8 +1,33 @@
 schema_version: '1.0'
 repo: linguistic-atomization-framework
 organ: I
-display_name: "LingFrame \u2014 computational rhetoric platform: hierarchical text\
-  \ atomization, 6 analysis modules, 46-text multilingual corpus, interactive visualizations"
+display_name: "LingFrame — computational rhetoric platform: hierarchical text atomization, 6 analysis modules, 46-text multilingual corpus"
+
 delivery:
+- platform: python_library
+  status: in_progress
+  priority: critical
+  notes: "Core library with 6 analysis modules and atomization pipeline"
+  next_action: "Stabilize API for all 6 modules"
+- platform: cli_tool
+  status: in_progress
+  priority: high
+  notes: "CLI for text analysis and corpus operations"
+  next_action: "Complete CLI commands for all analysis modules"
 - platform: web_app
+  status: planned
+  priority: medium
+  notes: "Interactive visualizations for text analysis results"
+  next_action: "Design dashboard layout for analysis output"
+
+content:
+- platform: docs_site
   status: not_started
+  priority: high
+  notes: "Module reference, corpus format spec, analysis methodology"
+  next_action: "Document each of the 6 analysis modules"
+- platform: academic_writing
+  status: planned
+  priority: high
+  notes: "Paper on hierarchical text atomization for computational rhetoric"
+  next_action: "Draft paper using 46-text corpus results"
