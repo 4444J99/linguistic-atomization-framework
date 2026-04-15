@@ -23,6 +23,14 @@ agents:
     workflow: .github/workflows/ci-python.yml
     description: "Continuous integration pipeline"
 
+implements:
+  - concept: AMMOI
+    zettel_source: "post-flood/archive_original/.zettel-index.yaml#AMMOI"
+    aspect: "Rhetorical decomposition — linguistic structures as hierarchical atoms with lateral relations"
+  - concept: formation_protocol
+    zettel_source: "post-flood/archive_original/.zettel-index.yaml#formation_protocol"
+    aspect: "LABORATORY formation — experiments with linguistic structure decomposition at the sentence/paragraph/document scale"
+
 produces:
   - type: theory
     description: "Epistemological frameworks, recursive engines, ontological systems"
