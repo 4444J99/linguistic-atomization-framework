@@ -2,32 +2,32 @@
 # Install with: pip install -r requirements.txt
 
 # Core data science
-numpy>=1.24.0
-scikit-learn>=1.3.0
-pyyaml>=6.0
+numpy>=2.4.6
+scikit-learn>=1.9.0
+pyyaml>=6.0.3
 
 # NLP and Sentiment
-spacy>=3.7.0
+spacy>=3.8.14
 vaderSentiment>=3.3.2
-textblob>=0.17.1
+textblob>=0.20.0
 
 # Visualization (if generating static images)
-matplotlib>=3.7.0
-plotly>=5.17.0
+matplotlib>=3.11.0
+plotly>=6.8.0
 
 # PDF Processing
-pdfplumber>=0.10.0    # Layout-aware text extraction
-PyMuPDF>=1.23.0       # Font metadata for heading detection (import as fitz)
+pdfplumber>=0.11.9    # Layout-aware text extraction
+PyMuPDF>=1.27.2.3       # Font metadata for heading detection (import as fitz)
 
 # Utilities
-tqdm>=4.66.0
+tqdm>=4.68.2
 
 # Web Interface
-streamlit>=1.29.0
-watchdog>=3.0.0       # For Streamlit file watching
+streamlit>=1.58.0
+watchdog>=6.0.0       # For Streamlit file watching
 
 # Desktop Application (optional - for standalone app)
-pywebview>=4.0.0      # Native window wrapper for desktop app
+pywebview>=6.2.1      # Native window wrapper for desktop app
 
 # Note: For spaCy models, run after installation:
 # python -m spacy download en_core_web_trf  (best accuracy)
