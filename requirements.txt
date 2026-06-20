@@ -16,11 +16,11 @@ matplotlib>=3.11.0
 plotly>=6.8.0
 
 # PDF Processing
-pdfplumber>=0.11.9    # Layout-aware text extraction
+pdfplumber>=0.11.10    # Layout-aware text extraction
 PyMuPDF>=1.27.2.3       # Font metadata for heading detection (import as fitz)
 
 # Utilities
-tqdm>=4.68.2
+tqdm>=4.68.3
 
 # Web Interface
 streamlit>=1.58.0
