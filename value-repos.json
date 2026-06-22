@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "description": "Ranked tier of repositories with discovered latent value, eligible for build-out.",
+  "ranked_repos": [
+    {
+      "repo": "organvm/linguistic-atomization-framework",
+      "organ": "I",
+      "promoted": "2026-06-22",
+      "source": "DISCOVER-organvm-linguistic-atomization-framework",
+      "thesis": "Working end-to-end computational-rhetoric engine (~17.3k LOC, 141/142 tests passing, real generated visualizations, 123-file multilingual corpus). Highest latent value: a reusable text-analysis/atomization asset the rest of the estate can consume as a library.",
+      "first_task": "Add pyproject.toml + stable programmatic API (lingframe.analyze(text_or_path) -> AnalysisResult) so it is pip-installable and importable by sibling repos."
+    }
+  ]
+}
