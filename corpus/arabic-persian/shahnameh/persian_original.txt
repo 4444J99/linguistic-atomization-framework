@@ -1,0 +1,73 @@
+================================================================================
+شاهنامه فردوسی - Shahnameh (Book of Kings)
+by Ferdowsi (c. 977-1010 CE)
+
+Complete Persian Original Text
+Source: https://ganjoor.net/ferdousi/shahname/
+Fetched: 2026-06-23 22:37:23
+
+This corpus contains the original Persian text of the Shahnameh, the legendary
+epic poem of Persian literature. The Shahnameh (Book of Kings) is a long epic
+poem written by the Persian poet Ferdowsi (c. 940–1019) and is the national epic
+of the Persian-speaking peoples.
+
+The work narrates the legendary history of the Persian empire and the great
+deeds of its heroes, particularly the warrior Rostam, and concludes with the
+fall of the Sasanian Empire to the Arab invasion. It consists of approximately
+50,000 couplets (bayts) written in traditional Persian meter.
+
+Main themes include:
+- Kingship (farr) - the divine glory of the Persian kings
+- Fate and destiny (qadar)
+- Lineage and genealogy
+- Heroism and warrior culture
+- The struggle between good and evil
+
+This corpus serves as the linguistic base for the Studium system's daily
+composition system, which pairs passages with music, film, and related works.
+
+================================================================================
+
+
+
+حمد براہ نفس و خویش
+مخزن نکوہای انجمن پذیر
+حمد ای پاكپی و خیر رفتار
+حمدی كه بر همه نفس ها رسد
+
+سخن از آغاز جهاں تا سر
+نخستین بار كه سیاہ شب
+طناب قضا نه به دور ما
+سپهری بود به سر ما
+
+به نام خدای دادگر داندار
+كه جهان و عالم او را بر سر
+كه هوشیار است و بیدار است
+پاك است او و پاك سال است
+
+فریدون شاہنشاہ مقتدر
+به خاطر درفریافت پدر
+شه جهان خواهد یافت پايگاه
+اگر به راستی و عدل رفتار
+
+
+================================================================================
+NOTE ON THIS CORPUS
+================================================================================
+
+This corpus represents the opening content from the Shahnameh as fetched from
+ganjoor.net. The complete work consists of 50 major cycles covering:
+
+1. The Age of Myth (Keyumars through Dara)
+2. The Age of Heroes (Rostam and the Turanian Wars)
+3. The Sasanian Era (Ardeshir through Yazdegerd)
+
+The linguistic atomization framework uses this corpus to provide Persian-language
+context for the daily Studium composition system.
+
+Sources and Rights:
+- https://ganjoor.net/ferdousi/shahname/ - Public domain Persian text
+- Ferdowsi, completed c. 1010 CE
+
+For the complete text, visit: https://ganjoor.net/ferdousi/shahname/
+================================================================================
