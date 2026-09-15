@@ -2,28 +2,28 @@
 # Install with: pip install -r requirements.txt
 
 # Core data science
-numpy>=2.4.6
-scikit-learn>=1.9.0
+numpy>=2.5.3
+scikit-learn>=1.9.1
 pyyaml>=6.0.3
 
 # NLP and Sentiment
-spacy>=3.8.14
+spacy>=3.8.16
 vaderSentiment>=3.3.2
-textblob>=0.20.0
+textblob>=0.20.1
 
 # Visualization (if generating static images)
-matplotlib>=3.11.0
-plotly>=6.8.0
+matplotlib>=3.11.2
+plotly>=7.0.0
 
 # PDF Processing
 pdfplumber>=0.11.10    # Layout-aware text extraction
-PyMuPDF>=1.27.2.3       # Font metadata for heading detection (import as fitz)
+PyMuPDF>=1.28.2       # Font metadata for heading detection (import as fitz)
 
 # Utilities
-tqdm>=4.68.3
+tqdm>=4.70.1
 
 # Web Interface
-streamlit>=1.58.0
+streamlit>=1.63.0
 watchdog>=6.0.0       # For Streamlit file watching
 
 # Desktop Application (optional - for standalone app)
