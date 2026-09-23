@@ -276,22 +276,42 @@ cd linguistic-atomization-framework
 python3 -m venv new_venv
 source new_venv/bin/activate  # Windows: new_venv\Scripts\activate
 
-pip install -r requirements.txt
+# Option A: Install LingFrame package directly
+pip install .
+
+# Option B: Install in editable development mode
+pip install -e .
+
+# Download spaCy model
 python -m spacy download en_core_web_sm  # Base English model
-# python -m spacy download en_core_web_trf  # Higher accuracy (optional, larger)
+```
+
+### Smoke Check & Installation Verification
+
+To confirm that LingFrame is properly installed and functioning, run the following verification steps:
+
+```bash
+# 1. Check installed package version
+lingframe --version
+
+# 2. Verify registered analysis modules and visualization adapters
+lingframe list-modules
+
+# 3. Run test suite
+pytest
 ```
 
 ### Quick Start — Analyze a Document
 
 ```bash
 # Analyze a PDF or text file — opens interactive HTML report in browser
-python lingframe.py analyze document.pdf
+lingframe analyze document.pdf
 
 # Quick console summary (no browser required)
-python lingframe.py quick document.txt
+lingframe quick document.txt
 
 # Save report to specific location
-python lingframe.py analyze essay.pdf -o analysis-report.html
+lingframe analyze essay.pdf -o analysis-report.html
 ```
 
 ### Quick Start — Web Interface
@@ -306,15 +326,15 @@ python run_web.py
 
 ```bash
 # List available analysis projects
-python lingframe.py list-projects
+lingframe list-projects
 
 # Run full pipeline on a sample project
-python lingframe.py run -p literary-analysis/tomb-unknowns --visualize --verbose
+lingframe run -p literary-analysis/tomb-unknowns --visualize --verbose
 
 # Individual pipeline stages
-python lingframe.py atomize -p literary-analysis/tomb-unknowns
-python lingframe.py analyze -p literary-analysis/tomb-unknowns
-python lingframe.py visualize -p literary-analysis/tomb-unknowns
+lingframe atomize -p literary-analysis/tomb-unknowns
+lingframe analyze -p literary-analysis/tomb-unknowns
+lingframe visualize -p literary-analysis/tomb-unknowns
 ```
 
 ---
