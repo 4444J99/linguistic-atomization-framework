@@ -15,10 +15,10 @@ The framework supports:
 ## Build & Run Commands
 
 ```bash
-# Setup environment
+# Setup environment and install package
 python3 -m venv new_venv
 source new_venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 python -m spacy download en_core_web_sm  # or en_core_web_trf for better accuracy
 ```
 
@@ -26,12 +26,12 @@ python -m spacy download en_core_web_sm  # or en_core_web_trf for better accurac
 
 ```bash
 # Simple CLI - analyze any document instantly
-./new_venv/bin/python lingframe.py analyze essay.pdf           # Opens HTML report in browser
-./new_venv/bin/python lingframe.py analyze essay.pdf -o out.html  # Save to specific location
-./new_venv/bin/python lingframe.py quick essay.pdf             # Quick console summary
+lingframe analyze essay.pdf           # Opens HTML report in browser
+lingframe analyze essay.pdf -o out.html  # Save to specific location
+lingframe quick essay.pdf             # Quick console summary
 
 # Web Interface - upload and analyze in browser
-./new_venv/bin/python run_web.py
+python run_web.py
 # Then open http://localhost:8501
 ```
 
