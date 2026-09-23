@@ -23,6 +23,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+try:
+    from framework import __version__ as FRAMEWORK_VERSION
+except ImportError:
+    FRAMEWORK_VERSION = "1.0.0"
+
 
 def get_framework_root() -> Path:
     """Get the framework root directory."""
@@ -696,7 +701,7 @@ For more info: lingframe <command> --help
     parser.add_argument(
         "--version",
         action="version",
-        version="%(prog)s 0.2.0",
+        version=f"%(prog)s {FRAMEWORK_VERSION}",
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
