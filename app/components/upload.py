@@ -20,17 +20,21 @@ def extract_text_from_upload(uploaded_file) -> str:
             from framework.loaders import PDFLoader
             import tempfile
 
-            # Save to temp file for PDF loader
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                tmp.write(uploaded_file.read())
-                tmp_path = Path(tmp.name)
+            tmp_path = None
+            try:
+                # Save to temp file for PDF loader
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                    tmp.write(uploaded_file.read())
+                    tmp_path = Path(tmp.name)
 
-            loader = PDFLoader()
-            text = loader.extract_text(tmp_path)
-
-            # Clean up
-            tmp_path.unlink()
-            return text
+                loader = PDFLoader()
+                return loader.extract_text(tmp_path)
+            finally:
+                if tmp_path is not None:
+                    try:
+                        tmp_path.unlink(missing_ok=True)
+                    except OSError:
+                        pass
 
         except ImportError:
             st.error("PDF support requires pdfplumber. Install with: pip install pdfplumber")
