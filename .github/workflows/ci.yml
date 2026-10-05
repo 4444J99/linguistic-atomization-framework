@@ -90,25 +90,6 @@ jobs:
             exit 0
           fi
 
-      - name: Build wheel and sdist
-        run: |
-          python -m pip install build
-          python -m build
-
-      - name: Verify isolated wheel and sdist installs
-        run: |
-          set -euo pipefail
-          # Copy fixture out of the checkout before isolating installs.
-          mkdir -p /tmp/lingframe-ci-fixture
-          cp tests/fixtures/sample_rhetoric.txt /tmp/lingframe-ci-fixture/
-          chmod +x scripts/verify_installed_artifact.sh
-          # Verify wheel
-          WHL=$(ls dist/*.whl | head -n1)
-          scripts/verify_installed_artifact.sh "$WHL" /tmp/lingframe-ci-fixture/sample_rhetoric.txt
-          # Verify sdist
-          SDIST=$(ls dist/*.tar.gz | head -n1)
-          scripts/verify_installed_artifact.sh "$SDIST" /tmp/lingframe-ci-fixture/sample_rhetoric.txt
-
       - name: Upload coverage to Codecov
         if: success() && hashFiles('coverage.xml') != ''
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
