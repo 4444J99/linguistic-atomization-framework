@@ -35,19 +35,7 @@ def get_framework_root() -> Path:
 
 
 def get_projects_dir() -> Path:
-    """Get the projects directory (installed package or source checkout).
-
-    Prefer the installed ``projects`` package location so wheel installs work.
-    Fall back to the repository-root ``projects/`` directory for source checkouts.
-    """
-    try:
-        import projects as projects_pkg
-
-        pkg_dir = Path(projects_pkg.__file__).resolve().parent
-        if pkg_dir.is_dir():
-            return pkg_dir
-    except ImportError:
-        pass
+    """Get the projects directory."""
     return get_framework_root() / "projects"
 
 
@@ -631,28 +619,20 @@ def cmd_migrate(args: argparse.Namespace) -> int:
 
 
 def cmd_init_notebooks(args: argparse.Namespace) -> int:
-    """Initialize Jupyter notebooks for a project or target directory."""
-    target = getattr(args, "dir", None)
-    if target:
-        notebooks_dir = Path(target).expanduser().resolve()
-        print(f"Initializing notebooks in: {notebooks_dir}")
-    elif args.project:
-        print(f"Initializing notebooks for project: {args.project}")
-        project_dir = find_project_path(args.project)
-        if project_dir is None:
-            print(f"Error: Project not found: {args.project}")
-            return 1
-        notebooks_dir = project_dir / "notebooks"
-    else:
-        print("Error: provide --project or --dir")
-        return 1
-
+    """Initialize Jupyter notebooks for a project."""
+    print(f"Initializing notebooks for project: {args.project}")
     print("=" * 60)
+
+    project_dir = find_project_path(args.project)
+    if project_dir is None:
+        print(f"Error: Project not found: {args.project}")
+        return 1
 
     # Import notebook templates
     from framework.notebooks import TEMPLATES_DIR, AVAILABLE_TEMPLATES
 
     # Create notebooks directory
+    notebooks_dir = project_dir / "notebooks"
     notebooks_dir.mkdir(parents=True, exist_ok=True)
 
     # Copy templates
@@ -885,11 +865,8 @@ ADVANCED MODE (project-based):
     )
     notebooks_parser.add_argument(
         "--project", "-p",
-        help="Project name (copies templates into the project's notebooks/ directory)"
-    )
-    notebooks_parser.add_argument(
-        "--dir", "-d",
-        help="Target directory for notebook templates (alternative to --project)"
+        required=True,
+        help="Project name"
     )
     notebooks_parser.add_argument(
         "--force", "-f",
