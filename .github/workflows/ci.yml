@@ -95,19 +95,19 @@ jobs:
           python -m pip install build
           python -m build
 
-      - name: Verify isolated installed CLI
+      - name: Verify isolated wheel and sdist installs
         run: |
-          python -m venv /tmp/lingframe-artifact
-          /tmp/lingframe-artifact/bin/python -m pip install --upgrade pip
-          /tmp/lingframe-artifact/bin/python -m pip install dist/*.whl
-          /tmp/lingframe-artifact/bin/lingframe --version
-          /tmp/lingframe-artifact/bin/lingframe list-modules
-          /tmp/lingframe-artifact/bin/lingframe list-projects
-          mkdir -p /tmp/lingframe-notebooks-smoke
-          /tmp/lingframe-artifact/bin/lingframe init-notebooks --dir /tmp/lingframe-notebooks-smoke
-          test -f /tmp/lingframe-notebooks-smoke/exploration.ipynb
-          test -f /tmp/lingframe-notebooks-smoke/evaluation.ipynb
-          test -f /tmp/lingframe-notebooks-smoke/visualization.ipynb
+          set -euo pipefail
+          # Copy fixture out of the checkout before isolating installs.
+          mkdir -p /tmp/lingframe-ci-fixture
+          cp tests/fixtures/sample_rhetoric.txt /tmp/lingframe-ci-fixture/
+          chmod +x scripts/verify_installed_artifact.sh
+          # Verify wheel
+          WHL=$(ls dist/*.whl | head -n1)
+          scripts/verify_installed_artifact.sh "$WHL" /tmp/lingframe-ci-fixture/sample_rhetoric.txt
+          # Verify sdist
+          SDIST=$(ls dist/*.tar.gz | head -n1)
+          scripts/verify_installed_artifact.sh "$SDIST" /tmp/lingframe-ci-fixture/sample_rhetoric.txt
 
       - name: Upload coverage to Codecov
         if: success() && hashFiles('coverage.xml') != ''
