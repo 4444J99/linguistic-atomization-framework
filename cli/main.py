@@ -23,6 +23,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+try:
+    from framework import __version__ as FRAMEWORK_VERSION
+except ImportError:
+    FRAMEWORK_VERSION = "1.0.0"
+
 
 def get_framework_root() -> Path:
     """Get the framework root directory."""
@@ -30,7 +35,19 @@ def get_framework_root() -> Path:
 
 
 def get_projects_dir() -> Path:
-    """Get the projects directory."""
+    """Get the projects directory (installed package or source checkout).
+
+    Prefer the installed ``projects`` package location so wheel installs work.
+    Fall back to the repository-root ``projects/`` directory for source checkouts.
+    """
+    try:
+        import projects as projects_pkg
+
+        pkg_dir = Path(projects_pkg.__file__).resolve().parent
+        if pkg_dir.is_dir():
+            return pkg_dir
+    except ImportError:
+        pass
     return get_framework_root() / "projects"
 
 
@@ -614,20 +631,28 @@ def cmd_migrate(args: argparse.Namespace) -> int:
 
 
 def cmd_init_notebooks(args: argparse.Namespace) -> int:
-    """Initialize Jupyter notebooks for a project."""
-    print(f"Initializing notebooks for project: {args.project}")
-    print("=" * 60)
-
-    project_dir = find_project_path(args.project)
-    if project_dir is None:
-        print(f"Error: Project not found: {args.project}")
+    """Initialize Jupyter notebooks for a project or target directory."""
+    target = getattr(args, "dir", None)
+    if target:
+        notebooks_dir = Path(target).expanduser().resolve()
+        print(f"Initializing notebooks in: {notebooks_dir}")
+    elif args.project:
+        print(f"Initializing notebooks for project: {args.project}")
+        project_dir = find_project_path(args.project)
+        if project_dir is None:
+            print(f"Error: Project not found: {args.project}")
+            return 1
+        notebooks_dir = project_dir / "notebooks"
+    else:
+        print("Error: provide --project or --dir")
         return 1
+
+    print("=" * 60)
 
     # Import notebook templates
     from framework.notebooks import TEMPLATES_DIR, AVAILABLE_TEMPLATES
 
     # Create notebooks directory
-    notebooks_dir = project_dir / "notebooks"
     notebooks_dir.mkdir(parents=True, exist_ok=True)
 
     # Copy templates
@@ -696,7 +721,7 @@ For more info: lingframe <command> --help
     parser.add_argument(
         "--version",
         action="version",
-        version="%(prog)s 0.2.0",
+        version=f"%(prog)s {FRAMEWORK_VERSION}",
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
@@ -860,8 +885,11 @@ ADVANCED MODE (project-based):
     )
     notebooks_parser.add_argument(
         "--project", "-p",
-        required=True,
-        help="Project name"
+        help="Project name (copies templates into the project's notebooks/ directory)"
+    )
+    notebooks_parser.add_argument(
+        "--dir", "-d",
+        help="Target directory for notebook templates (alternative to --project)"
     )
     notebooks_parser.add_argument(
         "--force", "-f",
