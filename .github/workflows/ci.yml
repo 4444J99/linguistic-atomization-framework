@@ -102,6 +102,12 @@ jobs:
           /tmp/lingframe-artifact/bin/python -m pip install dist/*.whl
           /tmp/lingframe-artifact/bin/lingframe --version
           /tmp/lingframe-artifact/bin/lingframe list-modules
+          /tmp/lingframe-artifact/bin/lingframe list-projects
+          mkdir -p /tmp/lingframe-notebooks-smoke
+          /tmp/lingframe-artifact/bin/lingframe init-notebooks --dir /tmp/lingframe-notebooks-smoke
+          test -f /tmp/lingframe-notebooks-smoke/exploration.ipynb
+          test -f /tmp/lingframe-notebooks-smoke/evaluation.ipynb
+          test -f /tmp/lingframe-notebooks-smoke/visualization.ipynb
 
       - name: Upload coverage to Codecov
         if: success() && hashFiles('coverage.xml') != ''

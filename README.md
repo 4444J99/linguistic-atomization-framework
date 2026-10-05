@@ -297,7 +297,8 @@ lingframe --version
 # 2. Verify registered analysis modules and visualization adapters
 lingframe list-modules
 
-# 3. Run test suite
+# 3. Install development extras, then run the test suite
+pip install '.[dev]'
 pytest
 ```
 
