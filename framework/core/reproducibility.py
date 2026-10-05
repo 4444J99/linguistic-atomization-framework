@@ -326,7 +326,7 @@ def create_reproducibility_record(
     config = AnalysisConfig.from_dict(config_dict)
     record = tracker.start_run(config, input_text, source_path)
 
-    if output:
+    if output is not None:
         record = tracker.finish_run(record, output)
 
     return record
