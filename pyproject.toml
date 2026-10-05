@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=77", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -61,18 +61,9 @@ Repository = "https://github.com/organvm-i-theoria/linguistic-atomization-framew
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["framework*", "cli*", "app*", "projects*"]
+include = ["framework*", "cli*", "app*"]
 
 [tool.setuptools.package-data]
 framework = ["domains/*/*", "schemas/*.yaml"]
-"framework.notebooks" = ["templates/*.ipynb"]
-# Explicit .categories.yaml: setuptools globs skip dotfiles.
-projects = [
-    ".categories.yaml",
-    "**/*",
-    "**/*.yaml",
-    "**/*.yml",
-    "**/*.json",
-    "**/*.html",
-    "**/*.pdf",
-]
+templates = ["*.html"]
+projects = ["*", "*/*", "*/*/*"]
