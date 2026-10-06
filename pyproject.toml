@@ -55,24 +55,36 @@ dev = [
 lingframe = "cli.main:main"
 
 [project.urls]
-Homepage = "https://github.com/organvm-i-theoria/linguistic-atomization-framework"
-Repository = "https://github.com/organvm-i-theoria/linguistic-atomization-framework.git"
-"Bug Tracker" = "https://github.com/organvm-i-theoria/linguistic-atomization-framework/issues"
+Homepage = "https://github.com/4444J99/linguistic-atomization-framework"
+Repository = "https://github.com/4444J99/linguistic-atomization-framework.git"
+"Bug Tracker" = "https://github.com/4444J99/linguistic-atomization-framework/issues"
+
+[tool.setuptools]
+# Only files listed in package-data below are shipped (no MANIFEST/SCM auto-inclusion).
+include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["framework*", "cli*", "app*", "projects*"]
 
 [tool.setuptools.package-data]
-framework = ["domains/*/*", "schemas/*.yaml"]
+framework = ["domains/*/*.yaml", "schemas/*.yaml"]
 "framework.notebooks" = ["templates/*.ipynb"]
-# Explicit .categories.yaml: setuptools globs skip dotfiles.
+# Explicit allow-list of project data. Nothing else under projects/ ships.
+# To ship a new sample project, list its files here deliberately (and only if
+# it is your own material or openly licensed for redistribution).
 projects = [
     ".categories.yaml",
-    "**/*",
-    "**/*.yaml",
-    "**/*.yml",
-    "**/*.json",
-    "**/*.html",
-    "**/*.pdf",
+    "literary-analysis/MET4MORFOSES/project.yaml",
+    "literary-analysis/MET4MORFOSES/docs/2018-03-20 - met4 - cycle 1.pdf",
+    "literary-analysis/MET4MORFOSES/docs/2018-03-20 - met4 - cycle 2.pdf",
+    "literary-analysis/MET4MORFOSES/docs/2018-03-20 - met4 - cycle 3.pdf",
+    "literary-analysis/MET4MORFOSES/data/processed/met4morfoses_entity_military-refs_1.0.0_20260120.json",
+    "literary-analysis/MET4MORFOSES/data/processed/met4morfoses_semantic_theme-network_1.0.0_20260120.json",
+    "literary-analysis/MET4MORFOSES/data/processed/met4morfoses_sentiment_emotion-arc_1.0.0_20260120.json",
+    "literary-analysis/MET4MORFOSES/data/processed/met4morfoses_temporal_tense-flow_1.0.0_20260120.json",
+    "literary-analysis/MET4MORFOSES/visualizations/entity_entity_browser.html",
+    "literary-analysis/MET4MORFOSES/visualizations/semantic_force_graph.html",
+    "literary-analysis/MET4MORFOSES/visualizations/sentiment_sentiment_chart.html",
+    "literary-analysis/MET4MORFOSES/visualizations/temporal_sankey.html",
 ]
