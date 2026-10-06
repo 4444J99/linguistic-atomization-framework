@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LingFrame: Linguistic Atomization Framework</title>
+  <meta name="description" content="LingFrame is a computational rhetoric toolkit that splits text into a theme, paragraph, sentence, word and letter hierarchy and runs pluggable analysis modules over it.">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6; max-width: 46rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 2rem; margin-bottom: .25rem; }
+    .tagline { margin-top: 0; opacity: .8; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+    pre { padding: .9rem 1rem; overflow-x: auto; border-radius: 6px; background: rgba(127,127,127,.12); }
+    ul { padding-left: 1.2rem; }
+    footer { margin-top: 3rem; font-size: .9rem; opacity: .75; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>LingFrame</h1>
+    <p class="tagline">Linguistic Atomization Framework: a computational rhetoric toolkit.</p>
+
+    <p>LingFrame splits a text into a five-level hierarchy (theme, paragraph, sentence, word, letter) and runs pluggable analysis modules over it: a heuristic rhetorical evaluation, semantic (TF-IDF) theme networks, verb-tense flow, sentiment and entity extraction. It produces interactive HTML reports and scholarly exports (LaTeX, TEI, CoNLL). Scores are marker-density indicators, not a measure of writing quality.</p>
+
+    <h2>Try it</h2>
+<pre><code>git clone https://github.com/4444J99/linguistic-atomization-framework.git
+cd linguistic-atomization-framework
+python3 -m venv .venv &amp;&amp; . .venv/bin/activate
+pip install .
+lingframe quick tests/fixtures/sample_rhetoric.txt
+lingframe analyze tests/fixtures/sample_rhetoric.txt -o report.html</code></pre>
+
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://github.com/4444J99/linguistic-atomization-framework">Source code and README</a></li>
+      <li><a href="https://github.com/4444J99/linguistic-atomization-framework/tree/main/docs">Documentation</a> (theory, methodology, limitations, tutorials)</li>
+      <li><a href="https://github.com/4444J99/linguistic-atomization-framework/blob/main/corpus/NOTICE.md">Corpus provenance and licence notices</a></li>
+      <li><a href="https://github.com/4444J99/linguistic-atomization-framework/issues">Issues</a></li>
+    </ul>
+
+    <h2>Licensing</h2>
+    <p>LingFrame's code is MIT-licensed. The texts in the repository's <code>corpus/</code> directory keep their own terms; most are US public domain, but some are non-commercial or no-modification licences. See the corpus notice above.</p>
+  </main>
+  <footer>
+    This page is built from the <code>site/</code> folder of the repository. Nothing else in the repository is published here.
+  </footer>
+</body>
+</html>
