@@ -28,7 +28,7 @@ from typing import Any, Dict, List, Optional, Tuple
 try:
     from framework import __version__ as FRAMEWORK_VERSION
 except ImportError:
-    FRAMEWORK_VERSION = "1.0.0"
+    FRAMEWORK_VERSION = "1.0.1"
 
 
 def get_framework_root() -> Path:

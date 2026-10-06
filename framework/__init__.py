@@ -18,5 +18,5 @@ Scores are indicators for human interpretation, not validated measurements.
 See docs/limitations.md for methodology and limitations.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "LingFrame Contributors"
