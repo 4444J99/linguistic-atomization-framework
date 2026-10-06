@@ -3,10 +3,10 @@
 Linguistic Analysis Framework - Main Entry Point
 
 Run the framework CLI:
-    python lingframe.py run --project tomb-of-the-unknowns
-    python lingframe.py atomize --project tomb-of-the-unknowns
-    python lingframe.py analyze --project tomb-of-the-unknowns
-    python lingframe.py visualize --project tomb-of-the-unknowns
+    python lingframe.py run --project literary-analysis/MET4MORFOSES
+    python lingframe.py atomize --project literary-analysis/MET4MORFOSES
+    python lingframe.py analyze --project literary-analysis/MET4MORFOSES
+    python lingframe.py visualize --project literary-analysis/MET4MORFOSES
     python lingframe.py list-modules
     python lingframe.py list-projects
 """

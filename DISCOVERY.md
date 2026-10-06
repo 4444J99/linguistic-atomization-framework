@@ -6,8 +6,9 @@
 
 LingFrame is not aspirational scaffolding — it is a **working, end-to-end computational-rhetoric
 engine** with ~17.3k lines of real framework code, a 2.5k-line test suite (141/142 passing), and
-**proof of execution on disk**: a fully analyzed "Tomb of the Unknowns" project with 9 generated
-interactive HTML visualizations (~1.4MB), 12 analysis JSON artifacts, and a 123-file multilingual
+**proof of execution on disk**: fully analyzed sample projects with generated interactive HTML
+visualizations and analysis JSON artifacts (one of those samples was third-party material and was
+removed in October 2026; `MET4MORFOSES` remains), and a 123-file multilingual
 corpus spanning 13 traditions (classical, sanskrit, hebrew, arabic-persian, chinese-classical,
 japanese, medieval → modern). Its irreducible, reusable core is a **pluggable pipeline that
 atomizes any document into a 5-level hierarchy (theme → paragraph → sentence → word → letter) and
@@ -30,8 +31,9 @@ asset whose only missing step is packaging it for consumption.
   (6 modules), visualization (5 adapters), output (narrative + scholarly exporters).
 - `tests/` — 2,531 LOC, 142 test functions, 141 passing (the 1 failure is a missing optional
   sentiment dependency, not a logic error; CI installs `requirements.txt` so CI is green).
-- `projects/literary-analysis/tomb-unknowns/` + `visualizations/` — real generated output proving the
-  pipeline runs end-to-end.
+- `projects/literary-analysis/MET4MORFOSES/` — real generated output proving the pipeline runs
+  end-to-end. (The original third-party sample project and root `visualizations/` were removed in
+  October 2026.)
 - `corpus/` — 123 source files across 13 language/era traditions.
 - `ecosystem.yaml` — declares `python_library` delivery as **critical/in_progress** with next action
   "Stabilize API for all 6 modules" — corroborating the packaging gap as the live priority.
