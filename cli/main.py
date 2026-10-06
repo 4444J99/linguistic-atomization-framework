@@ -865,7 +865,7 @@ ADVANCED MODE (project-based):
     migrate_parser.add_argument(
         "--shorten",
         action="store_true",
-        help="Automatically shorten project name (e.g., my-long-essay-collection -> my-essay-collection)"
+        help="Automatically shorten project name (e.g., the-letters-of-the-war -> letters-war)"
     )
     migrate_parser.add_argument(
         "--re-atomize",
