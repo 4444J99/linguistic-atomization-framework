@@ -418,7 +418,7 @@ class Corpus:
             )
             corpus.documents = [Document.from_dict(d) for d in data.get("documents", [])]
         elif "themes" in data:
-            # Old single-document format (tomb-of-the-unknowns style)
+            # Old single-document atomized format (legacy themes-only JSON)
             meta = data.get("metadata", {})
             doc = Document(
                 id="DOC001",

@@ -1,4 +1,4 @@
-# Python Requirements for Tomb of the Unknowns Analysis
+# Python Requirements for LingFrame
 # Install with: pip install -r requirements.txt
 
 # Core data science
