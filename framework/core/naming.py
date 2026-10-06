@@ -443,7 +443,7 @@ class OutputNaming:
     Generate semantically meaningful output filenames.
 
     Follows pattern: {project}_{module}_{descriptor}_{version}_{timestamp}.{ext}
-    Example: tomb_semantic_theme-network_v1_20260120.json
+    Example: met4morfoses_semantic_theme-network_v1_20260120.json
     """
 
     def __init__(self, config: Optional[OutputNamingConfig] = None):
@@ -463,7 +463,7 @@ class OutputNaming:
         Generate output filename.
 
         Args:
-            project_name: Project identifier (e.g., "tomb")
+            project_name: Project identifier (e.g., "met4morfoses")
             module_name: Analysis module name (e.g., "semantic")
             descriptor: Content descriptor (auto-derived if None)
             version: Version string (e.g., "v1")

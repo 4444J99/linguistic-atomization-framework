@@ -8,12 +8,12 @@
 
 # LingFrame — Linguistic Atomization Framework
 
-[![CI](https://github.com/organvm-i-theoria/linguistic-atomization-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/organvm-i-theoria/linguistic-atomization-framework/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey)](https://github.com/organvm-i-theoria/linguistic-atomization-framework)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/organvm-i-theoria/linguistic-atomization-framework/blob/main/LICENSE)
+[![CI](https://github.com/4444J99/linguistic-atomization-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/4444J99/linguistic-atomization-framework/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey)](https://github.com/4444J99/linguistic-atomization-framework)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/4444J99/linguistic-atomization-framework/blob/main/LICENSE)
 [![Organ I](https://img.shields.io/badge/Organ-I%20Theoria-8B5CF6)](https://github.com/organvm-i-theoria)
-[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/organvm-i-theoria/linguistic-atomization-framework)
-[![Python](https://img.shields.io/badge/lang-Python-informational)](https://github.com/organvm-i-theoria/linguistic-atomization-framework)
+[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/4444J99/linguistic-atomization-framework)
+[![Python](https://img.shields.io/badge/lang-Python-informational)](https://github.com/4444J99/linguistic-atomization-framework)
 
 
 **A computational rhetoric platform that decomposes text into hierarchical atomic units, applies six configurable analysis modules across every level of linguistic granularity, and generates interactive visualizations — spanning 46 canonical works in 15+ languages across 12 literary traditions.**
@@ -122,7 +122,18 @@ LingFrame performs **computational rhetorical analysis** through five interconne
 
 ## The Global Canonical Corpus
 
-LingFrame ships with a curated corpus of **46 canonical works** across **115 text files** spanning **12 literary traditions** and four millennia of human literary production. All texts are in the public domain.
+LingFrame ships with a curated corpus of **46 canonical works** across **115 text files** spanning **12 literary traditions** and four millennia of human literary production.
+
+**Provenance and licences.** The corpus is *not* entirely public domain, and the repository's MIT licence does not cover it. Per corpus:
+
+- **Most files** are transcriptions (mainly Project Gutenberg and sacred-texts.com) of works and translations first published before 1931, which are public domain in the United States.
+- **Sanskrit originals** (Bhagavad Gita, Rigveda) are GRETIL e-texts under **CC BY-NC-SA 4.0** (non-commercial, share-alike).
+- **Arabic Quran** is the Tanzil Quran Text under **CC BY 3.0 with Tanzil's terms** (verbatim copies only; changing the text is not allowed; keep the notice and link to tanzil.net). The **Pickthall and Yusuf Ali** translations come from tanzil.net, whose terms say they are for non-commercial use only.
+- **Hebrew Tanakh** is the Westminster Leningrad Codex (public domain) from the OpenScriptures Hebrew Bible project, whose data is **CC BY 4.0** with attribution.
+- ***The Trial* (English)** is **David Wyllie's copyrighted translation**, redistributed under the Project Gutenberg License (Project Gutenberg eBook #7849). It was previously mislabelled as the 1937 Muir translation.
+- **Several files have not been verified** (some Japanese, Russian, Old French, Greek, Chinese and Persian source texts).
+
+See [corpus/NOTICE.md](corpus/NOTICE.md) for per-file sources, terms and required attributions. The corpus is not shipped in the `lingframe` wheel or sdist.
 
 ### Traditions Represented
 
@@ -145,7 +156,7 @@ LingFrame ships with a curated corpus of **46 canonical works** across **115 tex
 
 The corpus is not a random collection. It is curated to enable specific analytical workflows:
 
-- **Cross-translation comparison**: Major works include the original-language text alongside 2-5 public-domain English translations (e.g., the Quran includes Arabic + 4 translations; the Tao Te Ching includes Chinese + 3 translations). This enables LingFrame's Translation Analysis module to quantify divergence across renderings of the same source.
+- **Cross-translation comparison**: Major works include the original-language text alongside 2-5 English translations (mostly public domain; see [corpus/NOTICE.md](corpus/NOTICE.md)) (e.g., the Quran includes Arabic + 4 translations; the Tao Te Ching includes Chinese + 3 translations). This enables LingFrame's Translation Analysis module to quantify divergence across renderings of the same source.
 - **Cross-tradition structural analysis**: Works are selected to span rhetorical traditions — Homeric oral-formulaic composition, Quranic sajʿ (rhymed prose), Chinese classical parallelism, Sanskrit epic metre — enabling comparative rhetorical study across civilizational boundaries.
 - **Temporal coverage**: From the Epic of Gilgamesh (c. 2100 BCE) through Joyce's Dubliners (1914), the corpus enables diachronic study of how rhetorical strategies evolve across four millennia.
 - **Script diversity**: Texts span 8+ writing systems (Latin, Cyrillic, Greek, Arabic, Hebrew, Devanagari, CJK, Japanese), exercising LingFrame's multilingual tokenization pipeline and validating its script-aware analysis capabilities.
@@ -219,11 +230,10 @@ linguistic-atomization-framework/
 │   └── early-modern/             # The Tempest
 │
 ├── projects/                     # Analysis projects with configurations
-│   └── literary-analysis/        # Sample projects (tomb-unknowns, MET4MORFOSES)
+│   └── literary-analysis/        # Sample project (MET4MORFOSES)
 │
 ├── templates/                    # HTML report templates
 ├── tests/                        # 142 tests across all modules
-├── visualizations/               # Pre-generated interactive visualizations
 ├── docs/                         # Theory, methodology, limitations, tutorials
 ├── lingframe.py                  # CLI entry point
 └── run_web.py                    # Web app launcher
@@ -270,7 +280,7 @@ The optional recursion loop enables iterative analysis: apply suggestions, re-at
 ### Installation
 
 ```bash
-git clone https://github.com/organvm-i-theoria/linguistic-atomization-framework.git
+git clone https://github.com/4444J99/linguistic-atomization-framework.git
 cd linguistic-atomization-framework
 
 python3 -m venv new_venv
@@ -305,6 +315,12 @@ pytest
 ### Quick Start — Analyze a Document
 
 ```bash
+# Try it on the bundled sample text (from a source checkout)
+lingframe quick tests/fixtures/sample_rhetoric.txt
+
+# Or on a public-domain text from the corpus
+lingframe quick corpus/early-modern/tempest/original.txt -t "The Tempest"
+
 # Analyze a PDF or text file — opens interactive HTML report in browser
 lingframe analyze document.pdf
 
@@ -329,13 +345,13 @@ python run_web.py
 # List available analysis projects
 lingframe list-projects
 
-# Run full pipeline on a sample project
-lingframe run -p literary-analysis/tomb-unknowns --visualize --verbose
+# Run full pipeline on the bundled sample project
+lingframe run -p literary-analysis/MET4MORFOSES --visualize --verbose
 
 # Individual pipeline stages
-lingframe atomize -p literary-analysis/tomb-unknowns
-lingframe analyze -p literary-analysis/tomb-unknowns
-lingframe visualize -p literary-analysis/tomb-unknowns
+lingframe atomize -p literary-analysis/MET4MORFOSES
+lingframe analyze -p literary-analysis/MET4MORFOSES
+lingframe visualize -p literary-analysis/MET4MORFOSES
 ```
 
 ---
@@ -508,15 +524,6 @@ entities:
 
 ## Sample Projects
 
-### literary-analysis/tomb-unknowns
-
-Military memorial analysis demonstrating domain-specific analysis capabilities:
-
-- **Domain lexicon**: Military terminology, formal tone detection, ceremonial language patterns
-- **Entity recognition**: Ranks, units, locations, equipment — using custom regex patterns defined in `framework/domains/military/`
-- **Full pipeline output**: Atomized JSON, 4 analysis outputs (semantic, temporal, sentiment, entity), 5 interactive visualizations, narrative report
-- **Use case**: Understanding how official commemorative rhetoric constructs authority, invokes emotion, and manages the tension between individual sacrifice and institutional purpose
-
 ### literary-analysis/MET4MORFOSES
 
 Literary metamorphosis study demonstrating creative-analytical applications:
@@ -525,6 +532,12 @@ Literary metamorphosis study demonstrating creative-analytical applications:
 - **Character transformation tracking**: Entity analysis applied to fictional metamorphosis
 - **Thematic mapping**: Semantic network visualization of how transformation themes cluster and evolve
 - **Temporal flow**: Sankey diagram showing narrative movement through time
+
+*Provenance:* MET4MORFOSES is a set of experimental poem cycles (2018) included as the repository's own sample material. It is not a public-domain text, and no author is named in the files.
+
+For a quick, self-contained example use `tests/fixtures/sample_rhetoric.txt` (synthetic text written for the test suite), or any public-domain text in `corpus/` (see [corpus/NOTICE.md](corpus/NOTICE.md)).
+
+*(An earlier sample project built on a third-party manuscript was removed in October 2026.)*
 
 ---
 
@@ -629,7 +642,7 @@ If you use LingFrame in academic work:
   title     = {LingFrame: A Computational Rhetoric Platform for Linguistic Atomization},
   author    = {4444j99},
   year      = {2025},
-  url       = {https://github.com/organvm-i-theoria/linguistic-atomization-framework},
+  url       = {https://github.com/4444J99/linguistic-atomization-framework},
   note      = {Hierarchical text atomization with 6 analysis modules across 15+ languages}
 }
 ```
@@ -652,7 +665,9 @@ Key areas for contribution:
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License for LingFrame's code and documentation. See [LICENSE](LICENSE) for details.
+
+The MIT licence does not cover the texts in `corpus/`, which keep their own terms (some are non-commercial or no-modification). See [corpus/NOTICE.md](corpus/NOTICE.md).
 
 ---
 

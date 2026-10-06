@@ -53,7 +53,6 @@ grep -q 'evaluation' "$WORK/modules.out"
 echo "== list-projects =="
 "$LF" list-projects | tee "$WORK/projects.out"
 grep -q 'Available Projects' "$WORK/projects.out"
-grep -q 'tomb-unknowns' "$WORK/projects.out"
 grep -q 'MET4MORFOSES' "$WORK/projects.out"
 
 echo "== init-notebooks =="

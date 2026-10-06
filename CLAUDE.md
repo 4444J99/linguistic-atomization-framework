@@ -44,19 +44,19 @@ python run_web.py
 ./new_venv/bin/python lingframe.py list-modules
 
 # Run full pipeline for a project
-./new_venv/bin/python lingframe.py run -p literary-analysis/tomb-unknowns --visualize --verbose
+./new_venv/bin/python lingframe.py run -p literary-analysis/MET4MORFOSES --visualize --verbose
 
 # Individual pipeline stages
-./new_venv/bin/python lingframe.py atomize -p literary-analysis/tomb-unknowns
-./new_venv/bin/python lingframe.py analyze -p literary-analysis/tomb-unknowns
-./new_venv/bin/python lingframe.py visualize -p literary-analysis/tomb-unknowns
+./new_venv/bin/python lingframe.py atomize -p literary-analysis/MET4MORFOSES
+./new_venv/bin/python lingframe.py analyze -p literary-analysis/MET4MORFOSES
+./new_venv/bin/python lingframe.py visualize -p literary-analysis/MET4MORFOSES
 
 # Migrate project to ontological naming
 ./new_venv/bin/python lingframe.py migrate --project <name> --category <category> --naming hybrid
 
 # View visualizations (requires local server for CORS)
 python3 -m http.server 8000
-# Then open http://localhost:8000/projects/literary-analysis/tomb-unknowns/visualizations/
+# Then open http://localhost:8000/projects/literary-analysis/MET4MORFOSES/visualizations/
 ```
 
 ## Architecture
@@ -86,7 +86,7 @@ linguistic-atomization-framework/
 ├── projects/
 │   ├── .categories.yaml
 │   └── literary-analysis/
-│       └── tomb-unknowns/
+│       └── MET4MORFOSES/
 ├── lingframe.py        # Main CLI script
 └── run_web.py          # Web app launcher
 ```
@@ -123,7 +123,7 @@ naming:
 - `patterns.yaml`: Entity recognition patterns
 
 **Output File Naming**: Pattern `{project}_{module}_{descriptor}_{version}_{timestamp}.json`
-- Example: `tomb-unknowns_semantic_theme-network_1.0.0_20260120.json`
+- Example: `met4morfoses_semantic_theme-network_1.0.0_20260120.json`
 
 **CORS Issue**: Opening HTML files directly (`file://`) causes fetch failures. Always serve via HTTP server.
 
@@ -155,7 +155,7 @@ naming:
 ### Project Configuration (project.yaml)
 ```yaml
 project:
-  name: "tomb-unknowns"
+  name: "my-project"
   version: "1.0.0"
 
 naming:
@@ -387,3 +387,11 @@ This repository is a managed component of the ORGANVM meta-workspace.
 - **Lifecycle:** Follow the `FRAME -> SHAPE -> BUILD -> PROVE` workflow.
 - **Governance:** Promotions are managed via `conductor wip promote`.
 - **Intelligence:** Conductor MCP tools are available for routing and mission synthesis.
+## Content Policy
+
+- Do not commit third-party manuscripts, books, theses or other copyrighted documents, or anything
+  containing another person's contact details. Do not commit chat transcripts, saved chat pages, or
+  IDE/agent session logs (`.specstory/`, `.history/`).
+- Corpus provenance and licences are recorded in `corpus/NOTICE.md`; do not describe the corpus as
+  entirely public domain.
+- Packaged project data under `projects/` is an explicit allow-list in `pyproject.toml`.

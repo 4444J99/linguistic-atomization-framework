@@ -1,6 +1,6 @@
 version: 2.0.0
 description: Global Canonical Corpus - Literary texts from all traditions
-license: Public Domain / Creative Commons
+license: Mixed; mostly US public domain, some files under their own terms. See corpus/NOTICE.md
 classical:
   gilgamesh:
     title: Epic of Gilgamesh
@@ -152,6 +152,7 @@ hebrew:
       version: Westminster Leningrad Codex (WLC 4.20)
       file: hebrew_masoretic.txt
       source: OpenScriptures Hebrew Bible (morphhb)
+      license: WLC text public domain; OSHB data CC BY 4.0 (attribution required, see corpus/NOTICE.md)
       lines: 23337
       verses: 23213
       books: 39
@@ -522,10 +523,11 @@ modern:
       version: original
       file: german_original.txt
     - language: en
-      translator: Willa and Edwin Muir
-      year: 1937
-      file: english_muir_1937.txt
+      translator: David Wyllie
+      file: english_wyllie_pg7849.txt
       source: Project Gutenberg 7849
+      license: Copyrighted translation (David Wyllie), redistributed under the Project Gutenberg License; keep the PG header and licence in the file
+      note: Previously mislabelled as the 1937 Willa and Edwin Muir translation
     status: available
   we:
     title: We
@@ -690,6 +692,7 @@ sanskrit:
       version: original
       file: sanskrit_original.txt
       source: GRETIL
+      license: CC BY-NC-SA 4.0 (GRETIL e-text, non-commercial; see corpus/NOTICE.md)
       lines: 31651
     - language: en
       translator: Ralph T.H. Griffith
@@ -740,6 +743,7 @@ sanskrit:
       version: original
       file: sanskrit_original.txt
       source: GRETIL
+      license: CC BY-NC-SA 4.0 (GRETIL e-text, non-commercial; see corpus/NOTICE.md)
       lines: 5448
     - language: en
       translator: Edwin Arnold
@@ -771,6 +775,11 @@ arabic_persian:
     script: arabic
     directory: arabic-persian/quran
     versions:
+    - language: ar
+      version: original (Tanzil Quran Text, Uthmani, v1.1)
+      file: arabic_original.txt
+      source: Tanzil Project (https://tanzil.net)
+      license: CC BY 3.0 per Tanzil terms; verbatim copies only, changing the text is not allowed; keep the Tanzil copyright block (see corpus/NOTICE.md)
     - language: en
       translator: J.M. Rodwell
       year: 1861
@@ -781,12 +790,14 @@ arabic_persian:
       year: 1930
       file: english_pickthall_1930.txt
       source: tanzil.net
+      terms: Tanzil translations page says translations are for non-commercial purposes only; other uses need the translator's or publisher's permission (see corpus/NOTICE.md)
       lines: 6356
     - language: en
       translator: Abdullah Yusuf Ali
       year: 1934
       file: english_yusufali_1934.txt
       source: tanzil.net
+      terms: Tanzil translations page says translations are for non-commercial purposes only; other uses need the translator's or publisher's permission (see corpus/NOTICE.md)
       lines: 6356
     - language: en
       translator: George Sale

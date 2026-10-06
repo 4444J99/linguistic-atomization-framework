@@ -3,13 +3,15 @@
 CLI Main Entry Point - Command-line interface for the framework.
 
 Usage:
-    lingframe run --project tomb-of-the-unknowns
-    lingframe atomize --project tomb-of-the-unknowns
-    lingframe analyze --project tomb-of-the-unknowns --module semantic
-    lingframe visualize --project tomb-of-the-unknowns
+    lingframe quick tests/fixtures/sample_rhetoric.txt
+    lingframe analyze tests/fixtures/sample_rhetoric.txt -o report.html
+    lingframe run --project literary-analysis/MET4MORFOSES
+    lingframe atomize --project literary-analysis/MET4MORFOSES
+    lingframe analyze --project literary-analysis/MET4MORFOSES --module semantic
+    lingframe visualize --project literary-analysis/MET4MORFOSES
     lingframe list-modules
     lingframe list-projects
-    lingframe migrate --project tomb-of-the-unknowns --category literary-analysis --naming hybrid
+    lingframe migrate --project my-essay-collection --category literary-analysis --naming hybrid
 """
 
 from __future__ import annotations
@@ -863,7 +865,7 @@ ADVANCED MODE (project-based):
     migrate_parser.add_argument(
         "--shorten",
         action="store_true",
-        help="Automatically shorten project name (e.g., tomb-of-the-unknowns -> tomb-unknowns)"
+        help="Automatically shorten project name (e.g., the-letters-of-the-war -> letters-war)"
     )
     migrate_parser.add_argument(
         "--re-atomize",
