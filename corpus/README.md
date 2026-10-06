@@ -66,11 +66,15 @@ corpus/
 
 ## License
 
-All texts are in the **public domain** in the United States.
+**The corpus is not entirely public domain.** Most files are US public-domain transcriptions, but
+some are under their own terms (CC BY-NC-SA 4.0 GRETIL Sanskrit e-texts, the CC BY 3.0
+no-modification Tanzil Quran text, non-commercial Tanzil translations, OpenScriptures data under
+CC BY 4.0, and a copyrighted Project Gutenberg translation of *The Trial*). The repository's MIT
+licence does not apply to corpus texts.
 
-- Works published before 1929 are public domain in the US
-- Project Gutenberg texts are freely redistributable
-- See individual directory READMEs for specific details
+See **[NOTICE.md](NOTICE.md)** for per-file provenance, licences and required attributions.
+
+*Note: the tables above are out of date; `corpus_index.yaml` lists every text and its source.*
 
 ---
 
@@ -93,7 +97,8 @@ To add new texts to the corpus:
 2. Use descriptive filenames (e.g., `english_translator.txt`, `original.txt`)
 3. Add a README.md documenting source, license, and any preprocessing
 4. Prefer plain text (.txt) format
-5. Ensure the text is public domain or appropriately licensed
+5. Ensure the text is public domain or appropriately licensed, and record its source and licence
+   in `corpus_index.yaml` and `NOTICE.md`
 
 ---
 
@@ -101,7 +106,8 @@ To add new texts to the corpus:
 
 Texts have been minimally processed:
 
-- Gutenberg headers/footers removed
+- Gutenberg headers/footers removed from most files (some files keep them; where a file carries a
+  licence header, such as the Tanzil, GRETIL or copyrighted Project Gutenberg texts, it must be kept)
 - Encoding normalized to UTF-8
 - Line endings normalized
 - No content modifications
