@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-tomb_venv/
 new_venv/
 *.egg-info/
 dist/
@@ -31,3 +30,7 @@ Thumbs.db
 
 # Serena local config
 .serena/
+
+# Local editor history and AI/IDE session logs (never commit)
+.history/
+.specstory/

@@ -3,7 +3,7 @@
 #
 # Hierarchy: THEME → PARAGRAPH → SENTENCE → WORD → LETTER
 #
-# This schema matches the original tomb-of-the-unknowns format
+# This schema matches the original single-document atomized JSON format
 # with support for both legacy and ontological naming systems.
 
 name: default
