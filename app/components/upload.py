@@ -17,8 +17,9 @@ def extract_text_from_upload(uploaded_file) -> str:
 
     elif file_type == "pdf":
         try:
-            from framework.loaders import PDFLoader
             import tempfile
+
+            from framework.loaders import PDFLoader
 
             tmp_path = None
             try:

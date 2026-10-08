@@ -4,9 +4,9 @@ Tests for app/components/upload.py PDF extraction and cleanup.
 
 import io
 import sys
-import tempfile
 from pathlib import Path
 from unittest.mock import MagicMock, patch
+
 import pytest
 
 from app.components.upload import extract_text_from_upload
@@ -106,8 +106,8 @@ def test_pdf_upload_tolerates_already_deleted_temp_file():
 
 
 def test_txt_and_md_upload_unchanged():
-    txt_file = DummyUploadedFile("notes.txt", "Hello world from txt".encode("utf-8"))
-    md_file = DummyUploadedFile("readme.md", "# Hello world from md".encode("utf-8"))
+    txt_file = DummyUploadedFile("notes.txt", b"Hello world from txt")
+    md_file = DummyUploadedFile("readme.md", b"# Hello world from md")
 
     assert extract_text_from_upload(txt_file) == "Hello world from txt"
     assert extract_text_from_upload(md_file) == "# Hello world from md"
