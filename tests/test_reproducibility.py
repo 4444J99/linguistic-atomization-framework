@@ -314,3 +314,27 @@ class TestOutputVerification:
 
         assert record.verify_output(output) is True
         assert record.verify_output({"score": 80}) is False
+
+    def test_empty_output_checksum(self):
+        """Test that explicitly supplied empty mapping calculates checksum and verifies strictly."""
+        config = {"modules": ["semantic"], "schema_name": "default"}
+        record = create_reproducibility_record(
+            config,
+            "synthetic input",
+            output={},
+        )
+        assert record.output_checksum is not None
+        assert record.verify_output({}) is True
+        assert record.verify_output({"unexpected": "different"}) is False
+
+    def test_unsupplied_output_checksum_preserves_fail_open(self):
+        """Test that unsupplied output (None) keeps output_checksum None and preserves fail-open behavior."""
+        config = {"modules": ["semantic"], "schema_name": "default"}
+        record = create_reproducibility_record(
+            config,
+            "synthetic input",
+            output=None,
+        )
+        assert record.output_checksum is None
+        assert record.verify_output({}) is True
+        assert record.verify_output({"unexpected": "different"}) is True
