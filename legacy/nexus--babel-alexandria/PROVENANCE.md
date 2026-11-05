@@ -10,3 +10,5 @@ This is retired code kept for reference. See docs/standards/28-repo-naming-and-t
 ## Cleanup 2026-11-05
 
 Agent-instruction and system files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `seed.yaml`, `ecosystem.yaml`, `network-map.yaml`, `value-repos.json`, and the `.claude`, `.codex`, `.gemini`, `.conductor`, `.github` and `ecosystem` folders) were removed from this snapshot, following the owner's publication standard. They remain in the archived private source. Earlier commits of this repository still contain them.
+
+Update 2026-11-05: two PDFs under docs/corpus were removed because their authorship and redistribution rights are unverified.
