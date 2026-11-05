@@ -1,0 +1,1930 @@
+# ============================================================================
+# PROJECT MANIFEST — Nexus Babel Alexandria
+# ARC4N Living Digital Canon
+# ============================================================================
+# Format: claude-project-manifest v1.0
+# Generated: 2026-02-23T23:45:00Z
+# Method: Full repository audit + git log reconstruction + file annotation
+# ============================================================================
+
+manifest:
+  id: "PROJ-2026-001"
+  version: "0.1.0"
+  created: "2025-11-19T00:00:00Z"
+  last_updated: "2026-02-23T23:38:27Z"
+
+  project:
+    name: "Nexus Babel Alexandria"
+    aliases:
+      - "ARC4N Living Digital Canon"
+      - "Theoria Linguae Machina"
+      - "RLOS + ARC4N MVP"
+    description: >
+      A breathing organism that atomizes literary works into modular cells
+      for creative recombination, translation, and scholarly exploration.
+      Preserves classic texts at molecular levels (5-level glyph-seed hierarchy)
+      and unlocks infinite creative and scholarly recombination through a
+      temporal evolution spiral (expansion -> peak -> compression -> rebirth).
+    organ: "ORGAN-I (Theory)"
+    org: "organvm-i-theoria"
+    repo: "nexus--babel-alexandria-"
+    tier: archive
+    promotion_status: ARCHIVED
+    stack: "Python 3.11+, FastAPI, SQLAlchemy 2.0, Neo4j, Alembic"
+    status: active
+
+# ============================================================================
+# THREADS — Development sessions reconstructed from git history + transcripts
+# ============================================================================
+
+threads:
+
+  - id: "THR-001"
+    started: "2025-11-19T00:00:00Z"
+    ended: "2025-11-19T23:59:00Z"
+    title: "Genesis: Original Design Upload"
+    summary: >
+      Human-authored seed of the project. The massive Theoria Linguae Machina
+      design document (~893 lines) was uploaded along with an initial roadmap.
+      This established the conceptual architecture: multimodal NLP ingestion,
+      5-level atomization, hypergraph projection, dual-mode governance, and
+      the temporal evolution spiral.
+    accomplishments:
+      - "Uploaded comprehensive design document (Theoria Linguae Machina)"
+      - "Created initial project roadmap"
+    files_created: ["FILE-062", "FILE-063"]
+    files_modified: []
+    decisions:
+      - "Chose 5-level atomization hierarchy (glyph-seed through paragraph)"
+      - "Established dual-mode governance (PUBLIC/RAW)"
+      - "Designed 9-layer linguistic analysis pipeline"
+    tags: [genesis, design, human-authored]
+
+  - id: "THR-002"
+    started: "2025-12-17T00:00:00Z"
+    ended: "2026-01-21T23:59:00Z"
+    title: "Jules Agent Churn (Dead Branches)"
+    summary: >
+      82 commits across ~35 days by automated Jules agents (Sentinel, Bolt,
+      Palette) performing the same handful of tasks repeatedly on disconnected
+      branches that never merge. Sentinel added .gitignore and SECURITY.md
+      ~25 times. Palette renamed the design doc to DESIGN.md ~30 times. Bolt
+      added pyproject.toml and benchmarks ~15 times. Only one consolidation
+      commit produced real code (HyperNode/HyperEdge in core/hypergraph/base.py).
+      All branches are orphaned — none merged into main.
+    accomplishments:
+      - "Produced HyperNode/HyperEdge prototype (orphaned, not used)"
+      - "82 commits of wasted automated effort on disconnected branches"
+    files_created: []
+    files_modified: []
+    decisions:
+      - "These branches were abandoned; work was redone from scratch in THR-003"
+    tags: [automated, orphaned, jules-agent, dead-code]
+
+  - id: "THR-003"
+    started: "2026-02-10T00:00:00Z"
+    ended: "2026-02-12T23:59:00Z"
+    title: "Silver Sprint: Human Reclamation"
+    summary: >
+      Human direction takes over on main branch. Comprehensive README deployed
+      (expanded to 4,394 words), MIT LICENSE added, .gitignore established,
+      and minimal CI workflow created. Two follow-up commits fixed CI for
+      pinned action SHAs and Unicode filenames. This phase established the
+      real project foundation.
+    accomplishments:
+      - "Deployed comprehensive README (4,394 words)"
+      - "Added MIT LICENSE"
+      - "Created .gitignore"
+      - "Built minimal CI workflow (ci-minimal.yml)"
+      - "Fixed CI for pinned action SHAs and Unicode filenames"
+    files_created: ["FILE-001", "FILE-002", "FILE-003", "FILE-030"]
+    files_modified: []
+    decisions:
+      - "MIT license for open-source compatibility"
+      - "Minimal CI (structure validation only, no test/lint)"
+      - "Pinned action SHAs for security"
+    tags: [foundation, ci, human-authored, silver-sprint]
+
+  - id: "THR-004"
+    started: "2026-02-12T00:00:00Z"
+    ended: "2026-02-17T00:00:00Z"
+    title: "AUTONOMY + SENSORIA Sprints: Seed Contract"
+    summary: >
+      Added and updated the seed.yaml automation contract declaring organ
+      membership (ORGAN-I), tier, promotion status, CI agent, produces/consumes
+      edges, and event subscriptions. This connected the repo to the broader
+      ORGANVM governance system.
+    accomplishments:
+      - "Created seed.yaml with v1.0 schema"
+      - "Updated seed.yaml during SENSORIA sprint"
+    files_created: ["FILE-004"]
+    files_modified: []
+    decisions:
+      - "Declared dependency on linguistic-atomization-framework"
+      - "Subscribed to ORGAN-IV governance and health-audit events"
+    tags: [governance, seed-contract, autonomy-sprint, sensoria-sprint]
+
+  - id: "THR-005"
+    started: "2026-02-17T18:00:00Z"
+    ended: "2026-02-17T23:59:00Z"
+    title: "MVP Big Bang: RLOS + ARC4N Scaffold"
+    summary: >
+      THE FOUNDATIONAL BUILD. A single massive commit added ~35 files
+      implementing the full FastAPI application: app factory, config, DB
+      manager, all 16 ORM models, Pydantic schemas, 14 service modules,
+      API router with 20+ endpoints, test suite (342-line MVP tests),
+      Docker Compose, Alembic migrations, scripts, and frontend shell.
+      The entire working application was built in essentially one session.
+    accomplishments:
+      - "Implemented FastAPI app factory with lifespan management"
+      - "Created 16 SQLAlchemy ORM models (mapped_column style)"
+      - "Built 14 service modules (ingestion, analysis, evolution, governance, etc.)"
+      - "Defined 20+ API endpoints under /api/v1"
+      - "Created 342-line MVP test suite"
+      - "Added Docker Compose (Postgres + Neo4j)"
+      - "Set up Alembic migration infrastructure"
+      - "Built corpus ingestion and load test scripts"
+    files_created:
+      - "FILE-005"   # pyproject.toml
+      - "FILE-006"   # Makefile
+      - "FILE-007"   # .env.example
+      - "FILE-008"   # docker-compose.yml
+      - "FILE-009"   # alembic.ini
+      - "FILE-010"   # alembic/env.py
+      - "FILE-011"   # alembic/script.py.mako
+      - "FILE-012"   # alembic/versions/0001_initial
+      - "FILE-014"   # src/nexus_babel/__init__.py
+      - "FILE-015"   # src/nexus_babel/main.py
+      - "FILE-016"   # src/nexus_babel/config.py
+      - "FILE-017"   # src/nexus_babel/db.py
+      - "FILE-018"   # src/nexus_babel/models.py
+      - "FILE-019"   # src/nexus_babel/schemas.py
+      - "FILE-020"   # src/nexus_babel/api/routes.py
+      - "FILE-021"   # src/nexus_babel/services/analysis.py
+      - "FILE-022"   # src/nexus_babel/services/auth.py
+      - "FILE-023"   # src/nexus_babel/services/canonicalization.py
+      - "FILE-024"   # src/nexus_babel/services/evolution.py
+      - "FILE-025"   # src/nexus_babel/services/governance.py
+      - "FILE-026"   # src/nexus_babel/services/hypergraph.py
+      - "FILE-027"   # src/nexus_babel/services/ingestion.py
+      - "FILE-028"   # src/nexus_babel/services/text_utils.py
+      - "FILE-034"   # src/nexus_babel/frontend/templates/shell.html
+      - "FILE-035"   # tests/conftest.py
+      - "FILE-036"   # tests/test_mvp.py
+      - "FILE-038"   # scripts/ingest_corpus.py
+      - "FILE-039"   # scripts/load_test.py
+      - "FILE-040"   # scripts/run_api.sh
+    files_modified: []
+    decisions:
+      - "FastAPI + SQLAlchemy 2.0 (mapped_column) for modern async-ready ORM"
+      - "SQLite for dev/test, PostgreSQL for production"
+      - "Neo4j optional with LocalGraphCache fallback"
+      - "pydantic-settings with NEXUS_ env prefix"
+      - "API key auth with 4-tier role hierarchy"
+      - "Dual-mode governance (PUBLIC blocks, RAW flags)"
+    tags: [mvp, big-bang, core-implementation]
+
+  - id: "THR-006"
+    started: "2026-02-17T23:59:00Z"
+    ended: "2026-02-18T06:00:00Z"
+    title: "MVP Hardening: Security + Correctness + Durability"
+    summary: >
+      Hardened the MVP with proper auth system (API key hashing, role
+      hierarchy enforcement), Alembic wave-2 migration (jobs, attempts,
+      artifacts, checkpoints), and API-level security (mode enforcement,
+      conflict guards).
+    accomplishments:
+      - "Added API key hashing and role hierarchy"
+      - "Created wave-2 Alembic migration"
+      - "Added conflict guards on analysis endpoints"
+      - "Implemented mode enforcement across all routes"
+    files_created: ["FILE-013"]
+    files_modified: ["FILE-018", "FILE-020", "FILE-022"]
+    decisions:
+      - "SHA-256 API key hashing (not storing plaintext)"
+      - "Lease-based job execution with exponential backoff"
+    tags: [hardening, security, auth]
+
+  - id: "THR-007"
+    started: "2026-02-18T06:00:00Z"
+    ended: "2026-02-18T12:00:00Z"
+    title: "Wave-2 Internal Alpha: Jobs, Plugins, Metrics"
+    summary: >
+      Implemented the async job queue (submit/lease/execute/retry with backoff),
+      plugin registry with fallback chains (deterministic + ML stub), in-memory
+      metrics service, enhanced evolution with natural drift (~25 historic
+      linguistic shifts), and wave-2 test suite.
+    accomplishments:
+      - "Built async job queue with idempotency and retry"
+      - "Created plugin registry with ml_first fallback chain"
+      - "Added in-memory metrics (counters + timing histograms)"
+      - "Enhanced evolution service with 25 natural drift rules"
+      - "Created 151-line wave-2 test suite"
+    files_created:
+      - "FILE-029"   # src/nexus_babel/services/jobs.py
+      - "FILE-031"   # src/nexus_babel/services/metrics.py
+      - "FILE-032"   # src/nexus_babel/services/plugins.py
+      - "FILE-033"   # src/nexus_babel/services/rhetoric.py
+      - "FILE-037"   # tests/test_wave2.py
+      - "FILE-041"   # src/nexus_babel/worker.py
+    files_modified: ["FILE-015", "FILE-018", "FILE-019", "FILE-020", "FILE-024"]
+    decisions:
+      - "Polling worker (not Celery) for simplicity"
+      - "Lease-based execution with [2, 10, 30]s exponential backoff"
+      - "Deterministic-first plugin chain with ML stub fallback"
+    tags: [wave-2, async-jobs, plugins, metrics]
+
+  - id: "THR-008"
+    started: "2026-02-18T12:00:00Z"
+    ended: "2026-02-18T18:00:00Z"
+    title: "Planning Artifacts and Certainty Audits"
+    summary: >
+      Added planning documentation including organism blueprint, protocol
+      tracker, prototype tracker, build tickets, feature/use-case matrix,
+      save receipt, and certainty audit reports. Also added the alignment
+      and certainty audit scripts.
+    accomplishments:
+      - "Created AB-PLAN-01 build tickets (JSON + Markdown)"
+      - "Generated feature/use-case ledger and matrix"
+      - "Wrote organism blueprint and protocol/prototype trackers"
+      - "Created repo certainty audit script"
+      - "Created alignment verification script"
+    files_created:
+      - "FILE-048"   # docs/alexandria_babel/AB-PLAN-01_Build_Tickets.md
+      - "FILE-049"   # docs/alexandria_babel/AB-PLAN-01_Build_Tickets.json
+      - "FILE-050"   # docs/alexandria_babel/feature_usecase_matrix.md
+      - "FILE-051"   # docs/alexandria_babel/feature_usecase_ledger.json
+      - "FILE-052"   # docs/alexandria_babel/Organism_Blueprint.md
+      - "FILE-053"   # docs/alexandria_babel/Protocol_Tracker.md
+      - "FILE-054"   # docs/alexandria_babel/Prototype_Tracker.md
+      - "FILE-055"   # docs/alexandria_babel/Save_Receipt_2026-02-18.md
+      - "FILE-056"   # docs/certainty/repo_certainty_report.md
+      - "FILE-057"   # docs/certainty/file_manifest.json
+      - "FILE-058"   # docs/certainty/feature_usecase_ledger.json
+      - "FILE-042"   # scripts/repo_certainty_audit.py
+      - "FILE-043"   # scripts/alexandria_babel_alignment.py
+    files_modified: []
+    decisions:
+      - "Dual-format documentation (human-readable Markdown + machine-readable JSON)"
+      - "Certainty scoring methodology for repo audit"
+    tags: [planning, documentation, audit]
+
+  - id: "THR-009"
+    started: "2026-02-23T06:00:00Z"
+    ended: "2026-02-23T11:25:00Z"
+    title: "Agent Instruction Files + Repo Reorganization"
+    transcript: "ba607c20-*.jsonl"
+    summary: >
+      Created CLAUDE.md (project-level agent instructions), AGENTS.md
+      (multi-agent coordination protocol), and GEMINI.md (Gemini-specific
+      instructions). Relocated corpus documents, roadmap, and agent files
+      into proper directory structure under docs/.
+    accomplishments:
+      - "Created comprehensive CLAUDE.md with full architecture documentation"
+      - "Created AGENTS.md multi-agent coordination protocol"
+      - "Created GEMINI.md with Gemini-specific instructions"
+      - "Relocated corpus docs to docs/corpus/"
+      - "Relocated roadmap to docs/roadmap.md"
+      - "Added SECURITY.md and SUPPORT.md to .github/"
+    files_created:
+      - "FILE-044"   # CLAUDE.md
+      - "FILE-045"   # .github/AGENTS.md
+      - "FILE-046"   # .github/GEMINI.md
+      - "FILE-047"   # .github/SUPPORT.md
+    files_modified:
+      - "FILE-060"   # docs/corpus/* (relocated)
+      - "FILE-059"   # docs/roadmap.md (relocated)
+    decisions:
+      - "CLAUDE.md as single source of truth for agent onboarding"
+      - "Separate instruction files per AI platform"
+      - "Corpus documents under docs/corpus/ for organization"
+    tags: [agent-instructions, reorganization, documentation]
+
+  - id: "THR-010"
+    started: "2026-02-23T11:30:00Z"
+    ended: "2026-02-23T13:26:00Z"
+    title: "ARC4N Living Digital Canon Amendment"
+    transcript: "9808f7ba-*.jsonl"
+    summary: >
+      Transformed the MVP from a generic NLP engine into the ARC4N Living
+      Digital Canon. Implemented rich glyph-seed atomization (character-level
+      metadata: phonemes, historic forms, visual mutations, thematic tags),
+      seed text registry with Project Gutenberg provisioning, remix/recombination
+      engine (4 strategies), and 411-line ARC4N-specific test suite. Added
+      Alembic migration for atom metadata column.
+    accomplishments:
+      - "Implemented rich glyph-seed metadata system"
+      - "Created static glyph data lookups (phonemes, historic forms, mutations)"
+      - "Built seed text registry (Homer, Dante, Whitman, Joyce, Shelley)"
+      - "Implemented Project Gutenberg download provisioning"
+      - "Built remix engine with 4 strategies (interleave, thematic_blend, temporal_layer, glyph_collide)"
+      - "Created 411-line ARC4N test suite"
+      - "Added Alembic migration for atom metadata"
+    files_created:
+      - "FILE-070"   # src/nexus_babel/services/glyph_data.py
+      - "FILE-071"   # src/nexus_babel/services/seed_corpus.py
+      - "FILE-072"   # src/nexus_babel/services/remix.py
+      - "FILE-073"   # tests/test_arc4n.py
+      - "FILE-074"   # alembic/versions/0003_add_atom_metadata
+      - "FILE-075"   # corpus/seeds/.gitkeep
+    files_modified:
+      - "FILE-015"   # main.py (added seed_corpus + remix services)
+      - "FILE-019"   # schemas.py (GlyphSeed, Remix*, Seed* models)
+      - "FILE-020"   # routes.py (remix, seed corpus endpoints)
+      - "FILE-027"   # ingestion.py (rich atomization path)
+      - "FILE-028"   # text_utils.py (atomize_text_rich)
+      - "FILE-024"   # evolution.py (expanded natural drift map)
+    decisions:
+      - "Deterministic glyph metadata (no ML required)"
+      - "Project Gutenberg as canonical source for seed texts"
+      - "Seeded RNG for deterministic remix replay"
+    tags: [arc4n, glyph-seeds, remix, seed-corpus, canon-amendment]
+
+  - id: "THR-011"
+    started: "2026-02-23T13:30:00Z"
+    ended: "2026-02-23T14:29:00Z"
+    title: "SDD Specification Suite (9 Feature Domains)"
+    transcript: "55372c6c-*.jsonl"
+    summary: >
+      Authored 27 specification files across 9 feature domains using
+      Specification-Driven Development methodology. Each domain has a
+      spec.md (requirements + acceptance criteria), plan.md (implementation
+      strategy), and tasks.md (executable work items). The largest
+      session by token volume (7.6 MB transcript).
+    accomplishments:
+      - "Authored specs for all 9 feature domains"
+      - "Created implementation plans for each domain"
+      - "Generated task breakdowns for each domain"
+    files_created:
+      - "FILE-076"   # specs/01-ingestion-atomization/spec.md
+      - "FILE-077"   # specs/01-ingestion-atomization/plan.md
+      - "FILE-078"   # specs/01-ingestion-atomization/tasks.md
+      - "FILE-079"   # specs/02-linguistic-analysis/spec.md
+      - "FILE-080"   # specs/02-linguistic-analysis/plan.md
+      - "FILE-081"   # specs/02-linguistic-analysis/tasks.md
+      - "FILE-082"   # specs/03-evolution-branching/spec.md
+      - "FILE-083"   # specs/03-evolution-branching/plan.md
+      - "FILE-084"   # specs/03-evolution-branching/tasks.md
+      - "FILE-085"   # specs/04-remix-recombination/spec.md
+      - "FILE-086"   # specs/04-remix-recombination/plan.md
+      - "FILE-087"   # specs/04-remix-recombination/tasks.md
+      - "FILE-088"   # specs/05-governance-audit/spec.md
+      - "FILE-089"   # specs/05-governance-audit/plan.md
+      - "FILE-090"   # specs/05-governance-audit/tasks.md
+      - "FILE-091"   # specs/06-seed-corpus/spec.md
+      - "FILE-092"   # specs/06-seed-corpus/plan.md
+      - "FILE-093"   # specs/06-seed-corpus/tasks.md
+      - "FILE-094"   # specs/07-hypergraph/spec.md
+      - "FILE-095"   # specs/07-hypergraph/plan.md
+      - "FILE-096"   # specs/07-hypergraph/tasks.md
+      - "FILE-097"   # specs/08-platform-infrastructure/spec.md
+      - "FILE-098"   # specs/08-platform-infrastructure/plan.md
+      - "FILE-099"   # specs/08-platform-infrastructure/tasks.md
+      - "FILE-100"   # specs/09-explorer-ux/spec.md
+      - "FILE-101"   # specs/09-explorer-ux/plan.md
+      - "FILE-102"   # specs/09-explorer-ux/tasks.md
+    files_modified: []
+    decisions:
+      - "SDD methodology: spec -> plan -> tasks per domain"
+      - "9 domains covering full product surface"
+    tags: [sdd, specifications, planning]
+
+  - id: "THR-012"
+    started: "2026-02-23T17:00:00Z"
+    ended: "2026-02-23T23:40:00Z"
+    title: "GitHub Pages Pitch Deck + Build Fix"
+    transcript: "e008a995-*.jsonl"
+    summary: >
+      Created an interactive single-page pitch deck for ARC4N as a GitHub
+      Pages site (1,170-line HTML/CSS/JS). Configured Pages to serve from
+      /docs on main. Diagnosed stuck Jekyll build (2+ hours), added .nojekyll
+      bypass and root index.html redirect, and verified successful build.
+    accomplishments:
+      - "Created 1,170-line interactive pitch deck (HTML/CSS/JS)"
+      - "Diagnosed Jekyll build failure on non-Jekyll content"
+      - "Added .nojekyll to bypass Jekyll processing"
+      - "Added root index.html redirect to /pitch/"
+      - "Verified successful GitHub Pages build (~19 seconds)"
+    files_created:
+      - "FILE-103"   # docs/pitch/index.html
+      - "FILE-104"   # docs/.nojekyll
+      - "FILE-105"   # docs/index.html
+    files_modified: []
+    decisions:
+      - "Single-file pitch deck (no build step, no dependencies)"
+      - ".nojekyll bypass rather than Jekyll configuration"
+      - "Meta refresh + JS redirect for root URL"
+    tags: [github-pages, pitch-deck, deployment, bugfix]
+
+# ============================================================================
+# FILES — Complete annotated inventory
+# ============================================================================
+
+files:
+
+  # --------------------------------------------------------------------------
+  # Root Configuration
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-001"
+    path: "README.md"
+    type: doc
+    lines: 395
+    thread_id: "THR-003"
+    title: "Project README"
+    summary: "Comprehensive project README (4,394 words) covering architecture, setup, API, and ARC4N concepts."
+    notes: >
+      Deployed during Silver Sprint, expanded to 4,394 words. Covers
+      quickstart, architecture overview, API routes, ARC4N concepts
+      (atomization, evolution spiral, branches, remix), and development
+      workflow. Serves as primary onboarding document.
+    tags: [documentation, onboarding, root]
+    created: "2026-02-10T00:00:00Z"
+
+  - id: "FILE-002"
+    path: "LICENSE"
+    type: config
+    lines: 21
+    thread_id: "THR-003"
+    title: "MIT License"
+    summary: "Standard MIT license for open-source distribution."
+    tags: [legal, root]
+    created: "2026-02-11T00:00:00Z"
+
+  - id: "FILE-003"
+    path: ".gitignore"
+    type: config
+    lines: ~30
+    thread_id: "THR-003"
+    title: "Git Ignore Rules"
+    summary: "Standard Python .gitignore with additions for .db, .env, __pycache__, .venv, and IDE files."
+    tags: [config, root]
+    created: "2026-02-11T00:00:00Z"
+
+  - id: "FILE-004"
+    path: "seed.yaml"
+    type: config
+    lines: 42
+    thread_id: "THR-004"
+    title: "ORGANVM Seed Contract"
+    summary: >
+      Automation contract declaring ORGAN-I membership, standard tier,
+      LOCAL promotion status, CI agent, produces/consumes edges, and
+      ORGAN-IV event subscriptions. Schema v1.0.
+    notes: >
+      Connects the repo to the broader ORGANVM governance system. Declares
+      dependency on linguistic-atomization-framework and subscribes to
+      governance.updated and health-audit.completed events from ORGAN-IV.
+    tags: [governance, organvm, contract]
+    created: "2026-02-12T00:00:00Z"
+    modified: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-005"
+    path: "pyproject.toml"
+    type: config
+    lines: 42
+    thread_id: "THR-005"
+    title: "Python Package Configuration"
+    summary: >
+      Setuptools build config for nexus-babel-alexandria v0.1.0. Requires
+      Python >=3.11 with FastAPI, SQLAlchemy, Pydantic, Neo4j, PyPDF, Jinja2.
+      Optional deps: psycopg (postgres), pytest+httpx+alembic (dev).
+    tags: [config, packaging, dependencies]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-006"
+    path: "Makefile"
+    type: config
+    lines: 17
+    thread_id: "THR-005"
+    title: "Development Task Runner"
+    summary: "Make targets for dev server, test, ingest, db-upgrade, and worker."
+    tags: [config, build, convenience]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-007"
+    path: ".env.example"
+    type: config
+    lines: ~15
+    thread_id: "THR-005"
+    title: "Environment Variable Template"
+    summary: "Template for all NEXUS_-prefixed environment variables used by pydantic-settings."
+    tags: [config, environment]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-008"
+    path: "docker-compose.yml"
+    type: config
+    lines: 30
+    thread_id: "THR-005"
+    title: "Docker Compose for Local Services"
+    summary: >
+      Compose v3.9 defining Postgres 16 and Neo4j 5.23 containers with
+      named volumes. Local development only — credentials are dev defaults.
+    tags: [infrastructure, docker, database]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-044"
+    path: "CLAUDE.md"
+    type: doc
+    lines: 187
+    thread_id: "THR-009"
+    title: "Claude Code Agent Instructions"
+    summary: >
+      Comprehensive agent instruction file documenting build/run commands,
+      architecture, source layout, data flow, key design patterns, auth model,
+      database schema, testing approach, and all API routes.
+    notes: >
+      The definitive onboarding document for Claude Code agents. Contains
+      the project's full API route table, architectural decisions, and
+      source layout map. Includes auto-generated ORGANVM system context
+      at the bottom.
+    tags: [agent-instructions, documentation, root]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Alembic (Database Migrations)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-009"
+    path: "alembic.ini"
+    type: config
+    lines: ~30
+    thread_id: "THR-005"
+    title: "Alembic Configuration"
+    summary: "Alembic config pointing to SQLite by default. PostgreSQL URL can override via env."
+    tags: [database, migrations, config]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-010"
+    path: "alembic/env.py"
+    type: config
+    lines: ~50
+    thread_id: "THR-005"
+    title: "Alembic Environment"
+    summary: "Migration runner supporting both SQLite and PostgreSQL, using NEXUS_DATABASE_URL env var."
+    tags: [database, migrations]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-011"
+    path: "alembic/script.py.mako"
+    type: config
+    lines: ~25
+    thread_id: "THR-005"
+    title: "Alembic Migration Template"
+    summary: "Mako template for auto-generating new Alembic migration scripts."
+    tags: [database, migrations, template]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-012"
+    path: "alembic/versions/20260218_0001_initial.py"
+    type: source
+    lines: 255
+    thread_id: "THR-005"
+    title: "Migration 0001: Initial Schema"
+    summary: >
+      Creates core tables: documents, atoms, analysis_runs, layer_outputs,
+      branches, branch_events, mode_policies, policy_decisions, users,
+      api_keys, audit_logs, ingest_jobs, document_variants, projection_ledger.
+    tags: [database, migrations, schema]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-013"
+    path: "alembic/versions/20260218_0002_wave2_alpha.py"
+    type: source
+    lines: 191
+    thread_id: "THR-006"
+    title: "Migration 0002: Wave-2 (Jobs + Checkpoints)"
+    summary: >
+      Adds jobs, job_attempts, job_artifacts tables for async job queue.
+      Adds branch_checkpoints for evolution snapshot compression.
+      Adds columns for shadow execution and plugin profile tracking.
+    tags: [database, migrations, jobs, wave-2]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-074"
+    path: "alembic/versions/20260223_0003_add_atom_metadata.py"
+    type: source
+    lines: 25
+    thread_id: "THR-010"
+    title: "Migration 0003: Atom Metadata Column"
+    summary: "Adds nullable metadata_json column to atoms table for rich glyph-seed metadata storage."
+    tags: [database, migrations, arc4n, glyph-seeds]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Application Core (src/nexus_babel/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-014"
+    path: "src/nexus_babel/__init__.py"
+    type: source
+    lines: 2
+    thread_id: "THR-005"
+    title: "Package Init"
+    summary: "Exports __all__ = ['main']. Minimal package marker."
+    tags: [core, package]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-015"
+    path: "src/nexus_babel/main.py"
+    type: source
+    lines: 114
+    thread_id: "THR-005"
+    title: "FastAPI Application Factory"
+    summary: >
+      create_app() builds the FastAPI application, wires all 12 services
+      onto app.state, configures request-tracking middleware (X-Request-ID +
+      timing metrics), registers API router and frontend views. Lifespan
+      handler seeds default API keys and governance policies. Module-level
+      app = create_app() used by uvicorn.
+    notes: >
+      Central orchestration point. Services are manually wired (no DI container)
+      via app.state. Tests use create_app(settings_override) for isolation.
+      Modified in THR-007 (jobs, metrics, plugins) and THR-010 (seed corpus,
+      remix services).
+    tags: [core, app-factory, fastapi, entrypoint]
+    depends_on: ["FILE-016", "FILE-017", "FILE-018", "FILE-019", "FILE-020"]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-016"
+    path: "src/nexus_babel/config.py"
+    type: source
+    lines: 48
+    thread_id: "THR-005"
+    title: "Application Settings"
+    summary: >
+      Pydantic-settings BaseSettings class with NEXUS_ env prefix and .env
+      file support. Configures database URL, Neo4j credentials, feature flags
+      (raw_mode, async_jobs, plugins, shadow_execution), worker params,
+      corpus root, bootstrap API keys, and default blocked terms.
+    tags: [core, config, pydantic-settings]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-017"
+    path: "src/nexus_babel/db.py"
+    type: source
+    lines: 24
+    thread_id: "THR-005"
+    title: "Database Manager"
+    summary: >
+      Thin wrapper around SQLAlchemy engine + sessionmaker. Handles
+      SQLite check_same_thread workaround. Provides create_all() and
+      session() convenience methods.
+    tags: [core, database, sqlalchemy]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-018"
+    path: "src/nexus_babel/models.py"
+    type: source
+    lines: 309
+    thread_id: "THR-005"
+    title: "ORM Models (16 Tables)"
+    summary: >
+      All SQLAlchemy 2.0 ORM models using mapped_column style. 16 models:
+      IngestJob, Document, DocumentVariant, Atom, AnalysisRun, Branch,
+      BranchEvent, BranchCheckpoint, ModePolicy, PolicyDecision, User,
+      ApiKey, AuditLog, Job, JobAttempt, JobArtifact, LayerOutput,
+      ProjectionLedger. Rich relationships with cascade deletes.
+    notes: >
+      The Atom model's metadata_json column (added in THR-010) stores
+      rich glyph-seed metadata (phonemes, historic forms, visual mutations,
+      thematic tags). Document tracks both ingestion status and graph
+      projection status independently.
+    tags: [core, orm, database, schema]
+    depends_on: []
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-019"
+    path: "src/nexus_babel/schemas.py"
+    type: source
+    lines: 266
+    thread_id: "THR-005"
+    title: "Pydantic Request/Response Schemas"
+    summary: >
+      All API request/response models. Key types: GlyphSeed (rich character
+      metadata), IngestBatch*, Analyze*, EvolveBranch*, Governance*,
+      RhetoricalAnalysis*, JobSubmit/Status*, BranchTimeline/Replay/Compare*,
+      Remix*, SeedText*, SeedProvision*. Defines Mode, ExecutionMode, and
+      RemixStrategy literals.
+    tags: [core, api, pydantic, validation]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-020"
+    path: "src/nexus_babel/api/routes.py"
+    type: source
+    lines: 717
+    thread_id: "THR-005"
+    title: "API Router (All /api/v1 Endpoints)"
+    summary: >
+      Single FastAPI router with 20+ endpoints covering ingestion, analysis,
+      evolution, branches, governance, rhetoric, jobs, documents, hypergraph,
+      auth, audit, seed corpus provisioning, and remix. Auth dependency
+      factory enforces 4-tier role hierarchy. Mode enforcement guards all
+      write operations.
+    notes: >
+      The largest source file. All endpoints follow a consistent pattern:
+      acquire session -> authenticate -> enforce mode -> delegate to service
+      -> commit -> return response. Error handling rolls back on failure.
+    tags: [core, api, endpoints, router]
+    depends_on: ["FILE-018", "FILE-019", "FILE-022"]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-041"
+    path: "src/nexus_babel/worker.py"
+    type: source
+    lines: 49
+    thread_id: "THR-007"
+    title: "Async Job Worker"
+    summary: >
+      Polling worker that leases and executes queued jobs. Supports --once
+      (single job) and --max-jobs flags. Creates its own app instance,
+      polls at configurable intervals, handles stale lease cleanup.
+    tags: [core, worker, async-jobs, cli]
+    created: "2026-02-18T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Services Layer (src/nexus_babel/services/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-021"
+    path: "src/nexus_babel/services/analysis.py"
+    type: source
+    lines: 270
+    thread_id: "THR-005"
+    title: "9-Layer Linguistic Analysis Service"
+    summary: >
+      Runs 9 linguistic analysis layers (token, morphology, syntax, semantics,
+      pragmatics, discourse, sociolinguistics, rhetoric, semiotic) through the
+      plugin chain. Each layer produces output + confidence + provider provenance.
+      Supports sync and async execution modes.
+    tags: [service, analysis, nlp, plugins]
+    depends_on: ["FILE-032", "FILE-033"]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-022"
+    path: "src/nexus_babel/services/auth.py"
+    type: source
+    lines: 76
+    thread_id: "THR-005"
+    title: "API Key Authentication Service"
+    summary: >
+      SHA-256 key hashing, 4-tier role hierarchy (viewer < operator <
+      researcher < admin), mode access control (RAW requires researcher+
+      with both system and key-level flags). Returns AuthContext dataclass.
+    tags: [service, auth, security, roles]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-023"
+    path: "src/nexus_babel/services/canonicalization.py"
+    type: source
+    lines: 103
+    thread_id: "THR-005"
+    title: "Document Variant Linking"
+    summary: >
+      Links sibling document representations (e.g., PDF and markdown of same
+      source) using filename-stem similarity. Creates DocumentVariant records
+      with variant groups. Runs automatically during batch ingestion.
+    tags: [service, canonicalization, deduplication]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-024"
+    path: "src/nexus_babel/services/evolution.py"
+    type: source
+    lines: 398
+    thread_id: "THR-005"
+    title: "Branch Evolution Engine"
+    summary: >
+      Creates branching text evolution with deterministic replay. Supports
+      event types: natural_drift (~25 historic linguistic shifts like
+      th->thorn, ae->ash, Latin diphthong collapse), synthetic_mutation,
+      phase_shift, glyph_fusion, remix. Uses seeded RNG derived from
+      sha256(event_type:seed:text_hash) for reproducibility. Implements
+      branch checkpointing with zlib compression and timeline replay.
+    notes: >
+      The NATURAL_MAP covers 25+ historic sound shifts across Old English,
+      Latin, French, and Germanic languages. Branch comparison uses
+      Levenshtein-like distance on text hashes.
+    tags: [service, evolution, branches, drift, deterministic]
+    depends_on: ["FILE-018"]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-025"
+    path: "src/nexus_babel/services/governance.py"
+    type: source
+    lines: 152
+    thread_id: "THR-005"
+    title: "Dual-Mode Content Governance"
+    summary: >
+      Evaluates text against mode-specific policies. PUBLIC mode blocks on
+      first hit (term match in blocked list). RAW mode allows with flagging
+      for research purposes. Records PolicyDecision and AuditLog entries
+      for every evaluation.
+    tags: [service, governance, content-moderation, dual-mode]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-026"
+    path: "src/nexus_babel/services/hypergraph.py"
+    type: source
+    lines: 191
+    thread_id: "THR-005"
+    title: "Hypergraph Projector (Neo4j + Local Cache)"
+    summary: >
+      Dual-write graph projection: documents and atoms are projected to both
+      a LocalGraphCache (always) and Neo4j (when configured). Provides
+      integrity verification (comparing DB atom counts vs graph projection
+      counts) and graph querying by document, node, or relationship type.
+    tags: [service, hypergraph, neo4j, graph, knowledge-graph]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-027"
+    path: "src/nexus_babel/services/ingestion.py"
+    type: source
+    lines: 521
+    thread_id: "THR-005"
+    title: "Multi-Modal Ingestion Pipeline"
+    summary: >
+      Ingests files from corpus root: resolves paths, checksums for dedup,
+      parses by modality (text/PDF/image/audio), atomizes into 5 levels
+      (glyph-seed through paragraph), projects to hypergraph, applies
+      canonicalization. Handles rich glyph-seed metadata when atomize_text_rich
+      is available. Largest service file (521 lines).
+    notes: >
+      Supports .md, .txt, .yaml (text), .pdf (PyPDF), .png/.jpg (image stub),
+      .wav (audio header extraction). Conflict markers in YAML trigger
+      conflict_flag. Modified in THR-010 to use rich atomization.
+    tags: [service, ingestion, multimodal, atomization, pipeline]
+    depends_on: ["FILE-028", "FILE-023", "FILE-026"]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-028"
+    path: "src/nexus_babel/services/text_utils.py"
+    type: source
+    lines: 168
+    thread_id: "THR-005"
+    title: "Text Atomization Utilities"
+    summary: >
+      Core atomization functions: atomize_text (basic 5-level split) and
+      atomize_text_rich (with GlyphSeed metadata including phonemes, historic
+      forms, visual mutations, thematic tags). Also provides sha256_file,
+      conflict marker detection, syllable splitting, and regex patterns.
+    notes: >
+      ATOM_LEVELS = ["glyph-seed", "syllable", "word", "sentence", "paragraph"].
+      Rich atomization calls into glyph_data.py lookups. Syllable splitting
+      uses a simple vowel-consonant heuristic.
+    tags: [service, atomization, text-processing, core-algorithm]
+    depends_on: ["FILE-070"]
+    created: "2026-02-17T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-029"
+    path: "src/nexus_babel/services/jobs.py"
+    type: source
+    lines: 278
+    thread_id: "THR-007"
+    title: "Async Job Queue Service"
+    summary: >
+      Lease-based job execution with idempotency keys, retry with exponential
+      backoff ([2, 10, 30]s intervals), artifact tracking, and stale lease
+      cleanup. Supports job types: analyze, ingest, evolve. Worker polls via
+      process_next().
+    tags: [service, jobs, async, queue, retry]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-031"
+    path: "src/nexus_babel/services/metrics.py"
+    type: source
+    lines: 31
+    thread_id: "THR-007"
+    title: "In-Memory Metrics Service"
+    summary: >
+      Lightweight counter + timing histogram collector. Tracks HTTP request
+      latency and status codes. Exposes snapshot() for /metrics endpoint.
+    tags: [service, metrics, observability]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-032"
+    path: "src/nexus_babel/services/plugins.py"
+    type: source
+    lines: 157
+    thread_id: "THR-007"
+    title: "Plugin Registry with Fallback Chains"
+    summary: >
+      Manages analysis layer providers with fallback chain (ml_first ->
+      deterministic, or deterministic only). Each provider returns output,
+      confidence score, and provenance metadata. ML providers are stubs
+      that fall back to deterministic implementations.
+    tags: [service, plugins, extensibility, fallback]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-033"
+    path: "src/nexus_babel/services/rhetoric.py"
+    type: source
+    lines: 70
+    thread_id: "THR-007"
+    title: "Rhetorical Analysis Engine"
+    summary: >
+      Deterministic ethos/pathos/logos scoring based on keyword heuristics.
+      Detects rhetorical strategies (appeal_to_authority, emotional_appeal,
+      logical_reasoning) and common fallacies (ad_hominem, straw_man,
+      false_dilemma).
+    tags: [service, rhetoric, analysis, scoring]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-070"
+    path: "src/nexus_babel/services/glyph_data.py"
+    type: source
+    lines: 163
+    thread_id: "THR-010"
+    title: "Static Glyph-Seed Metadata Lookups"
+    summary: >
+      Deterministic lookup tables for glyph-seed metadata: IPA phoneme
+      approximations for Latin letters, historic letter forms (Phoenician,
+      Greek, Runic, Uncial), visual mutations, thematic tags (vowel, consonant,
+      labial, dental, etc.), and future seed projections. No ML dependencies.
+    tags: [service, glyph-seeds, metadata, deterministic, arc4n]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-071"
+    path: "src/nexus_babel/services/seed_corpus.py"
+    type: source
+    lines: 109
+    thread_id: "THR-010"
+    title: "Seed Text Registry + Gutenberg Provisioning"
+    summary: >
+      Maintains a registry of canonical seed texts (Homer's Odyssey, Dante's
+      Divine Comedy, Whitman's Leaves of Grass, Joyce's Ulysses, Shelley's
+      Frankenstein) with Project Gutenberg URLs. Provisions texts by downloading
+      to corpus/seeds/ directory.
+    tags: [service, seed-corpus, gutenberg, canon, arc4n]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-072"
+    path: "src/nexus_babel/services/remix.py"
+    type: source
+    lines: 142
+    thread_id: "THR-010"
+    title: "Remix/Recombination Engine"
+    summary: >
+      Recombines atoms across documents using 4 deterministic strategies:
+      interleave (alternate atoms from two sources), thematic_blend (match
+      by thematic tags), temporal_layer (overlay timelines), glyph_collide
+      (fuse overlapping glyph-seeds). Uses seeded RNG for reproducibility.
+    tags: [service, remix, recombination, creative, arc4n]
+    depends_on: ["FILE-024"]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Frontend
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-034"
+    path: "src/nexus_babel/frontend/templates/shell.html"
+    type: source
+    lines: ~50
+    thread_id: "THR-005"
+    title: "Frontend Shell Template"
+    summary: >
+      Jinja2 HTML template serving as a minimal shell for 4 views:
+      corpus, hypergraph, timeline, governance. Placeholder for future
+      rich UI development.
+    tags: [frontend, template, jinja2]
+    created: "2026-02-17T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Tests
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-035"
+    path: "tests/conftest.py"
+    type: source
+    lines: 91
+    thread_id: "THR-005"
+    title: "Test Fixtures"
+    summary: >
+      Pytest fixtures: test_settings (isolated SQLite per test via tmp_path),
+      client (TestClient), auth_headers (all 4 role levels), sample_corpus
+      (creates text, yaml, conflict yaml, PDF, image, WAV test files).
+    tags: [test, fixtures, pytest]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-036"
+    path: "tests/test_mvp.py"
+    type: source
+    lines: 342
+    thread_id: "THR-005"
+    title: "MVP Test Suite"
+    summary: >
+      342-line test suite covering: healthz, auth (whoami, 401/403), ingestion
+      (batch, dedup, checksums, conflict detection, PDF/image/audio stubs),
+      analysis (sync, mode enforcement, conflict guard), evolution (branch
+      creation, timeline, replay, compare), governance (PUBLIC block, RAW
+      flag), hypergraph (integrity), documents (list, detail), and
+      canonicalization (variant linking).
+    tags: [test, mvp, integration]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-037"
+    path: "tests/test_wave2.py"
+    type: source
+    lines: 151
+    thread_id: "THR-007"
+    title: "Wave-2 Test Suite"
+    summary: >
+      Tests async job queue (submit, status, cancel, idempotency, retry,
+      artifact tracking), plugin registry (deterministic/ml_first profiles),
+      shadow execution mode, extended evolution (natural_drift variants,
+      checkpoint compression), and metrics service.
+    tags: [test, wave-2, jobs, plugins]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-073"
+    path: "tests/test_arc4n.py"
+    type: source
+    lines: 411
+    thread_id: "THR-010"
+    title: "ARC4N Canon Test Suite"
+    summary: >
+      411-line test suite covering: rich glyph-seed atomization (metadata
+      presence, phoneme hints, historic forms, thematic tags), seed corpus
+      registry (list, provision, already_provisioned), remix engine (all 4
+      strategies: interleave, thematic_blend, temporal_layer, glyph_collide),
+      and glyph_data lookup functions. The largest test file.
+    tags: [test, arc4n, glyph-seeds, remix, seed-corpus]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Scripts
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-038"
+    path: "scripts/ingest_corpus.py"
+    type: source
+    lines: 28
+    thread_id: "THR-005"
+    title: "Corpus Ingestion Script"
+    summary: >
+      CLI script that creates an app instance and ingests all files found
+      under the configured corpus_root. Entry point for batch corpus loading.
+    tags: [script, ingestion, cli]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-039"
+    path: "scripts/load_test.py"
+    type: source
+    lines: 36
+    thread_id: "THR-005"
+    title: "Baseline Load Test"
+    summary: "Simple sequential load test hitting /healthz and /api/v1/documents endpoints with timing."
+    tags: [script, testing, performance]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-040"
+    path: "scripts/run_api.sh"
+    type: source
+    lines: 3
+    thread_id: "THR-005"
+    title: "API Server Launch Script"
+    summary: "Shell one-liner to launch uvicorn with reload."
+    tags: [script, convenience]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-042"
+    path: "scripts/repo_certainty_audit.py"
+    type: source
+    lines: 344
+    thread_id: "THR-008"
+    title: "Repository Certainty Audit"
+    summary: >
+      Comprehensive repo health scanner that scores file presence, structure,
+      test coverage, documentation completeness, and CI configuration. Generates
+      certainty reports in markdown and JSON formats.
+    tags: [script, audit, quality, governance]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-043"
+    path: "scripts/alexandria_babel_alignment.py"
+    type: source
+    lines: 248
+    thread_id: "THR-008"
+    title: "Alignment Verification Script"
+    summary: >
+      Verifies alignment between design documents, implementation, and test
+      coverage. Checks that documented features have corresponding code and tests.
+    tags: [script, audit, alignment, verification]
+    created: "2026-02-18T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # GitHub Configuration
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-030"
+    path: ".github/workflows/ci-minimal.yml"
+    type: config
+    lines: 26
+    thread_id: "THR-003"
+    title: "Minimal CI Workflow"
+    summary: >
+      GitHub Actions workflow that validates repo structure (README exists,
+      markdown files present). Does NOT run tests or lint. Uses pinned
+      action SHAs and handles Unicode filenames.
+    tags: [ci, github-actions, validation]
+    created: "2026-02-12T00:00:00Z"
+
+  - id: "FILE-045"
+    path: ".github/AGENTS.md"
+    type: doc
+    lines: 23
+    thread_id: "THR-009"
+    title: "Multi-Agent Coordination Protocol"
+    summary: "Coordination instructions for multi-agent workflows working on this repository."
+    tags: [agent-instructions, coordination, github]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-046"
+    path: ".github/GEMINI.md"
+    type: doc
+    lines: 18
+    thread_id: "THR-009"
+    title: "Gemini Agent Instructions"
+    summary: "Gemini-specific agent instructions referencing CLAUDE.md as primary source of truth."
+    tags: [agent-instructions, gemini, github]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-047"
+    path: ".github/SUPPORT.md"
+    type: doc
+    lines: 13
+    thread_id: "THR-009"
+    title: "Support Information"
+    summary: "Standard GitHub support file with issue reporting and contact information."
+    tags: [documentation, github, community]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-069"
+    path: ".github/SECURITY.md"
+    type: doc
+    lines: 24
+    thread_id: "THR-003"
+    title: "Security Policy"
+    summary: "Security vulnerability reporting instructions and responsible disclosure policy."
+    tags: [security, github, policy]
+    created: "2026-02-12T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Documentation (docs/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-059"
+    path: "docs/roadmap.md"
+    type: doc
+    lines: 1002
+    thread_id: "THR-001"
+    title: "Project Roadmap"
+    summary: >
+      Comprehensive development roadmap covering phases from MVP through
+      production. Relocated from root to docs/ during THR-009 reorganization.
+    tags: [documentation, roadmap, planning]
+    created: "2025-11-19T00:00:00Z"
+    modified: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-060"
+    path: "docs/OPERATOR_RUNBOOK.md"
+    type: doc
+    lines: 138
+    thread_id: "THR-005"
+    title: "Operator Runbook"
+    summary: >
+      Operational procedures for deployment, monitoring, troubleshooting,
+      and maintenance of the Nexus Babel Alexandria service.
+    tags: [documentation, operations, runbook]
+    created: "2026-02-17T00:00:00Z"
+
+  - id: "FILE-103"
+    path: "docs/pitch/index.html"
+    type: asset
+    lines: 1170
+    thread_id: "THR-012"
+    title: "ARC4N Interactive Pitch Deck"
+    summary: >
+      Single-file interactive pitch deck (HTML/CSS/JS, no dependencies)
+      presenting the ARC4N Living Digital Canon concept. Features slide
+      navigation, animated transitions, and responsive design. Served
+      via GitHub Pages.
+    tags: [documentation, pitch, github-pages, html]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-104"
+    path: "docs/.nojekyll"
+    type: config
+    lines: 0
+    thread_id: "THR-012"
+    title: "Jekyll Bypass Marker"
+    summary: "Empty file that tells GitHub Pages to skip Jekyll processing and serve static files directly."
+    tags: [config, github-pages, deployment]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-105"
+    path: "docs/index.html"
+    type: asset
+    lines: 12
+    thread_id: "THR-012"
+    title: "Root Redirect to Pitch Deck"
+    summary: "Minimal HTML redirect using meta-refresh + JS fallback, sending visitors from /docs root to /pitch/."
+    tags: [config, github-pages, redirect]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Documentation: Alexandria Babel Planning (docs/alexandria_babel/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-048"
+    path: "docs/alexandria_babel/AB-PLAN-01_Build_Tickets.md"
+    type: doc
+    lines: 270
+    thread_id: "THR-008"
+    title: "AB-PLAN-01 Build Tickets (Markdown)"
+    summary: "Executable build ticket pack with task breakdowns, acceptance criteria, and implementation notes."
+    tags: [documentation, planning, tickets]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-049"
+    path: "docs/alexandria_babel/AB-PLAN-01_Build_Tickets.json"
+    type: asset
+    lines: ~200
+    thread_id: "THR-008"
+    title: "AB-PLAN-01 Build Tickets (JSON)"
+    summary: "Machine-readable version of the build ticket pack for programmatic consumption."
+    tags: [documentation, planning, tickets, json]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-050"
+    path: "docs/alexandria_babel/feature_usecase_matrix.md"
+    type: doc
+    lines: 307
+    thread_id: "THR-008"
+    title: "Feature/Use-Case Matrix"
+    summary: "Cross-reference matrix mapping features to use cases with implementation status tracking."
+    tags: [documentation, planning, matrix]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-051"
+    path: "docs/alexandria_babel/feature_usecase_ledger.json"
+    type: asset
+    lines: ~150
+    thread_id: "THR-008"
+    title: "Feature/Use-Case Ledger (JSON)"
+    summary: "Machine-readable feature/use-case mapping for programmatic tracking."
+    tags: [documentation, planning, json]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-052"
+    path: "docs/alexandria_babel/Organism_Blueprint.md"
+    type: doc
+    lines: 43
+    thread_id: "THR-008"
+    title: "Organism Blueprint"
+    summary: "High-level architectural blueprint viewing the system as a living organism with subsystems."
+    tags: [documentation, architecture, metaphor]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-053"
+    path: "docs/alexandria_babel/Protocol_Tracker.md"
+    type: doc
+    lines: 26
+    thread_id: "THR-008"
+    title: "Protocol Tracker"
+    summary: "Tracks implementation status of system protocols and interfaces."
+    tags: [documentation, tracking, protocols]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-054"
+    path: "docs/alexandria_babel/Prototype_Tracker.md"
+    type: doc
+    lines: 35
+    thread_id: "THR-008"
+    title: "Prototype Tracker"
+    summary: "Tracks prototype status, iteration count, and readiness for each system component."
+    tags: [documentation, tracking, prototypes]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-055"
+    path: "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    type: doc
+    lines: 14
+    thread_id: "THR-008"
+    title: "Save Receipt (2026-02-18)"
+    summary: "Timestamped receipt documenting the state of the codebase at the end of the wave-2 build."
+    tags: [documentation, receipt, snapshot]
+    created: "2026-02-18T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Documentation: Certainty Audits (docs/certainty/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-056"
+    path: "docs/certainty/repo_certainty_report.md"
+    type: doc
+    lines: ~100
+    thread_id: "THR-008"
+    title: "Repository Certainty Report"
+    summary: "Generated audit report scoring file structure, test coverage, documentation, and CI health."
+    tags: [documentation, audit, quality, generated]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-057"
+    path: "docs/certainty/file_manifest.json"
+    type: asset
+    lines: ~200
+    thread_id: "THR-008"
+    title: "File Manifest (Certainty Audit)"
+    summary: "Machine-readable file inventory generated by the certainty audit script."
+    tags: [documentation, audit, json, generated]
+    created: "2026-02-18T00:00:00Z"
+
+  - id: "FILE-058"
+    path: "docs/certainty/feature_usecase_ledger.json"
+    type: asset
+    lines: ~150
+    thread_id: "THR-008"
+    title: "Feature/Use-Case Ledger (Certainty)"
+    summary: "Feature tracking ledger from the certainty audit perspective."
+    tags: [documentation, audit, json, generated]
+    created: "2026-02-18T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Documentation: Corpus Source Material (docs/corpus/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-062"
+    path: "docs/corpus/# Theoria Linguae Machina Comprehensive Design Document for the\u2026.md"
+    type: doc
+    lines: 893
+    thread_id: "THR-001"
+    title: "Original Design Document (Theoria Linguae Machina)"
+    summary: >
+      The founding design document (~893 lines) covering the full NLP system
+      architecture: multimodal ingestion, 5-level atomization, hypergraph
+      projection, 9-layer linguistic analysis, dual-mode governance, and
+      temporal evolution spiral. The conceptual seed of the entire project.
+    notes: >
+      Originally uploaded with a long Unicode filename. Relocated to
+      docs/corpus/ during THR-009. This is the human-authored root document
+      that all subsequent implementation derives from.
+    tags: [corpus, design, founding-document, human-authored]
+    created: "2025-11-19T00:00:00Z"
+
+  - id: "FILE-063"
+    path: "docs/corpus/Nexus_Bable-Alexandria.md"
+    type: doc
+    lines: 889
+    thread_id: "THR-001"
+    title: "Nexus Babel Alexandria Design Notes"
+    summary: "Extended design notes and conceptual exploration for the Nexus Babel Alexandria system."
+    tags: [corpus, design, notes]
+    created: "2025-11-19T00:00:00Z"
+
+  - id: "FILE-064"
+    path: "docs/corpus/0469-arc4n-seed-texts-and-atomization-2.md"
+    type: doc
+    lines: 2249
+    thread_id: "THR-010"
+    title: "ARC4N Seed Texts & Atomization Design (v2)"
+    summary: >
+      Extensive design document (2,249 lines) detailing the ARC4N seed text
+      selection rationale, rich atomization specification, glyph-seed metadata
+      schema, and temporal evolution mechanics.
+    tags: [corpus, design, arc4n, atomization]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-065"
+    path: "docs/corpus/the-archive-trace.md"
+    type: doc
+    lines: 70
+    thread_id: "THR-009"
+    title: "The Archive of the Trace (Markdown)"
+    summary: "Markdown transcription of the Archive of the Trace essay/document."
+    tags: [corpus, essay, transcription]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-066"
+    path: "docs/corpus/the-brutalist-ziggurat-of-truth.md"
+    type: doc
+    lines: 78
+    thread_id: "THR-009"
+    title: "The Brutalist Ziggurat of Truth (Markdown)"
+    summary: "Markdown transcription of the Brutalist Ziggurat of Truth essay/document."
+    tags: [corpus, essay, transcription]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-067"
+    path: "docs/corpus/The Archive of the Trace.pdf"
+    type: asset
+    lines: ~0
+    thread_id: "THR-009"
+    title: "The Archive of the Trace (PDF)"
+    summary: "Original PDF of the Archive of the Trace essay."
+    tags: [corpus, essay, pdf]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-068"
+    path: "docs/corpus/The Brutalist Ziggurat of Truth.pdf"
+    type: asset
+    lines: ~0
+    thread_id: "THR-009"
+    title: "The Brutalist Ziggurat of Truth (PDF)"
+    summary: "Original PDF of the Brutalist Ziggurat of Truth essay."
+    tags: [corpus, essay, pdf]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # Corpus Seeds
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-075"
+    path: "corpus/seeds/.gitkeep"
+    type: config
+    lines: 0
+    thread_id: "THR-010"
+    title: "Seed Corpus Directory Marker"
+    summary: "Keeps the corpus/seeds/ directory tracked in git for seed text provisioning."
+    tags: [config, corpus, placeholder]
+    created: "2026-02-23T00:00:00Z"
+
+  # --------------------------------------------------------------------------
+  # SDD Specifications (specs/)
+  # --------------------------------------------------------------------------
+
+  - id: "FILE-076"
+    path: "specs/01-ingestion-atomization/spec.md"
+    type: doc
+    lines: 430
+    thread_id: "THR-011"
+    title: "SDD Spec: Ingestion & Atomization"
+    summary: "Requirements and acceptance criteria for multimodal ingestion and 5-level atomization."
+    tags: [spec, sdd, ingestion, atomization]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-077"
+    path: "specs/01-ingestion-atomization/plan.md"
+    type: doc
+    lines: 407
+    thread_id: "THR-011"
+    title: "SDD Plan: Ingestion & Atomization"
+    summary: "Implementation strategy for ingestion pipeline enhancements."
+    tags: [spec, sdd, plan, ingestion]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-078"
+    path: "specs/01-ingestion-atomization/tasks.md"
+    type: doc
+    lines: 424
+    thread_id: "THR-011"
+    title: "SDD Tasks: Ingestion & Atomization"
+    summary: "Executable work items for ingestion domain."
+    tags: [spec, sdd, tasks, ingestion]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-079"
+    path: "specs/02-linguistic-analysis/spec.md"
+    type: doc
+    lines: 515
+    thread_id: "THR-011"
+    title: "SDD Spec: Linguistic Analysis"
+    summary: "Requirements for 9-layer linguistic analysis pipeline, plugin architecture, and confidence scoring."
+    tags: [spec, sdd, analysis, nlp]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-080"
+    path: "specs/02-linguistic-analysis/plan.md"
+    type: doc
+    lines: 368
+    thread_id: "THR-011"
+    title: "SDD Plan: Linguistic Analysis"
+    summary: "Implementation strategy for analysis layer enhancements."
+    tags: [spec, sdd, plan, analysis]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-081"
+    path: "specs/02-linguistic-analysis/tasks.md"
+    type: doc
+    lines: 431
+    thread_id: "THR-011"
+    title: "SDD Tasks: Linguistic Analysis"
+    summary: "Executable work items for analysis domain."
+    tags: [spec, sdd, tasks, analysis]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-082"
+    path: "specs/03-evolution-branching/spec.md"
+    type: doc
+    lines: 583
+    thread_id: "THR-011"
+    title: "SDD Spec: Evolution & Branching"
+    summary: "Requirements for temporal evolution spiral, natural/synthetic drift, and branch management."
+    tags: [spec, sdd, evolution, branching]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-083"
+    path: "specs/03-evolution-branching/plan.md"
+    type: doc
+    lines: 783
+    thread_id: "THR-011"
+    title: "SDD Plan: Evolution & Branching"
+    summary: "Implementation strategy for evolution system. Largest plan file (783 lines)."
+    tags: [spec, sdd, plan, evolution]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-084"
+    path: "specs/03-evolution-branching/tasks.md"
+    type: doc
+    lines: 546
+    thread_id: "THR-011"
+    title: "SDD Tasks: Evolution & Branching"
+    summary: "Executable work items for evolution domain."
+    tags: [spec, sdd, tasks, evolution]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-085"
+    path: "specs/04-remix-recombination/spec.md"
+    type: doc
+    lines: 389
+    thread_id: "THR-011"
+    title: "SDD Spec: Remix & Recombination"
+    summary: "Requirements for 4 remix strategies and cross-document recombination."
+    tags: [spec, sdd, remix, recombination]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-086"
+    path: "specs/04-remix-recombination/plan.md"
+    type: doc
+    lines: 450
+    thread_id: "THR-011"
+    title: "SDD Plan: Remix & Recombination"
+    summary: "Implementation strategy for remix engine enhancements."
+    tags: [spec, sdd, plan, remix]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-087"
+    path: "specs/04-remix-recombination/tasks.md"
+    type: doc
+    lines: 543
+    thread_id: "THR-011"
+    title: "SDD Tasks: Remix & Recombination"
+    summary: "Executable work items for remix domain."
+    tags: [spec, sdd, tasks, remix]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-088"
+    path: "specs/05-governance-audit/spec.md"
+    type: doc
+    lines: 429
+    thread_id: "THR-011"
+    title: "SDD Spec: Governance & Audit"
+    summary: "Requirements for dual-mode governance, policy evaluation, and audit logging."
+    tags: [spec, sdd, governance, audit]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-089"
+    path: "specs/05-governance-audit/plan.md"
+    type: doc
+    lines: 458
+    thread_id: "THR-011"
+    title: "SDD Plan: Governance & Audit"
+    summary: "Implementation strategy for governance system enhancements."
+    tags: [spec, sdd, plan, governance]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-090"
+    path: "specs/05-governance-audit/tasks.md"
+    type: doc
+    lines: 464
+    thread_id: "THR-011"
+    title: "SDD Tasks: Governance & Audit"
+    summary: "Executable work items for governance domain."
+    tags: [spec, sdd, tasks, governance]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-091"
+    path: "specs/06-seed-corpus/spec.md"
+    type: doc
+    lines: 374
+    thread_id: "THR-011"
+    title: "SDD Spec: Seed Corpus"
+    summary: "Requirements for canonical seed text registry, provisioning, and atomization."
+    tags: [spec, sdd, seed-corpus, canon]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-092"
+    path: "specs/06-seed-corpus/plan.md"
+    type: doc
+    lines: 460
+    thread_id: "THR-011"
+    title: "SDD Plan: Seed Corpus"
+    summary: "Implementation strategy for seed corpus provisioning and management."
+    tags: [spec, sdd, plan, seed-corpus]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-093"
+    path: "specs/06-seed-corpus/tasks.md"
+    type: doc
+    lines: 452
+    thread_id: "THR-011"
+    title: "SDD Tasks: Seed Corpus"
+    summary: "Executable work items for seed corpus domain."
+    tags: [spec, sdd, tasks, seed-corpus]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-094"
+    path: "specs/07-hypergraph/spec.md"
+    type: doc
+    lines: 425
+    thread_id: "THR-011"
+    title: "SDD Spec: Hypergraph"
+    summary: "Requirements for Neo4j projection, local cache, integrity verification, and graph queries."
+    tags: [spec, sdd, hypergraph, neo4j]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-095"
+    path: "specs/07-hypergraph/plan.md"
+    type: doc
+    lines: 398
+    thread_id: "THR-011"
+    title: "SDD Plan: Hypergraph"
+    summary: "Implementation strategy for hypergraph projection and query enhancements."
+    tags: [spec, sdd, plan, hypergraph]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-096"
+    path: "specs/07-hypergraph/tasks.md"
+    type: doc
+    lines: 477
+    thread_id: "THR-011"
+    title: "SDD Tasks: Hypergraph"
+    summary: "Executable work items for hypergraph domain."
+    tags: [spec, sdd, tasks, hypergraph]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-097"
+    path: "specs/08-platform-infrastructure/spec.md"
+    type: doc
+    lines: 552
+    thread_id: "THR-011"
+    title: "SDD Spec: Platform Infrastructure"
+    summary: "Requirements for deployment, observability, CI/CD, and production readiness."
+    tags: [spec, sdd, infrastructure, platform]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-098"
+    path: "specs/08-platform-infrastructure/plan.md"
+    type: doc
+    lines: 592
+    thread_id: "THR-011"
+    title: "SDD Plan: Platform Infrastructure"
+    summary: "Implementation strategy for production deployment and observability."
+    tags: [spec, sdd, plan, infrastructure]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-099"
+    path: "specs/08-platform-infrastructure/tasks.md"
+    type: doc
+    lines: 358
+    thread_id: "THR-011"
+    title: "SDD Tasks: Platform Infrastructure"
+    summary: "Executable work items for infrastructure domain."
+    tags: [spec, sdd, tasks, infrastructure]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-100"
+    path: "specs/09-explorer-ux/spec.md"
+    type: doc
+    lines: 584
+    thread_id: "THR-011"
+    title: "SDD Spec: Explorer UX"
+    summary: "Requirements for the corpus explorer, hypergraph visualizer, timeline viewer, and governance dashboard."
+    tags: [spec, sdd, ux, frontend]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-101"
+    path: "specs/09-explorer-ux/plan.md"
+    type: doc
+    lines: 762
+    thread_id: "THR-011"
+    title: "SDD Plan: Explorer UX"
+    summary: "Implementation strategy for frontend explorer. Second-largest plan file (762 lines)."
+    tags: [spec, sdd, plan, ux, frontend]
+    created: "2026-02-23T00:00:00Z"
+
+  - id: "FILE-102"
+    path: "specs/09-explorer-ux/tasks.md"
+    type: doc
+    lines: 641
+    thread_id: "THR-011"
+    title: "SDD Tasks: Explorer UX"
+    summary: "Executable work items for explorer UX domain. Largest tasks file (641 lines)."
+    tags: [spec, sdd, tasks, ux, frontend]
+    created: "2026-02-23T00:00:00Z"
+
+# ============================================================================
+# RELATIONS — Dependencies and connections between files
+# ============================================================================
+
+relations:
+
+  # Core dependency chain
+  - id: "REL-001"
+    type: depends_on
+    source: "FILE-015"  # main.py
+    target: "FILE-016"  # config.py
+    annotation: "App factory reads settings to configure all services"
+
+  - id: "REL-002"
+    type: depends_on
+    source: "FILE-015"  # main.py
+    target: "FILE-017"  # db.py
+    annotation: "App factory creates DBManager from database URL"
+
+  - id: "REL-003"
+    type: depends_on
+    source: "FILE-015"  # main.py
+    target: "FILE-020"  # routes.py
+    annotation: "App factory mounts the API router"
+
+  - id: "REL-004"
+    type: depends_on
+    source: "FILE-020"  # routes.py
+    target: "FILE-022"  # auth.py
+    annotation: "All endpoints use auth dependency for role enforcement"
+
+  - id: "REL-005"
+    type: depends_on
+    source: "FILE-020"  # routes.py
+    target: "FILE-019"  # schemas.py
+    annotation: "Routes use Pydantic models for request/response validation"
+
+  - id: "REL-006"
+    type: depends_on
+    source: "FILE-020"  # routes.py
+    target: "FILE-018"  # models.py
+    annotation: "Routes query ORM models directly for list/detail endpoints"
+
+  # Service dependencies
+  - id: "REL-007"
+    type: depends_on
+    source: "FILE-027"  # ingestion.py
+    target: "FILE-028"  # text_utils.py
+    annotation: "Ingestion calls atomize_text/atomize_text_rich for document decomposition"
+
+  - id: "REL-008"
+    type: depends_on
+    source: "FILE-027"  # ingestion.py
+    target: "FILE-023"  # canonicalization.py
+    annotation: "Ingestion applies canonicalization after batch processing"
+
+  - id: "REL-009"
+    type: depends_on
+    source: "FILE-027"  # ingestion.py
+    target: "FILE-026"  # hypergraph.py
+    annotation: "Ingestion projects document/atom nodes to graph"
+
+  - id: "REL-010"
+    type: depends_on
+    source: "FILE-028"  # text_utils.py
+    target: "FILE-070"  # glyph_data.py
+    annotation: "Rich atomization looks up phonemes, historic forms, mutations from glyph data"
+
+  - id: "REL-011"
+    type: depends_on
+    source: "FILE-021"  # analysis.py
+    target: "FILE-032"  # plugins.py
+    annotation: "Analysis runs each layer through the plugin registry's fallback chain"
+
+  - id: "REL-012"
+    type: depends_on
+    source: "FILE-021"  # analysis.py
+    target: "FILE-033"  # rhetoric.py
+    annotation: "Analysis invokes rhetorical analyzer for the rhetoric layer"
+
+  - id: "REL-013"
+    type: depends_on
+    source: "FILE-072"  # remix.py
+    target: "FILE-024"  # evolution.py
+    annotation: "Remix creates branch events through the evolution service"
+
+  - id: "REL-014"
+    type: depends_on
+    source: "FILE-041"  # worker.py
+    target: "FILE-029"  # jobs.py
+    annotation: "Worker polls and executes jobs through the job service"
+
+  # Test dependencies
+  - id: "REL-015"
+    type: depends_on
+    source: "FILE-036"  # test_mvp.py
+    target: "FILE-035"  # conftest.py
+    annotation: "MVP tests use shared fixtures (client, auth_headers, sample_corpus)"
+
+  - id: "REL-016"
+    type: depends_on
+    source: "FILE-037"  # test_wave2.py
+    target: "FILE-035"  # conftest.py
+    annotation: "Wave-2 tests use shared fixtures"
+
+  - id: "REL-017"
+    type: depends_on
+    source: "FILE-073"  # test_arc4n.py
+    target: "FILE-035"  # conftest.py
+    annotation: "ARC4N tests use shared fixtures"
+
+  # Design -> Implementation lineage
+  - id: "REL-018"
+    type: implements
+    source: "FILE-027"  # ingestion.py
+    target: "FILE-062"  # design document
+    annotation: "Ingestion pipeline implements the multimodal ingestion architecture from the design doc"
+
+  - id: "REL-019"
+    type: implements
+    source: "FILE-024"  # evolution.py
+    target: "FILE-062"  # design document
+    annotation: "Evolution service implements the temporal evolution spiral from the design doc"
+
+  - id: "REL-020"
+    type: implements
+    source: "FILE-070"  # glyph_data.py
+    target: "FILE-064"  # arc4n seed texts doc
+    annotation: "Glyph data implements the metadata schema from the ARC4N design document"
+
+  # Spec -> Implementation lineage
+  - id: "REL-021"
+    type: references
+    source: "FILE-076"  # spec 01
+    target: "FILE-027"  # ingestion.py
+    annotation: "Ingestion spec describes future enhancements to existing ingestion service"
+
+  - id: "REL-022"
+    type: references
+    source: "FILE-079"  # spec 02
+    target: "FILE-021"  # analysis.py
+    annotation: "Analysis spec describes future enhancements to existing analysis service"
+
+  - id: "REL-023"
+    type: references
+    source: "FILE-082"  # spec 03
+    target: "FILE-024"  # evolution.py
+    annotation: "Evolution spec describes future enhancements to existing evolution service"
+
+  # Migration -> Model lineage
+  - id: "REL-024"
+    type: implements
+    source: "FILE-012"  # migration 0001
+    target: "FILE-018"  # models.py
+    annotation: "Initial migration creates the schema defined in ORM models"
+
+  - id: "REL-025"
+    type: extends
+    source: "FILE-013"  # migration 0002
+    target: "FILE-012"  # migration 0001
+    annotation: "Wave-2 migration extends initial schema with jobs and checkpoints"
+
+  - id: "REL-026"
+    type: extends
+    source: "FILE-074"  # migration 0003
+    target: "FILE-013"  # migration 0002
+    annotation: "ARC4N migration adds atom metadata column"
+
+  # Cross-organ dependency
+  - id: "REL-027"
+    type: depends_on
+    source: "FILE-004"  # seed.yaml
+    target: "organvm-i-theoria/linguistic-atomization-framework"
+    annotation: "Declared external dependency on the linguistic atomization framework (ORGAN-I sibling)"
+
+# ============================================================================
+# STATISTICS
+# ============================================================================
+
+statistics:
+  total_files: 105
+  source_files: 26
+  test_files: 4
+  config_files: 12
+  doc_files: 36
+  spec_files: 27
+  asset_files: 8
+  total_source_lines: ~4950
+  total_test_lines: ~995
+  total_spec_lines: ~12600
+  total_doc_lines: ~8300
+  threads: 12
+  relations: 27
+  commits_on_main: 15
+  commits_orphaned: 82
+  active_development_span: "2025-11-19 to 2026-02-23 (96 days)"
+  primary_build_sessions: 3  # THR-005 (MVP), THR-007 (Wave-2), THR-010 (ARC4N)

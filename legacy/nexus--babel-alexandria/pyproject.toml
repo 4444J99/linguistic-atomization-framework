@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nexus-babel-alexandria"
+version = "0.1.0"
+description = "RLOS + ARC4N MVP service"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "sqlalchemy>=2.0.34",
+  "pydantic>=2.8.2",
+  "pydantic-settings>=2.14.2",
+  "PyYAML>=6.0.2",
+  "neo4j>=5.23.0",
+  "pypdf>=6.13.3",
+  "jinja2>=3.1.4",
+  "python-multipart>=0.0.31",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.2.1"]
+dev = [
+  "pytest>=9.0.3",
+  "httpx>=0.27.0",
+  "alembic>=1.13.2",
+  "matplotlib>=3.9.0",
+  "ruff>=0.9.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "slow: non-gating benchmark or performance-oriented tests",
+]
+filterwarnings = [
+  "ignore::DeprecationWarning:pypdf.*",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"

@@ -1,0 +1,37 @@
+schema_version: "1.0"
+seeds:
+  - title: "The Odyssey"
+    author: "Homer"
+    language: "English"
+    source_url: "https://www.gutenberg.org/cache/epub/1727/pg1727.txt"
+  - title: "The Divine Comedy"
+    author: "Dante Alighieri"
+    language: "English"
+    source_url: "https://www.gutenberg.org/cache/epub/8800/pg8800.txt"
+  - title: "Leaves of Grass"
+    author: "Walt Whitman"
+    language: "English"
+    source_url: "https://www.gutenberg.org/cache/epub/1322/pg1322.txt"
+  - title: "Ulysses"
+    author: "James Joyce"
+    language: "English"
+    source_url: "https://www.gutenberg.org/cache/epub/4300/pg4300.txt"
+  - title: "Frankenstein"
+    author: "Mary Shelley"
+    language: "English"
+    source_url: "https://www.gutenberg.org/cache/epub/84/pg84.txt"
+profiles:
+  arc4n-seed:
+    name: "arc4n-seed"
+    description: "Canonical ARC4N pilot corpus ingest profile for the five seed texts."
+    seed_titles:
+      - "The Odyssey"
+      - "The Divine Comedy"
+      - "Leaves of Grass"
+      - "Ulysses"
+      - "Frankenstein"
+    atom_tracks:
+      - "literary"
+      - "glyphic_seed"
+    parse_options:
+      atomize: true

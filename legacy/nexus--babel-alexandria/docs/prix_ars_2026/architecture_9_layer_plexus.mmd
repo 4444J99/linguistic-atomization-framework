@@ -1,0 +1,16 @@
+flowchart TD
+    A["Layer 1: Corpus Ingestion<br/>Seed texts, uploads, parsing, atomization"]
+    B["Layer 2: Atom Library<br/>5-level atoms + deterministic filenames"]
+    C["Layer 3: Hypergraph Projection<br/>Document/atom graph + integrity checks"]
+    D["Layer 4: Plexus Analysis<br/>9-layer rhetorical + linguistic analysis"]
+    E["Layer 5: Governance Audit<br/>Policy decisions, redactions, audit trace"]
+    F["Layer 6: Evolution Branching<br/>Branch events, replay, compare"]
+    G["Layer 7: Remix Composer<br/>Atom-pool recombination + lineage refs"]
+    H["Layer 8: Artifact & Retrieval<br/>Remix artifacts, source links, exports"]
+    I["Layer 9: Explorer & Submission Surface<br/>API/docs, demo scripts, visuals"]
+
+    A --> B --> C --> D --> E --> F --> G --> H --> I
+    A -. "Ingestion -> Plexus flow" .-> D
+    C -. "Hypergraph references" .-> H
+    E -. "Governance trace" .-> H
+    G -. "Optional branch break-off" .-> F
