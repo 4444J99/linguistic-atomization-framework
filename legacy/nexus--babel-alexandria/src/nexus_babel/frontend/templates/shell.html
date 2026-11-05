@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Babel Alexandria - {{ view|capitalize }}</title>
+  <style>
+    :root {
+      --ink: #102134;
+      --paper: #f6f8fb;
+      --panel: #ffffff;
+      --line: #d5dde8;
+      --accent: #0f766e;
+      --accent-2: #9333ea;
+      --warn: #b91c1c;
+      --ok: #15803d;
+      --font-head: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --font-body: "IBM Plex Mono", "Menlo", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-body);
+      background: radial-gradient(circle at 0% 0%, #dff6ff, transparent 35%),
+                  radial-gradient(circle at 100% 100%, #ede9fe, transparent 35%),
+                  var(--paper);
+      min-height: 100vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 0.9rem 1rem;
+    }
+    .head-row { display: flex; gap: 0.8rem; justify-content: space-between; flex-wrap: wrap; }
+    .brand {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .api-key-wrap {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    input[type="password"] {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      min-width: 240px;
+      background: #fff;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+    }
+    button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.42rem 0.6rem;
+      background: linear-gradient(120deg, #ecfeff, #ede9fe);
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+    }
+    nav {
+      margin-top: 0.65rem;
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 0.38rem 0.75rem;
+      font-size: 0.78rem;
+      background: #fff;
+    }
+    nav a.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 0.95rem;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      padding: 0.9rem;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+    }
+    .panel h2 {
+      margin: 0 0 0.55rem;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+    }
+    .status { font-size: 0.8rem; color: #334155; }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .list {
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.76rem;
+    }
+    .row {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.5rem;
+      background: #fcfdff;
+    }
+    .mono { font-family: var(--font-body); }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.74rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.55rem;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.45rem;
+      background: #fff;
+      font-size: 0.75rem;
+    }
+    .metric .v {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 0.15rem;
+    }
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+      input[type="password"] { min-width: 180px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="head-row">
+    <div class="brand">Nexus Babel-Alexandria | Internal Alpha</div>
+    <div class="api-key-wrap">
+      <label for="apiKey" class="status">API key</label>
+      <input id="apiKey" type="password" placeholder="X-Nexus-API-Key" />
+      <button id="saveKey">Save</button>
+      <button id="clearKey">Clear</button>
+    </div>
+  </div>
+  <nav>
+    <a href="/app/corpus" class="{% if view == 'corpus' %}active{% endif %}">Corpus</a>
+    <a href="/app/hypergraph" class="{% if view == 'hypergraph' %}active{% endif %}">Hypergraph</a>
+    <a href="/app/timeline" class="{% if view == 'timeline' %}active{% endif %}">Timeline</a>
+    <a href="/app/governance" class="{% if view == 'governance' %}active{% endif %}">Governance</a>
+  </nav>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>{{ view|capitalize }} Workspace</h2>
+    <div id="viewContent" class="list"></div>
+  </section>
+  <aside class="panel">
+    <h2>Ops Monitor</h2>
+    <div id="globalStatus" class="status">Loading...</div>
+    <div id="whoami" class="status" style="margin-top:0.45rem;"></div>
+    <div id="jobsPanel" class="list" style="margin-top:0.65rem;"></div>
+  </aside>
+</main>
+
+<script>
+  const currentView = "{{ view }}";
+  const keyInput = document.getElementById("apiKey");
+  const saveKeyBtn = document.getElementById("saveKey");
+  const clearKeyBtn = document.getElementById("clearKey");
+  const statusEl = document.getElementById("globalStatus");
+  const whoamiEl = document.getElementById("whoami");
+  const jobsPanelEl = document.getElementById("jobsPanel");
+  const viewContentEl = document.getElementById("viewContent");
+
+  function getApiKey() {
+    return localStorage.getItem("nexus_api_key") || "";
+  }
+
+  function setApiKey(value) {
+    if (value) localStorage.setItem("nexus_api_key", value);
+  }
+
+  function clearApiKey() {
+    localStorage.removeItem("nexus_api_key");
+  }
+
+  async function api(path, options = {}) {
+    const apiKey = getApiKey(); // allow-secret
+    const headers = { ...(options.headers || {}) };
+    if (apiKey) headers["X-Nexus-API-Key"] = apiKey;
+    if (!headers["Content-Type"] && options.body) headers["Content-Type"] = "application/json";
+    const response = await fetch(path, { ...options, headers });
+    const text = await response.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
+    if (!response.ok) throw new Error(data.detail || text || `HTTP ${response.status}`);
+    return data;
+  }
+
+  function renderRows(items, mapper) {
+    if (!items.length) return "<div class='row'>No items.</div>";
+    return items.map((item) => `<div class="row">${mapper(item)}</div>`).join("");
+  }
+
+  async function loadGlobal() {
+    try {
+      const [health, whoami, jobs] = await Promise.all([
+        fetch("/healthz").then((r) => r.json()),
+        api("/api/v1/auth/whoami"),
+        api("/api/v1/jobs?limit=12"),
+      ]);
+      statusEl.innerHTML = health.status === "ok"
+        ? "<span class='ok'>System healthy</span>"
+        : "<span class='warn'>System degraded</span>";
+      whoamiEl.innerHTML = `role=<span class="mono">${whoami.role}</span> owner=<span class="mono">${whoami.owner}</span> modes=<span class="mono">${whoami.allowed_modes.join(",")}</span>`;
+      jobsPanelEl.innerHTML = renderRows(jobs.jobs || [], (job) =>
+        `<strong>${job.job_type}</strong> <span class="mono">${job.status}</span><br/><span class="status mono">${job.job_id}</span>`
+      );
+    } catch (error) {
+      statusEl.innerHTML = `<span class="warn">Auth/API unavailable: ${error.message}</span>`;
+      whoamiEl.textContent = "Set an API key to load protected views.";
+      jobsPanelEl.innerHTML = "<div class='row'>No job data.</div>";
+    }
+  }
+
+  async function renderCorpus() {
+    const docs = await api("/api/v1/documents");
+    const list = docs.documents || [];
+    const ingested = list.filter((d) => d.ingested).length;
+    const conflicted = list.filter((d) => d.conflict_flag).length;
+    const projected = list.filter((d) => d.graph_projection_status === "complete").length;
+    viewContentEl.innerHTML = `
+      <div class="metrics">
+        <div class="metric"><div>Total docs</div><div class="v">${list.length}</div></div>
+        <div class="metric"><div>Ingested</div><div class="v">${ingested}</div></div>
+        <div class="metric"><div>Projected</div><div class="v">${projected}</div></div>
+      </div>
+      <div class="metric"><div>Conflicts</div><div class="v">${conflicted}</div></div>
+      ${renderRows(list.slice(0, 40), (d) => `
+        <strong>${d.path.split("/").pop()}</strong><br/>
+        <span class="status">modality=<span class="mono">${d.modality}</span> ingest=<span class="mono">${d.ingest_status}</span> graph=<span class="mono">${d.graph_projection_status}</span></span>
+      `)}
+    `;
+  }
+
+  async function renderHypergraph() {
+    const docs = await api("/api/v1/documents");
+    const first = (docs.documents || []).find((d) => d.ingested && !d.conflict_flag);
+    if (!first) {
+      viewContentEl.innerHTML = "<div class='row'>No ingested document available.</div>";
+      return;
+    }
+    const [integrity, neighborhood] = await Promise.all([
+      api(`/api/v1/hypergraph/documents/${first.id}/integrity`),
+      api(`/api/v1/hypergraph/query?document_id=${encodeURIComponent(first.id)}&limit=30`),
+    ]);
+    viewContentEl.innerHTML = `
+      <div class="metrics">
+        <div class="metric"><div>Document nodes</div><div class="v">${integrity.document_nodes}</div></div>
+        <div class="metric"><div>Atom nodes</div><div class="v">${integrity.atom_nodes}</div></div>
+        <div class="metric"><div>Consistent</div><div class="v">${integrity.consistent ? "yes" : "no"}</div></div>
+      </div>
+      <div class="row"><strong>Neighborhood sample (${neighborhood.count?.nodes || 0} nodes)</strong><pre>${JSON.stringify(neighborhood, null, 2)}</pre></div>
+    `;
+  }
+
+  async function renderTimeline() {
+    const branches = await api("/api/v1/branches?limit=24");
+    const items = branches.branches || [];
+    if (!items.length) {
+      viewContentEl.innerHTML = "<div class='row'>No branches yet. Create one via API /api/v1/evolve/branch.</div>";
+      return;
+    }
+    const first = items[0];
+    const replay = await api(`/api/v1/branches/${first.id}/replay`, { method: "POST" });
+    let compareBlock = "";
+    if (items.length > 1) {
+      const compare = await api(`/api/v1/branches/${first.id}/compare/${items[1].id}`);
+      compareBlock = `<div class="row"><strong>Branch compare</strong><pre>${JSON.stringify(compare, null, 2)}</pre></div>`;
+    }
+    viewContentEl.innerHTML = `
+      <div class="row"><strong>Latest replay</strong><pre>${JSON.stringify(replay, null, 2)}</pre></div>
+      ${compareBlock}
+      ${renderRows(items.slice(0, 20), (b) => `
+        <span class="mono">${b.id}</span><br/>
+        <span class="status">mode=${b.mode} version=${b.branch_version} root=${b.root_document_id || "n/a"}</span>
+      `)}
+    `;
+  }
+
+  async function renderGovernance() {
+    const decisions = await api("/api/v1/audit/policy-decisions?limit=24");
+    viewContentEl.innerHTML = renderRows(decisions.decisions || [], (d) => `
+      <strong>${d.mode}</strong> allow=<span class="mono">${d.allow}</span><br/>
+      <span class="status mono">hits=${(d.policy_hits || []).join(",") || "none"} audit=${d.audit_id}</span>
+      <pre>${JSON.stringify(d.decision_trace || {}, null, 2)}</pre>
+    `);
+  }
+
+  async function renderView() {
+    try {
+      if (currentView === "corpus") await renderCorpus();
+      else if (currentView === "hypergraph") await renderHypergraph();
+      else if (currentView === "timeline") await renderTimeline();
+      else if (currentView === "governance") await renderGovernance();
+      else viewContentEl.innerHTML = "<div class='row'>Unknown view.</div>";
+    } catch (error) {
+      viewContentEl.innerHTML = `<div class="row warn">Failed to load ${currentView}: ${error.message}</div>`;
+    }
+  }
+
+  saveKeyBtn.addEventListener("click", async () => {
+    setApiKey(keyInput.value.trim());
+    await loadGlobal();
+    await renderView();
+  });
+  clearKeyBtn.addEventListener("click", async () => {
+    clearApiKey();
+    keyInput.value = "";
+    await loadGlobal();
+    await renderView();
+  });
+
+  async function boot() {
+    keyInput.value = getApiKey();
+    await loadGlobal();
+    await renderView();
+  }
+  boot();
+</script>
+</body>
+</html>

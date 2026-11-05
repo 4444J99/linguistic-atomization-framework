@@ -1,0 +1,18 @@
+schema_version: '1.0'
+repo: nexus--babel-alexandria
+organ: I
+display_name: "Nexus: Babel-Alexandria — Universal knowledge nexus bridging linguistic and archival systems"
+
+delivery:
+- platform: python_library
+  status: in_progress
+  priority: high
+  notes: "Mixed-language knowledge system"
+  next_action: "Complete core nexus integration API"
+
+content:
+- platform: docs_site
+  status: not_started
+  priority: medium
+  notes: "Architecture reference and integration guide"
+  next_action: "Document nexus data model and query patterns"

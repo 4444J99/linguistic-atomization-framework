@@ -1,0 +1,29 @@
+version: '3.9'
+# Local development only. Replace credentials for any shared environment.
+services:
+  postgres:
+    image: postgres:16
+    container_name: nexus_postgres
+    environment:
+      POSTGRES_DB: nexus_babel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  neo4j:
+    image: neo4j:5.23
+    container_name: nexus_neo4j
+    environment:
+      NEO4J_AUTH: neo4j/neo4jpassword
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+
+volumes:
+  postgres_data:
+  neo4j_data:

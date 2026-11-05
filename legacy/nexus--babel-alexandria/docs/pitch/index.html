@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARC4N — Living Digital Canon</title>
+<meta name="description" content="Atomizing literature at the molecular level. Evolving language across infinite timelines.">
+<style>
+/* ===== RESET & TOKENS ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#102134;--paper:#f6f8fb;--accent:#0f766e;--accent-2:#9333ea;
+  --glyph:#6366f1;--gold:#d4a853;--drift:#475569;
+  --hero-bg:#0f172a;--hero-fg:#e2e8f0;
+  --serif:"Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,monospace;
+  --ease-out:cubic-bezier(.25,.46,.45,.94);
+  --section-max:1200px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;overflow-x:hidden}
+
+/* ===== TYPOGRAPHY ===== */
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.2}
+h1{font-size:clamp(2.5rem,6vw,5rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:1rem}
+h3{font-size:clamp(1.2rem,2vw,1.5rem)}
+.label{font-family:var(--sans);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--drift)}
+.mono{font-family:var(--mono)}
+
+/* ===== LAYOUT ===== */
+section{position:relative;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.container{width:100%;max-width:var(--section-max);margin:0 auto;padding:2rem}
+
+/* ===== NAV DOTS ===== */
+#nav-dots{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.75rem}
+#nav-dots a{display:block;width:10px;height:10px;border-radius:50%;background:rgba(99,102,241,.3);transition:all .3s var(--ease-out);text-indent:-9999px}
+#nav-dots a.active{background:var(--glyph);transform:scale(1.4)}
+@media(max-width:768px){#nav-dots{right:.5rem;gap:.5rem}#nav-dots a{width:8px;height:8px}}
+
+/* ===== HERO (S0) ===== */
+#hero{background:var(--hero-bg);color:var(--hero-fg);flex-direction:column;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;z-index:0}
+#hero .container{position:relative;z-index:1;text-align:center}
+#hero h1{margin-bottom:.5rem}
+#hero h1 .arc4n{color:var(--gold);display:block;font-size:clamp(3.5rem,8vw,7rem);letter-spacing:.08em}
+#hero .subtitle{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);color:var(--gold);opacity:.85;margin-bottom:1.5rem}
+#hero .tagline{font-family:var(--mono);font-size:clamp(.85rem,1.2vw,1rem);color:rgba(226,232,240,.65);max-width:640px;margin:0 auto 3rem;font-style:italic}
+.scroll-hint{animation:bounce 2s infinite;color:rgba(226,232,240,.4);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ===== PROBLEM (S1) ===== */
+#problem{background:var(--hero-bg);color:var(--hero-fg)}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem}
+.pain-card{background:rgba(255,255,255,.04);border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:2rem;opacity:0;transform:translateY(40px);transition:all .7s var(--ease-out)}
+.pain-card.visible{opacity:1;transform:translateY(0)}
+.pain-card svg{width:48px;height:48px;margin-bottom:1rem;stroke:var(--glyph);fill:none;stroke-width:1.5}
+.pain-card h3{color:var(--gold);margin-bottom:.75rem}
+.pain-card p{color:rgba(226,232,240,.7);font-size:.95rem}
+
+/* ===== VISION / SPIRAL (S2) ===== */
+#vision{background:linear-gradient(180deg,var(--hero-bg) 0%,var(--paper) 100%);padding:6rem 0}
+#vision .container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:900px){#vision .container{grid-template-columns:1fr}}
+.spiral-svg{width:100%;max-width:400px;margin:0 auto}
+.spiral-svg circle{fill:none;stroke-width:2}
+.spiral-svg .phase-label{font-family:var(--sans);font-size:11px;fill:var(--hero-fg);text-anchor:middle}
+#drift-text{font-family:var(--mono);font-size:1rem;line-height:1.8;background:rgba(15,23,42,.6);color:var(--hero-fg);padding:1.5rem;border-radius:8px;border:1px solid rgba(99,102,241,.2);min-height:120px;transition:color .3s}
+#drift-text .mutated{color:var(--gold);font-weight:700}
+.drift-legend{margin-top:1rem;font-size:.8rem;color:var(--drift)}
+
+/* ===== ATOMIZATION (S3) ===== */
+#atomization{background:var(--paper);min-height:auto;padding:0}
+.atom-sticky-wrapper{height:500vh;position:relative}
+.atom-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.atom-container{width:100%;max-width:var(--section-max);margin:0 auto;padding:2rem;text-align:center}
+.atom-level-indicator{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.atom-level-btn{font-family:var(--mono);font-size:.75rem;padding:.4rem 1rem;border:1px solid rgba(99,102,241,.3);border-radius:20px;background:transparent;color:var(--drift);cursor:pointer;transition:all .3s}
+.atom-level-btn.active{background:var(--glyph);color:#fff;border-color:var(--glyph)}
+#atom-display{min-height:400px;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;align-items:flex-start;padding:1rem;transition:all .5s var(--ease-out)}
+.atom-unit{display:inline-flex;align-items:center;justify-content:center;padding:.4rem .8rem;border-radius:6px;font-family:var(--mono);font-size:.9rem;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);transition:all .4s var(--ease-out);cursor:default}
+.atom-unit.paragraph{background:rgba(15,118,110,.06);border-color:rgba(15,118,110,.2);font-family:var(--serif);font-size:.85rem;text-align:left;padding:1rem;border-radius:8px;max-width:600px;line-height:1.5}
+.atom-unit.sentence{background:rgba(147,51,234,.06);border-color:rgba(147,51,234,.2);padding:.6rem 1rem;max-width:500px;text-align:left}
+.atom-unit.word{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.2)}
+.atom-unit.syllable{background:rgba(212,168,83,.1);border-color:rgba(212,168,83,.3);font-size:.8rem}
+.glyph-card{display:inline-flex;flex-direction:column;align-items:center;padding:.75rem;border-radius:8px;background:rgba(15,23,42,.03);border:1px solid rgba(99,102,241,.15);min-width:100px;gap:.25rem;transition:all .4s var(--ease-out)}
+.glyph-card:hover{border-color:var(--glyph);transform:translateY(-4px);box-shadow:0 8px 24px rgba(99,102,241,.15)}
+.glyph-char{font-size:2rem;font-weight:700;color:var(--glyph)}
+.glyph-meta{font-size:.65rem;color:var(--drift);font-family:var(--mono)}
+.glyph-tags{display:flex;flex-wrap:wrap;gap:.2rem;justify-content:center}
+.glyph-tag{font-size:.55rem;padding:.1rem .35rem;border-radius:3px;background:rgba(99,102,241,.1);color:var(--glyph)}
+
+/* ===== EVOLUTION (S4) ===== */
+#evolution{background:var(--paper);min-height:auto;padding:0}
+.evo-sticky-wrapper{height:400vh;position:relative}
+.evo-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.evo-container{width:100%;max-width:var(--section-max);margin:0 auto;padding:2rem}
+.evo-tabs{display:flex;gap:.5rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
+.evo-tab{font-family:var(--mono);font-size:.75rem;padding:.5rem 1.2rem;border:1px solid rgba(99,102,241,.25);border-radius:20px;background:transparent;color:var(--drift);cursor:pointer;transition:all .3s}
+.evo-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+#evo-display{font-family:var(--mono);font-size:.95rem;line-height:1.8;background:rgba(15,23,42,.03);border:1px solid rgba(99,102,241,.12);border-radius:10px;padding:1.5rem;min-height:200px;max-height:400px;overflow-y:auto;transition:all .4s}
+#evo-display .evo-changed{color:var(--accent);font-weight:700}
+#evo-display .evo-glyph{color:var(--glyph);font-weight:700}
+.evo-description{margin-top:1rem;font-size:.85rem;color:var(--drift);font-style:italic;text-align:center}
+
+/* ===== ANALYSIS (S5) ===== */
+#analysis{background:var(--paper);padding:6rem 0}
+.layer-stack{display:flex;flex-direction:column;gap:.5rem;max-width:700px;margin:2rem auto 0}
+.layer-bar{display:flex;align-items:center;gap:1rem;padding:.75rem 1.25rem;border-radius:8px;background:rgba(99,102,241,.04);border:1px solid rgba(99,102,241,.08);opacity:0;transform:translateX(-30px);transition:all .6s var(--ease-out)}
+.layer-bar.visible{opacity:1;transform:translateX(0)}
+.layer-bar .layer-num{font-family:var(--mono);font-size:.7rem;color:var(--glyph);width:20px;text-align:right}
+.layer-bar .layer-name{font-family:var(--mono);font-size:.85rem;font-weight:600;color:var(--ink);min-width:140px}
+.layer-bar .layer-desc{font-size:.8rem;color:var(--drift);flex:1}
+.layer-bar .layer-conf{font-family:var(--mono);font-size:.7rem;color:var(--accent);min-width:40px;text-align:right}
+.layer-bar.lit{background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.3)}
+.rhetoric-callout{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:600px;margin:2.5rem auto 0;text-align:center}
+.rhetoric-pillar{padding:1.5rem 1rem;border-radius:10px;border:1px solid rgba(99,102,241,.12);opacity:0;transform:translateY(20px);transition:all .6s var(--ease-out)}
+.rhetoric-pillar.visible{opacity:1;transform:translateY(0)}
+.rhetoric-pillar h3{font-size:1rem;margin-bottom:.5rem}
+.rhetoric-pillar .markers{font-family:var(--mono);font-size:.7rem;color:var(--drift);line-height:1.6}
+.rhetoric-pillar.ethos{border-color:rgba(15,118,110,.3);background:rgba(15,118,110,.04)}
+.rhetoric-pillar.ethos h3{color:var(--accent)}
+.rhetoric-pillar.pathos{border-color:rgba(147,51,234,.3);background:rgba(147,51,234,.04)}
+.rhetoric-pillar.pathos h3{color:var(--accent-2)}
+.rhetoric-pillar.logos{border-color:rgba(99,102,241,.3);background:rgba(99,102,241,.04)}
+.rhetoric-pillar.logos h3{color:var(--glyph)}
+
+/* ===== REMIX (S6) ===== */
+#remix{background:linear-gradient(180deg,var(--paper) 0%,#f0f4f8 100%);padding:6rem 0}
+.remix-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2rem}
+.remix-card{padding:1.5rem;border-radius:12px;border:1px solid rgba(99,102,241,.12);background:#fff;text-align:center;opacity:0;transform:translateY(30px);transition:all .6s var(--ease-out);cursor:default;position:relative;overflow:hidden}
+.remix-card.visible{opacity:1;transform:translateY(0)}
+.remix-card:hover{border-color:var(--glyph);box-shadow:0 8px 32px rgba(99,102,241,.1)}
+.remix-card canvas{width:100%;height:120px;border-radius:8px;margin-bottom:1rem;background:rgba(15,23,42,.02)}
+.remix-card h3{font-size:1rem;color:var(--glyph);margin-bottom:.5rem}
+.remix-card p{font-size:.8rem;color:var(--drift)}
+
+/* ===== SEED TEXTS (S7) ===== */
+#seeds{background:#f0f4f8;padding:6rem 0}
+.seed-row{display:flex;gap:1.5rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.seed-spine{width:140px;padding:1.5rem 1rem;border-radius:4px 12px 12px 4px;background:linear-gradient(135deg,var(--hero-bg),#1e293b);color:var(--hero-fg);text-align:center;cursor:default;transition:all .5s var(--ease-out);border-left:4px solid var(--gold);opacity:0;transform:translateY(20px);position:relative}
+.seed-spine.visible{opacity:1;transform:translateY(0);animation:breathe 4s ease-in-out infinite}
+.seed-spine:nth-child(2).visible{animation-delay:.4s}
+.seed-spine:nth-child(3).visible{animation-delay:.8s}
+.seed-spine:nth-child(4).visible{animation-delay:1.2s}
+.seed-spine:nth-child(5).visible{animation-delay:1.6s}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.seed-spine:hover{transform:scale(1.08)!important;box-shadow:0 12px 40px rgba(15,23,42,.3)}
+.seed-spine .seed-title{font-family:var(--serif);font-size:.85rem;font-weight:700;margin-bottom:.5rem;color:var(--gold);writing-mode:vertical-rl;text-orientation:mixed;height:140px;display:flex;align-items:center;justify-content:center}
+.seed-spine .seed-author{font-size:.65rem;color:rgba(226,232,240,.6);margin-top:.5rem}
+.seed-spine .seed-preview{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);width:240px;padding:1rem;background:#fff;color:var(--ink);border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.15);font-size:.7rem;font-family:var(--mono);opacity:0;pointer-events:none;transition:opacity .3s;z-index:10}
+.seed-spine:hover .seed-preview{opacity:1}
+
+/* ===== ARCHITECTURE (S8) ===== */
+#architecture{background:var(--paper);padding:6rem 0}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:2rem 0}
+.arch-node{padding:.75rem 1.5rem;border-radius:8px;background:var(--hero-bg);color:var(--hero-fg);font-family:var(--mono);font-size:.85rem;font-weight:600;opacity:0;transform:scale(.8);transition:all .5s var(--ease-out)}
+.arch-node.visible{opacity:1;transform:scale(1)}
+.arch-arrow{color:var(--glyph);font-size:1.5rem;opacity:0;transition:opacity .5s}
+.arch-arrow.visible{opacity:1}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:2.5rem 0}
+.metric-card{text-align:center;padding:1.5rem 1rem;border-radius:10px;border:1px solid rgba(99,102,241,.1);background:rgba(99,102,241,.03);opacity:0;transform:translateY(20px);transition:all .6s var(--ease-out)}
+.metric-card.visible{opacity:1;transform:translateY(0)}
+.metric-card .metric-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--glyph)}
+.metric-card .metric-label{font-size:.75rem;color:var(--drift);margin-top:.25rem}
+.tech-stack{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0}
+.tech-badge{font-family:var(--mono);font-size:.7rem;padding:.35rem .8rem;border-radius:4px;background:rgba(15,118,110,.08);color:var(--accent);border:1px solid rgba(15,118,110,.15)}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.pillar{text-align:center;padding:1rem;font-size:.8rem;color:var(--drift);border-top:2px solid var(--gold)}
+.pillar strong{display:block;color:var(--ink);font-family:var(--serif);margin-bottom:.25rem}
+
+/* ===== VALUE PROP (S9) ===== */
+#value{background:linear-gradient(180deg,var(--paper) 0%,#f0f4f8 100%);padding:6rem 0}
+.value-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}
+.value-card{padding:2rem;border-radius:12px;background:#fff;border:1px solid rgba(99,102,241,.1);opacity:0;transform:translateY(30px);transition:all .7s var(--ease-out)}
+.value-card.visible{opacity:1;transform:translateY(0)}
+.value-card h3{color:var(--accent);margin-bottom:.75rem;font-size:1.1rem}
+.value-card .value-audience{font-family:var(--mono);font-size:.7rem;color:var(--glyph);margin-bottom:.5rem;letter-spacing:.05em;text-transform:uppercase}
+.value-card ul{list-style:none;padding:0}
+.value-card li{padding:.3rem 0;font-size:.9rem;color:var(--drift)}
+.value-card li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--glyph);margin-right:.5rem;vertical-align:middle}
+
+/* ===== CTA (S10) ===== */
+#cta{background:var(--hero-bg);color:var(--hero-fg);text-align:center;min-height:60vh;position:relative;overflow:hidden}
+#cta-canvas{position:absolute;inset:0;z-index:0}
+#cta .container{position:relative;z-index:1}
+#cta h2{color:var(--gold);margin-bottom:1rem}
+#cta p{color:rgba(226,232,240,.7);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-block;padding:.9rem 2.5rem;border-radius:8px;background:var(--glyph);color:#fff;text-decoration:none;font-family:var(--mono);font-size:.9rem;font-weight:600;transition:all .3s;border:2px solid var(--glyph)}
+.cta-btn:hover{background:transparent;color:var(--glyph)}
+
+/* ===== REDUCED MOTION ===== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0s!important;transition-duration:0s!important}
+  .scroll-hint{animation:none}
+  .atom-unit,.glyph-card,.pain-card,.remix-card,.value-card,.layer-bar,.rhetoric-pillar,.seed-spine,.metric-card,.arch-node,.arch-arrow{opacity:1!important;transform:none!important}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .container{padding:1.5rem}
+  #vision .container{grid-template-columns:1fr}
+  .seed-spine .seed-title{writing-mode:horizontal-tb;height:auto}
+  .seed-spine{width:120px}
+}
+@media(max-width:768px){
+  section{min-height:auto;padding:4rem 0}
+  #hero,#cta{min-height:100vh}
+  .atom-sticky-wrapper{height:300vh}
+  .evo-sticky-wrapper{height:250vh}
+  .rhetoric-callout{grid-template-columns:1fr}
+  .seed-row{gap:1rem}
+  .seed-spine{width:100px}
+  .seed-spine .seed-preview{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav id="nav-dots" aria-label="Section navigation"></nav>
+
+<!-- S0: HERO -->
+<section id="hero" data-section="0">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="container">
+    <h1><span class="arc4n">ARC4N</span>Living Digital Canon</h1>
+    <p class="subtitle">The Breathing Organism of Literature</p>
+    <p class="tagline">"Atomizing literature at the molecular level. Evolving language across infinite timelines."</p>
+    <p class="scroll-hint" aria-hidden="true">scroll to explore</p>
+  </div>
+</section>
+
+<!-- S1: PROBLEM -->
+<section id="problem" data-section="1">
+  <div class="container">
+    <p class="label">The Problem</p>
+    <h2>Literature is trapped in amber</h2>
+    <div class="pain-grid">
+      <div class="pain-card" data-reveal>
+        <svg viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="36" rx="3"/><line x1="14" y1="14" x2="34" y2="14"/><line x1="14" y1="20" x2="34" y2="20"/><line x1="14" y1="26" x2="28" y2="26"/></svg>
+        <h3>Static Archives</h3>
+        <p>Digital libraries store texts as flat files. No structure beyond page numbers. No way to zoom into the molecular fabric of language.</p>
+      </div>
+      <div class="pain-card" data-reveal>
+        <svg viewBox="0 0 48 48"><path d="M24 8 L38 42 L10 42 Z"/><circle cx="24" cy="30" r="2" fill="currentColor"/><line x1="24" y1="18" x2="24" y2="26"/></svg>
+        <h3>Frozen Text</h3>
+        <p>Once published, a text never evolves. We can't model how language drifts, fuses, or compresses across centuries — or explore what-if timelines.</p>
+      </div>
+      <div class="pain-card" data-reveal>
+        <svg viewBox="0 0 48 48"><circle cx="14" cy="16" r="6"/><circle cx="34" cy="16" r="6"/><circle cx="24" cy="36" r="6"/><line x1="14" y1="22" x2="24" y2="30" stroke-dasharray="3,3"/><line x1="34" y1="22" x2="24" y2="30" stroke-dasharray="3,3"/></svg>
+        <h3>Lost Connections</h3>
+        <p>Thematic threads, etymological roots, and cross-document resonances go undetected. The deep graph of literature remains invisible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2: VISION -->
+<section id="vision" data-section="2">
+  <div class="container">
+    <div>
+      <p class="label" style="color:var(--gold)">The Vision</p>
+      <h2 style="color:var(--hero-fg)">A Temporal Evolution Spiral</h2>
+      <p style="color:rgba(226,232,240,.7);margin-bottom:2rem">Language is alive. It expands, peaks, compresses, and is reborn. ARC4N models this cycle — turning every text into a living organism that evolves across infinite branch timelines.</p>
+      <div id="drift-text" aria-live="polite"></div>
+      <p class="drift-legend">Scroll to evolve the text through natural linguistic drift &mdash; scroll back to reverse</p>
+    </div>
+    <div>
+      <svg class="spiral-svg" viewBox="0 0 400 400" aria-label="Temporal evolution spiral showing four phases">
+        <defs>
+          <linearGradient id="sg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#d4a853"/></linearGradient>
+        </defs>
+        <!-- Spiral path -->
+        <path d="M200,200 C200,120 280,120 280,200 C280,260 220,280 200,280 C160,280 140,240 140,200 C140,140 180,100 220,100 C300,100 320,160 320,220 C320,300 260,340 200,340 C120,340 80,280 80,200 C80,100 140,50 220,50 C320,50 370,140 370,220" fill="none" stroke="url(#sg1)" stroke-width="2" stroke-dasharray="8,4" id="spiral-path">
+          <animate attributeName="stroke-dashoffset" values="0;-1200" dur="30s" repeatCount="indefinite"/>
+        </path>
+        <!-- Phase markers -->
+        <circle cx="280" cy="150" r="24" stroke="var(--glyph)" fill="rgba(99,102,241,.1)" class="phase-dot" id="phase-expansion"/>
+        <text x="280" y="154" class="phase-label" fill="var(--glyph)">expand</text>
+        <circle cx="320" cy="240" r="24" stroke="var(--gold)" fill="rgba(212,168,83,.1)" class="phase-dot"/>
+        <text x="320" y="244" class="phase-label" fill="var(--gold)">peak</text>
+        <circle cx="140" cy="260" r="24" stroke="var(--accent)" fill="rgba(15,118,110,.1)" class="phase-dot"/>
+        <text x="140" y="264" class="phase-label" fill="var(--accent)">compress</text>
+        <circle cx="100" cy="150" r="24" stroke="var(--accent-2)" fill="rgba(147,51,234,.1)" class="phase-dot"/>
+        <text x="100" y="154" class="phase-label" fill="var(--accent-2)">rebirth</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- S3: ATOMIZATION -->
+<section id="atomization" data-section="3">
+  <div class="atom-sticky-wrapper">
+    <div class="atom-sticky">
+      <div class="atom-container">
+        <p class="label">Interactive Demo</p>
+        <h2>5-Level Atomization</h2>
+        <p style="color:var(--drift);margin-bottom:1rem;font-size:.9rem">Decompose text from paragraphs down to individual glyph-seeds with rich metadata</p>
+        <div class="atom-level-indicator" role="tablist">
+          <button class="atom-level-btn active" data-level="paragraph" role="tab" aria-selected="true">Paragraph</button>
+          <button class="atom-level-btn" data-level="sentence" role="tab">Sentences</button>
+          <button class="atom-level-btn" data-level="word" role="tab">Words</button>
+          <button class="atom-level-btn" data-level="syllable" role="tab">Syllables</button>
+          <button class="atom-level-btn" data-level="glyph-seed" role="tab">Glyph-Seeds</button>
+        </div>
+        <div id="atom-display" role="tabpanel" aria-label="Atomized text display"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: EVOLUTION -->
+<section id="evolution" data-section="4">
+  <div class="evo-sticky-wrapper">
+    <div class="evo-sticky">
+      <div class="evo-container">
+        <p class="label">Evolution Engine</p>
+        <h2>5 Event Types</h2>
+        <div class="evo-tabs" role="tablist">
+          <button class="evo-tab active" data-evo="natural_drift" role="tab" aria-selected="true">Natural Drift</button>
+          <button class="evo-tab" data-evo="synthetic_mutation" role="tab">Synthetic Mutation</button>
+          <button class="evo-tab" data-evo="phase_shift" role="tab">Phase Shift</button>
+          <button class="evo-tab" data-evo="glyph_fusion" role="tab">Glyph Fusion</button>
+          <button class="evo-tab" data-evo="remix" role="tab">Remix</button>
+        </div>
+        <div id="evo-display" role="tabpanel" aria-label="Evolution result"></div>
+        <p class="evo-description" id="evo-desc"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: ANALYSIS -->
+<section id="analysis" data-section="5">
+  <div class="container">
+    <p class="label">Linguistic Intelligence</p>
+    <h2>9-Layer Analysis Engine</h2>
+    <p style="color:var(--drift);max-width:600px;margin:0 auto">Every document passes through nine analytical lenses — from raw token counting to deep semiotic interpretation — each powered by a plugin chain with confidence scoring.</p>
+    <div class="layer-stack" role="list">
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">1</span><span class="layer-name">Token</span><span class="layer-desc">Word counts, unique tokens, frequency distribution</span><span class="layer-conf">0.72</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">2</span><span class="layer-name">Morphology</span><span class="layer-desc">Word length, suffix signals, structural patterns</span><span class="layer-conf">0.68</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">3</span><span class="layer-name">Syntax</span><span class="layer-desc">Sentence structure, clause markers, complexity</span><span class="layer-conf">0.66</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">4</span><span class="layer-name">Semantics</span><span class="layer-desc">Named entities, events, semantic density</span><span class="layer-conf">0.64</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">5</span><span class="layer-name">Pragmatics</span><span class="layer-desc">Speech acts, hedging, illocutionary force</span><span class="layer-conf">0.62</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">6</span><span class="layer-name">Discourse</span><span class="layer-desc">Connectives, paragraph cohesion, structure</span><span class="layer-conf">0.61</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">7</span><span class="layer-name">Sociolinguistics</span><span class="layer-desc">Register, formality, contractions, code-switching</span><span class="layer-conf">0.59</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">8</span><span class="layer-name">Rhetoric</span><span class="layer-desc">Ethos / Pathos / Logos scoring, fallacy detection</span><span class="layer-conf">0.74</span></div>
+      <div class="layer-bar" data-reveal role="listitem"><span class="layer-num">9</span><span class="layer-name">Semiotic</span><span class="layer-desc">Glyph density, emoji, symbol interpretation</span><span class="layer-conf">0.63</span></div>
+    </div>
+    <div class="rhetoric-callout">
+      <div class="rhetoric-pillar ethos" data-reveal>
+        <h3>Ethos</h3>
+        <p class="markers">according, study, evidence, expert, source, citation</p>
+      </div>
+      <div class="rhetoric-pillar pathos" data-reveal>
+        <h3>Pathos</h3>
+        <p class="markers">fear, love, grief, rage, hope, joy, pain, sacred, mythic</p>
+      </div>
+      <div class="rhetoric-pillar logos" data-reveal>
+        <h3>Logos</h3>
+        <p class="markers">therefore, because, hence, thus, if, then, proof, logic</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: REMIX -->
+<section id="remix" data-section="6">
+  <div class="container">
+    <p class="label">Recombination</p>
+    <h2>4 Remix Strategies</h2>
+    <p style="color:var(--drift);max-width:560px;margin:0 auto">Atoms from different documents recombine using deterministic strategies — each producing a new branch in the canon.</p>
+    <div class="remix-grid">
+      <div class="remix-card" data-reveal data-remix="interleave">
+        <canvas data-remix-canvas="interleave" aria-hidden="true"></canvas>
+        <h3>Interleave</h3>
+        <p>Alternate words from two sources weave into a single stream</p>
+      </div>
+      <div class="remix-card" data-reveal data-remix="thematic_blend">
+        <canvas data-remix-canvas="thematic_blend" aria-hidden="true"></canvas>
+        <h3>Thematic Blend</h3>
+        <p>Sentences sort and shuffle by thematic affinity</p>
+      </div>
+      <div class="remix-card" data-reveal data-remix="temporal_layer">
+        <canvas data-remix-canvas="temporal_layer" aria-hidden="true"></canvas>
+        <h3>Temporal Layer</h3>
+        <p>Paragraphs stack with temporal overlay annotations</p>
+      </div>
+      <div class="remix-card" data-reveal data-remix="glyph_collide">
+        <canvas data-remix-canvas="glyph_collide" aria-hidden="true"></canvas>
+        <h3>Glyph Collide</h3>
+        <p>Character-level collision — glyphs from two texts compete for position</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: SEED TEXTS -->
+<section id="seeds" data-section="7">
+  <div class="container" style="text-align:center">
+    <p class="label">The Foundation</p>
+    <h2>Canonical Seed Texts</h2>
+    <p style="color:var(--drift);max-width:500px;margin:0 auto 1rem">Five foundational works — atomized, indexed, and ready for evolution across infinite branch timelines.</p>
+    <div class="seed-row">
+      <div class="seed-spine" data-reveal>
+        <div class="seed-title">The Odyssey</div>
+        <div class="seed-author">Homer</div>
+        <div class="seed-preview">Tell me, O Muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy...</div>
+      </div>
+      <div class="seed-spine" data-reveal>
+        <div class="seed-title">Divine Comedy</div>
+        <div class="seed-author">Dante Alighieri</div>
+        <div class="seed-preview">Midway upon the journey of our life I found myself within a forest dark, for the straightforward pathway had been lost...</div>
+      </div>
+      <div class="seed-spine" data-reveal>
+        <div class="seed-title">Leaves of Grass</div>
+        <div class="seed-author">Walt Whitman</div>
+        <div class="seed-preview">I celebrate myself, and sing myself, and what I assume you shall assume, for every atom belonging to me as good belongs to you...</div>
+      </div>
+      <div class="seed-spine" data-reveal>
+        <div class="seed-title">Ulysses</div>
+        <div class="seed-author">James Joyce</div>
+        <div class="seed-preview">Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed...</div>
+      </div>
+      <div class="seed-spine" data-reveal>
+        <div class="seed-title">Frankenstein</div>
+        <div class="seed-author">Mary Shelley</div>
+        <div class="seed-preview">You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8: ARCHITECTURE -->
+<section id="architecture" data-section="8">
+  <div class="container" style="text-align:center">
+    <p class="label">Under the Hood</p>
+    <h2>Technical Architecture</h2>
+    <div class="arch-flow" aria-label="Data flow: Ingest, Atomize, Analyze, Evolve, Remix">
+      <div class="arch-node" data-reveal>Ingest</div>
+      <span class="arch-arrow" data-reveal>&rarr;</span>
+      <div class="arch-node" data-reveal>Atomize</div>
+      <span class="arch-arrow" data-reveal>&rarr;</span>
+      <div class="arch-node" data-reveal>Analyze</div>
+      <span class="arch-arrow" data-reveal>&rarr;</span>
+      <div class="arch-node" data-reveal>Evolve</div>
+      <span class="arch-arrow" data-reveal>&rarr;</span>
+      <div class="arch-node" data-reveal>Remix</div>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card" data-reveal><div class="metric-num">84</div><div class="metric-label">Core Functions</div></div>
+      <div class="metric-card" data-reveal><div class="metric-num">9</div><div class="metric-label">Analysis Layers</div></div>
+      <div class="metric-card" data-reveal><div class="metric-num">5</div><div class="metric-label">Atomization Levels</div></div>
+      <div class="metric-card" data-reveal><div class="metric-num">25+</div><div class="metric-label">API Endpoints</div></div>
+      <div class="metric-card" data-reveal><div class="metric-num">4</div><div class="metric-label">Role Auth Tiers</div></div>
+      <div class="metric-card" data-reveal><div class="metric-num">2</div><div class="metric-label">Hypergraph Writes</div></div>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-badge">Python 3.11+</span>
+      <span class="tech-badge">FastAPI</span>
+      <span class="tech-badge">SQLAlchemy 2.0</span>
+      <span class="tech-badge">Neo4j</span>
+      <span class="tech-badge">Alembic</span>
+      <span class="tech-badge">Pydantic</span>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><strong>Category Theory</strong>Compositional morphisms for text transforms</div>
+      <div class="pillar"><strong>Peircean Semiotics</strong>Sign-object-interpretant chains in analysis</div>
+      <div class="pillar"><strong>Aristotelian Rhetoric</strong>Ethos/Pathos/Logos quantification engine</div>
+      <div class="pillar"><strong>Media Archaeology</strong>Deep-time layering of textual artifacts</div>
+    </div>
+  </div>
+</section>
+
+<!-- S9: VALUE PROP -->
+<section id="value" data-section="9">
+  <div class="container">
+    <p class="label" style="text-align:center">Who This Serves</p>
+    <h2 style="text-align:center">Three Horizons</h2>
+    <div class="value-cols">
+      <div class="value-card" data-reveal>
+        <p class="value-audience">Digital Humanities &amp; Academia</p>
+        <h3>Living Archives for Speculative Philology</h3>
+        <ul>
+          <li>Molecular-level text decomposition for close reading</li>
+          <li>Branch timelines for what-if linguistic evolution</li>
+          <li>Cross-document knowledge graph exploration</li>
+          <li>Reproducible analysis with provenance tracking</li>
+        </ul>
+      </div>
+      <div class="value-card" data-reveal>
+        <p class="value-audience">Creative Industries</p>
+        <h3>Generative Text &amp; AI-Assisted Remix</h3>
+        <ul>
+          <li>Deterministic recombination of canonical sources</li>
+          <li>Glyph-level visual mutation for typography</li>
+          <li>Temporal layering for narrative experiments</li>
+          <li>Seeded RNG for reproducible creative output</li>
+        </ul>
+      </div>
+      <div class="value-card" data-reveal>
+        <p class="value-audience">Enterprise &amp; EdTech</p>
+        <h3>Language Analysis APIs &amp; Content Governance</h3>
+        <ul>
+          <li>9-layer linguistic analysis as a service</li>
+          <li>Dual-mode governance (PUBLIC / RAW)</li>
+          <li>Async job queue with retry and artifact tracking</li>
+          <li>Role-based auth with 4-tier hierarchy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S10: CTA -->
+<section id="cta" data-section="10">
+  <canvas id="cta-canvas" aria-hidden="true"></canvas>
+  <div class="container">
+    <h2>Explore the Canon</h2>
+    <p>ARC4N is open-source and ready for collaboration. Dive into the codebase, provision seed texts, and start evolving language.</p>
+    <a href="https://github.com/ivviiviivvi/nexus--babel-alexandria-" class="cta-btn" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
+</section>
+
+<script>
+/* ===================================================================
+   ARC4N PITCH DECK — All JavaScript inline, no dependencies
+   =================================================================== */
+
+// ---- CODEBASE DATA (hardcoded from source files) ----
+
+const GLYPH_POOL = [
+  "\u2206","\u00C6","\u03A9","\u00A7","\u2632","\u27C1",
+  "\u03A8","\u03A6","\u0398","\u039E","\u03A3","\u03A0",
+  "\u2630","\u2631","\u2633","\u2634","\u2635","\u2636","\u2637",
+  "\u16A0","\u16A2","\u16A6","\u16A8","\u16B1","\u16B2"
+];
+
+const NATURAL_MAP = {
+  "th":"\u00FE","ae":"\u00E6","ph":"f","ck":"k","tion":"cion",
+  "ct":"tt","pl":"pi","fl":"fi","cl":"chi","x":"ss",
+  "li":"gli","ni":"gn","sc":"sh","cw":"qu","hw":"wh",
+  "oo":"ou","ee":"ea","igh":"eye","ght":"t","ough":"ow",
+  "wh":"w","kn":"n","wr":"r","mb":"m","gn":"n"
+};
+
+const PHASES = ["expansion","peak","compression","rebirth"];
+
+const SEED_TEXTS = [
+  {title:"The Odyssey",author:"Homer"},
+  {title:"The Divine Comedy",author:"Dante Alighieri"},
+  {title:"Leaves of Grass",author:"Walt Whitman"},
+  {title:"Ulysses",author:"James Joyce"},
+  {title:"Frankenstein",author:"Mary Shelley"}
+];
+
+const ANALYSIS_LAYERS = [
+  "token","morphology","syntax","semantics","pragmatics",
+  "discourse","sociolinguistics","rhetoric","semiotic"
+];
+
+const REMIX_STRATEGIES = ["interleave","thematic_blend","temporal_layer","glyph_collide"];
+
+const GLYPH_DATA = {
+  "A":{phoneme:"/\u00E6/",historic:["\u0391","\u05D0","\uD802\uDD00"],visual:["\u039B","@","4","\u0394"],thematic:["beginning","alpha","apex","air","ascent"],future:["\u2206","\u00C6","\u03A9"]},
+  "O":{phoneme:"/\u0252/",historic:["\u039F","\u05E2","\uD802\uDD0F"],visual:["0","\u03B8","\u03A9"],thematic:["origin","orbit","omega","ocean","ouroboros"],future:["\u2636","\u2637","\u16A0"]},
+  "S":{phoneme:"/s/",historic:["\u03A3","\u05E9","\uD802\uDD14"],visual:["$","5","\u00A7"],thematic:["serpent","spiral","silence","seed","sun"],future:["\u2630","\u2631","\u2633"]},
+  "T":{phoneme:"/t/",historic:["\u03A4","\u05EA","\uD802\uDD15"],visual:["+","\u2020","7"],thematic:["time","tower","threshold","truth"],future:["\u2631","\u2633","\u2634"]},
+  "M":{phoneme:"/m/",historic:["\u039C","\u05DE","\uD802\uDD0C"],visual:["\u2133"],thematic:["mother","mountain","mystery","memory"],future:["\u0398","\u039E","\u03A3"]},
+  "W":{phoneme:"/w/",historic:["\u01BF"],visual:["\u03C9","\u03C8"],thematic:["water","wave","wisdom","wind"],future:["\u2634","\u2635","\u2636"]}
+};
+
+const ODYSSEY_TEXT = "Tell me, O Muse, of that ingenious hero who travelled far and wide after he had sacked the famous town of Troy. Many cities did he visit, and many were the nations with whose manners and customs he was acquainted.";
+const ODYSSEY_ALT = "Sing to me of the man, Muse, the man of twists and turns driven time and again off course, once he had plundered the hallowed heights of Troy.";
+
+const VOWELS = new Set("aeiouyAEIOUY".split(""));
+
+// ---- SYLLABIFY (ported from text_utils.py) ----
+function syllabify(word) {
+  if (word.length <= 2) return word ? [word] : [];
+  const syllables = [];
+  let current = "";
+  let i = 0;
+  while (i < word.length) {
+    const ch = word[i];
+    current += ch;
+    if (VOWELS.has(ch.toLowerCase())) {
+      while (i + 1 < word.length && VOWELS.has(word[i + 1].toLowerCase())) {
+        i++;
+        current += word[i];
+      }
+      if (i + 1 < word.length) {
+        let consStart = i + 1;
+        let consEnd = consStart;
+        while (consEnd < word.length && !VOWELS.has(word[consEnd].toLowerCase())) consEnd++;
+        const numCons = consEnd - consStart;
+        if (consEnd < word.length && numCons > 0) {
+          if (numCons >= 2) {
+            current += word.substring(consStart, consEnd - 1);
+            i = consEnd - 2;
+          }
+          syllables.push(current);
+          current = "";
+        }
+      }
+    }
+    i++;
+  }
+  if (current) {
+    if (syllables.length && current.length === 1 && !VOWELS.has(current.toLowerCase())) {
+      syllables[syllables.length - 1] += current;
+    } else {
+      syllables.push(current);
+    }
+  }
+  return syllables.length ? syllables : [word];
+}
+
+// ---- ATOMIZE ----
+function atomizeText(text) {
+  const words = text.match(/[\w'-]+/gu) || [];
+  const syllables = [];
+  words.forEach(w => syllabify(w).forEach(s => syllables.push(s)));
+  const sentences = text.split(/(?<=[.!?])\s+|\n+/).filter(s => s.trim());
+  const paragraphs = text.split(/\n\s*\n+/).filter(p => p.trim());
+  if (!paragraphs.length) paragraphs.push(text);
+  return {paragraph: paragraphs, sentence: sentences, word: words, syllable: syllables, "glyph-seed": text.split("").filter(c => c.trim())};
+}
+
+// ---- INTERSECTION OBSERVER ----
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function setupRevealObserver() {
+  const els = document.querySelectorAll("[data-reveal]");
+  if (prefersReducedMotion) {
+    els.forEach(el => el.classList.add("visible"));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        const delay = Array.from(entry.target.parentElement.children).indexOf(entry.target) * 150;
+        setTimeout(() => entry.target.classList.add("visible"), delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.15});
+  els.forEach(el => obs.observe(el));
+}
+
+// ---- NAV DOTS ----
+function setupNavDots() {
+  const nav = document.getElementById("nav-dots");
+  const sections = document.querySelectorAll("section[data-section]");
+  sections.forEach((sec, i) => {
+    const a = document.createElement("a");
+    a.href = "#" + sec.id;
+    a.textContent = sec.id;
+    a.setAttribute("aria-label", "Go to " + sec.id);
+    nav.appendChild(a);
+  });
+  const dots = nav.querySelectorAll("a");
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.section);
+        dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+      }
+    });
+  }, {threshold: 0.3});
+  sections.forEach(s => obs.observe(s));
+}
+
+// ---- HERO CANVAS ----
+function setupHeroCanvas() {
+  const canvas = document.getElementById("hero-canvas");
+  const ctx = canvas.getContext("2d");
+  let w, h, particles = [];
+  const glyphs = GLYPH_POOL.slice(0, 15);
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    const count = Math.min(Math.floor(w * h / 12000), 80);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        char: glyphs[Math.floor(Math.random() * glyphs.length)],
+        size: 12 + Math.random() * 18,
+        opacity: 0.08 + Math.random() * 0.18,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.005
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Spiral
+    ctx.save();
+    ctx.translate(w / 2, h / 2);
+    ctx.strokeStyle = "rgba(99,102,241,0.06)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let a = 0; a < Math.PI * 10; a += 0.05) {
+      const r = a * 20;
+      ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    // Particles
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.rotSpeed;
+      if (p.x < -50) p.x = w + 50;
+      if (p.x > w + 50) p.x = -50;
+      if (p.y < -50) p.y = h + 50;
+      if (p.y > h + 50) p.y = -50;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.globalAlpha = p.opacity;
+      ctx.font = p.size + "px 'Palatino Linotype', Georgia, serif";
+      ctx.fillStyle = "#6366f1";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(p.char, 0, 0);
+      ctx.restore();
+    });
+
+    if (!prefersReducedMotion) requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener("resize", () => { resize(); });
+}
+
+// ---- CTA CANVAS (settling particles) ----
+function setupCtaCanvas() {
+  const canvas = document.getElementById("cta-canvas");
+  const ctx = canvas.getContext("2d");
+  let w, h;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  const letters = "ARC4N".split("");
+  let particles = [];
+
+  function init() {
+    resize();
+    particles = [];
+    const count = Math.min(40, Math.floor(w / 20));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        targetX: w / 2 + (i - count / 2) * 30,
+        targetY: h / 2,
+        char: GLYPH_POOL[i % GLYPH_POOL.length],
+        size: 14 + Math.random() * 10,
+        opacity: 0.1 + Math.random() * 0.15
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += (p.targetX - p.x) * 0.002;
+      p.y += (p.targetY - p.y) * 0.002 + Math.sin(Date.now() / 3000 + p.targetX) * 0.2;
+      ctx.globalAlpha = p.opacity;
+      ctx.font = p.size + "px 'Palatino Linotype', Georgia, serif";
+      ctx.fillStyle = "#d4a853";
+      ctx.textAlign = "center";
+      ctx.fillText(p.char, p.x, p.y);
+    });
+    if (!prefersReducedMotion) requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener("resize", init);
+}
+
+// ---- DRIFT TEXT (S2) ----
+function setupDriftText() {
+  const el = document.getElementById("drift-text");
+  const original = ODYSSEY_TEXT;
+  const mapEntries = Object.entries(NATURAL_MAP);
+  let currentProgress = 0;
+
+  function applyDrift(text, progress) {
+    const steps = mapEntries.length;
+    const activeSteps = Math.floor(progress * steps);
+    let out = text;
+    for (let i = 0; i < activeSteps && i < steps; i++) {
+      const [old, nw] = mapEntries[i];
+      out = out.replace(new RegExp(old, "gi"), '<span class="mutated">' + nw + '</span>');
+    }
+    return out;
+  }
+
+  function update() {
+    const section = document.getElementById("vision");
+    const rect = section.getBoundingClientRect();
+    const sectionH = rect.height;
+    const progress = Math.max(0, Math.min(1, -rect.top / (sectionH * 0.8)));
+    if (Math.abs(progress - currentProgress) > 0.01) {
+      currentProgress = progress;
+      el.innerHTML = applyDrift(original, progress);
+    }
+  }
+
+  el.innerHTML = original;
+  window.addEventListener("scroll", update, {passive: true});
+  update();
+}
+
+// ---- ATOMIZATION DEMO (S3) ----
+function setupAtomization() {
+  const display = document.getElementById("atom-display");
+  const btns = document.querySelectorAll(".atom-level-btn");
+  const atoms = atomizeText(ODYSSEY_TEXT);
+  let currentLevel = "paragraph";
+
+  function renderLevel(level) {
+    currentLevel = level;
+    btns.forEach(b => b.classList.toggle("active", b.dataset.level === level));
+    display.innerHTML = "";
+
+    if (level === "glyph-seed") {
+      const chars = atoms["glyph-seed"].slice(0, 50);
+      chars.forEach(ch => {
+        const upper = ch.toUpperCase();
+        const data = GLYPH_DATA[upper];
+        const card = document.createElement("div");
+        card.className = "glyph-card";
+
+        let html = '<div class="glyph-char">' + ch + '</div>';
+        if (data) {
+          html += '<div class="glyph-meta">' + data.phoneme + '</div>';
+          html += '<div class="glyph-meta">historic: ' + data.historic.join(" ") + '</div>';
+          html += '<div class="glyph-meta">visual: ' + data.visual.join(" ") + '</div>';
+          html += '<div class="glyph-tags">' + data.thematic.map(t => '<span class="glyph-tag">' + t + '</span>').join("") + '</div>';
+          html += '<div class="glyph-meta" style="color:var(--gold)">future: ' + data.future.join(" ") + '</div>';
+        } else {
+          html += '<div class="glyph-meta">' + (ch.match(/[a-z]/i) ? "latin" : "punct") + '</div>';
+        }
+        card.innerHTML = html;
+        display.appendChild(card);
+      });
+    } else {
+      const items = atoms[level];
+      items.forEach(item => {
+        const el = document.createElement("div");
+        el.className = "atom-unit " + level;
+        el.textContent = item;
+        display.appendChild(el);
+      });
+    }
+  }
+
+  btns.forEach(btn => btn.addEventListener("click", () => renderLevel(btn.dataset.level)));
+
+  // Scroll-driven level switching
+  const wrapper = document.querySelector(".atom-sticky-wrapper");
+  const levels = ["paragraph","sentence","word","syllable","glyph-seed"];
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const total = rect.height - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, scrolled / total));
+    const idx = Math.min(4, Math.floor(progress * 5));
+    const level = levels[idx];
+    if (level !== currentLevel) renderLevel(level);
+  }
+  window.addEventListener("scroll", onScroll, {passive: true});
+  renderLevel("paragraph");
+}
+
+// ---- EVOLUTION DEMO (S4) ----
+function setupEvolution() {
+  const display = document.getElementById("evo-display");
+  const descEl = document.getElementById("evo-desc");
+  const tabs = document.querySelectorAll(".evo-tab");
+  const baseText = ODYSSEY_TEXT;
+  let currentEvo = "natural_drift";
+
+  const descriptions = {
+    natural_drift: "25 historical linguistic shifts applied: th\u2192\u00FE, ae\u2192\u00E6, ph\u2192f, ck\u2192k, and more. Models Latin\u2192Italian, Old English\u2192Modern, and the Great Vowel Shift.",
+    synthetic_mutation: "Random words replaced by glyph pool symbols (\u2206, \u00C6, \u03A9, \u03A8, \u03A6...) at a configurable mutation rate. Seeded RNG ensures deterministic replay.",
+    phase_shift: "Text cycles through 4 phases: expansion (words inserted), peak (uppercase + mythic), compression (vowels stripped), rebirth (song-birth form emerges).",
+    glyph_fusion: "Letter pairs merge into ligatures: A+E\u2192\u00C6, O+E\u2192\u0152, f+i\u2192\uFB01. Character-level fusion across the entire text.",
+    remix: "Two texts interleave word-by-word, creating a unified stream that alternates between Homer\u2019s Odyssey and its alternate translation."
+  };
+
+  function applyNaturalDrift(text) {
+    let out = text;
+    const spans = [];
+    Object.entries(NATURAL_MAP).forEach(([old, nw]) => {
+      out = out.replace(new RegExp(old, "gi"), (match) => '\x00' + nw + '\x01');
+    });
+    return out.replace(/\x00([^\x01]+)\x01/g, '<span class="evo-changed">$1</span>');
+  }
+
+  function applySyntheticMutation(text) {
+    const words = text.split(/(\s+)/);
+    let seed = 42;
+    function rng() { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return (seed >> 16) / 32768; }
+    return words.map(w => {
+      if (w.trim() && /\w/.test(w) && rng() < 0.12) {
+        return '<span class="evo-glyph">' + GLYPH_POOL[Math.floor(rng() * GLYPH_POOL.length)] + '</span>';
+      }
+      return w;
+    }).join("");
+  }
+
+  function applyPhaseShift(text) {
+    const lines = [];
+    // Expansion
+    const expWords = text.split(/\s+/);
+    const expanded = [];
+    expWords.forEach((w, i) => { expanded.push(w); if (i % 5 === 0) expanded.push('<span class="evo-changed">mythic</span>'); });
+    lines.push("<strong>Expansion:</strong> " + expanded.join(" "));
+    // Peak
+    lines.push("<strong>Peak:</strong> " + text.toUpperCase().split(/\s+/).map((w, i) => i % 4 === 0 ? w + ' <span class="evo-changed">MYTHIC</span>' : w).join(" "));
+    // Compression
+    const compressed = text.replace(/[aeiou]/gi, (v, i) => Math.random() > 0.4 ? "" : v);
+    lines.push("<strong>Compression:</strong> <span class=\"evo-changed\">" + compressed + "</span>");
+    // Rebirth
+    const reborn = text.replace(/[aeiou]/gi, "").substring(0, 120);
+    lines.push("<strong>Rebirth:</strong> <span class=\"evo-changed\">" + reborn + "</span>\n\n\u27C1 SONG-BIRTH \u27C1");
+    return lines.join("<br><br>");
+  }
+
+  function applyGlyphFusion(text) {
+    const fusions = [["AE","\u00C6"],["ae","\u00E6"],["OE","\u0152"],["oe","\u0153"],["fi","\uFB01"],["fl","\uFB02"],["Th","\u00DE"],["th","\u00FE"]];
+    let out = text;
+    fusions.forEach(([pair, fused]) => {
+      out = out.replace(new RegExp(pair, "g"), '<span class="evo-changed">' + fused + '</span>');
+    });
+    return out;
+  }
+
+  function applyRemix(text) {
+    const words1 = text.split(/\s+/);
+    const words2 = ODYSSEY_ALT.split(/\s+/);
+    const result = [];
+    const max = Math.max(words1.length, words2.length);
+    for (let i = 0; i < max; i++) {
+      if (i < words1.length) result.push(words1[i]);
+      if (i < words2.length) result.push('<span class="evo-changed">' + words2[i] + '</span>');
+    }
+    return result.join(" ");
+  }
+
+  function renderEvo(type) {
+    currentEvo = type;
+    tabs.forEach(t => t.classList.toggle("active", t.dataset.evo === type));
+    let html = "";
+    switch (type) {
+      case "natural_drift": html = applyNaturalDrift(baseText); break;
+      case "synthetic_mutation": html = applySyntheticMutation(baseText); break;
+      case "phase_shift": html = applyPhaseShift(baseText); break;
+      case "glyph_fusion": html = applyGlyphFusion(baseText); break;
+      case "remix": html = applyRemix(baseText); break;
+    }
+    display.innerHTML = html;
+    descEl.textContent = descriptions[type];
+  }
+
+  tabs.forEach(tab => tab.addEventListener("click", () => renderEvo(tab.dataset.evo)));
+
+  // Scroll-driven tab switching
+  const wrapper = document.querySelector(".evo-sticky-wrapper");
+  const evoTypes = ["natural_drift","synthetic_mutation","phase_shift","glyph_fusion","remix"];
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const total = rect.height - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, scrolled / total));
+    const idx = Math.min(4, Math.floor(progress * 5));
+    const type = evoTypes[idx];
+    if (type !== currentEvo) renderEvo(type);
+  }
+  window.addEventListener("scroll", onScroll, {passive: true});
+  renderEvo("natural_drift");
+}
+
+// ---- ANALYSIS LAYER LIGHTING ----
+function setupAnalysisLighting() {
+  const bars = document.querySelectorAll(".layer-bar");
+  if (prefersReducedMotion) {
+    bars.forEach(b => b.classList.add("lit"));
+    return;
+  }
+  let litIndex = -1;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section = document.getElementById("analysis");
+        function lightUp() {
+          const rect = section.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, -rect.top / (rect.height * 0.6)));
+          const idx = Math.floor(progress * bars.length);
+          if (idx !== litIndex) {
+            litIndex = idx;
+            bars.forEach((b, i) => b.classList.toggle("lit", i <= idx));
+          }
+        }
+        window.addEventListener("scroll", lightUp, {passive: true});
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.1});
+  obs.observe(document.getElementById("analysis"));
+}
+
+// ---- REMIX CARD CANVASES ----
+function setupRemixCanvases() {
+  document.querySelectorAll("[data-remix-canvas]").forEach(canvas => {
+    const strategy = canvas.dataset.remixCanvas;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    resize();
+
+    const w = canvas.offsetWidth;
+    const h = canvas.offsetHeight;
+    let frame = 0;
+    let hovering = false;
+
+    canvas.closest(".remix-card").addEventListener("mouseenter", () => { hovering = true; animate(); });
+    canvas.closest(".remix-card").addEventListener("mouseleave", () => { hovering = false; });
+
+    function animate() {
+      if (!hovering) return;
+      frame++;
+      ctx.clearRect(0, 0, w, h);
+
+      if (strategy === "interleave") {
+        for (let i = 0; i < 20; i++) {
+          const x = (i * (w / 20) + frame * 0.5) % w;
+          ctx.fillStyle = i % 2 === 0 ? "rgba(99,102,241,0.4)" : "rgba(212,168,83,0.4)";
+          ctx.fillRect(x, 10 + Math.sin(frame / 20 + i) * 15, w / 25, h - 20);
+        }
+      } else if (strategy === "thematic_blend") {
+        for (let i = 0; i < 12; i++) {
+          const x = 10 + (i % 4) * (w / 4);
+          const y = 10 + Math.floor(i / 4) * (h / 3) + Math.sin(frame / 30 + i * 0.8) * 8;
+          ctx.fillStyle = `hsla(${(i * 30 + frame) % 360}, 60%, 65%, 0.35)`;
+          ctx.beginPath();
+          const rw = w / 4 - 8, rh = h / 3 - 12, rr = 4;
+          ctx.moveTo(x + rr, y);
+          ctx.arcTo(x + rw, y, x + rw, y + rh, rr);
+          ctx.arcTo(x + rw, y + rh, x, y + rh, rr);
+          ctx.arcTo(x, y + rh, x, y, rr);
+          ctx.arcTo(x, y, x + rw, y, rr);
+          ctx.closePath();
+          ctx.fill();
+        }
+      } else if (strategy === "temporal_layer") {
+        for (let i = 0; i < 5; i++) {
+          ctx.fillStyle = `rgba(99,102,241,${0.08 + i * 0.04})`;
+          const y = i * (h / 5) + Math.sin(frame / 25 + i) * 5;
+          ctx.fillRect(8, y, w - 16, h / 5 - 4);
+          if (i > 0 && i % 2 === 0) {
+            ctx.fillStyle = "rgba(212,168,83,0.2)";
+            ctx.fillRect(12, y + 2, w - 24, h / 5 - 8);
+          }
+        }
+      } else if (strategy === "glyph_collide") {
+        const chars1 = "ODYSSEY".split("");
+        const chars2 = "AENEID".split("");
+        for (let i = 0; i < 7; i++) {
+          const cx = w / 2;
+          const offsetX = Math.cos(frame / 15 + i) * (w / 3 - frame % 60);
+          const x1 = cx - Math.abs(offsetX);
+          const x2 = cx + Math.abs(offsetX);
+          ctx.font = "14px 'Palatino Linotype', serif";
+          ctx.fillStyle = "rgba(99,102,241,0.5)";
+          ctx.fillText(chars1[i] || "", x1, 20 + i * 14);
+          ctx.fillStyle = "rgba(212,168,83,0.5)";
+          ctx.fillText(chars2[i] || "", x2, 20 + i * 14);
+          if (Math.abs(offsetX) < 10) {
+            ctx.fillStyle = "rgba(147,51,234,0.7)";
+            ctx.font = "bold 16px 'Palatino Linotype', serif";
+            ctx.fillText(GLYPH_POOL[i % GLYPH_POOL.length], cx, 20 + i * 14);
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Draw initial static state
+    ctx.fillStyle = "rgba(99,102,241,0.05)";
+    ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = "rgba(99,102,241,0.15)";
+    ctx.font = "11px 'IBM Plex Mono', monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("hover to animate", w / 2, h / 2 + 4);
+  });
+}
+
+// ---- KEYBOARD NAV ----
+function setupKeyboardNav() {
+  const sections = document.querySelectorAll("section[data-section]");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      const current = Array.from(sections).findIndex(s => {
+        const r = s.getBoundingClientRect();
+        return r.top >= -100 && r.top < window.innerHeight / 2;
+      });
+      const next = Math.min(current + 1, sections.length - 1);
+      sections[next].scrollIntoView({behavior: "smooth"});
+    }
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      const current = Array.from(sections).findIndex(s => {
+        const r = s.getBoundingClientRect();
+        return r.top >= -100 && r.top < window.innerHeight / 2;
+      });
+      const prev = Math.max(current - 1, 0);
+      sections[prev].scrollIntoView({behavior: "smooth"});
+    }
+  });
+}
+
+// ---- INIT ----
+document.addEventListener("DOMContentLoaded", () => {
+  setupNavDots();
+  setupHeroCanvas();
+  setupCtaCanvas();
+  setupRevealObserver();
+  setupDriftText();
+  setupAtomization();
+  setupEvolution();
+  setupAnalysisLighting();
+  setupRemixCanvases();
+  setupKeyboardNav();
+});
+</script>
+</body>
+</html>

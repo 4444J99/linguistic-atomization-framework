@@ -1,0 +1,49 @@
+# seed.yaml — Automation Contract for organvm-i-theoria/nexus--babel-alexandria-
+# Schema: seed/v1.0
+# Generated: 2026-02-17 (SENSORIA Sprint)
+
+schema_version: "1.0"
+organ: I
+organ_name: Theory
+repo: nexus--babel-alexandria-
+org: organvm-i-theoria
+
+metadata:
+  implementation_status: ARCHIVED
+  tier: archive
+  promotion_status: ARCHIVED
+  last_validated: "2026-02-17"
+  generated: "2026-02-17"
+  sprint: "SENSORIA"
+  language: mixed
+
+agents:
+  - name: ci
+    trigger: on_push
+    workflow: .github/workflows/ci-minimal.yml
+    description: "Continuous integration pipeline"
+
+implements:
+  - concept: formation_protocol
+    zettel_source: "post-flood/archive_original/.zettel-index.yaml#formation_protocol"
+    aspect: "GENERATOR formation — produces ONT_FRAGMENT, RULE_PROPOSAL, THEORY_MEMO from literary canon"
+  - concept: repo_fusion
+    zettel_source: "post-flood/archive_original/.zettel-index.yaml#repo_fusion"
+    aspect: "Third-location synthesis — recombines canonical literary material into new knowledge structures"
+
+produces:
+  - type: theory
+    description: "Epistemological frameworks, recursive engines, ontological systems"
+
+consumes:
+  - type: dependency
+    source: organvm-i-theoria/linguistic-atomization-framework
+    description: Depends on organvm-i-theoria/linguistic-atomization-framework
+
+subscriptions:
+  - event: governance.updated
+    source: ORGAN-IV
+    action: Check compliance with updated governance rules
+  - event: health-audit.completed
+    source: ORGAN-IV
+    action: Review audit findings for this repo
