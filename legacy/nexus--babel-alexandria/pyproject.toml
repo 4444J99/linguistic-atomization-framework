@@ -34,6 +34,12 @@ dev = [
 [tool.setuptools]
 package-dir = {"" = "src"}
 
+[tool.setuptools.package-data]
+# The UI shell template is loaded from the installed package directory
+# (see src/nexus_babel/main.py); without this it is missing from
+# non-editable installs and every /app/{view} request fails.
+nexus_babel = ["frontend/templates/*.html"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
