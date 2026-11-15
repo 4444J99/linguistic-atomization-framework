@@ -1,0 +1,1784 @@
+{
+  "generated_at": "2026-07-06T21:14:57.137908+00:00",
+  "root": "~/Workspace/.limen-worktrees/heal-cifix-organvm-nexus--babel-alexandria-125-306fcd79",
+  "summary": {
+    "files_total": 176,
+    "files_by_kind": {
+      "text": 174,
+      "pdf": 2
+    },
+    "features_total": 95,
+    "features_by_status": {
+      "implemented": 10,
+      "planned": 85
+    },
+    "features_by_type": {
+      "api_endpoint": 10,
+      "roadmap_task": 48,
+      "suggested_feature_or_use_case": 37
+    },
+    "conflict_files": []
+  },
+  "files": [
+    {
+      "path": ".editorconfig",
+      "sha256": "f43d02afb32b2338f89ed3410b204fe01a3cf937577523869839fcf9d35abe9b",
+      "size_bytes": 443,
+      "kind": "text",
+      "lines": 35,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".env.example",
+      "sha256": "bd513bc016ad4f743b8da76509955de642431e582008bcbbf253d84f337a2e4a",
+      "size_bytes": 1275,
+      "kind": "text",
+      "lines": 28,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "d4b76be8eef7e4628d33476a18307efcd659da76115ade6c7718343349b564fa",
+      "size_bytes": 1091,
+      "kind": "text",
+      "lines": 72,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/AGENTS.md",
+      "sha256": "1de9ad6c131630c992313eeb6fb5eaba74846cfa2f1588d3931b6d73c3875c13",
+      "size_bytes": 834,
+      "kind": "text",
+      "lines": 24,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/GEMINI.md",
+      "sha256": "c5b13e45745ce4c076bf2f0e9513f46c2b98fed22f08fd03e6ae52f106f95fb8",
+      "size_bytes": 957,
+      "kind": "text",
+      "lines": 19,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/SECURITY.md",
+      "sha256": "caa97e5ccbd5a6df132e0e746ee26c3466d3a8846c3f1821d0282a069d482ad0",
+      "size_bytes": 659,
+      "kind": "text",
+      "lines": 25,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/SUPPORT.md",
+      "sha256": "f50510518415c2dd8542c6f5df3a6733569fcef57248b76559e81fea74959a8f",
+      "size_bytes": 527,
+      "kind": "text",
+      "lines": 14,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "f197c830d9c106be64297e552e47995d321463424ccc764361d1d7e85842ed94",
+      "size_bytes": 404,
+      "kind": "text",
+      "lines": 21,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".github/workflows/ci-minimal.yml",
+      "sha256": "91e389d7239d56171e8652c5d4e9f480f1073398a4bed2c4e482be046228ddc1",
+      "size_bytes": 1836,
+      "kind": "text",
+      "lines": 48,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "e8bcab25f2bf6dcd69f95a4a3799bfc7f3f0fe840fa95ce879a6d65c62567f26",
+      "size_bytes": 609,
+      "kind": "text",
+      "lines": 68,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "b5ddb1fd4175306209c9a5dd2ceb0b69333c71c744f20fa72f67064ccb119247",
+      "size_bytes": 496,
+      "kind": "text",
+      "lines": 21,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "643b6edf069642b8df8b3bfe4402b11fceea186480ba9737f23f121f2150b322",
+      "size_bytes": 25224,
+      "kind": "text",
+      "lines": 418,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "DISCOVERY.md",
+      "sha256": "30c511c5d11779483a56c5116be2c0c0fb8326df773e4e553a25d5d8d15b8aac",
+      "size_bytes": 3111,
+      "kind": "text",
+      "lines": 21,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "GEMINI.md",
+      "sha256": "1afdc5a54732d02bddd774ef5b1bf3ada371f00bc239b98b8c37aa2d554b8314",
+      "size_bytes": 11908,
+      "kind": "text",
+      "lines": 231,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "6d319436c6a6428d1cfa592e3386aef31cb02e04d67731a577b68395c5e963fc",
+      "size_bytes": 1064,
+      "kind": "text",
+      "lines": 22,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "MANIFEST.yaml",
+      "sha256": "eabc9892bf75038588d9e77eec64f4b4dd28cf28bbee7c376d4654b95def5d08",
+      "size_bytes": 73790,
+      "kind": "text",
+      "lines": 1931,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "Makefile",
+      "sha256": "88dbeff2a11f74f73e4ce9a01f2eaf78e64d30d0f4f65dfe9ae06db2bf2999e1",
+      "size_bytes": 1316,
+      "kind": "text",
+      "lines": 61,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "README.md",
+      "sha256": "ba1955a853ad09a3f923c533abd85c855799615865b96471f6572a1ab4bd66cd",
+      "size_bytes": 42055,
+      "kind": "text",
+      "lines": 449,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic.ini",
+      "sha256": "10cbd807a4fd691b24ef067c98e10ca269c0455c11f3fdd16dcf9c2bf30bc4fc",
+      "size_bytes": 570,
+      "kind": "text",
+      "lines": 38,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/env.py",
+      "sha256": "ca979c9c3923b76f89d216b92636f6c759cffee075b8f7c0117f984b020356ae",
+      "size_bytes": 1258,
+      "kind": "text",
+      "lines": 48,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/script.py.mako",
+      "sha256": "45b179250bf89ed063fb4304fa9e0c23979e7126daf8937177e85b6cbcd10829",
+      "size_bytes": 546,
+      "kind": "text",
+      "lines": 27,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/versions/20260218_0001_initial.py",
+      "sha256": "42df7dc07338810fb9fdfc643331408a70b09002fbce90abf7aff9771935fb63",
+      "size_bytes": 12545,
+      "kind": "text",
+      "lines": 256,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/versions/20260218_0002_wave2_alpha.py",
+      "sha256": "f194976c970a02e5366d3106b7f249c4bf62152bebbe5fe0096d719c224ae2fc",
+      "size_bytes": 10681,
+      "kind": "text",
+      "lines": 192,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/versions/20260223_0003_add_atom_metadata.py",
+      "sha256": "ac5c157b935866408af12724ade29e4fad77391d9316af1ebbdc7b0f70347878",
+      "size_bytes": 512,
+      "kind": "text",
+      "lines": 26,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "alembic/versions/20260225_0004_remix_artifacts.py",
+      "sha256": "68bbe5416e3c3e2290865e15cca448b1ae87c73785123849d7585bd9d747ea3c",
+      "size_bytes": 6634,
+      "kind": "text",
+      "lines": 108,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "corpus/seeds/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "kind": "text",
+      "lines": 0,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docker-compose.yml",
+      "sha256": "54cdfe4abe9f459b2ab433d0ad9aa73c3da37f844a420953b8ea97980301bd36",
+      "size_bytes": 621,
+      "kind": "text",
+      "lines": 30,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/.nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "kind": "text",
+      "lines": 0,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/OPERATOR_RUNBOOK.md",
+      "sha256": "a7e65df0678b5d8596033114c4d66e53828468abe847525ffc13bf9346eece7f",
+      "size_bytes": 4672,
+      "kind": "text",
+      "lines": 175,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/AB-PLAN-01_Build_Tickets.json",
+      "sha256": "7dcd8b8ef592e01361f3ee5212962b4637d264ce23df6cccae6057d470bc2a80",
+      "size_bytes": 7205,
+      "kind": "text",
+      "lines": 193,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/AB-PLAN-01_Build_Tickets.md",
+      "sha256": "1725a01824fa9c0330574249cc02c47137d01f2b2d96e3941c3d92ebf65f658b",
+      "size_bytes": 9201,
+      "kind": "text",
+      "lines": 271,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/AB-PLAN-02_Build_Tickets.json",
+      "sha256": "3e37ee1af0825cfaae9649f0593e31cb254dfb17296a8f8101317a28b483b5fb",
+      "size_bytes": 3585,
+      "kind": "text",
+      "lines": 115,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/AB-PLAN-02_Build_Tickets.md",
+      "sha256": "eee09cb15faef9b1889aeb9fe31b5a6a7206eafe9df0812a4dbe7e92e574b8f6",
+      "size_bytes": 2713,
+      "kind": "text",
+      "lines": 42,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Organism_Blueprint.md",
+      "sha256": "e54874fb6e1d72bd12aadefdc2bd538d6dbc3e53ef799b1c6175b2bef6fab563",
+      "size_bytes": 1820,
+      "kind": "text",
+      "lines": 44,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Protocol_Tracker.md",
+      "sha256": "b3df4987793cbb8c7edd0c29365d3e164f62a43ac793489350bde5c401e14c02",
+      "size_bytes": 1125,
+      "kind": "text",
+      "lines": 27,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Prototype_Tracker.md",
+      "sha256": "f1589d38a42ef9e3ee07ee56ac088101ed22e30c074dcee68a374f16295e837a",
+      "size_bytes": 2875,
+      "kind": "text",
+      "lines": 41,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Save_Receipt_2026-02-18.md",
+      "sha256": "404b5075336832ebe9ec1911dea5b99f8353ad35cf69b4b9298858bbb2858f8f",
+      "size_bytes": 831,
+      "kind": "text",
+      "lines": 15,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Thread_Plan_Academic.md",
+      "sha256": "5ecba6fde374cb7bb4f71709478c294612231599a9a774c62d00470dc7a9189f",
+      "size_bytes": 274,
+      "kind": "text",
+      "lines": 11,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Thread_Plan_Funding.md",
+      "sha256": "7384c8cb4d8d8bc9e1032039f8db3bd6d1ee17288e6636a1944214fa678ea95c",
+      "size_bytes": 269,
+      "kind": "text",
+      "lines": 11,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/Thread_Plan_UX.md",
+      "sha256": "de5c8ae1a4791de14531cf1823355d0da05ee729c47e2e7328c5b5d7a7b491a3",
+      "size_bytes": 227,
+      "kind": "text",
+      "lines": 11,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/feature_usecase_ledger.json",
+      "sha256": "22882acb74eafbd45570aa3a1f3eec289cf8da78859dead3e7dfd884497816cd",
+      "size_bytes": 109553,
+      "kind": "text",
+      "lines": 2808,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/feature_usecase_matrix.md",
+      "sha256": "033260940de7ce0531ca55b5050d17872a35174182a7a9eced329ca940459cb2",
+      "size_bytes": 57971,
+      "kind": "text",
+      "lines": 308,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/index.md",
+      "sha256": "e60bafc738a7b42241537eb8ff12978b4db15fe41e85c49f48ed6345ccc6c1dc",
+      "size_bytes": 1191,
+      "kind": "text",
+      "lines": 21,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/alexandria_babel/seed_corpus_registry.yaml",
+      "sha256": "034d41fd10a2f77fec9ddf56501b0b75eba606ff9f5919840fb64bb7507b502e",
+      "size_bytes": 1129,
+      "kind": "text",
+      "lines": 38,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/# Theoria Linguae Machina Comprehensive Design Document for the….md",
+      "sha256": "9beea098ab6cc29314b670615d788288f672dd5d56abae5068dfecf0fdc3cab6",
+      "size_bytes": 51702,
+      "kind": "text",
+      "lines": 894,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/0469-arc4n-seed-texts-and-atomization-2.md",
+      "sha256": "e54720b7e5e3af43da08e31a9bdc003f8e2955cf20046082f87b8f706d13ed74",
+      "size_bytes": 81969,
+      "kind": "text",
+      "lines": 2250,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/Nexus_Bable-Alexandria.md",
+      "sha256": "e967fe463e7041f647c65cc8fa9c146065d41af470007f5c6f1acf30f82e1f80",
+      "size_bytes": 54588,
+      "kind": "text",
+      "lines": 890,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/The Archive of the Trace.pdf",
+      "sha256": "2d94f3947f9850c28b3ea4d20c2fc6f74958bbe2f47e07954bb02e9e2f38c4a8",
+      "size_bytes": 138128,
+      "kind": "pdf",
+      "lines": null,
+      "pdf_pages": 4,
+      "pdf_text_chars": 13316,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/The Brutalist Ziggurat of Truth.pdf",
+      "sha256": "db8af2aa9163a33df86abee911c2f644160ea8872d3fab377800228addae3938",
+      "size_bytes": 123375,
+      "kind": "pdf",
+      "lines": null,
+      "pdf_pages": 3,
+      "pdf_text_chars": 9377,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/the-archive-trace.md",
+      "sha256": "36cc81768edf3e94704d5900a7aa0174647bea211b54fa24070095dd825841e4",
+      "size_bytes": 10948,
+      "kind": "text",
+      "lines": 71,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/corpus/the-brutalist-ziggurat-of-truth.md",
+      "sha256": "bb743de5b5a82f693ff1fb76f3d9957e985a42e29e8bdaa33367aac491818fe6",
+      "size_bytes": 7973,
+      "kind": "text",
+      "lines": 79,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "4af5eb29efaf6c79a4844757b84be6315f1928662d56319e1b7d920f7b5364b4",
+      "size_bytes": 299,
+      "kind": "text",
+      "lines": 13,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/pitch/index.html",
+      "sha256": "4304fd7cf3d9bdf45f61f4015b8e108579c64f1b4e07f6dc38450d204d658724",
+      "size_bytes": 58581,
+      "kind": "text",
+      "lines": 1171,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/prix_ars_2026/architecture_9_layer_plexus.mmd",
+      "sha256": "45fc829baf0786c57b2b1a87f580a1bcf8b730aaeb61b5dc84739a7b7798630f",
+      "size_bytes": 940,
+      "kind": "text",
+      "lines": 17,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/prix_ars_2026/architecture_diagram_notes.md",
+      "sha256": "b9dcaecf101a0b694ea52a25010cffa500ec5d57661ab1dfd597a4fd79e643cf",
+      "size_bytes": 1090,
+      "kind": "text",
+      "lines": 28,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/prix_ars_2026/demo_video_runbook.md",
+      "sha256": "6b45bd11a95caed61851378ce12a9e168f9ab05f097aa0e833afe433deb156fb",
+      "size_bytes": 2251,
+      "kind": "text",
+      "lines": 79,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/reviews/evaluation_to_growth_2026-02-25.md",
+      "sha256": "e9f0e047d1c0777491d8e5bcac25542b1794f5464e3aba62d408e50991ab9cb6",
+      "size_bytes": 14874,
+      "kind": "text",
+      "lines": 337,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/roadmap.md",
+      "sha256": "a7f47ace061f4af8f04cd59f3424d53b7f0aaf83f4bdad97dc0feef472696f25",
+      "size_bytes": 20844,
+      "kind": "text",
+      "lines": 1003,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "docs/roadmap_mvp_next.md",
+      "sha256": "ecec78412332cf299807ef91e84d76a5f93eb8dfa1c94d0866c0545753516edc",
+      "size_bytes": 5710,
+      "kind": "text",
+      "lines": 167,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "ecosystem.yaml",
+      "sha256": "ba1dc959b4cd5c61660899f46700eb91051d84bb9e2cc2be10c9442054c0ed35",
+      "size_bytes": 536,
+      "kind": "text",
+      "lines": 19,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "ecosystem/pillar-dna/content.yaml",
+      "sha256": "846552206789f78c0291bafd3fc752226d788108eef138abf7ce0b0f962b8bce",
+      "size_bytes": 810,
+      "kind": "text",
+      "lines": 39,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "ecosystem/pillar-dna/delivery.yaml",
+      "sha256": "dbb0b6248c4a99da07d6527074969effad35b9fd3237aaf18a6ea37a0530e5e0",
+      "size_bytes": 928,
+      "kind": "text",
+      "lines": 41,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "network-map.yaml",
+      "sha256": "e458bca6737a298b73ad5ab19e2fa23108f24fdf710159ddebd7a76c6cccc886",
+      "size_bytes": 1916,
+      "kind": "text",
+      "lines": 90,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "64baa66bc9f2e6f638c32b5e2f6c38053ff8d75b84c6f90a8ce2e1fc3b7117c4",
+      "size_bytes": 1015,
+      "kind": "text",
+      "lines": 52,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/alexandria_babel_alignment.py",
+      "sha256": "5cb14497811b005aee06701d434afd3e00682c98e51900de4db11c33f5030313",
+      "size_bytes": 13948,
+      "kind": "text",
+      "lines": 359,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/demo_sequence.py",
+      "sha256": "442ac9e5190e14fd3c6b0287fe16ad989a2f7f2d60dddeba578680dc00c90bb0",
+      "size_bytes": 10806,
+      "kind": "text",
+      "lines": 264,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/export_atom_library.py",
+      "sha256": "0a7b00bc5a44752ac15b2e79628a1237177af611a61a0f06a13f9775fcb9ff68",
+      "size_bytes": 5444,
+      "kind": "text",
+      "lines": 140,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/generate_openapi_contract_snapshot.py",
+      "sha256": "aaf38135190d996850e007b25c409a1a6c3cb6e8ad04a6da6ab55eb1c962fb9b",
+      "size_bytes": 2148,
+      "kind": "text",
+      "lines": 61,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/ingest_corpus.py",
+      "sha256": "f2306762ce162679edbe655212d702c994c9b6d06c5706fcee03ec6e4bd84df7",
+      "size_bytes": 5141,
+      "kind": "text",
+      "lines": 136,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/load_test.py",
+      "sha256": "871ef79b46d4395b0c5666b27d6e81c8de344c4c086157c6bd524233eeae4576",
+      "size_bytes": 1391,
+      "kind": "text",
+      "lines": 37,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/render_architecture_diagram.py",
+      "sha256": "587d5ed935936bbbd9443b1d8ff87ada16ae32c883e19c02c2109f5b636c12fb",
+      "size_bytes": 5346,
+      "kind": "text",
+      "lines": 136,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/repo_certainty_audit.py",
+      "sha256": "b7ed92ac179e09a308847793a97b42258c545dd99b1022e9e440e532bd55e284",
+      "size_bytes": 16897,
+      "kind": "text",
+      "lines": 445,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/run_api.sh",
+      "sha256": "ef5c1e6448a8a103d3e4639927be0617cbd5d4a143cfbe23193b8c2980638e0c",
+      "size_bytes": 103,
+      "kind": "text",
+      "lines": 4,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "scripts/visualize_atoms.py",
+      "sha256": "e5faac7df16778083e5e3d7afb34b036acb7ea175ff12084b718fa787131d58d",
+      "size_bytes": 9889,
+      "kind": "text",
+      "lines": 250,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "seed.yaml",
+      "sha256": "3d7e13674166b3f8032fe02597afb25396a840127f0fb0c7896aa0200df228ca",
+      "size_bytes": 1551,
+      "kind": "text",
+      "lines": 50,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/01-ingestion-atomization/plan.md",
+      "sha256": "96e6049254a577da6aec54c9c675aeb259c18d9942a6517f14ac67f43d9ce75e",
+      "size_bytes": 18553,
+      "kind": "text",
+      "lines": 408,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/01-ingestion-atomization/spec.md",
+      "sha256": "874734a508493a604e4bd276e42935dd01772419795ef7f158fded2a73f98422",
+      "size_bytes": 28811,
+      "kind": "text",
+      "lines": 431,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/01-ingestion-atomization/tasks.md",
+      "sha256": "76ce71c753c92e047b49758d9b6266ce746df364c69e004ccd8d4722957bbcfd",
+      "size_bytes": 18207,
+      "kind": "text",
+      "lines": 425,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/02-linguistic-analysis/plan.md",
+      "sha256": "63360e719a1545f15ca02353828c61aa054eda03dd14d316acb41fc78463630e",
+      "size_bytes": 17258,
+      "kind": "text",
+      "lines": 369,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/02-linguistic-analysis/spec.md",
+      "sha256": "495c742b21041215e8531bf508b9db7199bf79ad3b0f9920ceee9f95eac7eeb7",
+      "size_bytes": 28481,
+      "kind": "text",
+      "lines": 516,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/02-linguistic-analysis/tasks.md",
+      "sha256": "b77234d35a53e45454b3577da3051cc46fa13192797847e89f9f44025f7de644",
+      "size_bytes": 27727,
+      "kind": "text",
+      "lines": 432,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/03-evolution-branching/plan.md",
+      "sha256": "32090d2464189bcb148594bb659eaa3fb9b6aab440ed7e63a8bc48273bbb9d50",
+      "size_bytes": 28256,
+      "kind": "text",
+      "lines": 784,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/03-evolution-branching/spec.md",
+      "sha256": "9253b65e0673c887c82085084a6b9d830695765ad7ee2419907470ed49868355",
+      "size_bytes": 37317,
+      "kind": "text",
+      "lines": 584,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/03-evolution-branching/tasks.md",
+      "sha256": "db2eaaea4209bd2f15b12392f752febf3c96391cddfa4e8c9213cde403e6e156",
+      "size_bytes": 32818,
+      "kind": "text",
+      "lines": 547,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/04-remix-recombination/plan.md",
+      "sha256": "2e3303e47176cbac388566231c07e002eace751996961268ef3f9b5f450ba279",
+      "size_bytes": 21591,
+      "kind": "text",
+      "lines": 451,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/04-remix-recombination/spec.md",
+      "sha256": "c0249b8863e37bc4ab65889af6852d1bee1ed87f04c05ebc6b48f00b8dfa8a56",
+      "size_bytes": 28330,
+      "kind": "text",
+      "lines": 390,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/04-remix-recombination/tasks.md",
+      "sha256": "7f88873dcc4e2455aa22cb5573cdcaa1fbf33c63b107f02d1fe7eb3f336f6456",
+      "size_bytes": 25264,
+      "kind": "text",
+      "lines": 544,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/05-governance-audit/plan.md",
+      "sha256": "c5e2d5d833ec011cae35faedab3208fda48466d9060bb42ca07ee135a95aeb4f",
+      "size_bytes": 20183,
+      "kind": "text",
+      "lines": 459,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/05-governance-audit/spec.md",
+      "sha256": "636c470808ab0f47aabb4b440526c94e18b106c84e1d036ad988cdd79b71a567",
+      "size_bytes": 32264,
+      "kind": "text",
+      "lines": 430,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/05-governance-audit/tasks.md",
+      "sha256": "df699063443f28345de83bf65609076682afe39f6705958d3699a426dbc1cb3b",
+      "size_bytes": 23230,
+      "kind": "text",
+      "lines": 465,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/06-seed-corpus/plan.md",
+      "sha256": "ec68983423b67bc0eec1aabcf648ec6b426650d1cb2d82fac0751c856816a58f",
+      "size_bytes": 18195,
+      "kind": "text",
+      "lines": 461,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/06-seed-corpus/spec.md",
+      "sha256": "af04fd851ea2159ec9e5b4121c43ad4d8cb8a4284d7e30e59b8de93560878e12",
+      "size_bytes": 27854,
+      "kind": "text",
+      "lines": 375,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/06-seed-corpus/tasks.md",
+      "sha256": "983729ffaeeb0afb6de427634b3c455736960e32d0835aba8b352667e1d2fe44",
+      "size_bytes": 20441,
+      "kind": "text",
+      "lines": 453,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/07-hypergraph/plan.md",
+      "sha256": "312a507cbbdb7d9da273bb2a2df4e4a651b7cf56290eafce3c8f049c6e13a676",
+      "size_bytes": 17115,
+      "kind": "text",
+      "lines": 399,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/07-hypergraph/spec.md",
+      "sha256": "27396c220a4d6512b3ced61dc27a64c441f2f1cc2faf6cc9b44719cc5d711f3c",
+      "size_bytes": 30859,
+      "kind": "text",
+      "lines": 426,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/07-hypergraph/tasks.md",
+      "sha256": "d40366ad1e5319b945db0c2a5d2b26d96cfd96b13e34745702c33f008d68b1e1",
+      "size_bytes": 23007,
+      "kind": "text",
+      "lines": 478,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/08-platform-infrastructure/plan.md",
+      "sha256": "423f97a0355e3dde9c4caec5f2b45783d7e4898285d3d2cead4ecc461bd8ddc8",
+      "size_bytes": 22426,
+      "kind": "text",
+      "lines": 593,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/08-platform-infrastructure/spec.md",
+      "sha256": "0464feea32192d19ec92a8cffa45c0936c0367fc6a36c0fd4d142351bcd2c515",
+      "size_bytes": 35333,
+      "kind": "text",
+      "lines": 553,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/08-platform-infrastructure/tasks.md",
+      "sha256": "b944304e39d0186d753ec082c54bc2e2bf57a139bdba7fe5ccf69605facdb1eb",
+      "size_bytes": 21172,
+      "kind": "text",
+      "lines": 359,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/09-explorer-ux/plan.md",
+      "sha256": "ff8c84d666ead04e862ec38b849927f15ec690b0469032f9a9b490acc13ce8f3",
+      "size_bytes": 32019,
+      "kind": "text",
+      "lines": 763,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/09-explorer-ux/spec.md",
+      "sha256": "d8ef00aef7d2e556681481e7670cabbd343b813c1ee06b43578f1f9503d86df3",
+      "size_bytes": 36690,
+      "kind": "text",
+      "lines": 585,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "specs/09-explorer-ux/tasks.md",
+      "sha256": "be9b3c9f5cf2e6ce794c9bd458991be44a5fd82e1fa3b4e4cf700beba23c9412",
+      "size_bytes": 29749,
+      "kind": "text",
+      "lines": 642,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/__init__.py",
+      "sha256": "7d747afc2b886329d5e309a87e59ee8f3eb222fac210351c79bb0742ee11c426",
+      "size_bytes": 19,
+      "kind": "text",
+      "lines": 2,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "kind": "text",
+      "lines": 0,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/deps.py",
+      "sha256": "a353c56de5ea1d4ba401f88242bf2c525673263c7a2638718f2f020673dbdffc",
+      "size_bytes": 1471,
+      "kind": "text",
+      "lines": 45,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/errors.py",
+      "sha256": "1adb57228c332bce0fb2ef8c110a0a54f467c897b574761c5c9b3ee7c5793bba",
+      "size_bytes": 2167,
+      "kind": "text",
+      "lines": 67,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/openapi_contract.py",
+      "sha256": "b594b049b3df27f388261c9b6097f8a72b4ebd0f75ee21f003359efef121418a",
+      "size_bytes": 2277,
+      "kind": "text",
+      "lines": 74,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/__init__.py",
+      "sha256": "70af20097b4b44c73105dbd6c76ff7d11253cd19325629f3184ef5bb9aea0228",
+      "size_bytes": 854,
+      "kind": "text",
+      "lines": 26,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/analysis.py",
+      "sha256": "c4ab9c97d09ce28540558d8daf4bf2565845ede925ca1d7442c6a9dd75b9935a",
+      "size_bytes": 6295,
+      "kind": "text",
+      "lines": 168,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/auth.py",
+      "sha256": "a6e6e23d33f92a6455af6f6af62a284039eb49c72753de739ffa36c6c839e3d4",
+      "size_bytes": 833,
+      "kind": "text",
+      "lines": 28,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/branches.py",
+      "sha256": "ed4cac4a0144c08248a58127c235d43c9a73801ffa924ba3c6236e3dc0e4064d",
+      "size_bytes": 8209,
+      "kind": "text",
+      "lines": 226,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/documents.py",
+      "sha256": "c5184bf3a5dd5ae7b2779935f4382c84439fe3099df8652810eebe9df2962624",
+      "size_bytes": 3366,
+      "kind": "text",
+      "lines": 94,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/governance.py",
+      "sha256": "481f57d1b730c2a5cb66d6634bea8c18fe0da894304d1a6b1b895925c1bed6c8",
+      "size_bytes": 1892,
+      "kind": "text",
+      "lines": 52,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/ingest.py",
+      "sha256": "5a4dab6816563f6e362f3d3e2a401e79992ec3a91ea5fdb0c166b4845df84e5e",
+      "size_bytes": 4629,
+      "kind": "text",
+      "lines": 121,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/jobs.py",
+      "sha256": "f02c77becf88c866ff844eb72d2d6012169ddc1b32db8c2a4d164da2a88512f5",
+      "size_bytes": 4019,
+      "kind": "text",
+      "lines": 110,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/api/routes/remix.py",
+      "sha256": "7c5f39bac64bfc7b679adeeb753f9605c83fcbd6d3b94eae12d5bde4e2b641d5",
+      "size_bytes": 5250,
+      "kind": "text",
+      "lines": 141,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/config.py",
+      "sha256": "86654c105e7d37aa39f39525c722d17bc219d8956a31a62a473bc898f9b366a3",
+      "size_bytes": 2326,
+      "kind": "text",
+      "lines": 61,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/db.py",
+      "sha256": "edfc4f3086798cf489e2f18805202ecdaeceba056ee9778d99a01d7000031341",
+      "size_bytes": 1039,
+      "kind": "text",
+      "lines": 31,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/frontend/templates/shell.html",
+      "sha256": "d3fe6d15d8e5d24152039103c371747ae5542073fbebdb9c9ffafb1b96d63ecb",
+      "size_bytes": 12456,
+      "kind": "text",
+      "lines": 358,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/main.py",
+      "sha256": "2b9bf8e71b8fb242ef16b6186590deb572e5dc5248d651e20a1a77075b6e6059",
+      "size_bytes": 7144,
+      "kind": "text",
+      "lines": 175,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/models.py",
+      "sha256": "15cb38cdc30faeae4269b31b41c9bb2f27fd6589ba2315a7672483b4de61e834",
+      "size_bytes": 19022,
+      "kind": "text",
+      "lines": 359,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/schemas.py",
+      "sha256": "e60fa6fa8b280baaf2c0e90bda7c66717ff253422906a8f16d30168b68f65d06",
+      "size_bytes": 11598,
+      "kind": "text",
+      "lines": 434,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "kind": "text",
+      "lines": 0,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/analysis.py",
+      "sha256": "0ccfcc5f1882b04619bb3978f0a42d7881d375f9b9206770c865f59ffe552476",
+      "size_bytes": 11004,
+      "kind": "text",
+      "lines": 271,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/auth.py",
+      "sha256": "a70037cf62cbbdca9e1aa89054b1b8481e5f5d5be558beb8c673776ef2410baf",
+      "size_bytes": 2525,
+      "kind": "text",
+      "lines": 77,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/canonicalization.py",
+      "sha256": "7b4fea277864f6dee507cdb35c982863d303eec48be63a33b496818fde5e855d",
+      "size_bytes": 3189,
+      "kind": "text",
+      "lines": 104,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution.py",
+      "sha256": "8aae5b6b2433eb4517fb554ddb92dd6f245ad5a53a9f865e94ea0150c1ca739e",
+      "size_bytes": 16396,
+      "kind": "text",
+      "lines": 389,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution_events.py",
+      "sha256": "5fa847141e2548770b15ce7aa219f4ff48e01eb230528168291bc15a8ffd0b84",
+      "size_bytes": 9684,
+      "kind": "text",
+      "lines": 269,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution_merge.py",
+      "sha256": "4e0a4a9b2c74343156ba226dd5a4a62e9c69145451d7976915bf1e24c09f3207",
+      "size_bytes": 3891,
+      "kind": "text",
+      "lines": 122,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution_replay.py",
+      "sha256": "cb44fc438970cb4acf55ee09593d55d7944c06b25c30b70f017da1941cd9c125",
+      "size_bytes": 4411,
+      "kind": "text",
+      "lines": 121,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution_types.py",
+      "sha256": "8b0e2ced2dd163d3d9de60ff33311906b39a6835fdebe9c72ba966883afd4fc3",
+      "size_bytes": 1268,
+      "kind": "text",
+      "lines": 61,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/evolution_visualization.py",
+      "sha256": "a663b7ddb0a4e7fd00dafc1211aab3edab1b26ad185f658f816f4e1cda844724",
+      "size_bytes": 4740,
+      "kind": "text",
+      "lines": 121,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/glyph_data.py",
+      "sha256": "56f6188f1a6428ed74361926f2e1f4a4922f61af995b7a5347e1deb324483fa6",
+      "size_bytes": 6157,
+      "kind": "text",
+      "lines": 164,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/governance.py",
+      "sha256": "86b4f9dd65d484260b3049316609c716b8a4395a049e747161637f749d5534fd",
+      "size_bytes": 5639,
+      "kind": "text",
+      "lines": 155,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/hypergraph.py",
+      "sha256": "d15c3de807e56ec9b26010086b1293929909bf1659134c4f90c82bca19465f2a",
+      "size_bytes": 7519,
+      "kind": "text",
+      "lines": 192,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion.py",
+      "sha256": "90f4652faa7695937f8cd224fdc523962b4faf50538fa61fa6c642420421d316",
+      "size_bytes": 4769,
+      "kind": "text",
+      "lines": 123,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_atoms.py",
+      "sha256": "2769cf16da03ff5aa490cfe77ad3d6bfd1b985e65b0d556434f33025f5540a5d",
+      "size_bytes": 3064,
+      "kind": "text",
+      "lines": 86,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_batch_pipeline.py",
+      "sha256": "1f54f82857648ced1594b4e4a0931d88f920cdf3df75d238a11b61fde695b133",
+      "size_bytes": 9016,
+      "kind": "text",
+      "lines": 237,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_documents.py",
+      "sha256": "ac2a04c354f6de8a45781769eaa40f7dd29041459c2f1edbf3d8c99f2f04d200",
+      "size_bytes": 2034,
+      "kind": "text",
+      "lines": 72,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_media.py",
+      "sha256": "ca7747b977439c2e50590e6bdd45dc07ac54bd2800724271073d6e584264edd1",
+      "size_bytes": 4225,
+      "kind": "text",
+      "lines": 130,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_projection.py",
+      "sha256": "dc3dc8bd75f46d5badc3dc0f0e38a658bb3755f079458d26952fcceea7ee8767",
+      "size_bytes": 2658,
+      "kind": "text",
+      "lines": 76,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/ingestion_types.py",
+      "sha256": "2ff0f02c15876c286706bd715cd6e68b6de762933eb46274045847bc9363de2d",
+      "size_bytes": 789,
+      "kind": "text",
+      "lines": 31,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/jobs.py",
+      "sha256": "d3b1d60d200c5177ea1357519f56ad471c8825b2434b73dd733295252cf7dc56",
+      "size_bytes": 10834,
+      "kind": "text",
+      "lines": 279,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/metrics.py",
+      "sha256": "609b794428ac883f274015830d2a58baed634ee6fa993b8079b6182efda09a3a",
+      "size_bytes": 1199,
+      "kind": "text",
+      "lines": 32,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/plugins.py",
+      "sha256": "ccf9e18b523a395828821c599a056e08cff5d8f729bbd98f44585cdfa36d7dd9",
+      "size_bytes": 4955,
+      "kind": "text",
+      "lines": 158,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix.py",
+      "sha256": "a4706628e65cedbf2c6c9381a439dcfde1d0aea09cd23b4a11739b4cdd8673f1",
+      "size_bytes": 11529,
+      "kind": "text",
+      "lines": 301,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_artifact_persistence.py",
+      "sha256": "fda68072192d41d59176f872ea0c9cb4d03528420573f9303c1b28e0de4cf58f",
+      "size_bytes": 2720,
+      "kind": "text",
+      "lines": 89,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_artifact_serialization.py",
+      "sha256": "1fb776c59d552bb942adf3555432482f6f9475b0d83a2e6e7b073c074dbb1b43",
+      "size_bytes": 3128,
+      "kind": "text",
+      "lines": 87,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_compose.py",
+      "sha256": "d79d9db55b4cf66353d3f5fe449a57463712b2ddf567d252a8657b5619148ec0",
+      "size_bytes": 1950,
+      "kind": "text",
+      "lines": 50,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_context.py",
+      "sha256": "91b03984f49f0e6e2188e05f03cdbaa3ca85e5ff9cab9d9b83ad1a49d62863f9",
+      "size_bytes": 3561,
+      "kind": "text",
+      "lines": 98,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_hashing.py",
+      "sha256": "c0690f88df19a94f2d07d9dd7b775df67eedcac4749853e1497c30d5364093a1",
+      "size_bytes": 1747,
+      "kind": "text",
+      "lines": 72,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_strategies.py",
+      "sha256": "9a23c3515cacee743201322f4ba9411040c373e5c20bfe5b67b17fe6ccfa840e",
+      "size_bytes": 2670,
+      "kind": "text",
+      "lines": 70,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/remix_types.py",
+      "sha256": "c7859639da4bddaf354111801b4092023947d10f07626153dcc60a79dbe89778",
+      "size_bytes": 509,
+      "kind": "text",
+      "lines": 27,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/rhetoric.py",
+      "sha256": "8dc30544e676ea5c07c670f684fc7567d849ff2633eb3bfaf66d051119a7ba7c",
+      "size_bytes": 2333,
+      "kind": "text",
+      "lines": 71,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/seed_corpus.py",
+      "sha256": "d109d425a1675acbbd6bebb2a9a60fd39c76c063586c003030c0836bb7b96ee9",
+      "size_bytes": 7179,
+      "kind": "text",
+      "lines": 197,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/services/text_utils.py",
+      "sha256": "fc6442f25ccda3197de01c33295e7e3cf11c53e3d45b5710b28548fc71e31de9",
+      "size_bytes": 7685,
+      "kind": "text",
+      "lines": 230,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "src/nexus_babel/worker.py",
+      "sha256": "081430c11e21bcf79d7a8c0102fda78eb88f921bbe53ce76e345c8fa602571d9",
+      "size_bytes": 1439,
+      "kind": "text",
+      "lines": 49,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "bfcd1230773c46a2fec5b5507741570f765090a02d1abd594a95552f1b6ff1cd",
+      "size_bytes": 2687,
+      "kind": "text",
+      "lines": 92,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/snapshots/openapi_contract_normalized.json",
+      "sha256": "ff2b7db1c287c46815f032d891aeb4621c5447e9f5642aad576a195003074d37",
+      "size_bytes": 86070,
+      "kind": "text",
+      "lines": 3720,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_ab_plan_01.py",
+      "sha256": "baf9e44ba6c6e9e869a6167e48928a108fcbc6a1318af401128cd99ad7525721",
+      "size_bytes": 14172,
+      "kind": "text",
+      "lines": 374,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_arc4n.py",
+      "sha256": "9bf04cefc72cfd8b5bdf24ed4956de627269653a7a88db4c4cd526d7ed394adf",
+      "size_bytes": 14924,
+      "kind": "text",
+      "lines": 409,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution.py",
+      "sha256": "d9b743f4a7709f862ff8285e93646daed6ab97af76c2226bce9a5141eb31513d",
+      "size_bytes": 1704,
+      "kind": "text",
+      "lines": 53,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution_api.py",
+      "sha256": "49724398f933df2b7e47791458eead1b1893f6492a577b4461a3a21f43733dd4",
+      "size_bytes": 18164,
+      "kind": "text",
+      "lines": 485,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution_event_helpers.py",
+      "sha256": "e7a565a62d2553ec15997bb9f362f31a1f1f34ff92490eb08238f2ed99c2c9eb",
+      "size_bytes": 3424,
+      "kind": "text",
+      "lines": 105,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution_merge_helpers.py",
+      "sha256": "611a48aed87f201acaed09676ed44812b3016ca3588c6edbc31c0ede355edc06",
+      "size_bytes": 2793,
+      "kind": "text",
+      "lines": 92,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution_replay_helpers.py",
+      "sha256": "ede4c3a73177380a64f1b6ddfb09eb2f6d7646895b7d74bd310a4e962890c9c4",
+      "size_bytes": 3810,
+      "kind": "text",
+      "lines": 100,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_evolution_visualization_helpers.py",
+      "sha256": "212e6b3bb4837374f7e2fab377ec6179d5b228c0023cc7e22749a52067e71ffc",
+      "size_bytes": 3678,
+      "kind": "text",
+      "lines": 117,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_hardening_runtime.py",
+      "sha256": "a18fd44766edbac424c434cd2122ccfd226078b8c82cb87922bfd2a85ea42611",
+      "size_bytes": 5592,
+      "kind": "text",
+      "lines": 168,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_ingestion_helpers.py",
+      "sha256": "00f2f40ed0cb49af207bd515908a8acdd64b5661c760d25a9c8ff03888943a92",
+      "size_bytes": 2147,
+      "kind": "text",
+      "lines": 57,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_mvp.py",
+      "sha256": "c31329955f277c7173e3f869ac0139debf3e23ac944068ffcaae877824eac950",
+      "size_bytes": 20828,
+      "kind": "text",
+      "lines": 509,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_openapi_contract_snapshot.py",
+      "sha256": "bf1b7ee69ca442cf49b9f1c7980ba001c52be0cfc65e7d710261a4bad801be66",
+      "size_bytes": 545,
+      "kind": "text",
+      "lines": 17,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_plugins.py",
+      "sha256": "89783f06b2af0d02412b00de8c6feee6cea6603089b78621daf30f8628a19771",
+      "size_bytes": 1633,
+      "kind": "text",
+      "lines": 45,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_remix_helpers.py",
+      "sha256": "c8425c7cb60a0aeaeebfc080c602f9b5388ee66a03002c7f6b392a24cab48f91",
+      "size_bytes": 3641,
+      "kind": "text",
+      "lines": 106,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "tests/test_wave2.py",
+      "sha256": "17c2ed71e00b559bcae1d9b4f2bab4c428480668f0996df906f29918d93e38d2",
+      "size_bytes": 5588,
+      "kind": "text",
+      "lines": 152,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "1b1094b651712b936a78314fda34826cf548ce2c5e9efb8136acdbe3afd8dcc6",
+      "size_bytes": 332744,
+      "kind": "text",
+      "lines": 1541,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    },
+    {
+      "path": "value-repos.json",
+      "sha256": "78a795874f3234a06ded5ab1ebf32984b446feb260f812ff17aa70e9ba010204",
+      "size_bytes": 40,
+      "kind": "text",
+      "lines": 4,
+      "pdf_pages": null,
+      "pdf_text_chars": null,
+      "conflict_markers": false
+    }
+  ]
+}

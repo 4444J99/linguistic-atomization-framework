@@ -1,0 +1,3719 @@
+{
+  "components": {
+    "schemas": {
+      "AnalysisRunResponse": {
+        "properties": {
+          "analysis_run_id": {
+            "type": "string"
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confidence_bundle": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "execution_mode": {
+            "enum": [
+              "async",
+              "shadow",
+              "sync"
+            ],
+            "type": "string"
+          },
+          "layer_outputs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "layers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "mode": {
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "plugin_profile": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "results": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "run_metadata": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        },
+        "required": [
+          "analysis_run_id",
+          "execution_mode",
+          "mode"
+        ],
+        "type": "object"
+      },
+      "AnalyzeRequest": {
+        "properties": {
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "execution_mode": {
+            "default": "sync",
+            "enum": [
+              "async",
+              "shadow",
+              "sync"
+            ],
+            "type": "string"
+          },
+          "layers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "plugin_profile": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "AnalyzeResponse": {
+        "properties": {
+          "analysis_run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confidence_bundle": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object"
+          },
+          "hypergraph_ids": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "layers": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "plugin_provenance": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "status": {
+            "default": "completed",
+            "type": "string"
+          }
+        },
+        "required": [
+          "confidence_bundle",
+          "hypergraph_ids",
+          "layers",
+          "mode"
+        ],
+        "type": "object"
+      },
+      "BranchCompareResponse": {
+        "properties": {
+          "distance": {
+            "type": "integer"
+          },
+          "left_branch_id": {
+            "type": "string"
+          },
+          "left_hash": {
+            "type": "string"
+          },
+          "preview_left": {
+            "type": "string"
+          },
+          "preview_right": {
+            "type": "string"
+          },
+          "right_branch_id": {
+            "type": "string"
+          },
+          "right_hash": {
+            "type": "string"
+          },
+          "same": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "distance",
+          "left_branch_id",
+          "left_hash",
+          "preview_left",
+          "preview_right",
+          "right_branch_id",
+          "right_hash",
+          "same"
+        ],
+        "type": "object"
+      },
+      "BranchEventView": {
+        "properties": {
+          "branch_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "diff_summary": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "event_index": {
+            "type": "integer"
+          },
+          "event_payload": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "branch_id",
+          "created_at",
+          "diff_summary",
+          "event_id",
+          "event_index",
+          "event_payload",
+          "event_type"
+        ],
+        "type": "object"
+      },
+      "BranchReplayResponse": {
+        "properties": {
+          "branch_id": {
+            "type": "string"
+          },
+          "event_count": {
+            "type": "integer"
+          },
+          "preview": {
+            "type": "string"
+          },
+          "replay_snapshot": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "text_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "branch_id",
+          "event_count",
+          "preview",
+          "text_hash"
+        ],
+        "type": "object"
+      },
+      "BranchTimelineResponse": {
+        "properties": {
+          "branch_id": {
+            "type": "string"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/BranchEventView"
+            },
+            "type": "array"
+          },
+          "replay_snapshot": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "root_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "branch_id",
+          "events",
+          "replay_snapshot",
+          "root_document_id"
+        ],
+        "type": "object"
+      },
+      "BranchVisualizationEdge": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "source": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "target",
+          "type"
+        ],
+        "type": "object"
+      },
+      "BranchVisualizationNode": {
+        "properties": {
+          "branch_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "event_index": {
+            "type": "integer"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "lineage_role": {
+            "default": "primary",
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "parent_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "phase": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "root_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "branch_id",
+          "created_at",
+          "event_index",
+          "event_type",
+          "id",
+          "kind",
+          "mode"
+        ],
+        "type": "object"
+      },
+      "BranchVisualizationResponse": {
+        "properties": {
+          "branch_id": {
+            "type": "string"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/BranchVisualizationEdge"
+            },
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/BranchVisualizationNode"
+            },
+            "type": "array"
+          },
+          "root_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "branch_id",
+          "summary"
+        ],
+        "type": "object"
+      },
+      "BranchVisualizationSummary": {
+        "properties": {
+          "edge_count": {
+            "type": "integer"
+          },
+          "event_count": {
+            "type": "integer"
+          },
+          "lineage_depth": {
+            "type": "integer"
+          },
+          "merge_secondary_edge_count": {
+            "default": 0,
+            "type": "integer"
+          },
+          "secondary_lineage_branch_count": {
+            "default": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "edge_count",
+          "event_count",
+          "lineage_depth"
+        ],
+        "type": "object"
+      },
+      "EvolveBranchRequest": {
+        "properties": {
+          "event_payload": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "parent_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "root_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "event_type"
+        ],
+        "type": "object"
+      },
+      "EvolveBranchResponse": {
+        "properties": {
+          "diff_summary": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "new_branch_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "diff_summary",
+          "event_id",
+          "new_branch_id"
+        ],
+        "type": "object"
+      },
+      "GovernanceEvaluateRequest": {
+        "properties": {
+          "candidate_output": {
+            "type": "string"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_output"
+        ],
+        "type": "object"
+      },
+      "GovernanceEvaluateResponse": {
+        "properties": {
+          "allow": {
+            "type": "boolean"
+          },
+          "audit_id": {
+            "type": "string"
+          },
+          "decision_trace": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "policy_hits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "redactions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "allow",
+          "audit_id",
+          "policy_hits",
+          "redactions"
+        ],
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "IngestBatchRequest": {
+        "properties": {
+          "atom_tracks": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "modalities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "parse_options": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "source_paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "IngestBatchResponse": {
+        "properties": {
+          "atoms_created": {
+            "type": "integer"
+          },
+          "documents_ingested": {
+            "type": "integer"
+          },
+          "documents_unchanged": {
+            "default": 0,
+            "type": "integer"
+          },
+          "ingest_job_id": {
+            "type": "string"
+          },
+          "ingest_scope": {
+            "default": "partial",
+            "type": "string"
+          },
+          "provenance_digest": {
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "atoms_created",
+          "documents_ingested",
+          "ingest_job_id",
+          "provenance_digest"
+        ],
+        "type": "object"
+      },
+      "IngestFileStatus": {
+        "properties": {
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "status"
+        ],
+        "type": "object"
+      },
+      "IngestJobResponse": {
+        "properties": {
+          "atoms_created": {
+            "type": "integer"
+          },
+          "documents_ingested": {
+            "type": "integer"
+          },
+          "documents_unchanged": {
+            "default": 0,
+            "type": "integer"
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/IngestFileStatus"
+            },
+            "type": "array"
+          },
+          "ingest_job_id": {
+            "type": "string"
+          },
+          "ingest_scope": {
+            "default": "partial",
+            "type": "string"
+          },
+          "provenance_digest": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "atoms_created",
+          "documents_ingested",
+          "errors",
+          "files",
+          "ingest_job_id",
+          "provenance_digest",
+          "status"
+        ],
+        "type": "object"
+      },
+      "JobArtifactView": {
+        "properties": {
+          "artifact_payload": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "artifact_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "artifact_type": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact_type",
+          "created_at"
+        ],
+        "type": "object"
+      },
+      "JobAttemptView": {
+        "properties": {
+          "attempt_number": {
+            "type": "integer"
+          },
+          "error_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "runtime_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "started_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "attempt_number",
+          "started_at",
+          "status"
+        ],
+        "type": "object"
+      },
+      "JobStatusResponse": {
+        "properties": {
+          "artifacts": {
+            "items": {
+              "$ref": "#/components/schemas/JobArtifactView"
+            },
+            "type": "array"
+          },
+          "attempt_count": {
+            "type": "integer"
+          },
+          "attempts": {
+            "items": {
+              "$ref": "#/components/schemas/JobAttemptView"
+            },
+            "type": "array"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "created_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "execution_mode": {
+            "enum": [
+              "async",
+              "shadow",
+              "sync"
+            ],
+            "type": "string"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "job_id": {
+            "type": "string"
+          },
+          "job_type": {
+            "type": "string"
+          },
+          "lease_expires_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lease_owner": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_attempts": {
+            "type": "integer"
+          },
+          "next_run_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "result": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "status": {
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "attempt_count",
+          "created_at",
+          "execution_mode",
+          "job_id",
+          "job_type",
+          "max_attempts",
+          "next_run_at",
+          "status",
+          "updated_at"
+        ],
+        "type": "object"
+      },
+      "JobSubmitRequest": {
+        "properties": {
+          "execution_mode": {
+            "default": "async",
+            "enum": [
+              "async",
+              "shadow",
+              "sync"
+            ],
+            "type": "string"
+          },
+          "idempotency_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "job_type": {
+            "type": "string"
+          },
+          "max_attempts": {
+            "default": 3,
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "type": "integer"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        },
+        "required": [
+          "job_type"
+        ],
+        "type": "object"
+      },
+      "JobSubmitResponse": {
+        "properties": {
+          "execution_mode": {
+            "enum": [
+              "async",
+              "shadow",
+              "sync"
+            ],
+            "type": "string"
+          },
+          "job_id": {
+            "type": "string"
+          },
+          "job_type": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "execution_mode",
+          "job_id",
+          "job_type",
+          "status"
+        ],
+        "type": "object"
+      },
+      "MergeBranchesRequest": {
+        "properties": {
+          "left_branch_id": {
+            "type": "string"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "right_branch_id": {
+            "type": "string"
+          },
+          "strategy": {
+            "default": "interleave",
+            "enum": [
+              "interleave",
+              "left_wins",
+              "right_wins"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "left_branch_id",
+          "right_branch_id"
+        ],
+        "type": "object"
+      },
+      "MergeBranchesResponse": {
+        "properties": {
+          "conflict_semantics": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "diff_summary": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "lca_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "new_branch_id": {
+            "type": "string"
+          },
+          "strategy": {
+            "enum": [
+              "interleave",
+              "left_wins",
+              "right_wins"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "new_branch_id",
+          "strategy"
+        ],
+        "type": "object"
+      },
+      "MultiEvolveEventInput": {
+        "properties": {
+          "event_payload": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_type"
+        ],
+        "type": "object"
+      },
+      "MultiEvolveRequest": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/MultiEvolveEventInput"
+            },
+            "type": "array"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "parent_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "root_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "MultiEvolveResponse": {
+        "properties": {
+          "branch_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "event_count": {
+            "type": "integer"
+          },
+          "event_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "final_branch_id": {
+            "type": "string"
+          },
+          "final_preview": {
+            "type": "string"
+          },
+          "final_text_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_count",
+          "final_branch_id",
+          "final_preview",
+          "final_text_hash"
+        ],
+        "type": "object"
+      },
+      "RemixArtifactListItem": {
+        "properties": {
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "create_branch": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "governance_decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mode": {
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "remix_artifact_id": {
+            "type": "string"
+          },
+          "seed": {
+            "type": "integer"
+          },
+          "source_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "strategy": {
+            "type": "string"
+          },
+          "target_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "create_branch",
+          "created_at",
+          "mode",
+          "remix_artifact_id",
+          "seed",
+          "strategy",
+          "text_hash"
+        ],
+        "type": "object"
+      },
+      "RemixArtifactListResponse": {
+        "properties": {
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "remixes": {
+            "items": {
+              "$ref": "#/components/schemas/RemixArtifactListItem"
+            },
+            "type": "array"
+          },
+          "total": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "total"
+        ],
+        "type": "object"
+      },
+      "RemixArtifactResponse": {
+        "properties": {
+          "branch_event_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "create_branch": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "governance_decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "governance_trace": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "lineage_graph_refs": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "payload_hash": {
+            "type": "string"
+          },
+          "remix_artifact_id": {
+            "type": "string"
+          },
+          "remixed_text": {
+            "type": "string"
+          },
+          "rng_seed_hex": {
+            "type": "string"
+          },
+          "seed": {
+            "type": "integer"
+          },
+          "source_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_links": {
+            "items": {
+              "$ref": "#/components/schemas/RemixSourceLinkView"
+            },
+            "type": "array"
+          },
+          "strategy": {
+            "type": "string"
+          },
+          "target_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "create_branch",
+          "created_at",
+          "mode",
+          "payload_hash",
+          "remix_artifact_id",
+          "remixed_text",
+          "rng_seed_hex",
+          "seed",
+          "strategy",
+          "text_hash"
+        ],
+        "type": "object"
+      },
+      "RemixAtomRef": {
+        "properties": {
+          "atom_id": {
+            "type": "string"
+          },
+          "atom_level": {
+            "type": "string"
+          },
+          "ordinal": {
+            "type": "integer"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "atom_id",
+          "atom_level",
+          "ordinal",
+          "role"
+        ],
+        "type": "object"
+      },
+      "RemixComposeRequest": {
+        "properties": {
+          "atom_levels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "create_branch": {
+            "default": true,
+            "type": "boolean"
+          },
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "persist_artifact": {
+            "default": true,
+            "type": "boolean"
+          },
+          "seed": {
+            "default": 0,
+            "type": "integer"
+          },
+          "source_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "strategy": {
+            "default": "interleave",
+            "enum": [
+              "glyph_collide",
+              "interleave",
+              "temporal_layer",
+              "thematic_blend"
+            ],
+            "type": "string"
+          },
+          "target_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "RemixComposeResponse": {
+        "properties": {
+          "create_branch": {
+            "default": true,
+            "type": "boolean"
+          },
+          "diff_summary": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "governance_decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "governance_trace": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "mode": {
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "new_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payload_hash": {
+            "type": "string"
+          },
+          "remix_artifact_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "remixed_text": {
+            "type": "string"
+          },
+          "seed": {
+            "type": "integer"
+          },
+          "source_atom_refs": {
+            "items": {
+              "$ref": "#/components/schemas/RemixAtomRef"
+            },
+            "type": "array"
+          },
+          "strategy": {
+            "type": "string"
+          },
+          "text_hash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mode",
+          "payload_hash",
+          "remixed_text",
+          "seed",
+          "strategy",
+          "text_hash"
+        ],
+        "type": "object"
+      },
+      "RemixRequest": {
+        "properties": {
+          "mode": {
+            "default": "PUBLIC",
+            "enum": [
+              "PUBLIC",
+              "RAW"
+            ],
+            "type": "string"
+          },
+          "seed": {
+            "default": 0,
+            "type": "integer"
+          },
+          "source_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "strategy": {
+            "default": "interleave",
+            "enum": [
+              "glyph_collide",
+              "interleave",
+              "temporal_layer",
+              "thematic_blend"
+            ],
+            "type": "string"
+          },
+          "target_branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "RemixResponse": {
+        "properties": {
+          "diff_summary": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "new_branch_id": {
+            "type": "string"
+          },
+          "strategy": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "diff_summary",
+          "event_id",
+          "new_branch_id",
+          "strategy"
+        ],
+        "type": "object"
+      },
+      "RemixSourceLinkView": {
+        "properties": {
+          "atom_count": {
+            "default": 0,
+            "type": "integer"
+          },
+          "atom_level": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "atom_refs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "branch_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role"
+        ],
+        "type": "object"
+      },
+      "RhetoricalAnalysisRequest": {
+        "properties": {
+          "audience_profile": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      },
+      "RhetoricalAnalysisResponse": {
+        "properties": {
+          "ethos_score": {
+            "type": "number"
+          },
+          "explainability": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "fallacies": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "logos_score": {
+            "type": "number"
+          },
+          "pathos_score": {
+            "type": "number"
+          },
+          "strategies": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ethos_score",
+          "explainability",
+          "fallacies",
+          "logos_score",
+          "pathos_score",
+          "strategies"
+        ],
+        "type": "object"
+      },
+      "SeedProvisionRequest": {
+        "properties": {},
+        "required": [
+          "title"
+        ],
+        "type": "object"
+      },
+      "SeedProvisionResponse": {
+        "properties": {
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "local_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "title"
+        ],
+        "type": "object"
+      },
+      "SeedTextEntry": {
+        "properties": {
+          "atomization_status": {
+            "default": "not_provisioned",
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "local_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "author",
+          "language",
+          "source_url",
+          "title"
+        ],
+        "type": "object"
+      },
+      "SeedTextListResponse": {
+        "properties": {
+          "seeds": {
+            "items": {
+              "$ref": "#/components/schemas/SeedTextEntry"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "seeds"
+        ],
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "type": "object"
+          },
+          "input": {},
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {}
+  },
+  "paths": {
+    "/api/v1/analysis/runs": {
+      "get": {
+        "operationId": "list_analysis_runs_api_v1_analysis_runs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/analysis/runs/{run_id}": {
+      "get": {
+        "operationId": "analysis_run_api_v1_analysis_runs__run_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisRunResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/analyze": {
+      "post": {
+        "operationId": "analyze_api_v1_analyze_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/audit/policy-decisions": {
+      "get": {
+        "operationId": "audit_policy_decisions_api_v1_audit_policy_decisions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/auth/whoami": {
+      "get": {
+        "operationId": "auth_whoami_api_v1_auth_whoami_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches": {
+      "get": {
+        "operationId": "list_branches_api_v1_branches_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches/merge": {
+      "post": {
+        "operationId": "merge_branches_api_v1_branches_merge_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MergeBranchesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MergeBranchesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches/{branch_id}/compare/{other_branch_id}": {
+      "get": {
+        "operationId": "compare_branch_api_v1_branches__branch_id__compare__other_branch_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "branch_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "other_branch_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BranchCompareResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches/{branch_id}/replay": {
+      "post": {
+        "operationId": "replay_branch_api_v1_branches__branch_id__replay_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "branch_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BranchReplayResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches/{branch_id}/timeline": {
+      "get": {
+        "operationId": "branch_timeline_api_v1_branches__branch_id__timeline_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "branch_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BranchTimelineResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/branches/{branch_id}/visualization": {
+      "get": {
+        "operationId": "branch_visualization_api_v1_branches__branch_id__visualization_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "branch_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BranchVisualizationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/corpus/seed": {
+      "post": {
+        "operationId": "provision_seed_text_api_v1_corpus_seed_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeedProvisionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeedProvisionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/corpus/seeds": {
+      "get": {
+        "operationId": "list_seed_texts_api_v1_corpus_seeds_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeedTextListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/documents": {
+      "get": {
+        "operationId": "list_documents_api_v1_documents_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/documents/{document_id}": {
+      "get": {
+        "operationId": "get_document_api_v1_documents__document_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/evolve/branch": {
+      "post": {
+        "operationId": "evolve_branch_api_v1_evolve_branch_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvolveBranchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvolveBranchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/evolve/multi": {
+      "post": {
+        "operationId": "multi_evolve_api_v1_evolve_multi_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MultiEvolveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiEvolveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/governance/evaluate": {
+      "post": {
+        "operationId": "governance_evaluate_api_v1_governance_evaluate_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GovernanceEvaluateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GovernanceEvaluateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/hypergraph/documents/{document_id}/integrity": {
+      "get": {
+        "operationId": "hypergraph_integrity_api_v1_hypergraph_documents__document_id__integrity_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/hypergraph/query": {
+      "get": {
+        "operationId": "hypergraph_query_api_v1_hypergraph_query_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "document_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "node_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "relationship_type",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/ingest/batch": {
+      "post": {
+        "operationId": "ingest_batch_api_v1_ingest_batch_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestBatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestBatchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/ingest/jobs/{job_id}": {
+      "get": {
+        "operationId": "ingest_job_api_v1_ingest_jobs__job_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestJobResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/jobs": {
+      "get": {
+        "operationId": "list_jobs_api_v1_jobs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/jobs/submit": {
+      "post": {
+        "operationId": "submit_job_api_v1_jobs_submit_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobSubmitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSubmitResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/jobs/{job_id}": {
+      "get": {
+        "operationId": "get_job_api_v1_jobs__job_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/jobs/{job_id}/cancel": {
+      "post": {
+        "operationId": "cancel_job_api_v1_jobs__job_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/remix": {
+      "get": {
+        "operationId": "remix_artifact_list_api_v1_remix_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixArtifactListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      },
+      "post": {
+        "operationId": "remix_api_v1_remix_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemixRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/remix/compose": {
+      "post": {
+        "operationId": "remix_compose_api_v1_remix_compose_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemixComposeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixComposeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/remix/{remix_artifact_id}": {
+      "get": {
+        "operationId": "remix_artifact_detail_api_v1_remix__remix_artifact_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "remix_artifact_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": null,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixArtifactResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    },
+    "/api/v1/rhetorical_analysis": {
+      "post": {
+        "operationId": "rhetorical_analysis_api_v1_rhetorical_analysis_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Nexus-API-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RhetoricalAnalysisRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RhetoricalAnalysisResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "tags": []
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "plan_bucket": "AB-PLAN-02",
+  "title": "Evolution + Glyphic Engines",
+  "milestone_date": "2026-02-25",
+  "execution_source": "specs/03-evolution-branching/tasks.md",
+  "tickets": [
+    {
+      "id": "AB02-T013",
+      "title": "Reverse Drift Event Support",
+      "priority": "P1",
+      "status": "implemented",
+      "spec_refs": [
+        "specs/03-evolution-branching/tasks.md:T13-01",
+        "specs/03-evolution-branching/tasks.md:T13-05"
+      ],
+      "owners": [
+        {
+          "file": "src/nexus_babel/services/evolution.py",
+          "owner": "evolution-core"
+        },
+        {
+          "file": "tests/test_evolution.py",
+          "owner": "qa"
+        },
+        {
+          "file": "tests/test_evolution_api.py",
+          "owner": "qa"
+        }
+      ],
+      "acceptance_criteria": [
+        "reverse_drift payload defaults seed to 0",
+        "reverse_drift returns diff_summary with reversals/before_chars/after_chars",
+        "lossy reverse drift behavior is documented by tests"
+      ]
+    },
+    {
+      "id": "AB02-T014",
+      "title": "Multi-Evolve Batch Orchestration API",
+      "priority": "P1",
+      "status": "implemented",
+      "spec_refs": [
+        "specs/03-evolution-branching/tasks.md:T14-01",
+        "specs/03-evolution-branching/tasks.md:T14-06"
+      ],
+      "owners": [
+        {
+          "file": "src/nexus_babel/schemas.py",
+          "owner": "api-core"
+        },
+        {
+          "file": "src/nexus_babel/api/routes/branches.py",
+          "owner": "api-core"
+        },
+        {
+          "file": "src/nexus_babel/services/evolution.py",
+          "owner": "evolution-core"
+        },
+        {
+          "file": "tests/test_evolution_api.py",
+          "owner": "qa"
+        }
+      ],
+      "acceptance_criteria": [
+        "POST /api/v1/evolve/multi returns chained branch/event IDs and final snapshot fields",
+        "batch route enforces operator auth and mode policy",
+        "transaction rolls back all branch/event rows on mid-batch failure"
+      ]
+    },
+    {
+      "id": "AB02-T015",
+      "title": "Checkpoint-Accelerated Replay",
+      "priority": "P1",
+      "status": "implemented",
+      "spec_refs": [
+        "specs/03-evolution-branching/tasks.md:T15-01",
+        "specs/03-evolution-branching/tasks.md:T15-03"
+      ],
+      "acceptance_criteria": [
+        "timeline replay can start from most recent lineage checkpoint",
+        "checkpoint-assisted replay hash matches full replay hash",
+        "benchmark test is present and marked slow/non-gating"
+      ]
+    },
+    {
+      "id": "AB02-T019A",
+      "title": "Branch Visualization Graph Endpoint (Backend)",
+      "priority": "P1",
+      "status": "implemented",
+      "spec_refs": [
+        "specs/03-evolution-branching/tasks.md:T19-01"
+      ],
+      "acceptance_criteria": [
+        "GET /api/v1/branches/{id}/visualization returns nodes and edges graph JSON",
+        "event nodes include event_type metadata and phase/type context",
+        "response includes graph summary counts for D3 consumers"
+      ]
+    },
+    {
+      "id": "AB02-T017",
+      "title": "Branch Merge Primitives + API",
+      "priority": "P2",
+      "status": "implemented",
+      "spec_refs": [
+        "specs/03-evolution-branching/tasks.md:T17-01",
+        "specs/03-evolution-branching/tasks.md:T17-04"
+      ],
+      "acceptance_criteria": [
+        "_find_lca returns branch LCA or None",
+        "merge_branches supports left_wins, right_wins, interleave",
+        "POST /api/v1/branches/merge creates merge branch and event"
+      ]
+    }
+  ]
+}
