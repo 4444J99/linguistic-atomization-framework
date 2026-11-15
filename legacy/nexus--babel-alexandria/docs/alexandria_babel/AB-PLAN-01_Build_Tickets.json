@@ -1,0 +1,192 @@
+{
+  "plan_bucket": "AB-PLAN-01",
+  "title": "Corpus Atomization + Remix Library",
+  "tickets": [
+    {
+      "id": "AB01-T001",
+      "title": "Seed Corpus Registry + Profiles",
+      "priority": "P0",
+      "dependencies": [],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:46",
+        "0469-arc4n-seed-texts-and-atomization-2.md:1109"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/config.py", "owner": "platform-config"},
+        {"file": "scripts/ingest_corpus.py", "owner": "ops-tooling"},
+        {"file": "docs/alexandria_babel/seed_corpus_registry.yaml", "owner": "corpus-curation"},
+        {"file": "tests/test_mvp.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "scripts/ingest_corpus.py supports --profile arc4n-seed",
+        "invalid profile fails with actionable error",
+        "ingest job metadata records selected profile"
+      ]
+    },
+    {
+      "id": "AB01-T002",
+      "title": "Dual Atomization Tracks",
+      "priority": "P0",
+      "dependencies": ["AB01-T001"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:338",
+        "0469-arc4n-seed-texts-and-atomization-2.md:340"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/services/ingestion.py", "owner": "ingestion-core"},
+        {"file": "src/nexus_babel/services/text_utils.py", "owner": "atomization-core"},
+        {"file": "src/nexus_babel/schemas.py", "owner": "api-core"},
+        {"file": "tests/test_mvp.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "API accepts atom_tracks list",
+        "provenance records atom track selection",
+        "atom counts vary deterministically by track"
+      ]
+    },
+    {
+      "id": "AB01-T003",
+      "title": "Deterministic Atom Filename Schema",
+      "priority": "P0",
+      "dependencies": ["AB01-T002"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:211",
+        "0469-arc4n-seed-texts-and-atomization-2.md:104"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/services/text_utils.py", "owner": "atomization-core"},
+        {"file": "src/nexus_babel/services/ingestion.py", "owner": "ingestion-core"},
+        {"file": "tests/test_mvp.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "same corpus yields same filenames",
+        "Unicode/punctuation edge cases covered by tests",
+        "filename schema version stored in metadata"
+      ]
+    },
+    {
+      "id": "AB01-T004",
+      "title": "Atom Library Export Pipeline",
+      "priority": "P1",
+      "dependencies": ["AB01-T003"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:176",
+        "0469-arc4n-seed-texts-and-atomization-2.md:1277"
+      ],
+      "owners": [
+        {"file": "scripts/export_atom_library.py", "owner": "ops-tooling"},
+        {"file": "src/nexus_babel/services/ingestion.py", "owner": "ingestion-core"},
+        {"file": "src/nexus_babel/models.py", "owner": "data-model"},
+        {"file": "tests/test_ab_plan_01.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "export tree generated under ARC4N/SEED_TEXTS",
+        "manifest counts match SQL atom_count",
+        "repeat export is idempotent"
+      ]
+    },
+    {
+      "id": "AB01-T005",
+      "title": "Remix Composer API + Service",
+      "priority": "P1",
+      "dependencies": ["AB01-T002"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:46",
+        "0469-arc4n-seed-texts-and-atomization-2.md:177"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/services/remix.py", "owner": "remix-core"},
+        {"file": "src/nexus_babel/api/routes.py", "owner": "api-core"},
+        {"file": "src/nexus_babel/schemas.py", "owner": "api-core"},
+        {"file": "tests/test_ab_plan_01.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "POST /api/v1/remix/compose returns remix text and source atom refs",
+        "seeded requests are deterministic",
+        "invalid source IDs return 404"
+      ]
+    },
+    {
+      "id": "AB01-T006",
+      "title": "Remix Persistence + Retrieval",
+      "priority": "P1",
+      "dependencies": ["AB01-T005"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:190",
+        "0469-arc4n-seed-texts-and-atomization-2.md:1254"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/models.py", "owner": "data-model"},
+        {"file": "alembic/versions/*", "owner": "data-model"},
+        {"file": "src/nexus_babel/api/routes.py", "owner": "api-core"},
+        {"file": "tests/test_wave2.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "remix artifacts persisted with lineage",
+        "GET endpoints return artifact and source links",
+        "migration upgrade/downgrade passes"
+      ]
+    },
+    {
+      "id": "AB01-T007",
+      "title": "User Break-Off Timeline Hook",
+      "priority": "P1",
+      "dependencies": ["AB01-T005"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:975",
+        "0469-arc4n-seed-texts-and-atomization-2.md:1543"
+      ],
+      "owners": [
+        {"file": "src/nexus_babel/services/evolution.py", "owner": "evolution-core"},
+        {"file": "src/nexus_babel/services/remix.py", "owner": "remix-core"},
+        {"file": "src/nexus_babel/api/routes.py", "owner": "api-core"},
+        {"file": "tests/test_wave2.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "remix compose can optionally create branch",
+        "timeline replay includes remix event hash",
+        "branch compare detects divergence across remix seeds"
+      ]
+    },
+    {
+      "id": "AB01-T008",
+      "title": "Cartridge + Thread Plan Scaffold Sync",
+      "priority": "P2",
+      "dependencies": ["AB01-T004"],
+      "source_refs": [
+        "0469-arc4n-seed-texts-and-atomization-2.md:1277",
+        "0469-arc4n-seed-texts-and-atomization-2.md:1278"
+      ],
+      "owners": [
+        {"file": "docs/alexandria_babel/*", "owner": "knowledge-ops"},
+        {"file": "scripts/alexandria_babel_alignment.py", "owner": "knowledge-ops"},
+        {"file": "tests/test_ab_plan_01.py", "owner": "qa"}
+      ],
+      "acceptance_criteria": [
+        "scaffold command regenerates required cartridge/thread-plan templates",
+        "index contains all cartridge files",
+        "CI check fails when scaffold artifacts are missing"
+      ]
+    },
+    {
+      "id": "AB01-T009",
+      "title": "AB-PLAN-01 Test + Contract Suite",
+      "priority": "P0",
+      "dependencies": ["AB01-T001", "AB01-T002", "AB01-T003", "AB01-T004", "AB01-T005", "AB01-T006", "AB01-T007", "AB01-T008"],
+      "source_refs": [
+        "Nexus_Bable-Alexandria.md:504",
+        "Nexus_Bable-Alexandria.md:814"
+      ],
+      "owners": [
+        {"file": "tests/test_ab_plan_01.py", "owner": "qa"},
+        {"file": "tests/conftest.py", "owner": "qa"},
+        {"file": ".github/workflows/ci-minimal.yml", "owner": "devex"}
+      ],
+      "acceptance_criteria": [
+        "new AB-PLAN-01 contract tests run in pytest",
+        "each ticket has at least one corresponding contract test",
+        "CI enforces AB-PLAN-01 contracts"
+      ]
+    }
+  ]
+}

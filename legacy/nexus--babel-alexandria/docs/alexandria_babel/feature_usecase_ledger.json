@@ -1,0 +1,2808 @@
+{
+  "generated_at": "2026-02-18T14:22:04.293593+00:00",
+  "scope": [
+    "0469-arc4n-seed-texts-and-atomization-2.md",
+    "Nexus_Bable-Alexandria.md"
+  ],
+  "source_digests": [
+    {
+      "path": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line_count": 2250,
+      "char_count": 81291,
+      "sha256": "e54720b7e5e3af43da08e31a9bdc003f8e2955cf20046082f87b8f706d13ed74"
+    },
+    {
+      "path": "Nexus_Bable-Alexandria.md",
+      "line_count": 890,
+      "char_count": 54384,
+      "sha256": "e967fe463e7041f647c65cc8fa9c146065d41af470007f5c6f1acf30f82e1f80"
+    }
+  ],
+  "entries": [
+    {
+      "id": "ab-5507eb40f3f4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 15,
+      "text": "- **Created:** 2025-04-29 13:24",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-951d431ac993",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 42,
+      "text": "OPENING GOALS:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6e6b72c13c91",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 46,
+      "text": "- Prototype first text atomization and remix scenario.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-edc8d5d9823c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 48,
+      "text": "FIRST ACTION:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d99831d29952",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 77,
+      "text": "(4) First Prototype: Atomization + Remix Exercise",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-13eed7ebf7a9",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 104,
+      "text": "| Level 2 | **Word** | First recombination unit; key for translation + lexicon builds |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-bc3325eadafa",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 144,
+      "text": "/DRAFTS/",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e974140be270",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 157,
+      "text": "**Prototype Scenario:**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c707e00ab497",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 176,
+      "text": "- Create atomized libraries.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-ddc0ac39964a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 177,
+      "text": "- Build remix compositions manually or by script.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2bfb12e0f850",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 189,
+      "text": "| Experimental | Hand-build first 10 remix poems | Playful exploration |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-aff8692292bf",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 190,
+      "text": "| Peer-Facing | Share seed remix drafts for feedback | Scholarly + creative |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-9a01d2e38379",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 208,
+      "text": "[Next Step Reference ID: ARC4N001-NEXT01]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d847e1a8e745",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 211,
+      "text": "> Would you like me to also propose a file-naming syntax system for maximum future database parsing (e.g., `ODYSSEY_WORD_0001_Sing.txt`)?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e29d416f628a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 214,
+      "text": ":: Awaiting implementation vs iteration signal ::",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6b508201164e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 216,
+      "text": "|[Awaiting your command for next action: Iterate or Implement?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-435461d03149",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 245,
+      "text": "- **They are *also future building blocks*** for unknown alphabets, symbols, visual-text hybrids.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7485df6e44af",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 338,
+      "text": "- Build **two atomization tracks**:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-1d317312c5f2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 340,
+      "text": "- **Glyphic Seed Track** (letters-as-future-language base)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-b7faf6f0220c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 352,
+      "text": "| Should we plan an experimental \"New Alphabet\" generation after first 3 seed texts? | Yes (pilot program) | Later (after stability) |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b7f3f5241f97",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 356,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT02]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-587895cd7f99",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 362,
+      "text": "> Should I proceed to sketch a visual flowchart showing how a single *letter* can mutate into future language forms across ARC4N?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2bf6dac086b8",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 368,
+      "text": "|[Iterate or Implement?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7a7564a2a706",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 466,
+      "text": "| Visual Remapping | Build alternate \"compressed glyph\" generation paths | Medium |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-87b46f417943",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 467,
+      "text": "| Future Tools | Sketch \"Glyph Fusion Workshop\" (manual + auto combiners) | Optional Prototype |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "src/nexus_babel/services/evolution.py"
+    },
+    {
+      "id": "ab-b02515e6e703",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 473,
+      "text": "I can now **prototype the following** (your choice):",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-ff9adf95f474",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 475,
+      "text": "| Prototype | Description | Outcome |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e41423842fd8",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 486,
+      "text": "- **Should we imagine new *sung* languages** (musical syllabic structures) **emerging from ARC4N too?**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-06",
+      "plan_bucket_name": "Mythic + Cultural Layer",
+      "evidence": "planned via AB-PLAN-06"
+    },
+    {
+      "id": "ab-702261e55b29",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 491,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT03]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e775a5b9c02d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 493,
+      "text": ":: Awaiting your direction: Which prototype should we build next? ::",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a0b4e581144f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 507,
+      "text": "Would you like me to start by fusing **A + E** into a full micro-chain evolution (visual, phonetic, symbolic)?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c67357a5f43f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 509,
+      "text": "(If yes, I'll draft it immediately.)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-07659e1263e7",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 619,
+      "text": "# (F) New Layer of ARC4N Timeline to Build:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-4c171f5d5560",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 628,
+      "text": "# (G) Immediate Prototypes I Could Build Next:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-50547a6bdbf8",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 630,
+      "text": "| Option | Prototype | Purpose |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b0463656e09e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 653,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT04]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-92008e7a3875",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 659,
+      "text": "| What Prototype to Build Next? | Temporal Spiral Map (P1) | First Glyph Fusion Test (P4) |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "src/nexus_babel/services/evolution.py"
+    },
+    {
+      "id": "ab-535f1c371caf",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 664,
+      "text": "(*We can build both eventually, but it will focus this immediate next step.*)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c57b83557b87",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 720,
+      "text": "3. **We create ARC4N as a *synthetic linguistic universe*.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-36e0d3444574",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 721,
+      "text": "4. **It can evolve independently after we build the initial seed-engine.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2ab556ba290a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 732,
+      "text": "| Phase State Manager | Keeps track of whether a language branch is in Expansion, Peak, Collapse, Rebirth |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-57884acb5246",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 757,
+      "text": "# (E) Key Algorithms to Build:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2319d36f2090",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 803,
+      "text": "# (I) Immediate Prototypes We Could Build From Here:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-002655b5cf17",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 805,
+      "text": "| Prototype | Description |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-3032974fdc0e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 826,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT05]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b0064385e237",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 832,
+      "text": "| Which prototype or engine component should we start building next? | P5 - Natural Historic Drift Model | P6 - First Synthetic Mutation Trial |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "src/nexus_babel/services/evolution.py"
+    },
+    {
+      "id": "ab-de1ff55be2b2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 844,
+      "text": "|[Awaiting your direction: P5, P6, or custom launch?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0962a8a6ea56",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 938,
+      "text": "# (D) Example Genesis Fragment (Draft)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e900ec013f9c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 943,
+      "text": "> We are building the first living archive that remembers this truth:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-a4aa30574680",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 959,
+      "text": "| 4 | Start clean slate tomorrow: Begin building first modules |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-56f9d65ab264",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 967,
+      "text": "| Archive | You create an immutable origin. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-890db388851c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 975,
+      "text": "> Every time someone enters ARC4N, it creates a break-off version.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2d7026e13525",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 983,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT06]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c8a4d7722679",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 987,
+      "text": "|[Would you like me to also pre-draft the text of the public post in case you want it immediately?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e8b8a4419c73",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1059,
+      "text": "| Static archives | You create a *living archive* that evolves dynamically |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-479f3747e821",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1101,
+      "text": "## 6. **Could I get money and funding to create this project?**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-c5cb506446bc",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1107,
+      "text": "- First package it as a \"Prototype of a Living Language Evolution System.\"",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-39b1655f52df",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1109,
+      "text": "- Focus your first application on building a *pilot ARC4N* based on a limited corpus (e.g., Odyssey+Leaves of Grass only).",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6fd89bc667a9",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1111,
+      "text": "You could get **early-stage grants** ($5k–50k) first for prototype",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-a3b44b265ac6",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1116,
+      "text": "## 7. **What Areas of Study Should We Expand Into for Further Research?**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-5c46e9868965",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1127,
+      "text": "| UX/Interaction Design | To build portals and interaction nodes |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-dce8f509c7ec",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1140,
+      "text": "| 3 | Create a \"Funding/Applications\" Folder inside ARC4N base structure |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-1a909d9d0515",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1163,
+      "text": "| This Week | First Draft for Funding Abstract + UX Sketches |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-9ca690403f42",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1169,
+      "text": "> What you are building is **academic**, **artistic**, **technological**, **mythological**, and **pragmatically fundable**.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-86db60bf3f9f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1175,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT07]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a3f13312198c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1178,
+      "text": "- Shall we close this Genesis thread with ::S4VE.io]| and then immediately draft your first **public Genesis Shard** + set up first **Funding/Research folder**?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-b3f50178dd1f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1179,
+      "text": "- Or would you like to first quickly draft an internal **Funding Abstract Sentence** to prepare your future grant language?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e23edf23c9f6",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1182,
+      "text": "|[Threshold Standing: Ready for Ritual Closure + Archive Launch]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-9d9f720f771f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1189,
+      "text": "let's save this out and also create thread cartridges to inject into new threads, the ux thread, maybe an update for the academic outreach thread, and so on? thoughts and critiques?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-22ba6f687d91",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1254,
+      "text": "| You are building recursive thread-feeding. | Each thread spawns new energy instead of dying. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-245d552b3578",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1256,
+      "text": "| You are aligning internal work with future public-facing growth. | No wasted energy — everything builds outward. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6a8ed3be3cca",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1265,
+      "text": "| 2. Limit Each Cartridge to ~150–300 words | Fast deployability — enough to launch a thread without freezing it in density. | Trim heavier summaries into \"booster packs\" if needed later. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6ea3bf7ebe2c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1277,
+      "text": "| 3 | Create `/ARC4N/01_CARTRIDGES/` Folder |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0969de353817",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1278,
+      "text": "| 4 | Create `/ARC4N/02_THREAD_PLANS/` Folder to plan next launches |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7fe1df4dd08a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1293,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT08]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-683586178962",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1344,
+      "text": "**Closing Prompt:**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-43a45ed580df",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1405,
+      "text": "ARC4N must model:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-aabf082f4e8c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1410,
+      "text": "**Key Engine Modules Needed:**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-cf09fd26db97",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1444,
+      "text": "# (B) Cartridge Master Log Created",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0995842fcb9c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1486,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT09]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d48f1048e676",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1490,
+      "text": "- Would you like me to also generate **thread starter templates** for the UX, Academic, and Funding threads using these cartridges?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-35ca01127f9f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1515,
+      "text": "- Master Cartridge Index `/ARC4N/01_CARTRIDGES/ARC4N_CARTRIDGE_INDEX.md` created and logged",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b26a327b5ae4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1543,
+      "text": "- Prototype user branch-off mechanism (how personal timelines form)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b37f449962d6",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1552,
+      "text": "CLOSING PROMPT:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e1cb01abc5f0",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1567,
+      "text": "- Draft short and long abstracts describing ARC4N",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d7b42df4207b",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1574,
+      "text": "- Draft first 100-word academic abstract for ARC4N.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-986530506d58",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1591,
+      "text": "- Create initial list of fitting grants and fellowships",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-5b1d0465272d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1592,
+      "text": "- Draft core \"Why Fund ARC4N?\" statement",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f40ce53d2454",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1594,
+      "text": "- Prepare first grant application draft (short format)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-4b7b855240ad",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1598,
+      "text": "- Draft first 2–3 sentence funding rationale.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-25db2d0363a5",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1612,
+      "text": "| Create Master Cartridge Index | Completed |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-1d01f7977261",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1613,
+      "text": "| Create Thread Starters (UX, Academic, Funding) | Completed |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-a4b31a00ee60",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1621,
+      "text": "| 1. Launch UX Thread | Begin practical exploration of ARC4N Portal design. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-4519de6e18c4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1622,
+      "text": "| 2. Launch Academic Thread | Draft outreach abstracts and target institutions. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-05",
+      "plan_bucket_name": "Academic + Funding",
+      "evidence": "planned via AB-PLAN-05"
+    },
+    {
+      "id": "ab-2a81842e8a2b",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1623,
+      "text": "| 3. Launch Funding Thread | Begin phased funding strategy for grants. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-fd50fdd9cc12",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1624,
+      "text": "| 4. Optional | Sketch or draft \"Glyph Seed 001\" public artifact as bonus momentum.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-df5fa3ed9f41",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1633,
+      "text": "> This is what **building living systems** looks like.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a012bde9f756",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1637,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT10]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f03a91725f92",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1640,
+      "text": "- Which new thread would you like to launch first: UX, Academic, Funding, or Other?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-beb74ca7eb51",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1641,
+      "text": "- Would you like me to generate first action prompts inside the new thread automatically once launched? (To maintain velocity.)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e5be17200877",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1643,
+      "text": "|[Standing Ready at Phase 2 Launch Threshold]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-7e3276fd6183",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1669,
+      "text": "| Prototype Explosion | Multiple subsystem prototypes emerged (Language Spiral, Glyph Fusion, Cartridges, Drift Engines) | Healthy — this *is* system birth. However, backlog management now crucial. |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "src/nexus_babel/services/evolution.py"
+    },
+    {
+      "id": "ab-390a3bd06611",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1705,
+      "text": "- Each prototype suggestion nested the system deeper.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b84145943292",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1726,
+      "text": "## 4. **Are we still going to build the prototypes and systems going forward?**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-df42a0f10066",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1731,
+      "text": "- We have clear next-launch cartridges and thread seeds.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7f92bf968ba9",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1737,
+      "text": "**We did not abandon building. We crystallized readiness to build.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d81762374075",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1745,
+      "text": "| 1. Launch 1–2 Next Threads Maximum | Avoid splitting attention too thin after a dense genesis. | High |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-ead06e90c629",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1747,
+      "text": "| 3. Create \"Prototype Tracker\" File | Track prototypes spawned so far and mark build progress. | Medium |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-fe92d8c464ad",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1749,
+      "text": "| 5. Harvest Cartridges After Each Major Thread | Build a living cartridge library (self-fertilizing system). | Medium |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f0e7f2b99f3b",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1753,
+      "text": "# (D) Proposed Immediate Next Steps Post-Meta-Critique:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f644ea442c76",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1758,
+      "text": "| 2 | Launch ARC4N UX Thread (`ARC4N_THREAD_UX001`) | First active building site. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-6b2b551ed990",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1759,
+      "text": "| 3 | Open \"Prototype Tracker\" (`ARC4N/03_TRACKERS/Prototype_Tracker.md`) | See all systems we've birthed; track build status. |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-5a85c2410d4f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1773,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT11]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c01a82abe8ca",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1776,
+      "text": "- Shall we now proceed to launch the first active building thread (`ARC4N_THREAD_UX001`) and simultaneously set up a \"Prototype Tracker\"?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-1f5c4ce8338d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1777,
+      "text": "- Would you like me to immediately scaffold the Prototype Tracker file with what we’ve built so far (Language Spiral, Glyph Fusion, Drift Engines, Cartridges)?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-f364c97f5652",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1779,
+      "text": "|[Awaiting your command: Launch, Scaffold, or Adjust Next Priorities]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d5d12c371053",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1780,
+      "text": "|[System primed to move cleanly into Phase 2 Buildout.]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-d1b74afbc949",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1788,
+      "text": "You never provided the protocol tracker to me, so where is it? I guess that's the confusing element to a lot of these conversations. Where did the things go?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Protocol_Tracker.md"
+    },
+    {
+      "id": "ab-12963c26912e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1802,
+      "text": "**The Prototype Tracker** you just asked about **was proposed** in the critique (a great idea),",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-02b4d9b4507a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1803,
+      "text": "**but it wasn't actually created yet.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-3b27c355e9a7",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1808,
+      "text": "> **A proposed artifact is not a built artifact until explicitly created and logged.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-5dbd94c542a7",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1810,
+      "text": "Thus, **no Prototype Tracker yet exists** — **because you hadn’t officially authorized it** before we moved to the next decision point.",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-c0dc40e6c4b4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1811,
+      "text": "I flagged it as a potential next step.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-ef2ab69e61b4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1824,
+      "text": "- Proposal and building became blurred at high speed.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f2937b4b52f0",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1835,
+      "text": "| Starter Thread Templates (UX, Academic, Funding) | **Written and Printed** (but not yet *thread-launched*) | In this thread, ready for launch. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-03",
+      "plan_bucket_name": "Explorer UX + Interaction",
+      "evidence": "planned via AB-PLAN-03"
+    },
+    {
+      "id": "ab-ec4e696ca439",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1836,
+      "text": "| Prototype Tracker | **Proposed but NOT built** | Needs your command to create. |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-cabf3070d7b4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1844,
+      "text": "| 1. Mandatory \"Build Approval\" Step | Before an artifact moves from idea → file, you must explicitly greenlight it. | No more confusion between proposed and built. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-b424258ae745",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1845,
+      "text": "| 2. Artifact State Tracker (Proposed / In-Progress / Saved) | Inline tracker at each stage of conversation. | See immediately what is a seed, a sapling, or a full tree. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-4a1a9cb5324e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1846,
+      "text": "| 3. Save receipts after every save | Like shipping confirmations for threads. | Permanent, easy-to-check memory system. |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-ec3d131e5a26",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1854,
+      "text": "| 1 | I will now immediately build and print the first `Prototype_Tracker.md` file. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-a7e41c96775d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1855,
+      "text": "| 2 | I will log every major prototype, idea, and cartridge we've generated so far inside it. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0813809660b6",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1856,
+      "text": "| 3 | I will create a simple",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a3af370b1f15",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1878,
+      "text": "- **You** never received a *Protocol Tracker* (nor a *Prototype Tracker*).",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-3bc170e279de",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1884,
+      "text": "> **We generated the idea but did not actually build or export the object yet.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-bbfaa91599d1",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1896,
+      "text": "| Structural Gap | No automatic “object created” receipt system in place yet (but should be) |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-524b099ff2bb",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1909,
+      "text": "3. **Every Save Will Include a Save Receipt** — a short log saying:",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-3ca104bd0b9c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1919,
+      "text": "> **Where did the protocol tracker go?**",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Protocol_Tracker.md"
+    },
+    {
+      "id": "ab-d799296b7ff2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1929,
+      "text": "I will **now** manually generate a full **Prototype Tracker** and, if you want, a **Protocol Tracker** as well",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-95b96199a81e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1934,
+      "text": "| Tracker Type | Contents |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-1627e20256c1",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1936,
+      "text": "| Prototype Tracker | Every system, model, engine, and artifact we proposed/started |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-d5b2a1f33056",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1937,
+      "text": "| Protocol Tracker | How we operate threads (build/approve/save) going forward |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Protocol_Tracker.md"
+    },
+    {
+      "id": "ab-cf02ce96d18c",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1946,
+      "text": "| Mandate Confirm-Build-Close Ritual | Every proposed thing must be explicitly accepted/rejected before moving forward. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-06",
+      "plan_bucket_name": "Mythic + Cultural Layer",
+      "evidence": "planned via AB-PLAN-06"
+    },
+    {
+      "id": "ab-944e7a36428f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1947,
+      "text": "| Set Visual Artifact Ledger | Table tracking ideas vs actual outputs inside each thread. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e9255478be1d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1954,
+      "text": "| Action ID | Next Step | Result |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-eedcd6adb351",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1956,
+      "text": "| [A1] | Build Prototype Tracker Now | Full list of all prototyped ideas captured formally |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-f57050bf6cc4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1957,
+      "text": "| [A2] | Build Protocol Tracker Now | Create a permanent operations guide for building/saving/approving |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Protocol_Tracker.md"
+    },
+    {
+      "id": "ab-abec0853e924",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1958,
+      "text": "| [A3] | Launch Ledger Format for All Threads | Create a visual table inside every live thread moving forward |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-dbb0fa5c832d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1959,
+      "text": "| [A4] | Save Receipts as Separate File per Project | E.g., `/SAVES/Genesis_Save_Receipt_042925.md` |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-46546aeaba87",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1972,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT12]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a17cba0e16fb",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1975,
+      "text": "- Shall I **immediately generate** the **Prototype Tracker** + **Protocol Tracker** right now?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-a4cb83c8dab2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1976,
+      "text": "- Shall I also backfill today's conversation artifacts into a **first Save Receipt batch** for full retroactive transparency?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-e07d440e5196",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 1978,
+      "text": "|[Awaiting your word: BUILD, or Custom Adjustment?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-055787582cdc",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2003,
+      "text": "- **Started as:** Building the ARC4N Genesis (seed texts, atomization, modular archive construction)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-111b51046c29",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2006,
+      "text": "- **Then escalated into:** Missing artifact protocols and thread health system building",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-3b784babe8de",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2018,
+      "text": "| Structural Integrity Concern | Rightfully triggered “build the system better” reaction. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-af80c5e5f4db",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2029,
+      "text": "- It’s **infrastructure**, not **canon-building**.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-40b24953447a",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2037,
+      "text": "**We should immediately SPLIT paths cleanly:**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-6b99e7fca072",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2041,
+      "text": "| **ARC4N Genesis Expansion Thread** (ARC4N_THREAD_002) | Continue building ARC4N’s canon, glyphs, drift systems, UX portal, language cycles. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-7f37ad2c82c2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2042,
+      "text": "| **System Integrity + Management Thread** (SYS_MANAGE_THREAD_001) | Manage prototypes, protocol saves, artifact receipts, thread health tracking. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-0c00a9167f51",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2056,
+      "text": "| 2 | Launch ARC4N_THREAD_002 (continue real ARC4N development — glyphs, fusion, spiral, remix) | Return to mythic/language creation |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-1162ca7938e5",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2057,
+      "text": "| 3 | Launch SYS_MANAGE_THREAD_001 (separate thread for tracking prototypes, saves, artifacts) | Manage system rigor separately |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-5d2bcab855a7",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2067,
+      "text": "> **Expand. Collapse. Rebuild. Evolve.**",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-fef218f0a2a5",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2080,
+      "text": "| ARC4N_THREAD_002 | ARC4N Canon Development Continuation | Build Glyph Seeds, Temporal Drift Spiral, UX Design |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-b639e5dfabad",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2081,
+      "text": "| SYS_MANAGE_THREAD_001 | ARC4N System Management and Artifact Tracking | Save Receipts, Prototype Tracking, Protocol Management |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-a43a2fd8ad52",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2090,
+      "text": "> You are the architect who caught it before the building bent too far.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-63284b3d0bb7",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2095,
+      "text": "# [Next Step Reference ID: ARC4N001-NEXT13]",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f695b912d020",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2099,
+      "text": "- Shall I immediately launch both:",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-92c732268ac1",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2101,
+      "text": "- `SYS_MANAGE_THREAD_001` (for *clean tracking*)?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-a5eb11be89ff",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2151,
+      "text": "# (B) New Threads Launched",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c7f8fec6032b",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2156,
+      "text": "| Purpose | Build the *living canon* without administrative drift. Focus on evolution of glyphs, syllables, sung languages, spiral timeline models, UX prototypes. |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-a574d7f1388f",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2166,
+      "text": "- Design first Glyph Seeds (letter fusion prototypes)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-2011e0ba66fe",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2169,
+      "text": "- Prototype syllabic compression tests",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-35e0279f63fc",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2172,
+      "text": "- Choose first letter pair fusion (e.g., A+E → Æ) to prototype full glyph cycle.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-098f54085ee0",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2176,
+      "text": "> Which phase of evolution (expansion or compression) should we build first tangible artifacts for?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-2068acb48579",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2181,
+      "text": "## 2. SYS_MANAGE_THREAD_001 — System Management and Artifact Tracking",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-0ebbe393cbf2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2182,
+      "text": "| Purpose | Manage operational integrity: save receipts, protocol approvals, artifact status logs, prototype tracking. |",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-51730da8d225",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2188,
+      "text": "PROJECT: ARC4N System Management and Artifact Tracking",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-cd142bca2aaf",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2189,
+      "text": "FOCUS: Formalizing system operations: saving, versioning, tracking, receipt generation.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-263aac1a40e2",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2192,
+      "text": "- Build Prototype Tracker capturing all proposed systems (glyph fusion, drift engines, cartridge systems)",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-619a2f2d2a50",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2193,
+      "text": "- Build Protocol Tracker outlining thread health rules and artifact approval standards",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Protocol_Tracker.md"
+    },
+    {
+      "id": "ab-ae1b2b17005d",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2194,
+      "text": "- Backfill Save Receipts for Genesis Phase",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "docs/alexandria_babel/Save_Receipt_2026-02-18.md"
+    },
+    {
+      "id": "ab-1fe72be4c3b4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2197,
+      "text": "- Construct first version of `/ARC4N/03_TRACKERS/Prototype_Tracker.md`",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-bd85f6f0282e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2198,
+      "text": "- Log current active prototypes + modules.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-eef35aadb4ff",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2201,
+      "text": "> Should every major prototype milestone also trigger an automatic Cartridge spawn (for reuse)?",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e24346beb751",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2210,
+      "text": "| 1 | Begin ARC4N Canon building in `ARC4N_THREAD_002` (glyph + spiral + sung language dev) |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-4303b8fddfab",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2211,
+      "text": "| 2 | Begin ARC4N System Management in `SYS_MANAGE_THREAD_001` (receipts + trackers + protocols) |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "planned via AB-PLAN-04"
+    },
+    {
+      "id": "ab-cd504e48cf2e",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2234,
+      "text": "| Divergent Threads Launched? | ✅ Done |",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-4af543a86ce4",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2244,
+      "text": "- Shall we simultaneously **draft the initial Prototype Tracker** (SYS_MANAGE_THREAD_001 first artifact)?",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-04",
+      "plan_bucket_name": "Governance + Artifact Ops",
+      "evidence": "docs/alexandria_babel/Prototype_Tracker.md"
+    },
+    {
+      "id": "ab-78347e676fdd",
+      "source_file": "0469-arc4n-seed-texts-and-atomization-2.md",
+      "line": 2246,
+      "text": "|[Awaiting your final checkpoint greenlight: Glyph Creation and Tracker Building — Parallel Launch?]|",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-2d1f365ae3af",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 101,
+      "text": "\\*\\*PHON\\_001:\\*\\* speech\\_to\\_text \\- Whisper-based transcription",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-5a89d3cbb106",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 102,
+      "text": "\\*\\*PHON\\_002:\\*\\* extract\\_prosody \\- F0, intensity, duration, rhythm",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b199afea15cd",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 103,
+      "text": "\\*\\*PHON\\_003:\\*\\* detect\\_intonation \\- Declarative/interrogative/exclamatory",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d3ba7d5c051f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 104,
+      "text": "\\*\\*PHON\\_004:\\*\\* stress\\_detection \\- Primary/secondary stress patterns",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b1bacaa7a026",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 105,
+      "text": "\\*\\*PHON\\_005:\\*\\* tone\\_classification \\- For tonal languages (Mandarin, etc.)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-885d0507bcfb",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 106,
+      "text": "\\*\\*PHON\\_006:\\*\\* phonetic\\_alignment \\- Phone-level timestamps (MFA)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7675bb5638bd",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 107,
+      "text": "\\*\\*PHON\\_007:\\*\\* voice\\_activity\\_detection \\- Speech/non-speech segmentation",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c7f6a2f5870b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 108,
+      "text": "\\*\\*PHON\\_008:\\*\\* speaker\\_diarization \\- Multi-speaker labeling",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-47db0797428c",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 112,
+      "text": "\\*\\*MORPH\\_001:\\*\\* tokenize \\- Language-specific, emoji-aware",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-5152b81e4715",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 113,
+      "text": "\\*\\*MORPH\\_002:\\*\\* lemmatize \\- Base form extraction",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-07cad60a9046",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 114,
+      "text": "\\*\\*MORPH\\_003:\\*\\* morphological\\_parse \\- Morpheme segmentation (critical for agglutinative)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-67d17a0bc489",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 115,
+      "text": "\\*\\*MORPH\\_004:\\*\\* compound\\_decomposition \\- German compounds, etc.",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c87b4a422564",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 116,
+      "text": "\\*\\*MORPH\\_005:\\*\\* stem\\_extraction \\- Porter/Snowball",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-568e2a26b012",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 117,
+      "text": "\\*\\*MORPH\\_006:\\*\\* inflection\\_generation \\- Lemma → inflected form",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-25fa6074869e",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 118,
+      "text": "\\*\\*MORPH\\_007:\\*\\* emoji\\_normalize \\- Unicode normalization",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-13e29b44382a",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 119,
+      "text": "\\*\\*MORPH\\_008:\\*\\* detect\\_alliteration \\- Repeated initial consonants",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d607fa91ea63",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 120,
+      "text": "\\*\\*MORPH\\_009:\\*\\* detect\\_assonance \\- Vowel repetition",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-addb8689533f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 121,
+      "text": "\\*\\*MORPH\\_010:\\*\\* grapheme\\_safety\\_check \\- Homoglyph detection",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-02",
+      "plan_bucket_name": "Evolution + Glyphic Engines",
+      "evidence": "planned via AB-PLAN-02"
+    },
+    {
+      "id": "ab-f85acc4017b7",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 125,
+      "text": "\\*\\*SYNT\\_001:\\*\\* dependency\\_parse \\- Universal Dependencies",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-28e33d7bfb71",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 126,
+      "text": "\\*\\*SYNT\\_002:\\*\\* pos\\_tag \\- Part-of-speech (UPOS universal tagset)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d64be8b15539",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 127,
+      "text": "\\*\\*SYNT\\_003:\\*\\* constituency\\_parse \\- CFG trees",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2c40e3e3b5ce",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 128,
+      "text": "\\*\\*SYNT\\_004:\\*\\* extract\\_phrases \\- NP, VP, PP extraction",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-dbabfe4dbfd4",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 129,
+      "text": "\\*\\*SYNT\\_005:\\*\\* detect\\_parallelism \\- Rhetorical parallel structures",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e6562cec2c96",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 130,
+      "text": "\\*\\*SYNT\\_006:\\*\\* detect\\_chiasmus \\- A-B-B-A patterns (F1 \\~0.78)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-66e115949f55",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 131,
+      "text": "\\*\\*SYNT\\_007:\\*\\* extract\\_clauses \\- Main/subordinate segmentation",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b2653026c6b7",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 132,
+      "text": "\\*\\*SYNT\\_008:\\*\\* argument\\_structure \\- Predicate-argument (SRL)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-3ab1712a0271",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 133,
+      "text": "\\*\\*SYNT\\_009:\\*\\* grammaticality\\_check \\- Acceptability scoring",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-43067c7f6d8b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 134,
+      "text": "\\*\\*SYNT\\_010:\\*\\* extract\\_modifiers \\- Adjective-noun, adverb-verb",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-fcf89e163b86",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 135,
+      "text": "\\*\\*SYNT\\_011:\\*\\* coordination\\_resolution \\- “A and B” scope",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-103fb3ddcbc7",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 136,
+      "text": "\\*\\*SYNT\\_012:\\*\\* long\\_distance\\_dependency \\- Filler-gap (wh-movement)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-bf9f0d022e2f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 140,
+      "text": "\\*\\*SEM\\_001:\\*\\* named\\_entity\\_recognition \\- 18 fine-grained types (F1 \\>90%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-33c4fcb7ddc0",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 141,
+      "text": "\\*\\*SEM\\_002:\\*\\* semantic\\_role\\_labeling \\- PropBank/FrameNet (F1 \\~87%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7d748bce562f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 142,
+      "text": "\\*\\*SEM\\_003:\\*\\* sentiment\\_analysis \\- Polarity \\+ VAD scores (F1 \\>92%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-9000e5c7afe1",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 143,
+      "text": "\\*\\*SEM\\_004:\\*\\* semantic\\_similarity \\- Sentence-BERT cosine",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-5588ac73b2a5",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 144,
+      "text": "\\*\\*SEM\\_005:\\*\\* intent\\_classification \\- 20+ intent types (F1 \\>85%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-4cddc5b33f27",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 145,
+      "text": "\\*\\*SEM\\_006:\\*\\* word\\_sense\\_disambiguation \\- WordNet synsets (F1 \\~80%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-c57af27bb39e",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 146,
+      "text": "\\*\\*SEM\\_007:\\*\\* metaphor\\_detection \\- Literal vs. figurative (F1 \\~75-80%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-31daee8e5be3",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 147,
+      "text": "\\*\\*SEM\\_008:\\*\\* frame\\_semantic\\_parsing \\- FrameNet frames",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-13fe6e9bbfa4",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 148,
+      "text": "\\*\\*SEM\\_009:\\*\\* temporal\\_relation\\_extraction \\- BEFORE/AFTER/SIMULTANEOUS",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-768d5ba2cfd1",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 149,
+      "text": "\\*\\*SEM\\_010:\\*\\* causal\\_relation\\_extraction \\- Cause-effect pairs",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d1056d984cc8",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 150,
+      "text": "\\*\\*SEM\\_011:\\*\\* emotion\\_classification \\- 8 emotions (F1 \\~65-75%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-55044638d96c",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 151,
+      "text": "\\*\\*SEM\\_012:\\*\\* semantic\\_graph\\_construction \\- AMR parsing (Smatch \\~84%)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-42f770268a9d",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 152,
+      "text": "\\*\\*SEM\\_013:\\*\\* entity\\_linking \\- Wikipedia/Wikidata IDs",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-736edad6c255",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 153,
+      "text": "\\*\\*SEM\\_014:\\*\\* multimodal\\_grounding \\- Text-image alignment",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-3e13b268b262",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 157,
+      "text": "\\*\\*PRAG\\_001:\\*\\* speech\\_act\\_classification \\- 5 categories (assertive, directive, commissive, expressive, declarative)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-62598397f6ee",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 158,
+      "text": "\\*\\*PRAG\\_002:\\*\\* coreference\\_resolution \\- Mention clustering",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-77b81eadd6d0",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 159,
+      "text": "\\*\\*PRAG\\_003:\\*\\* implicature\\_detection \\- Gricean maxim violations",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0e3e87ff557d",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 160,
+      "text": "\\*\\*PRAG\\_004:\\*\\* presupposition\\_identification \\- Implicit assumptions",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-45350e42a4e0",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 161,
+      "text": "\\*\\*PRAG\\_005:\\*\\* irony\\_sarcasm\\_detection \\- Multimodal (text+prosody+emoji)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-8a38f00d58b3",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 162,
+      "text": "\\*\\*PRAG\\_006:\\*\\* politeness\\_analysis \\- Brown & Levinson framework",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-822060e1b7fb",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 163,
+      "text": "\\*\\*PRAG\\_007:\\*\\* hedging\\_detection \\- Uncertainty markers",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-adcb316426ac",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 164,
+      "text": "\\*\\*PRAG\\_008:\\*\\* deictic\\_resolution \\- This/that/here/there \\+ gesture",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-1ac7b86464aa",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 165,
+      "text": "\\*\\*PRAG\\_009:\\*\\* ellipsis\\_resolution \\- Recover elided material",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0b76645c625b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 166,
+      "text": "\\*\\*PRAG\\_010:\\*\\* question\\_type\\_classification \\- Yes/no, wh-, alternative, tag",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d82c539f3ca4",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 167,
+      "text": "\\*\\*PRAG\\_011:\\*\\* dialogue\\_act\\_tagging \\- Conversational moves",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-64f661de1ee2",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 171,
+      "text": "\\*\\*DISC\\_001:\\*\\* rst\\_parsing \\- Enhanced RST with graph structure (F1 \\>70% relation labeling)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0c1c9bf3e1d7",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 172,
+      "text": "\\*\\*DISC\\_002:\\*\\* topic\\_segmentation \\- Discourse boundaries",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-75d0a0fb835e",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 173,
+      "text": "\\*\\*DISC\\_003:\\*\\* topic\\_tracking \\- Entity/concept continuity",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e3f8e8dd93c0",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 174,
+      "text": "\\*\\*DISC\\_004:\\*\\* coherence\\_evaluation \\- Relatedness scoring",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0e57d83581cb",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 175,
+      "text": "\\*\\*DISC\\_005:\\*\\* argumentation\\_mining \\- Premise-claim-rebuttal structure",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f2e898c77fa8",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 176,
+      "text": "\\*\\*DISC\\_006:\\*\\* rhetorical\\_relation\\_classification \\- 25+ relations",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-1af97fb0dcca",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 177,
+      "text": "\\*\\*DISC\\_007:\\*\\* discourse\\_deixis\\_resolution \\- “This argument”, “that claim”",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-65d83a6018f5",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 178,
+      "text": "\\*\\*DISC\\_008:\\*\\* information\\_structure \\- Given-new, topic-focus",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b959bc8bd1bb",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 179,
+      "text": "\\*\\*DISC\\_009:\\*\\* discourse\\_marker\\_analysis \\- Connective function",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-eadc56468c86",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 183,
+      "text": "\\*\\*SOCIO\\_001:\\*\\* dialect\\_identification \\- Regional/social varieties",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-76b182007829",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 184,
+      "text": "\\*\\*SOCIO\\_002:\\*\\* register\\_classification \\- Formal/informal/technical/literary",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-a6e8b0a62140",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 185,
+      "text": "\\*\\*SOCIO\\_003:\\*\\* style\\_analysis \\- Authorship attribution features",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-ff95af774197",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 186,
+      "text": "\\*\\*SOCIO\\_004:\\*\\* code\\_switching\\_detection \\- Multilingual discourse shifts",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-e481cf16950f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 187,
+      "text": "\\*\\*SOCIO\\_005:\\*\\* politeness\\_strategy\\_detection \\- Positive/negative face",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-7a592c5d1214",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 188,
+      "text": "\\*\\*SOCIO\\_006:\\*\\* formality\\_scoring \\- Lexical/syntactic formality metrics",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-2eacf2ffd2f0",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 189,
+      "text": "\\*\\*SOCIO\\_007:\\*\\* gender\\_language\\_analysis \\- Sociolinguistic gender markers (with ethics constraints)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-01fe38941387",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 190,
+      "text": "\\*\\*SOCIO\\_008:\\*\\* cultural\\_context\\_retrieval \\- WKRM integration for cultural norms",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-055cc2b01e55",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 201,
+      "text": "\\*\\*RHET\\_001:\\*\\* rhetorical\\_appeal\\_classification \\- Ethos/pathos/logos (F1 \\~0.75-0.85)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-750121578d4b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 202,
+      "text": "\\*\\*RHET\\_002:\\*\\* rhetorical\\_figure\\_detection \\- 25+ figures (metaphor, anaphora, chiasmus, hyperbole)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-03fe9534d308",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 203,
+      "text": "\\*\\*RHET\\_003:\\*\\* fallacy\\_detection \\- 10+ fallacy types (ad hominem, straw man, etc.) (F1 \\~0.70-0.84)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-756f407d35b7",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 204,
+      "text": "\\*\\*RHET\\_004:\\*\\* propaganda\\_technique\\_detection \\- 18 techniques (F1 \\~0.70-0.84)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-f28c9b91c79b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 205,
+      "text": "\\*\\*RHET\\_005:\\*\\* persuasive\\_strategy\\_identification \\- Cialdini’s 6 principles",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-03bd0afd01e9",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 206,
+      "text": "\\*\\*RHET\\_006:\\*\\* argument\\_quality\\_assessment \\- Logos strength scoring",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-0a2643067447",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 212,
+      "text": "\\#\\#\\# \\*\\*5. Peircean Triadic Implementation\\*\\*",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-b1b6002caa8f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 252,
+      "text": "\\*\\*Implementation:\\*\\* EmojiNet sense inventory, contextual BERT embeddings, semantic shift detection via longitudinal analysis",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-fa4d5ca3714b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 362,
+      "text": "\\#\\#\\# \\*\\*13. MAML Implementation\\*\\*",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d1e523b0726f",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 403,
+      "text": "\\- Backward transfer: Track performance on old tasks",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-fddcbd834725",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 504,
+      "text": "\\#\\# \\*\\*PART IX: IMPLEMENTATION SPECIFICATIONS\\*\\*",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-8af62d9bcd14",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 519,
+      "text": "POST /api/v1/analyze",
+      "status": "implemented",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "src/nexus_babel/api/routes.py"
+    },
+    {
+      "id": "ab-7fe628ad3720",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 523,
+      "text": "POST /api/v1/generate",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-24f0bc6961c8",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 527,
+      "text": "POST /api/v1/visualize",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-8ead204f682b",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 531,
+      "text": "POST /api/v1/rhetorical\\_analysis",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-d11a7ffb1f92",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 814,
+      "text": "\\- Core LAC implementation (9 layers)",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    },
+    {
+      "id": "ab-26ffafeab805",
+      "source_file": "Nexus_Bable-Alexandria.md",
+      "line": 816,
+      "text": "\\- Dual-mode prototype",
+      "status": "planned",
+      "plan_bucket_id": "AB-PLAN-01",
+      "plan_bucket_name": "Corpus Atomization + Remix Library",
+      "evidence": "planned via AB-PLAN-01"
+    }
+  ],
+  "summary": {
+    "total": 278,
+    "implemented": 31,
+    "planned": 247
+  }
+}
