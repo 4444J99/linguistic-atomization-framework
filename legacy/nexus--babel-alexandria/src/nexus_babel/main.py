@@ -96,7 +96,9 @@ def _initialize_schema_and_seeds(app: FastAPI) -> None:
 
 def create_app(settings_override: Settings | None = None) -> FastAPI:
     settings = settings_override or get_settings()
-    templates = Jinja2Templates(directory="src/nexus_babel/frontend/templates")
+    templates = Jinja2Templates(
+        directory=str(Path(__file__).resolve().parent / "frontend" / "templates")
+    )
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
